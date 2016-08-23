@@ -285,6 +285,16 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SNSRi.Entities\SNSRi.Entities.csproj">
+      <Project>{dcb12518-6834-4fdd-8086-105202a7d319}</Project>
+      <Name>SNSRi.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SNSRi.Repository\SNSRi.Repository.csproj">
+      <Project>{7b2e5218-0bd6-4ccd-8147-e21f1be17c3a}</Project>
+      <Name>SNSRi.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
