@@ -51,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseQuery.cs" />
+    <Compile Include="PagedQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserQuery.cs" />
   </ItemGroup>
