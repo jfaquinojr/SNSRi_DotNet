@@ -57,6 +57,7 @@
     <Compile Include="EventQuery.cs" />
     <Compile Include="PagedQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UIRoomDeviceQuery.cs" />
     <Compile Include="UIRoomQuery.cs" />
     <Compile Include="UserQuery.cs" />
   </ItemGroup>

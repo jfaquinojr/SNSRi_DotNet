@@ -230,6 +230,7 @@
     <Compile Include="Controllers\DevicesController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UIRoomDevicesController.cs" />
     <Compile Include="Controllers\UIRoomsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
