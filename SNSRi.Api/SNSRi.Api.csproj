@@ -228,6 +228,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CustomODataController.cs" />
     <Compile Include="Controllers\DevicesController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />

@@ -33,6 +33,7 @@ namespace SNSRi.Api
 			ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
 			builder.EntitySet<Device>("Devices");
 			builder.EntitySet<User>("Users");
+			builder.EntitySet<Event>("Events");
 			config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
 		}
     }

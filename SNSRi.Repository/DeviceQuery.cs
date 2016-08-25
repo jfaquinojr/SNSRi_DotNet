@@ -17,11 +17,5 @@ namespace SNSRi.Repository
 		public DeviceQuery(int page, int perPage) : base(ConnectionFactory.CreateSQLiteConnection(), page, perPage)
 		{
 		}
-
-		//protected override string generatePagingSQL(params string[] sql)
-		//{
-		//	var where = sql.Length > 0 ? sql[0] : "";
-		//	return where + base.generatePagingSQL();
-		//}
 	}
 }

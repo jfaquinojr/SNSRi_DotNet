@@ -54,6 +54,7 @@
     <Compile Include="BaseQuery.cs" />
     <Compile Include="ConnectionFactory.cs" />
     <Compile Include="DeviceQuery.cs" />
+    <Compile Include="EventQuery.cs" />
     <Compile Include="PagedQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserQuery.cs" />

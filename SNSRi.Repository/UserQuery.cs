@@ -22,34 +22,5 @@ namespace SNSRi.Repository
 		{
 		}
 
-		public override IEnumerable<User> Search(string whereClause = "", string orderByClause = "")
-		{
-			var sql = "select * from User where 1=1";
-
-			if (!string.IsNullOrEmpty(whereClause))
-			{
-				sql += $" and {whereClause}";
-			}
-
-			if (!string.IsNullOrEmpty(orderByClause))
-			{
-				sql += $" {orderByClause}";
-			}
-
-			sql += $" limit {_perPage} offset {(_page - 1) * _perPage}";
-
-			var users = _connection.Query<User>(sql);
-
-			return users;
-		}
-
-		public override User GetById(int Id)
-		{
-			string sql = $"select * from User where Id = {Id}";
-			var users = _connection.Query<User>(sql);
-
-			return users.FirstOrDefault();
-		}
-
 	}
 }
