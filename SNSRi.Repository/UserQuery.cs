@@ -14,14 +14,12 @@ namespace SNSRi.Repository
 
 	public class UserQuery : PagedQuery<User>
 	{
-		public UserQuery() : base(new SQLiteConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+		public UserQuery() : base(ConnectionFactory.CreateSQLiteConnection())
 		{
 		}
 
-		public UserQuery(int page, int perPage) : base(
-			new SQLiteConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString), page, perPage)
+		public UserQuery(int page, int perPage) : base(ConnectionFactory.CreateSQLiteConnection(), page, perPage)
 		{
-
 		}
 
 		public override IEnumerable<User> Search(string whereClause = "", string orderByClause = "")

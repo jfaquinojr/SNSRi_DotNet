@@ -22,7 +22,7 @@ namespace SNSRi.Repository
 		private const int CONST_DEFAULT_PAGE = 1;
 		private const int CONST_DEFAULT_PERPAGE = 30;
 
-		protected IDbConnection _connection;
+		
 		protected int _page;
 		protected int _perPage;
 
@@ -38,6 +38,41 @@ namespace SNSRi.Repository
 
 			if (_page < 1) _page = 1;
 			if (_perPage < 1) _perPage = 30;	
+		}
+
+		protected override string generateBaseSQL()
+		{
+			return base.generateBaseSQL() + generatePagingSQL();
+		}
+
+		protected virtual string generatePagingSQL(params string[] sql)
+		{
+			return $" limit {_perPage} offset {(_page - 1) * _perPage}";
+		}
+
+		public override IEnumerable<T> Search(string where = "", string order = "")
+		{
+			var sql = base.generateBaseSQL();
+			if (!string.IsNullOrEmpty(where))
+			{
+				sql += $" and {where} ";
+			}
+
+			if (!string.IsNullOrEmpty(order))
+			{
+				sql += $" order by {order} ";
+			}
+
+			sql += this.generatePagingSQL();
+
+			return _connection.Query<T>(sql);
+		}
+
+		public override T GetById(int Id)
+		{
+			var sql = base.generateBaseSQL() + $" and Id = {Id}";
+			var entity = _connection.QueryFirst<T>(sql);
+			return entity;
 		}
 	}
 }

@@ -5,6 +5,9 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
+using System.Web.Http.OData.Builder;
+using System.Web.Http.OData.Extensions;
+using SNSRi.Entities;
 
 namespace SNSRi.Api
 {
@@ -25,6 +28,11 @@ namespace SNSRi.Api
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-        }
+
+			// odata routes
+			ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
+			builder.EntitySet<Device>("Devices");
+			config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
+		}
     }
 }
