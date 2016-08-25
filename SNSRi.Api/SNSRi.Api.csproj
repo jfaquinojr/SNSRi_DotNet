@@ -301,7 +301,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\odata\" />
     <Folder Include="Views\Users\" />
   </ItemGroup>
   <ItemGroup>

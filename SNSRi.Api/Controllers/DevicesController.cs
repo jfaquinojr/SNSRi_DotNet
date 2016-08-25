@@ -31,10 +31,7 @@ namespace SNSRi.Api.Controllers
                 return BadRequest(ex.Message);
             }
 
-			var page = this.Request.RequestUri.GetQueryIntegerValue("page");
-			var perPage = this.Request.RequestUri.GetQueryIntegerValue("per_page");
-
-			var deviceQuery = new DeviceQuery(page, perPage);
+			var deviceQuery = new DeviceQuery(_page, _perPage);
 			var devices = deviceQuery.Search(queryOptions.WhereClause(), queryOptions.OrderByClause());
             return Ok<IEnumerable<Device>>(devices);
         }

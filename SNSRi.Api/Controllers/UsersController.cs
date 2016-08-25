@@ -1,67 +1,118 @@
-﻿using SNSRi.Entities;
-using SNSRi.Repository;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using System.Web;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
-using System.Web.Mvc;
+using System.Web.Http.ModelBinding;
+using System.Web.Http.OData;
+using System.Web.Http.OData.Query;
+using System.Web.Http.OData.Routing;
+using SNSRi.Entities;
+using Microsoft.Data.OData;
+using SNSRi.Repository;
 
 namespace SNSRi.Api.Controllers
 {
-    public class UsersController : ApiController
+    public class UsersController : CustomODataController
     {
-		// GET api/users/5
-		public IQueryable<User> Get()
-		{
-			var page = this.Request.RequestUri.GetQueryIntegerValue("page");
-			var perPage = this.Request.RequestUri.GetQueryIntegerValue("per_page");
+        // GET: odata/Users
+        public IHttpActionResult GetUsers(ODataQueryOptions<User> queryOptions)
+        {
+            try
+            {
+                queryOptions.Validate(_validationSettings);
+            }
+            catch (ODataException ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
-			var userQuery = new UserQuery(page, perPage);
-			return userQuery.Search().AsQueryable();
-		}
+			var userQuery = new UserQuery(_page, _perPage);
+			var users = userQuery.Search(queryOptions.WhereClause(), queryOptions.OrderByClause());
+			return Ok<IEnumerable<User>>(users);
+        }
 
-		// GET api/users/5
-		public User Get(int id)
-		{
+        // GET: odata/Users(5)
+        public IHttpActionResult GetUser([FromODataUri] int key, ODataQueryOptions<User> queryOptions)
+        {
+            try
+            {
+                queryOptions.Validate(_validationSettings);
+            }
+            catch (ODataException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
 			var userQuery = new UserQuery();
-			return userQuery.GetById(id);
+			var user = userQuery.GetById(key);
+			return Ok<User>(user);
 		}
 
-		// POST api/users
-		public void Post([FromBody]User user)
-		{
-		}
+        // PUT: odata/Users(5)
+        public IHttpActionResult Put([FromODataUri] int key, Delta<User> delta)
+        {
+            Validate(delta.GetEntity());
 
-		// PUT api/users/5
-		public void Put(int id, [FromBody]User user)
-		{
-		}
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-		// DELETE api/users/5
-		public void Delete(int id)
-		{
-		}
+            // TODO: Get the entity here.
 
-	}
+            // delta.Put(user);
 
-	public static class UriExtensions
-	{
-		public static string GetQueryStringValue(this Uri UriExension, string name)
-		{
-			var query = UriExension.Query.Replace('?', '&');
-			var result = from r in query.Split('&')
-							 where r.Contains($"{name}=")
-							 select r.Replace($"{name}=", "");
-			return result.FirstOrDefault();
-		}
+            // TODO: Save the patched entity.
 
-		public static int GetQueryIntegerValue(this Uri UriExension, string name)
-		{
-			var s = GetQueryStringValue(UriExension, name);
-			int i;
-			int.TryParse(s, out i);
-			return i;
-		}
-	}
+            // return Updated(user);
+            return StatusCode(HttpStatusCode.NotImplemented);
+        }
+
+        // POST: odata/Users
+        public IHttpActionResult Post(User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            // TODO: Add create logic here.
+
+            // return Created(user);
+            return StatusCode(HttpStatusCode.NotImplemented);
+        }
+
+        // PATCH: odata/Users(5)
+        [AcceptVerbs("PATCH", "MERGE")]
+        public IHttpActionResult Patch([FromODataUri] int key, Delta<User> delta)
+        {
+            Validate(delta.GetEntity());
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            // TODO: Get the entity here.
+
+            // delta.Patch(user);
+
+            // TODO: Save the patched entity.
+
+            // return Updated(user);
+            return StatusCode(HttpStatusCode.NotImplemented);
+        }
+
+        // DELETE: odata/Users(5)
+        public IHttpActionResult Delete([FromODataUri] int key)
+        {
+            // TODO: Add delete logic here.
+
+            // return StatusCode(HttpStatusCode.NoContent);
+            return StatusCode(HttpStatusCode.NotImplemented);
+        }
+    }
 }

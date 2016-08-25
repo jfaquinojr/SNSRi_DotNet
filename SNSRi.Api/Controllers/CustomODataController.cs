@@ -20,6 +20,17 @@ namespace SNSRi.Api.Controllers
 				AllowedArithmeticOperators = AllowedArithmeticOperators.None,
 				AllowedQueryOptions = AllowedQueryOptions.Filter | AllowedQueryOptions.OrderBy
 			};
+
+		protected int _page
+		{
+			get	{ return this.Request.RequestUri.GetQueryIntegerValue("page"); }
+		}
+
+		public int _perPage
+		{
+			get { return this.Request.RequestUri.GetQueryIntegerValue("per_page"); }
+		}
+
 	}
 
 	public static class ODataExtensions
@@ -118,6 +129,26 @@ namespace SNSRi.Api.Controllers
 			}
 
 			return "DESC";
+		}
+	}
+
+	public static class UriExtensions
+	{
+		public static string GetQueryStringValue(this Uri UriExension, string name)
+		{
+			var query = UriExension.Query.Replace('?', '&');
+			var result = from r in query.Split('&')
+						 where r.Contains($"{name}=")
+						 select r.Replace($"{name}=", "");
+			return result.FirstOrDefault();
+		}
+
+		public static int GetQueryIntegerValue(this Uri UriExension, string name)
+		{
+			var s = GetQueryStringValue(UriExension, name);
+			int i;
+			int.TryParse(s, out i);
+			return i;
 		}
 	}
 }
