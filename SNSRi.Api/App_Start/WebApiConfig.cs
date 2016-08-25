@@ -34,6 +34,7 @@ namespace SNSRi.Api
 			builder.EntitySet<Device>("Devices");
 			builder.EntitySet<User>("Users");
 			builder.EntitySet<Event>("Events");
+			builder.EntitySet<UIRoom>("UIRooms");
 			config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
 		}
     }
