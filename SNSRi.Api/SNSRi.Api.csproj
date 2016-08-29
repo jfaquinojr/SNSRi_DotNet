@@ -226,13 +226,14 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CustomODataController.cs" />
-    <Compile Include="Controllers\DevicesController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Controllers\odata\CustomODataController.cs" />
+    <Compile Include="Controllers\odata\DevicesController.cs" />
+    <Compile Include="Controllers\odata\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\UIRoomDevicesController.cs" />
-    <Compile Include="Controllers\UIRoomsController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\odata\UIRoomDevicesController.cs" />
+    <Compile Include="Controllers\odata\UIRoomsController.cs" />
+    <Compile Include="Controllers\odata\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -304,6 +305,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Events\" />
     <Folder Include="Views\Users\" />
   </ItemGroup>
   <ItemGroup>

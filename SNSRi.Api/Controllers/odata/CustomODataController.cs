@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Query;
 
-namespace SNSRi.Api.Controllers
+namespace SNSRi.odata.Controllers
 {
 	public class CustomODataController : ODataController
 	{

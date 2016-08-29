@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SNSRi.Repository
+namespace SNSRi.Repository.Query
 {
 	/// <summary>
 	/// Pagination is patterned against the github way

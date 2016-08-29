@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 
-namespace SNSRi.Repository
+namespace SNSRi.Repository.Query
 {
 	public abstract class BaseQuery<T>
 	{

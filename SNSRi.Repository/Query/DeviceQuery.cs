@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SNSRi.Repository
+namespace SNSRi.Repository.Query
 {
 	public class DeviceQuery : PagedQuery<Device>
 	{
