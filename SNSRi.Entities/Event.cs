@@ -8,6 +8,18 @@ namespace SNSRi.Entities
 {
 	public class Event
 	{
+        public Event()
+        {
+        }
+
+        public Event(int deviceId, string newStatus, string oldStatus, DateTime occurredOn)
+        {
+            DeviceId = deviceId;
+            NewStatus = newStatus;
+            OldStatus = oldStatus;
+            OccurredOn = occurredOn;
+        }
+
 		public int Id { get; set; }
 		public int DeviceId { get; set; }
 		public DateTime OccurredOn { get; set; }

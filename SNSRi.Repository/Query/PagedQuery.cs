@@ -30,7 +30,7 @@ namespace SNSRi.Repository.Query
 		{
 		}
 
-		public PagedQuery(IDbConnection connection, int page, int perPage)
+		public PagedQuery(IDbConnection connection, int page, int perPage) : base(connection)
 		{
 			_connection = connection;
 			_page = page;

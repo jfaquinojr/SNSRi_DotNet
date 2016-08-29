@@ -17,5 +17,12 @@ namespace SNSRi.Repository.Query
 		public DeviceQuery(int page, int perPage) : base(ConnectionFactory.CreateSQLiteConnection(), page, perPage)
 		{
 		}
+
+        public Device GetByReferenceId(int referenceId)
+        {
+            var result = Search($"ReferenceId = {referenceId}");
+            var retval = result.FirstOrDefault();
+            return retval;
+        }
 	}
 }

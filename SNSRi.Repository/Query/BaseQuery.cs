@@ -8,9 +8,12 @@ using Dapper;
 
 namespace SNSRi.Repository.Query
 {
-	public abstract class BaseQuery<T>
+	public abstract class BaseQuery<T> : BaseRepository
 	{
-		protected IDbConnection _connection;
+        public BaseQuery(IDbConnection connection) : base(connection)
+        {
+
+        }
 
 		public abstract T GetById(int Id);
 
