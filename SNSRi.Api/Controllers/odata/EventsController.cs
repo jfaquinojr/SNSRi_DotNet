@@ -12,9 +12,11 @@ using System.Web.Http.OData.Routing;
 using SNSRi.Entities;
 using Microsoft.Data.OData;
 using SNSRi.Repository.Query;
+using System.Web.Http.Cors;
 
 namespace SNSRi.odata.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class EventsController : CustomODataController
     {
         // GET: odata/Events

@@ -8,6 +8,7 @@ using Newtonsoft.Json.Serialization;
 using System.Web.Http.OData.Builder;
 using System.Web.Http.OData.Extensions;
 using SNSRi.Entities;
+using System.Web.Http.Cors;
 
 namespace SNSRi.Api
 {
@@ -22,6 +23,9 @@ namespace SNSRi.Api
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
 
             //config.Routes.MapHttpRoute(
             //    name: "DefaultApi",
