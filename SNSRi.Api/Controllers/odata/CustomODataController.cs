@@ -16,7 +16,7 @@ namespace SNSRi.odata.Controllers
 			{
 				// These validation settings prevent anything except: (equals, and, or) filter and sorting
 				AllowedFunctions = AllowedFunctions.None,
-				AllowedLogicalOperators = AllowedLogicalOperators.Equal | AllowedLogicalOperators.And | AllowedLogicalOperators.Or | AllowedLogicalOperators.NotEqual,
+				AllowedLogicalOperators = AllowedLogicalOperators.Equal | AllowedLogicalOperators.GreaterThanOrEqual | AllowedLogicalOperators.GreaterThan | AllowedLogicalOperators.And | AllowedLogicalOperators.Or | AllowedLogicalOperators.NotEqual,
 				AllowedArithmeticOperators = AllowedArithmeticOperators.None,
 				AllowedQueryOptions = AllowedQueryOptions.Filter | AllowedQueryOptions.OrderBy
 			};
@@ -74,7 +74,7 @@ namespace SNSRi.odata.Controllers
 
 				if (property != null && property.Property != null && constant != null && constant.Value != null)
 				{
-					s += $" {property.Property.Name} {getStringValue(node.OperatorKind)} '{constant.Value}' ";
+					s += $" {property.Property.Name} {getStringValue(node.OperatorKind)} {getStringValue(constant)} ";
 				}
 			}
 			else
@@ -90,6 +90,21 @@ namespace SNSRi.odata.Controllers
 			}
 			return s;
 		}
+
+        private static string getStringValue(ConstantNode node)
+        {
+            var retval = "'" + node.Value + "'";
+            switch (node.Value.GetType().Name)
+            {
+                case "DateTime":
+                    DateTime dt = (DateTime) node.Value;
+                    retval = "DateTime('" + dt.ToString("yyyy-MM-dd hh:mm:ss") + "')";
+                    break;
+                default:
+                    break;
+            }
+            return retval;
+        }
 
 		private static string getStringValue(BinaryOperatorKind op)
 		{
