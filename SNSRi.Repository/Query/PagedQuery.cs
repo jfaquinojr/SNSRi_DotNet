@@ -51,24 +51,32 @@ namespace SNSRi.Repository.Query
 		}
 
 		public override IEnumerable<T> Search(string where = "", string order = "")
-		{
-			var sql = base.generateBaseSQL();
-			if (!string.IsNullOrEmpty(where))
-			{
-				sql += $" and {where} ";
-			}
+        {
+            var sql = base.generateBaseSQL();
 
-			if (!string.IsNullOrEmpty(order))
-			{
-				sql += $" order by {order} ";
-			}
+            sql = appendWhereAndSortClause(sql, where, order);
 
-			sql += this.generatePagingSQL();
+            sql += this.generatePagingSQL();
 
-			return _connection.Query<T>(sql);
-		}
+            return _connection.Query<T>(sql);
+        }
 
-		public override T GetById(int Id)
+        protected virtual string appendWhereAndSortClause(string sql, string where, string order)
+        {
+            if (!string.IsNullOrEmpty(where))
+            {
+                sql += $" and {where} ";
+            }
+
+            if (!string.IsNullOrEmpty(order))
+            {
+                sql += $" order by {order} ";
+            }
+
+            return sql;
+        }
+
+        public override T GetById(int Id)
 		{
 			var sql = base.generateBaseSQL() + $" and Id = {Id}";
 			var entity = _connection.QueryFirst<T>(sql);
