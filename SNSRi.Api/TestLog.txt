@@ -1,0 +1,10 @@
+INFO  2016-09-01 23:25:16,325   123ms ODataExtensions        WhereClause        - WhereClause Enter
+DEBUG 2016-09-01 23:25:16,468   266ms ODataExtensions        WhereClause        - Return value is 
+INFO  2016-09-01 23:25:16,469   267ms ODataExtensions        WhereClause        - WhereClause Exit
+INFO  2016-09-01 23:25:16,470   268ms ODataExtensions        OrderByClause      - OrderByClause Enter
+DEBUG 2016-09-01 23:25:16,470   268ms ODataExtensions        OrderByClause      - Return value is 
+INFO  2016-09-01 23:25:16,470   268ms ODataExtensions        OrderByClause      - OrderByClause Exit
+INFO  2016-09-01 23:25:16,475   273ms agedQuery<RuntimeType> Search             - Search Enter
+DEBUG 2016-09-01 23:25:16,477   275ms agedQuery<RuntimeType> Search             - SQL generated: 'select * from Event where 1=1 limit 30 offset 0'
+DEBUG 2016-09-01 23:25:16,692   490ms agedQuery<RuntimeType> Search             - Dapper return 30 record(s)
+INFO  2016-09-01 23:25:16,693   491ms agedQuery<RuntimeType> Search             - Search Exit

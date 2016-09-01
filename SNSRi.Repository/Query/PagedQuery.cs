@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using log4net;
 using SNSRi.Entities;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,9 @@ namespace SNSRi.Repository.Query
 	/// </summary>
 	public abstract class PagedQuery<T> : BaseQuery<T>
 	{
-		private const int CONST_DEFAULT_PAGE = 1;
+        private static readonly ILog log = LogManager.GetLogger($"PagedQuery<{typeof(T).GetType().Name}>");
+
+        private const int CONST_DEFAULT_PAGE = 1;
 		private const int CONST_DEFAULT_PERPAGE = 30;
 
 		
@@ -52,13 +55,22 @@ namespace SNSRi.Repository.Query
 
 		public override IEnumerable<T> Search(string where = "", string order = "")
         {
+            log.Info("Search Enter");
+            
             var sql = base.generateBaseSQL();
 
             sql = appendWhereAndSortClause(sql, where, order);
 
             sql += this.generatePagingSQL();
 
-            return _connection.Query<T>(sql);
+            log.Debug($"SQL generated: '{sql}'");
+
+            var result = _connection.Query<T>(sql);
+
+            log.Debug($"Dapper return {result.Count()} record(s)");
+            log.Info("Search Exit");
+
+            return result;
         }
 
         protected virtual string appendWhereAndSortClause(string sql, string where, string order)
@@ -78,8 +90,15 @@ namespace SNSRi.Repository.Query
 
         public override T GetById(int Id)
 		{
+            log.Info("GetById Enter");
+
 			var sql = base.generateBaseSQL() + $" and Id = {Id}";
 			var entity = _connection.QueryFirst<T>(sql);
+
+            log.Debug($"SQL generated is {sql}");
+            log.Debug($"Result is {(entity == null ? "Found" : "Empty")}");
+            log.Info("GetById Exit");
+
 			return entity;
 		}
 	}

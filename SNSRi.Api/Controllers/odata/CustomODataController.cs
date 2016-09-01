@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Query;
+using log4net;
 
 namespace SNSRi.odata.Controllers
 {
@@ -35,23 +36,33 @@ namespace SNSRi.odata.Controllers
 
 	public static class ODataExtensions
 	{
-		public static string WhereClause(this ODataQueryOptions options)
+        private static readonly ILog log = LogManager.GetLogger(typeof(ODataExtensions));
+
+        public static string WhereClause(this ODataQueryOptions options)
 		{
+            log.Info("WhereClause Enter");
+            
 			string s = "";
-			if (options.Filter != null && options.Filter.FilterClause != null)
+			if (options?.Filter?.FilterClause != null)
 			{
 				var node = options.Filter.FilterClause.Expression as BinaryOperatorNode;
 				s = getWhereClause(node);
 			}
-			return s;
-		}
+
+            log.Debug($"Return value is {s}");
+            log.Info("WhereClause Exit");
+
+            return s;
+        }
 
 		public static string OrderByClause(this ODataQueryOptions options)
 		{
+            log.Info("OrderByClause Enter");
+            
 			string s = "";
 			// PARSE Order by
 			// Order by, e.g. /Products?$orderby=Supplier asc,Price desc
-			if (options.OrderBy != null && options.OrderBy.OrderByClause != null)
+			if (options?.OrderBy?.OrderByClause != null)
 			{
 				foreach (var node in options.OrderBy.OrderByNodes)
 				{
@@ -59,11 +70,17 @@ namespace SNSRi.odata.Controllers
 					s += $" {typedNode.Property.Name} {getStringValue(typedNode.OrderByClause.Direction)}, ";
 				}
 			}
+
+            log.Debug($"Return value is {s}");
+            log.Info("OrderByClause Exit");
+
 			return s.TrimEnd(',', ' ');
 		}
 
 		private static string getWhereClause(BinaryOperatorNode node)
 		{
+            log.Info("getWhereClause Enter");
+            
 			// PARSE FILTER CLAUSE
 			// Parsing a filter, e.g. /Products?$filter=Name eq 'beer'  
 			var s = "";
@@ -79,22 +96,35 @@ namespace SNSRi.odata.Controllers
 			}
 			else
 			{
-				if (node.Left is BinaryOperatorNode)
-					s += getWhereClause(node.Left as BinaryOperatorNode);
+                if (node.Left is BinaryOperatorNode)
+                {
+                    log.Debug("Node Left is a BinaryOperatorNode");
+                    s += getWhereClause(node.Left as BinaryOperatorNode);
+                }
 
 				if (node.Right is BinaryOperatorNode)
 				{
-					s += $" {getStringValue(node.OperatorKind)} ";
+                    log.Debug("Node Right is a BinaryOperatorNode");
+                    s += $" {getStringValue(node.OperatorKind)} ";
 					s += getWhereClause(node.Right as BinaryOperatorNode);
 				}
 			}
+
+            log.Debug($"return value is {s}");
+            log.Info("getWhereClause Exit");
+            
 			return s;
 		}
 
         private static string getStringValue(ConstantNode node)
         {
+            log.Info("getStringValue Enter");
+            
             var retval = "'" + node.Value + "'";
-            switch (node.Value.GetType().Name)
+
+            var typeName = node.Value.GetType().Name;
+            log.Debug($"Node Value Type is {typeName}");
+            switch (typeName)
             {
                 case "DateTime":
                     DateTime dt = (DateTime) node.Value;
@@ -103,11 +133,18 @@ namespace SNSRi.odata.Controllers
                 default:
                     break;
             }
+
+            log.Debug($"Return value is {retval}");
+            log.Info("getStringValue Exit");
+            
             return retval;
         }
 
 		private static string getStringValue(BinaryOperatorKind op)
 		{
+            log.Info("getStringValue Enter");
+
+            log.Debug($"Operator is {op.ToString()}");
 			string s;
 			switch (op)
 			{
@@ -134,15 +171,23 @@ namespace SNSRi.odata.Controllers
 					break;
 			}
 
+            log.Debug($"Return value is {s}");
+            log.Info("getStringValue Exit");
+            
 			return s;
 		}
 		private static string getStringValue(OrderByDirection dir)
 		{
+            log.Info("getStringValue Enter");
+
 			if (dir == OrderByDirection.Ascending)
 			{
 				return "ASC";
 			}
 
+            log.Debug($"Direction is {dir.ToString()}");
+            log.Info("getStringValue Exit");
+            
 			return "DESC";
 		}
 	}
