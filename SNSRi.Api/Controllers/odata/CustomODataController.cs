@@ -128,7 +128,7 @@ namespace SNSRi.odata.Controllers
             {
                 case "DateTime":
                     DateTime dt = (DateTime) node.Value;
-                    retval = "DateTime('" + dt.ToString("yyyy-MM-dd hh:mm:ss") + "')";
+                    retval = "DateTime('" + dt.ToString("yyyy-MM-dd HH:mm:ss") + "')";
                     break;
                 default:
                     break;
