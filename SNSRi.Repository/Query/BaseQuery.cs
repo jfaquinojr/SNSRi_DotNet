@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Dapper;
+using log4net;
 
 namespace SNSRi.Repository.Query
 {
 	public abstract class BaseQuery<T> : BaseRepository
 	{
-        public BaseQuery(IDbConnection connection) : base(connection)
+		protected static readonly ILog log = LogManager.GetLogger(typeof(T).Name);
+
+		public BaseQuery(IDbConnection connection) : base(connection)
         {
 
         }

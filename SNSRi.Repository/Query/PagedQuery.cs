@@ -1,14 +1,7 @@
 ﻿using Dapper;
-using log4net;
-using SNSRi.Entities;
-using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
-using System.Data.SQLite;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SNSRi.Repository.Query
 {
@@ -20,8 +13,6 @@ namespace SNSRi.Repository.Query
 	/// </summary>
 	public abstract class PagedQuery<T> : BaseQuery<T>
 	{
-        private static readonly ILog log = LogManager.GetLogger($"PagedQuery<{typeof(T).GetType().Name}>");
-
         private const int CONST_DEFAULT_PAGE = 1;
 		private const int CONST_DEFAULT_PERPAGE = 30;
 
