@@ -9,6 +9,7 @@ using System.Web.Http.OData.Builder;
 using System.Web.Http.OData.Extensions;
 using SNSRi.Entities;
 using System.Web.Http.Cors;
+using SNSRi.Api.Models;
 
 namespace SNSRi.Api
 {
@@ -63,6 +64,7 @@ namespace SNSRi.Api
 			builder.EntitySet<Event>("Events");
 			builder.EntitySet<UIRoom>("UIRooms");
 			builder.EntitySet<UIRoomDevice>("UIRoomDevices");
+			builder.EntitySet<TicketActivityViewModel>("Actions");
 			config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
 		}
     }

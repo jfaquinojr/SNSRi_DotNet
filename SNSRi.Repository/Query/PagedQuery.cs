@@ -29,6 +29,10 @@ namespace SNSRi.Repository.Query
 		protected int _page;
 		protected int _perPage;
 
+		public PagedQuery() : this(ConnectionFactory.CreateSQLiteConnection())
+		{
+		}
+
 		public PagedQuery(IDbConnection connection) : this(connection, CONST_DEFAULT_PAGE, CONST_DEFAULT_PERPAGE)
 		{
 		}

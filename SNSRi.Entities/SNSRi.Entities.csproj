@@ -40,9 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activity.cs" />
     <Compile Include="Device.cs" />
     <Compile Include="Event.cs" />
+    <Compile Include="EventTicket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ticket.cs" />
     <Compile Include="UIRoom.cs" />
     <Compile Include="UIRoomDevice.cs" />
     <Compile Include="User.cs" />
