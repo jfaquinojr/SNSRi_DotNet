@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -26,7 +27,15 @@ namespace SNSRi.odata.Controllers
             // validate the query.
             try
             {
-                queryOptions.Validate(_validationSettings);
+				_validationSettings = new ODataValidationSettings
+				{
+					AllowedFunctions = AllowedFunctions.None,
+					AllowedLogicalOperators = AllowedLogicalOperators.None,
+					AllowedArithmeticOperators = AllowedArithmeticOperators.None,
+					AllowedQueryOptions = AllowedQueryOptions.None
+				};
+
+				queryOptions.Validate(_validationSettings);
             }
             catch (ODataException ex)
             {
@@ -56,7 +65,7 @@ namespace SNSRi.odata.Controllers
 				});
 			});
 
-
+			
 			return Ok<IEnumerable<TicketActivityViewModel>>(tktActivities);
 
         }

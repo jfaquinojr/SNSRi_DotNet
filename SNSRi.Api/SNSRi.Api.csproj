@@ -244,6 +244,7 @@
     <Compile Include="Controllers\odata\DevicesController.cs" />
     <Compile Include="Controllers\odata\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\odata\NewActionsController.cs" />
     <Compile Include="Controllers\odata\UIRoomDevicesController.cs" />
     <Compile Include="Controllers\odata\UIRoomsController.cs" />
     <Compile Include="Controllers\odata\UsersController.cs" />

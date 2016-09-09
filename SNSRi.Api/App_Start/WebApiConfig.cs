@@ -65,6 +65,7 @@ namespace SNSRi.Api
 			builder.EntitySet<UIRoom>("UIRooms");
 			builder.EntitySet<UIRoomDevice>("UIRoomDevices");
 			builder.EntitySet<TicketActivityViewModel>("Actions");
+			builder.EntitySet<TicketActivityViewModel>("NewActions");
 			config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
 		}
     }
