@@ -29,5 +29,7 @@ namespace SNSRi.Api.Models
         {
             return new ApplicationDbContext();
         }
-    }
+
+		public System.Data.Entity.DbSet<SNSRi.Entities.UIRoom> UIRooms { get; set; }
+	}
 }
