@@ -1,0 +1,64 @@
+﻿
+		body{
+            padding-top:0px;
+        }
+ 
+
+        .no-right-margin{
+            margin-right:0;
+        }
+
+        .no-gutter > [class*='col-']{
+            padding-right:0;
+            padding-left:0;
+        }
+
+        .block-event{
+            padding-left:0px;
+            padding-right:0px;
+            padding-top:8px;
+            background-color: white;
+            border: 2px solid;
+        }
+
+        .block-action-desc{
+            font-size: large;
+            padding-top: 3px;
+            padding-bottom: 2px;
+        }
+        .block-action-when{
+            font-size: x-small;
+            padding-top: 3px;
+            padding-bottom: 5px;
+        }
+
+        .block-activity-group, .block-activity-view{
+            padding-left:10px;
+            padding-right:10px;
+        }
+
+        .block-activity-edit{
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        .block-activity-edit-actions{
+            padding-top: 5px;
+        }
+        
+        .block-activity-view{
+            padding-top:5px;
+        }
+        .block-activity-view:hover{
+            background: #d3d3d3;
+        }
+
+		.right-pane {
+			position: absolute;
+			right: 5px;
+
+
+			width: 300px;
+		}
+
+

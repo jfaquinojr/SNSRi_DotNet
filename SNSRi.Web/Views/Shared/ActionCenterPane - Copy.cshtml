@@ -1,0 +1,62 @@
+﻿<div ng-app="app" ng-controller="ActionController as vm">
+	
+	<div class="col-xs-12 block-event" ng-repeat="n in [42, 42, 43, 43] track by $index">
+        {{n}}
+		<div class="col-xs-12 block-activity-group no-gutter">
+			<div class="col-xs-12 block-action-desc"><a href="#">This is an example of an event</a>
+			</div>
+			<div class="col-xs-12 block-action-when">3 days ago</div>
+
+			<div class="col-xs-12 block-activity-edit no-gutter">
+				<textarea class="form-control square" placeholder="Write an activity"></textarea>
+				<div class="col-xs-12 block-activity-edit-actions no-gutter">
+					<div class="row">
+
+						<div class="col-xs-6">
+							<button class="btn btn-default btn-xs square"><i class="glyphicon glyphicon-plus"></i> Add Activity</button>
+						</div>
+						<div class="col-xs-6">
+							<button class="btn btn-danger btn-xs pull-right square"><i class="glyphicon glyphicon-ok"></i> Close Event</button>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+		<div class="col-xs-12 block-activity-view">
+			<div class="block-action-desc">
+				<a href="#">
+					Lorem ipsum dolor. The quick brown fox jumps over the lazy dog.
+				</a>
+			</div>
+			<div class="block-action-when">
+				Jojo 2 days ago
+			</div>
+		</div>
+		<div class="col-xs-12 block-activity-view">
+			<div class="block-action-desc">
+				<a href="#">
+					Lorem ipsum dolor. The quick brown fox jumps over the lazy dog.
+				</a>
+			</div>
+			<div class="block-action-when">
+				Jojo 2 days ago
+			</div>
+		</div>
+		<div class="col-xs-12 block-activity-view">
+			<div class="block-action-desc">
+				<a href="#">
+					Lorem ipsum dolor. The quick brown fox jumps over the lazy dog.
+				</a>
+			</div>
+			<div class="block-action-when">
+				Jojo 2 days ago
+			</div>
+		</div>
+
+	</div>
+
+</div>

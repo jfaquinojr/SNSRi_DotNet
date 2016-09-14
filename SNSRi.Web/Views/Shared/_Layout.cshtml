@@ -1,9 +1,8 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	xxx
-	<meta charset="utf-8"/>
-	<meta name="viewport" content="width=device-width"/>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=yes">
 	<meta name="mobile-web-app-capable" content="yes">
@@ -48,7 +47,7 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li>@Html.ActionLink("Room 101", "Index", "Home", new { area = "" }, null)</li>
-					<li>@Html.ActionLink("Room 102", "Index", "Help", new { area = "" }, null)</li>
+					<li>@Html.ActionLink("Room 102", "Index", "Home", new { area = "" }, null)</li>
 				</ul>
 			</div>
 		</div>
@@ -59,15 +58,15 @@
 				this is body
 				@RenderBody()
 			</div>
-		<div class="right-pane">
-		
-			
-			
-            @Html.Partial("ActionCenterPane")
-			
-			
+			<div class="right-pane">
 
-		</div>			
+
+
+				@Html.Partial("ActionCenterPane")
+
+
+
+			</div>
 		</div>
 
 	</div>

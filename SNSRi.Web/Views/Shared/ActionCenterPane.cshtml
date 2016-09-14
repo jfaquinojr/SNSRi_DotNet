@@ -1,0 +1,64 @@
+﻿<div ng-app="app" ng-controller="ActionController as vm">
+	
+    
+    <div class="col-xs-12 block-event" ng-repeat="tkt in vm.Actions">
+        
+        <div class="col-xs-12 tile-clickable" ng-click="vm.open('sm')">
+            <div class="row event-title">
+                <h3>{{tkt.Name}}</h3>
+            </div>
+            <div class="row event-info">
+                <span am-time-ago="tkt.CreatedOn"></span>
+            </div>
+        </div>
+        
+    </div>
+
+    
+
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">This is an example of an event and its activities.</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+
+            
+            
+	<div class="col-xs-12 block-event">
+
+
+		<div class="col-xs-12 block-activity-view" ng-repeat="n in [3, 42, 43, 16] track by $index">
+			<div class="block-action-desc">
+				<a href="#">
+					{{n}}. Lorem ipsum dolor. The quick brown fox jumps over the lazy dog.
+				</a>
+			</div>
+			<div class="block-action-when">
+				user{{n}} 2 days ago
+			</div>
+		</div>
+        
+        <div class="row">
+            <div class="col-xs-9">
+                <textarea class="form-control" placeholder="enter an activity"></textarea>
+            </div>
+            <div class="col-xs-3">
+                <button class="btn btn-default btn-sm"><i class="glyphicon glyphicon-plus"></i> Add</button>
+            </div>
+            
+        </div>
+
+
+	</div>
+            
+            
+
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-danger pull-left" type="button" ng-click="$ctrl.ok()"><i class="glyphicon glyphicon-ok"></i> Close Event</button>
+            <button class="btn btn-default" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+        </div>
+    </script>
+
+    
+</div>

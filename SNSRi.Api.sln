@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SNSRi.Entities", "SNSRi.Ent
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SNSRi.Repository", "SNSRi.Repository\SNSRi.Repository.csproj", "{7B2E5218-0BD6-4CCD-8147-E21F1BE17C3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SNSRi.Web", "SNSRi.Web\SNSRi.Web.csproj", "{BA89D286-C01F-4A49-834A-0D8F0B001142}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7B2E5218-0BD6-4CCD-8147-E21F1BE17C3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B2E5218-0BD6-4CCD-8147-E21F1BE17C3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B2E5218-0BD6-4CCD-8147-E21F1BE17C3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA89D286-C01F-4A49-834A-0D8F0B001142}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA89D286-C01F-4A49-834A-0D8F0B001142}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA89D286-C01F-4A49-834A-0D8F0B001142}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA89D286-C01F-4A49-834A-0D8F0B001142}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
