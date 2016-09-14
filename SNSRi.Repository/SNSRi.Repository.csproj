@@ -58,6 +58,7 @@
     <Compile Include="BaseRepository.cs" />
     <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Commands\EventCommand.cs" />
+    <Compile Include="Commands\TicketCommand.cs" />
     <Compile Include="Query\BaseQuery.cs" />
     <Compile Include="ConnectionFactory.cs" />
     <Compile Include="Query\DeviceQuery.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Query\UIRoomDeviceQuery.cs" />
     <Compile Include="Query\UIRoomQuery.cs" />
     <Compile Include="Query\UserQuery.cs" />
+    <Compile Include="RepositoryLoggerExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

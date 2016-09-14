@@ -247,6 +247,7 @@
     <Compile Include="Controllers\odata\UIRoomDevicesController.cs" />
     <Compile Include="Controllers\odata\UIRoomsController.cs" />
     <Compile Include="Controllers\odata\UsersController.cs" />
+    <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

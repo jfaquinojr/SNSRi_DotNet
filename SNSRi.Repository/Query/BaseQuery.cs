@@ -8,8 +8,6 @@ namespace SNSRi.Repository.Query
 {
 	public abstract class BaseQuery<T> : BaseRepository
 	{
-		protected static readonly ILog log = LogManager.GetLogger(typeof(T).Name);
-
 		public BaseQuery(IDbConnection connection) : base(connection)
         {
 
