@@ -61,6 +61,7 @@
     <Compile Include="Commands\TicketCommand.cs" />
     <Compile Include="Query\BaseQuery.cs" />
     <Compile Include="ConnectionFactory.cs" />
+    <Compile Include="Query\ActivityQuery.cs" />
     <Compile Include="Query\DeviceQuery.cs" />
     <Compile Include="Query\EventQuery.cs" />
     <Compile Include="Query\ODataExtensions.cs" />

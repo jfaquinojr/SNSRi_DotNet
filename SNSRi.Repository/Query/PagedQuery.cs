@@ -48,7 +48,7 @@ namespace SNSRi.Repository.Query
 			return $" limit {_perPage} offset {(_page - 1) * _perPage}";
 		}
 
-		public override IEnumerable<T> Search(string where = "", string order = "")
+		public override IEnumerable<T>Search(string where = "", string order = "")
         {
             log.Info("Search Enter");
             
@@ -60,7 +60,7 @@ namespace SNSRi.Repository.Query
 
             log.Debug($"SQL generated: '{sql}'");
 
-            var result = _connection.Query<T>(sql);
+            var result = _connection.Query<T>(sql).ToList();
 
             log.Debug($"Dapper return {result.Count()} record(s)");
             log.Info("Search Exit");
