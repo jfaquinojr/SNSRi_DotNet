@@ -25,6 +25,19 @@ namespace SNSRi.Repository.Commands
 			return id;
 		}
 
+	    public void CloseTicket(int ticketId)
+	    {
+	        
+            log.Debug("CloseTicket Enter");
+
+            const string sql = "update Ticket set Status = 'Closed', ModifiedOn = DateTime('now') where Id = @Id";
+            log.Debug($"SQL Statement: {sql}");
+
+	        _connection.Execute(sql, new {Id = ticketId});
+  
+            log.Debug("CloseTicket Exit");
+        }
+
 		public override void Delete(Ticket entity)
 		{
 			throw new NotImplementedException();

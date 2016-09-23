@@ -4,6 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Results;
+using SNSRi.Entities;
+using SNSRi.Repository.Commands;
 using SNSRi.Repository.Query;
 
 namespace SNSRi.Api.Controllers
@@ -36,5 +39,6 @@ namespace SNSRi.Api.Controllers
 
 			return Ok(qry.GetById(id));
 		}
+
 	}
 }

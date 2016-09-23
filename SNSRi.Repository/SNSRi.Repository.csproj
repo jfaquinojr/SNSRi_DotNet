@@ -58,6 +58,7 @@
     <Compile Include="BaseRepository.cs" />
     <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Commands\EventCommand.cs" />
+    <Compile Include="Commands\ActivityCommand.cs" />
     <Compile Include="Commands\TicketCommand.cs" />
     <Compile Include="Query\BaseQuery.cs" />
     <Compile Include="ConnectionFactory.cs" />

@@ -37,6 +37,31 @@ namespace SNSRi.Api.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        [HttpPost]
+        [Route("api/CreateActivity")]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult CreateActivity(Activity activity)
+        {
+            activity.CreatedOn = DateTime.Now;
+            var cmd = new ActivityCommand();
+            activity.Id = cmd.Create(activity);
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+
+        [HttpPost]
+        [Route("api/CloseTicket")]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult CloseTicket(Activity activity)
+        {
+            CreateActivity(activity);
+
+            var cmd = new TicketCommand();
+            cmd.CloseTicket(activity.TicketId);
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
         #region Template
         //// GET: api/Users2
         //public IQueryable<User> GetUsers()
