@@ -5,7 +5,7 @@ using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartup(typeof(SNSRi.Api.Startup))]
-[assembly: log4net.Config.XmlConfigurator(Watch = true)]
+
 
 namespace SNSRi.Api
 {
