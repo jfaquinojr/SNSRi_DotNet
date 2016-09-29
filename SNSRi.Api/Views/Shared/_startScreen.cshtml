@@ -7,16 +7,20 @@
     <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
     <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
     <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
-    <link rel='shortcut icon' type='image/x-icon' href='../favicon.ico' />
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
     <title>SNSRi</title>
+
     <link href="~/Content/metro.css" rel="stylesheet">
     <link href="~/Content/metro-icons.css" rel="stylesheet"> 
     <link href="~/Content/action-center.css" rel="stylesheet">
     <!--<link href="../css/metro-responsive.css" rel="stylesheet">-->
     <script src="~/Scripts/jquery-2.1.3.min.js"></script>
     <script src="~/Scripts/metro.js"></script>
-    <script src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
-    <style>
+
+    @Styles.Render("~/Content/main")
+    @Scripts.Render("~/bundles/main")
+
+<style>
         .tile-area-controls {
             position: fixed;
             right: 40px;

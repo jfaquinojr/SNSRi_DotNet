@@ -20,9 +20,25 @@ namespace SNSRi.Api
 					  "~/Scripts/bootstrap.js",
 					  "~/Scripts/respond.js"));
 
-			bundles.Add(new StyleBundle("~/Content/css").Include(
-					  "~/Content/bootstrap.css",
-					  "~/Content/site.css"));
-		}
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/bootstrap.css",
+                      "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/bundles/main").Include(
+                      "~/Scripts/jquery-2.1.3.min.js",
+                      "~/Scripts/metro.js",
+                      "~/Scripts/angular.js",
+                      "~/Scripts/xxxxxxxxxxxxxxxxxx.js",
+                      "~/Scripts/xxxxxxxxxxxxxxxxxx.js",
+                      "~/Scripts/xxxxxxxxxxxxxxxxxx.js",
+                      "~/Scripts/xxxxxxxxxxxxxxxxxx.js"));
+
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/xxxxxxxxxxxxxx.css",
+                      "~/Content/xxxxxxxxxxxxxx.css",
+                      "~/Content/xxxxxxxxxxxxxx.css",
+                      "~/Content/xxxxxxxxxxxxxx.css",
+                      "~/Content/xxxxxxxxxxxxxx.css"));
+        }
 	}
 }
