@@ -24,5 +24,15 @@ namespace SNSRi.Repository.Query
             var retval = result.FirstOrDefault();
             return retval;
         }
+
+	    public IEnumerable<Device> GetByRoomId(int roomId)
+	    {
+	        string sql = $@"
+                select d.* from Device d
+                join UIRoomDevice rd on d.Id = rd.DeviceId
+                where rd.UIRoomId = {roomId}";
+            var result = _connection.Query<Device>(sql).ToList();
+	        return result;
+	    }
 	}
 }

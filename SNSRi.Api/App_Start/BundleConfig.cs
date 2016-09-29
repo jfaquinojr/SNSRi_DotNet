@@ -33,7 +33,7 @@ namespace SNSRi.Api
                       "~/Content/metro.css",
                       "~/Content/metro-icons.css",
                       "~/Content/metro-colors.css",
-                      "~/Content/action-center.css"));
+                      "~/Content/site.css"));
                       //"~/Content/metro-responsive.css",
                       //"~/Content/metro-schemes.css"));
         }

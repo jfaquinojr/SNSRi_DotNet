@@ -242,6 +242,8 @@
     <Compile Include="Controllers\api\AccountController.cs" />
     <Compile Include="Controllers\api\ActivitiesController.cs" />
     <Compile Include="Controllers\api\CommandsController.cs" />
+    <Compile Include="Controllers\api\DevicesController.cs" />
+    <Compile Include="Controllers\api\RoomsController.cs" />
     <Compile Include="Controllers\odata\ActionsController.cs" />
     <Compile Include="Controllers\odata\CustomODataController.cs" />
     <Compile Include="Controllers\odata\DevicesController.cs" />
@@ -266,6 +268,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\devicesController.js" />
+    <Content Include="app\tilesController.js" />
+    <Content Include="app\roomsController.js" />
+    <Content Include="app\toolboxController.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\action-center.css" />
     <Content Include="Content\metro-colors.css" />
@@ -349,6 +355,10 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_startScreen.cshtml" />
+    <Content Include="Views\Shared\Toolbox.cshtml" />
+    <Content Include="Views\Home\RoomTile.cshtml" />
+    <Content Include="Views\Home\Devices.cshtml" />
+    <Content Include="Views\Home\DeviceTile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

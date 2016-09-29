@@ -1,0 +1,18 @@
+﻿<div class="tile fg-white   bg-green" data-role="tile">
+    <div class="tile-content iconic" id="{{device.Id}}">
+        <div ng-click="Clicked(device)" style="position:absolute; width:150px;height:150px;top:0px;">   
+            <div data-bind="visible: locationIsVisible">
+                <!--ko with: device -->
+                <p class="v-align-top align-center margin5 uppercase" style="font-size:14px" data-bind="text: location">{{device.Name}}</p>
+                <!-- /ko -->
+            </div>
+            
+            <!--ko with: device -->
+            <span class="tile-label" data-bind="text: deviceName() + ' ' + statusLabel()">{{device.Status}}</span>
+            <img class="icon" data-bind="attr:{src: statusImage}" src="http://localhost:8002//images/HomeSeer/status/on.gif">
+            <!-- /ko -->   
+        </div>        
+        <!-- /ko --> 
+        
+    </div>
+</div>

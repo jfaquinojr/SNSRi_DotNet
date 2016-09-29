@@ -15,7 +15,7 @@ using SNSRi.Repository.Query;
 
 namespace SNSRi.odata.Controllers
 {
-    public class DevicesController : CustomODataController
+    public class DevicesController2 : CustomODataController
     {
 
 		// GET: odata/Devices

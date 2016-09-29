@@ -1,48 +1,20 @@
 ﻿@{
+    ViewBag.Title = "Rooms";
     Layout = "~/Views/Shared/_startScreen.cshtml";
 }
-<div class="tile-group seven">
+<div class="tile-group seven" ng-controller="RoomsController">
     <span class="tile-group-title">Rooms</span>
     <div class="tile-container">
-        <a href="http://calendar.google.com" class="tile bg-indigo fg-white" data-role="tile">
-            <div class="tile-content iconic">
-                <span class="icon mif-hotel"></span>
-            </div>
-            <span class="tile-label">Room 101</span>
-        </a>
-        <div class="tile bg-darkBlue fg-white" data-role="tile" onclick="document.location.href = 'http://gmail.com'">
-            <div class="tile-content iconic">
-                <span class="icon mif-hotel"></span>
-            </div>
-            <span class="tile-label">Room 102</span>
+  
+        <div ng-repeat="room in Rooms">
+            <room-tile room="room"></room-tile>
         </div>
-        <div class="tile bg-steel fg-white" data-role="tile" data-on-click="document.location.href='http://forecast.io'">
-            <div class="tile-content iconic">
-                <span class="icon mif-hotel"></span>
-            </div>
-            <span class="tile-label">Room 103</span>
-        </div>
-        <div class="tile bg-darkCyan fg-white" data-role="tile" data-on-click="document.location.href='http://forecast.io'">
-            <div class="tile-content iconic">
-                <span class="icon mif-hotel"></span>
-            </div>
-            <span class="tile-label">Room 104</span>
-        </div>
-        <div class="tile bg-brown fg-white" data-role="tile" data-on-click="document.location.href='http://forecast.io'">
-            <div class="tile-content iconic">
-                <span class="icon mif-hotel"></span>
-            </div>
-            <span class="tile-label">Room 105</span>
-        </div>
-        <div class="tile bg-green fg-white" data-role="tile" data-on-click="document.location.href='http://forecast.io'">
-            <div class="tile-content iconic">
-                <span class="icon mif-hotel"></span>
-            </div>
-            <span class="tile-label">Room 106</span>
-        </div>
-        
+       
     </div>
 </div>
 
 
 
+@section scripts {
+<script src="~/app/roomsController.js"></script>
+}

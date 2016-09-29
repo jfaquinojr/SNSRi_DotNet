@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Devices";
+    Layout = "~/Views/Shared/_startScreen.cshtml";
+}
+
+<div class="tile-group seven" ng-controller="DevicesController">
+    <span class="tile-group-title">Devices in {{Room.Name}}</span>
+    <div class="tile-container">
+  
+        <div ng-repeat="device in Devices">
+            <device-tile device="device"></device-tile>
+        </div>
+       
+    </div>
+</div>
+
+
+
+@section scripts {
+<script src="~/app/devicesController.js"></script>
+}
