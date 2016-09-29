@@ -10,7 +10,8 @@
     <link rel='shortcut icon' type='image/x-icon' href='../favicon.ico' />
     <title>SNSRi</title>
     <link href="~/Content/metro.css" rel="stylesheet">
-    <link href="~/Content/metro-icons.css" rel="stylesheet">
+    <link href="~/Content/metro-icons.css" rel="stylesheet"> 
+    <link href="~/Content/action-center.css" rel="stylesheet">
     <!--<link href="../css/metro-responsive.css" rel="stylesheet">-->
     <script src="~/Scripts/jquery-2.1.3.min.js"></script>
     <script src="~/Scripts/metro.js"></script>
@@ -246,21 +247,36 @@
 </head>
 <body style="overflow-y: hidden;">
     <div data-role="charm" id="charmSearch">
-        <h1 class="text-light">Search</h1>
+        <h1 class="text-light">Events</h1>
         <hr class="thin" />
         <br />
-        <div class="input-control text full-size">
-            <label>
-                <span class="dropdown-toggle drop-marker-light">Anywhere</span>
-                <ul class="d-menu" data-role="dropdown">
-                    <li><a onclick="setSearchPlace(this)">Anywhere</a></li>
-                    <li><a onclick="setSearchPlace(this)">Options</a></li>
-                    <li><a onclick="setSearchPlace(this)">Files</a></li>
-                    <li><a onclick="setSearchPlace(this)">Internet</a></li>
-                </ul>
-            </label>
-            <input type="text">
-            <button class="button"><span class="mif-search"></span></button>
+        <div class="grid condensed">
+            <div class="row cells4 action-item">
+                <div class="cell">
+                    <span class="action-item icon mif-hotel"></span>
+                </div>
+                <div class="cell colspan3">
+ 
+                    <h4>This is the title</h4>
+                    <p>The quick brown fox jumps over the lazy dog.</p>
+                </div>
+            </div>
+            
+            <div class="row cells4 action-item">
+                <div class="cell">
+                    <span class="action-item icon mif-hotel"></span>
+                </div>
+                <div class="cell colspan3">
+ 
+                    <h4>This is the title</h4>
+                    <p>Lorem ipsum dolor. The quick brown fox jumps over the lazy dog. Now is the time for all good men to come to the aid of their fellow countrymen.</p>
+                </div>
+            </div>
+            
+                               
+        </div>
+        <div>
+            
         </div>
     </div>
     <div data-role="charm" id="charmSettings" data-position="top">

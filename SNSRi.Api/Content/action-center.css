@@ -1,0 +1,15 @@
+﻿.action-item {
+    max-width: 200px;
+}
+
+.action-item.icon {
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    font-size: 42px;
+    top: 50%;
+    margin-top: 10px;
+    left: 50%;
+    margin-left: -32px;
+    text-align: center;
+}
