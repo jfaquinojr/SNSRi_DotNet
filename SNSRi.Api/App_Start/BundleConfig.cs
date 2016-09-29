@@ -24,21 +24,18 @@ namespace SNSRi.Api
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
-            bundles.Add(new StyleBundle("~/bundles/main").Include(
-                      "~/Scripts/jquery-2.1.3.min.js",
+            bundles.Add(new ScriptBundle("~/bundles/main").Include(
+                      "~/Scripts/jquery-2.1.3.js",
                       "~/Scripts/metro.js",
-                      "~/Scripts/angular.js",
-                      "~/Scripts/xxxxxxxxxxxxxxxxxx.js",
-                      "~/Scripts/xxxxxxxxxxxxxxxxxx.js",
-                      "~/Scripts/xxxxxxxxxxxxxxxxxx.js",
-                      "~/Scripts/xxxxxxxxxxxxxxxxxx.js"));
+                      "~/Scripts/angular.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/xxxxxxxxxxxxxx.css",
-                      "~/Content/xxxxxxxxxxxxxx.css",
-                      "~/Content/xxxxxxxxxxxxxx.css",
-                      "~/Content/xxxxxxxxxxxxxx.css",
-                      "~/Content/xxxxxxxxxxxxxx.css"));
+            bundles.Add(new StyleBundle("~/Content/main").Include(
+                      "~/Content/metro.css",
+                      "~/Content/metro-icons.css",
+                      "~/Content/metro-colors.css",
+                      "~/Content/action-center.css"));
+                      //"~/Content/metro-responsive.css",
+                      //"~/Content/metro-schemes.css"));
         }
 	}
 }
