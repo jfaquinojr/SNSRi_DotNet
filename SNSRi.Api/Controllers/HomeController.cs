@@ -15,27 +15,32 @@ namespace SNSRi.Api.Controllers
 			return View();
 		}
 
-	    public ActionResult Devices(int roomId=0)
-	    {
-            if(roomId == 0)
-                return new HttpNotFoundResult();
-            return View();
-	    }
+		public ActionResult Devices(int roomId = 0)
+		{
+			if(roomId == 0)
+				return new HttpNotFoundResult();
+			return PartialView();
+		}
+
+		public ActionResult Rooms()
+		{
+			return PartialView();
+		}
 
 
-        public ActionResult Toolbox()
-        {
-            return PartialView();
-        }
+		public ActionResult Toolbox()
+		{
+			return PartialView();
+		}
 
-        public ActionResult RoomTile()
-        {
-            return PartialView();
-        }
+		public ActionResult RoomTile()
+		{
+			return PartialView();
+		}
 
-        public ActionResult DeviceTile()
-        {
-            return PartialView();
-        }
-    }
+		public ActionResult DeviceTile()
+		{
+			return PartialView();
+		}
+	}
 }

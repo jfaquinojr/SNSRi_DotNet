@@ -5,16 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
-    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
-    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
     <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico"/>
-    <title>SNSRi|@ViewBag.Title</title>
+    <title>SNSRi | @ViewBag.Title</title>
 
-    <!--<link href="../css/metro-responsive.css" rel="stylesheet">-->
-
+    
     @Styles.Render("~/Content/main")
-
 
     <style>
 
@@ -26,7 +21,7 @@
 <body style="overflow-y: hidden;" ng-app="app" ng-controller="TilesController">
 
 <div tile-area class="tile-area tile-area-scheme-dark fg-white" style="height: 100%; max-height: 100% !important;">
-    <a style="color: white;" href="/"><h1 class="tile-area-title">SNSRi</h1></a>
+    <a style="color: white;" href="#"><h1 class="tile-area-title">SNSRi</h1></a>
     
     <div ng-controller="ToolboxController">
         <toolbox></toolbox>
@@ -35,6 +30,10 @@
 
     @RenderBody()
 </div>
+    
+
+    
+    
     
 @Scripts.Render("~/bundles/main")
     
@@ -96,7 +95,6 @@
         });
 
 </script>
-    
 
 <script src="~/app/app.js"></script>
 <script src="~/app/tilesController.js"></script>
