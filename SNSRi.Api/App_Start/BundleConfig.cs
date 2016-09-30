@@ -28,6 +28,7 @@ namespace SNSRi.Api
 					  "~/Scripts/jquery-2.1.3.js",
 					  "~/Scripts/angular.js",
 					  "~/Scripts/angular-route.js",
+					  "~/Scripts/angular-animate.js",
 					  "~/Scripts/metro.js"));
 
 			bundles.Add(new StyleBundle("~/Content/main").Include(

@@ -1,10 +1,10 @@
 ﻿var app = angular.module("app");
 
 app.controller("DevicesController",
-    function ($scope, $http, $location) {
+    function ($scope, $http, $routeParams) {
         var scope = $scope;
         var svc = $http;
-        var loc = $location;
+        var params = $routeParams;
 
         scope.Devices = [];
         scope.Room = {
@@ -24,9 +24,10 @@ app.controller("DevicesController",
             });
         }
 
-        var qrystring = $location.search();
-        loadRoom(qrystring.roomId);
-        loadDevicesByRoomId(qrystring.roomId);
+        loadRoom(params.id);
+        loadDevicesByRoomId(params.id);
+
+        $scope.RefreshStartScreen();
     });
 
 app.directive("deviceTile",

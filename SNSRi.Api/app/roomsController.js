@@ -17,7 +17,7 @@ app.controller("RoomsController",
 
 
         loadRooms();
-
+        $scope.RefreshStartScreen();
     });
 
 app.directive("roomTile",

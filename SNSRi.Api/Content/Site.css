@@ -4,9 +4,9 @@
     top: 40px;
 }
 
-.tile-group {
+/*.tile-group {
     left: 100px;
-}
+}*/
 
 .tile, .tile-small, .tile-sqaure, .tile-wide, .tile-large, .tile-big, .tile-super {
     opacity: 0;
@@ -25,6 +25,7 @@
 .action-item {
     max-width: 250px;
 }
+
 
 .action-item.icon {
     position: absolute;
@@ -47,3 +48,34 @@
 }
 
 
+
+/*.fade {
+    opacity: 1;
+}
+.fade.ng-enter,
+.fade.ng-leave {
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+}
+.fade.ng-enter {
+    opacity: 0;
+}
+.fade.ng-enter-active {
+    opacity: 1;
+}
+.fade.ng-leave {
+    opacity: 1;
+}
+.fade.ng-leave-active {
+    opacity: 0;
+}*/
+
+
+
+.tile.ng-enter {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: .3s;
+    transition: .3s
+}

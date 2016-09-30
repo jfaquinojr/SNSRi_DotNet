@@ -15,10 +15,8 @@ namespace SNSRi.Api.Controllers
 			return View();
 		}
 
-		public ActionResult Devices(int roomId = 0)
+		public ActionResult Devices()
 		{
-			if(roomId == 0)
-				return new HttpNotFoundResult();
 			return PartialView();
 		}
 
@@ -38,9 +36,14 @@ namespace SNSRi.Api.Controllers
 			return PartialView();
 		}
 
-		public ActionResult DeviceTile()
-		{
-			return PartialView();
-		}
-	}
+        public ActionResult DeviceTile()
+        {
+            return PartialView();
+        }
+
+        public ActionResult Oops()
+        {
+            return PartialView();
+        }
+    }
 }

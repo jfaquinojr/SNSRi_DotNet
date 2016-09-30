@@ -289,6 +289,8 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\metro.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\angular-animate.js" />
+    <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular-route.js" />
     <Content Include="Scripts\angular-route.min.js" />
@@ -322,6 +324,7 @@
     <None Include="Properties\PublishProfiles\Local IIS.pubxml" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-route.min.js.map" />
+    <Content Include="Scripts\angular-animate.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\docs.js" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
@@ -363,6 +366,7 @@
     <Content Include="Views\Home\Devices.cshtml" />
     <Content Include="Views\Home\DeviceTile.cshtml" />
     <Content Include="Views\Home\Rooms.cshtml" />
+    <Content Include="Views\Shared\Oops.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

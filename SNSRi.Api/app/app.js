@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
 
-    var app = angular.module("app", ["ngRoute"]);
+    var app = angular.module("app", ["ngAnimate", "ngRoute"]);
 
     var tilesController = function ($scope) {
 
@@ -18,10 +18,13 @@
                 templateUrl: "Home/Rooms",
                 controller: "RoomsController"
             })
-            .when("/Devices",
+            .when("/Devices/:id",
             {
                 templateUrl: "Home/Devices",
                 controller: "DevicesController"
+            })
+            .otherwise({
+                templateUrl: "Home/Oops"
             });
 
     });
