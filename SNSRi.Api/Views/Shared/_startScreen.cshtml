@@ -11,11 +11,6 @@
     
     @Styles.Render("~/Content/main")
 
-    <style>
-
-
-        </style>
-
 
 </head>
 <body style="overflow-y: hidden;" ng-app="app" ng-controller="TilesController">
@@ -32,7 +27,7 @@
     @RenderBody()
 </div>
 
-
+<event-sidebar></event-sidebar>
     
     
     
@@ -98,10 +93,13 @@
 </script>
 
 <script src="~/app/app.js"></script>
+<script src="~/app/dataService.js"></script>
 <script src="~/app/tilesController.js"></script>
 <script src="~/app/toolboxController.js"></script>
 <script src="~/app/roomsController.js"></script>
 <script src="~/app/devicesController.js"></script>
+<script src="~/app/eventsController.js"></script>
+
 @RenderSection("scripts", required: false)
 
 

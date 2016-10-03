@@ -1,24 +1,24 @@
 ﻿var app = angular.module("app");
 
 
-app.controller("RoomsController",
-    function ($scope, $http) {
-        var scope = $scope;
-        var svc = $http;
+app.controller("RoomsController", ["$scope", "dataService",
+    function ($scope, dataService) {
 
-        scope.Rooms = [];
-
+        $scope.Rooms = [];
 
         var loadRooms = function() {
-            svc.get("/api/Rooms").then(function(result) {
-                scope.Rooms = result.data;
-            });
+            dataService.getRooms()
+                .then(function(result) {
+                    $scope.Rooms = result.data;
+                    $scope.$emit("roomChanged", 0);
+                });
+            
         }
 
 
         loadRooms();
         $scope.RefreshStartScreen();
-    });
+    }]);
 
 app.directive("roomTile",
     function() {
@@ -27,11 +27,12 @@ app.directive("roomTile",
             templateUrl: "/Home/RoomTile",
             restrict: "E",
             scope: {
-                room: '='
+                room: "="
             },
             controller: function($scope) {
-                $scope.OpenRoom = function(roomId) {
-                    alert(roomId);
+                $scope.changeRoom = function (roomId) {
+                    //alert("ChangeRoom! room: " + roomId);
+                    $scope.$emit("roomChanged", roomId);
                 }
             }
         };

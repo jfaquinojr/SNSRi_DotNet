@@ -36,7 +36,7 @@ namespace SNSRi.Repository.Query
 			log.Info("GetOpenEventTicketsByRoom Enter");
 
 			var sql = $@"
-				select t.*
+				select distinct t.*
 				from Ticket t 
 				join EventTicket et on t.Id = et.TicketId 
 				join Event e on et.EventId = e.Id

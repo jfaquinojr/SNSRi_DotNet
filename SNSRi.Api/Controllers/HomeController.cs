@@ -45,5 +45,15 @@ namespace SNSRi.Api.Controllers
         {
             return PartialView();
         }
+
+        public ActionResult EventsCharm()
+        {
+            return PartialView();
+        }
+
+	    public ActionResult EventTile()
+	    {
+	        return PartialView();
+	    }
     }
 }

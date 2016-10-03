@@ -42,5 +42,10 @@ app.controller("TilesController", function($scope, $window) {
         plugin.init();
     }
 
+    $scope.$on("roomChanged",
+        function (event, roomId) {
+            console.log("roomChanged fired! roomId: " + roomId);
+            $scope.$broadcast("changeRoom", roomId);
+        });
 });
 

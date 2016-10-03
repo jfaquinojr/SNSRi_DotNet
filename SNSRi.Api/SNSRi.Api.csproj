@@ -268,6 +268,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\dataService.js" />
+    <Content Include="app\eventsController.js" />
     <Content Include="app\devicesController.js" />
     <Content Include="app\tilesController.js" />
     <Content Include="app\roomsController.js" />
@@ -367,6 +369,8 @@
     <Content Include="Views\Home\DeviceTile.cshtml" />
     <Content Include="Views\Home\Rooms.cshtml" />
     <Content Include="Views\Shared\Oops.cshtml" />
+    <Content Include="Views\Home\EventsCharm.cshtml" />
+    <Content Include="Views\Home\EventTile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

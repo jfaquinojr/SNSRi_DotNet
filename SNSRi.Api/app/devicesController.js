@@ -1,7 +1,7 @@
 ﻿var app = angular.module("app");
 
 app.controller("DevicesController",
-    function ($scope, $http, $routeParams) {
+    function ($scope, $http, $routeParams, dataService) {
         var scope = $scope;
         var svc = $http;
         var params = $routeParams;
@@ -12,14 +12,15 @@ app.controller("DevicesController",
             Name: "Loading.."
         };
 
+
         var loadDevicesByRoomId = function(roomId) {
-            svc.get("/api/Rooms/" + roomId + "/Devices").then(function (result) {
+            dataService.getDevicesbyRoomId(roomId).then(function (result) {
                 scope.Devices = result.data;
             });
         }
 
         var loadRoom = function(roomId) {
-            svc.get("/api/Rooms/" + roomId).then(function (result) {
+            dataService.getRoom(roomId).then(function (result) {
                 scope.Room = result.data;
             });
         }
@@ -28,6 +29,7 @@ app.controller("DevicesController",
         loadDevicesByRoomId(params.id);
 
         $scope.RefreshStartScreen();
+        
     });
 
 app.directive("deviceTile",
