@@ -71,7 +71,6 @@ app.directive("deviceTile",
                     deviceService.getHomeSeerDevice($scope.device.ReferenceId)
                         .then(function (result) {
 
-                            console.log(JSON.stringify(result.data));
                             if (result.data.Devices.length > 0) {
                                 var dev = result.data.Devices[0];
                                 hs.name = dev.name;

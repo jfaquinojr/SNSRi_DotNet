@@ -74,8 +74,8 @@ function createActivity(ticket, comment) {
     };
 }
 
-function closeDialog() {
-    var dialog = $("#dialog").data("dialog");
+function closeDialog(ticketId) {
+    var dialog = $("#dialog-" + ticketId).data("dialog");
     dialog.close();
 }
 
@@ -118,7 +118,7 @@ app.directive("popupShowActivities",
             scope: {
                 ticket: "="
             },
-            controller: function ($scope, $http) {
+            controller: function ($scope, dataService) {
 
                 $scope.comment = "";
 
@@ -126,7 +126,7 @@ app.directive("popupShowActivities",
 
                     var activityData = createActivity($scope.ticket, comment);
 
-                    $http.post(global.api.url + "CreateActivity", JSON.stringify(activityData))
+                    dataService.createActivity(activityData)
                         .then(
                             function (result) {
                                 $scope.ticket.Activities.unshift({
@@ -157,7 +157,7 @@ app.directive("popupShowActivities",
 
                     var activityData = createActivity($scope.ticket, comment);
 
-                    $http.post(global.api.url + "CloseTicket", JSON.stringify(activityData))
+                    dataService.closeTicket(activityData)
                         .then(
                             function (result) {
 
@@ -170,7 +170,7 @@ app.directive("popupShowActivities",
 
                                 $scope.comment = "";
 
-                                closeDialog();
+                                closeDialog($scope.ticket.Id);
 
                                 $.Notify({
                                     caption: "Success",

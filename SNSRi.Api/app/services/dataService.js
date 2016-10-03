@@ -14,7 +14,17 @@ function dataService($http) {
         getOpenTickets: getOpenTickets,
         getOpenTicketsRecent: getOpenTicketsRecent,
         getOpenTicketsByRoom: getOpenTicketsByRoom,
-        getActivitiesForTicket: getActivitiesForTicket
+        getActivitiesForTicket: getActivitiesForTicket,
+        createActivity: createActivity,
+        closeTicket: closeTicket
+    }
+
+    function createActivity(activityData) {
+        return svc.post("/api/CreateActivity", JSON.stringify(activityData));
+    }
+
+    function closeTicket(activityData) {
+        return svc.post("/api/CloseTicket", JSON.stringify(activityData));
     }
 
     function getHomeSeerDevice(refId) {
