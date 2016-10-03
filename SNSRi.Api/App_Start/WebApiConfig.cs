@@ -56,16 +56,7 @@ namespace SNSRi.Api
                 name: "ControllerAndAction",
                 routeTemplate: "api/{controller}/{action}"
             );
-
-            // odata routes
-            ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-			builder.EntitySet<Device>("Devices");
-			builder.EntitySet<User>("Users");
-			builder.EntitySet<Event>("Events");
-			builder.EntitySet<UIRoom>("UIRooms");
-			builder.EntitySet<UIRoomDevice>("UIRoomDevices");
-			builder.EntitySet<TicketActivityViewModel>("Actions");
-			config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
+            
 		}
     }
 }
