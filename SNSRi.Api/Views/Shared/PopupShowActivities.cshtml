@@ -1,0 +1,51 @@
+﻿<div data-role="dialog" role="dialog" id="dialog-{{ticket.Id}}" data-overlay="true" class="padding20 dialog" data-close-button="true" data-width="500px">
+	<h3>{{ticket.Name}}</h3>
+	<p>
+	    {{ticket.Description}}
+	</p>
+    <div class="grid condensed">
+        <div class="row">
+            <div class="cell">
+                <div class="input-control textarea"
+                data-role="input" data-text-max-height="100" style="width: 100%;">
+                <textarea class="input-control" ng-model="comment" style="width: 100%; z-index: 9999;"></textarea>
+                </div>
+            </div>
+        </div>
+                
+        <div class="row cells2">
+            <div class="cell">
+                <button ng-disabled="!comment" class="button" ng-click="addActivity(comment)"><span class="mif-plus"></span> Add Activity</button>
+            </div>
+            <div class="cell">
+                <button ng-disabled="!comment" class="button primary place-right" ng-click="closeTicket(comment)"><span class="mif-checkmark"></span> Close Event</button>
+            </div>
+        </div>
+                
+        <div class="activities" style="padding-top: 20px; overflow-y: auto; overflow-x:hidden; ">
+                    
+  
+            <div class="row" ng-repeat="activity in ticket.Activities">
+                <div class="cell">
+                    <div class="panel">
+                        <div class="content">
+                             <p>
+                                <span class="text-normal">{{activity.Comment}}</span>
+                            </p>
+                            <p>
+                                <span class="text-dashed">user {{activity.CreatedBy}}</span> {{activity.CreatedOn }}
+                            </p>                          
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+                    
+        </div>
+
+    </div>
+
+
+	<span class="dialog-close-button"></span>
+</div>

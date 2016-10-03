@@ -12,7 +12,8 @@ function dataService($http) {
         getDevicesbyRoomId: getDevicesbyRoomId,
         getOpenTickets: getOpenTickets,
         getOpenTicketsRecent: getOpenTicketsRecent,
-        getOpenTicketsByRoom: getOpenTicketsByRoom
+        getOpenTicketsByRoom: getOpenTicketsByRoom,
+        getActivitiesForTicket: getActivitiesForTicket
     }
 
     function getRooms() {
@@ -37,6 +38,10 @@ function dataService($http) {
 
     function getOpenTicketsRecent() {
         return svc.get("/api/Tickets/Open/Past/Minutes/1");
+    }
+
+    function getActivitiesForTicket(ticketId) {
+        return svc.get("api/Tickets/" + ticketId + "/Activities");
     }
 
 }

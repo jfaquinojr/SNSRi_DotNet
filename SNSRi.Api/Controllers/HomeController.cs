@@ -51,9 +51,14 @@ namespace SNSRi.Api.Controllers
             return PartialView();
         }
 
-	    public ActionResult EventTile()
-	    {
-	        return PartialView();
-	    }
+        public ActionResult EventTile()
+        {
+            return PartialView();
+        }
+
+        public ActionResult PopupShowActivities()
+        {
+            return PartialView();
+        }
     }
 }
