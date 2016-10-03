@@ -268,7 +268,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
-    <Content Include="app\dataService.js" />
+    <Content Include="app\services\deviceService.js" />
+    <Content Include="app\services\dataService.js" />
     <Content Include="app\eventsController.js" />
     <Content Include="app\devicesController.js" />
     <Content Include="app\tilesController.js" />

@@ -4,6 +4,7 @@ app.factory("dataService", dataService);
 
 function dataService($http) {
 
+
     var svc = $http;
 
     return {
@@ -14,6 +15,10 @@ function dataService($http) {
         getOpenTicketsRecent: getOpenTicketsRecent,
         getOpenTicketsByRoom: getOpenTicketsByRoom,
         getActivitiesForTicket: getActivitiesForTicket
+    }
+
+    function getHomeSeerDevice(refId) {
+        return svc.get(urlHomeSeer + "/JSON?request=getstatus&ref=" + refId);
     }
 
     function getRooms() {

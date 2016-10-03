@@ -29,9 +29,8 @@ app.directive("roomTile",
             scope: {
                 room: "="
             },
-            controller: function($scope) {
+            controller: function($scope, $interval) {
                 $scope.changeRoom = function (roomId) {
-                    //alert("ChangeRoom! room: " + roomId);
                     $scope.$emit("roomChanged", roomId);
                 }
             }

@@ -39,7 +39,6 @@ app.controller("EventsController",
 
         $scope.$on("changeRoom",
             function(event, roomId) {
-                console.log("changeRoom fired! roomId: " + roomId);
                 reloadTickets(roomId);
             });
 
