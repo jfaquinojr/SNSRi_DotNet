@@ -81,6 +81,8 @@ namespace SNSRi.Api.Controllers
         [Route("api/FactoryReset")]
         public IHttpActionResult FactoryReset()
         {
+            //TODO jaquino need to move this away from API and into MVC controller, maybe whip up a nice progress screen or something
+
             var url = GetConfig("HomeSeerURL", "http://localhost:8002");
             IEnumerable<HSDevice> hsDevices = GetHSDevices(url);
             HSLocation hsLocation = GetHSLocation(url);
