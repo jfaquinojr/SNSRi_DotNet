@@ -3,12 +3,16 @@ using SNSRi.Repository.Commands;
 using SNSRi.Repository.Query;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Newtonsoft.Json;
+using SNSRi.Api.Models.HomeSeer;
+using SNSRi.Repository;
 
 namespace SNSRi.Api.Controllers
 {
@@ -62,105 +66,129 @@ namespace SNSRi.Api.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        #region Template
-        //// GET: api/Users2
-        //public IQueryable<User> GetUsers()
-        //{
-        //    return db.Users;
-        //}
+        private string GetConfig(string settingName, string defaultValue)
+        {
+            var value = ConfigurationManager.AppSettings[settingName];
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                value = defaultValue;
+            }
+            return value;
+        }
 
-        //// GET: api/Users2/5
-        //[ResponseType(typeof(User))]
-        //public IHttpActionResult GetUser(int id)
-        //{
-        //    User user = db.Users.Find(id);
-        //    if (user == null)
-        //    {
-        //        return NotFound();
-        //    }
+        [HttpPost]
+        [ResponseType(typeof(void))]
+        [Route("api/FactoryReset")]
+        public IHttpActionResult FactoryReset()
+        {
+            var url = GetConfig("HomeSeerURL", "http://localhost:8002");
+            IEnumerable<HSDevice> hsDevices = GetHSDevices(url);
+            HSLocation hsLocation = GetHSLocation(url);
 
-        //    return Ok(user);
-        //}
+            Truncate("UIRoomDevice");
+            Truncate("UIRoom");
+            Truncate("Device");
 
-        //// PUT: api/Users2/5
-        //[ResponseType(typeof(void))]
-        //public IHttpActionResult PutUser(int id, User user)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+            var cmdRoom = new UIRoomCommand();
+            var rooms = new List<UIRoom>();
+            foreach (var hsLocationRoom in hsLocation.Rooms)
+            {
+                if (hsLocationRoom.ToLower() == "all") // skip this room
+                    continue;
 
-        //    if (id != user.Id)
-        //    {
-        //        return BadRequest();
-        //    }
+                var room = new UIRoom
+                {
+                    Name = hsLocationRoom,
+                    CreatedOn = DateTime.Now,
+                    CreatedBy = 1
+                };
+                room.Id = cmdRoom.Create(room);
+                rooms.Add(room);
+            }
 
-        //    db.Entry(user).State = EntityState.Modified;
+            var cmdRoomDevice = new UIRoomDeviceCommand();
+            var cmdDevice = new DeviceCommand();
+            foreach (var hsDevice in hsDevices)
+            {
+                var device = new Device
+                {
+                    Name = hsDevice.Name,
+                    ReferenceId = hsDevice.Ref,
+                    Status = hsDevice.Status,
+                    CreatedBy = 1,
+                    CreatedOn = DateTime.Now
+                };
+                device.Id = cmdDevice.Create(device);
 
-        //    try
-        //    {
-        //        db.SaveChanges();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!UserExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
+                cmdRoomDevice.Create(new UIRoomDevice
+                {
+                    UIRoomId = rooms.First(r => r.Name == hsDevice.Location).Id,
+                    DeviceId = device.Id,
+                    CreatedBy = 1,
+                    CreatedOn = DateTime.Now
+                });
+            }
 
-        //    return StatusCode(HttpStatusCode.NoContent);
-        //}
+            return StatusCode(HttpStatusCode.NoContent);
+        }
 
-        //// POST: api/Users2
-        //[ResponseType(typeof(User))]
-        //public IHttpActionResult PostUser(User user)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+        private IEnumerable<HSDevice> GetHSDevices(string urlHomeSeer)
+        {
+            var ret = new List<HSDevice>();
+            urlHomeSeer = urlHomeSeer.TrimEnd('/') + "/JSON?request=getstatus";
+            using (var client = new HttpClient())
+            {
+                var response = client.GetStringAsync(urlHomeSeer);
 
-        //    db.Users.Add(user);
-        //    db.SaveChanges();
+                dynamic results = JsonConvert.DeserializeObject<dynamic>(response.Result);
 
-        //    return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
-        //}
+                var hsDevices = results.Devices;
+                foreach (var hsDev in hsDevices)
+                {
+                    ret.Add(new HSDevice
+                    {
+                        Name = hsDev.name,
+                        Status = hsDev.value,
+                        Location = hsDev.location,
+                        Ref = hsDev.@ref,
+                        Value = hsDev.value,
+                        HideFromView = hsDev.hide_from_view,
+                        Location2 = hsDev.location2
+                    });
+                }
+            }
+            return ret;
+        }
 
-        //// DELETE: api/Users2/5
-        //[ResponseType(typeof(User))]
-        //public IHttpActionResult DeleteUser(int id)
-        //{
-        //    User user = db.Users.Find(id);
-        //    if (user == null)
-        //    {
-        //        return NotFound();
-        //    }
+        private HSLocation GetHSLocation(string urlHomeSeer)
+        {
+            var ret = new HSLocation();
+            urlHomeSeer = urlHomeSeer.TrimEnd('/') + "/JSON?request=getlocations";
+            using (var client = new HttpClient())
+            {
+                var response = client.GetStringAsync(urlHomeSeer);
 
-        //    db.Users.Remove(user);
-        //    db.SaveChanges();
+                dynamic results = JsonConvert.DeserializeObject<dynamic>(response.Result);
 
-        //    return Ok(user);
-        //}
+                var rooms = results.location1;
+                foreach (var hsRoom in rooms)
+                {
+                    ret.Rooms.Add(hsRoom.ToString());
+                }
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
+                var floors = results.location2;
+                foreach (var hsFloor in floors)
+                {
+                    ret.Floors.Add(hsFloor.ToString());
+                }
+            }
+            return ret;
+        }
 
-        //private bool UserExists(int id)
-        //{
-        //    return db.Users.Count(e => e.Id == id) > 0;
-        //}
-        #endregion
+        private static void Truncate(string table)
+        {
+            BaseRepository.ExecuteSql($"DELETE FROM {table}");
+        }
+
     }
 }
