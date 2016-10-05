@@ -15,7 +15,7 @@ namespace SNSRi.Repository.Commands
             log.Debug("Create Enter");
 
             entity.CreatedOn = DateTime.Now;
-	        const string sql = "insert into Device(ReferenceId, Name, Status, CreatedOn, CreatedBy, ModifiedOn, ModifiedBy) values(@ReferenceId, @Name, @Status, @CreatedOn, @CreatedBy, @ModifiedOn, @ModifiedBy); SELECT last_insert_rowid()";
+	        const string sql = "insert into Device(ReferenceId, Name, Status, CreatedOn, CreatedBy, ModifiedOn, ModifiedBy, Value, HideFromView) values(@ReferenceId, @Name, @Status, @CreatedOn, @CreatedBy, @ModifiedOn, @ModifiedBy, @Value, @HideFromView); SELECT last_insert_rowid()";
             log.Debug($"SQL Statement: {sql}");
 
             var id = _connection.Query<int>(sql, entity).Single();

@@ -108,7 +108,9 @@ namespace SNSRi.Api.Controllers
                     ReferenceId = hsDevice.Ref,
                     Status = hsDevice.Status,
                     CreatedBy = 1,
-                    CreatedOn = DateTime.Now
+                    CreatedOn = DateTime.Now,
+                    Value = hsDevice.Value,
+                    HideFromView = hsDevice.HideFromView
                 };
                 device.Id = cmdDevice.Create(device);
 
@@ -140,11 +142,11 @@ namespace SNSRi.Api.Controllers
                     ret.Add(new HSDevice
                     {
                         Name = hsDev.name,
-                        Status = hsDev.value,
+                        Status = hsDev.status,
                         Location = hsDev.location,
                         Ref = hsDev.@ref,
-                        Value = hsDev.value,
-                        HideFromView = hsDev.hide_from_view,
+                        Value = hsDev.value.ToString(),
+                        HideFromView = (bool) hsDev.hide_from_view,
                         Location2 = hsDev.location2
                     });
                 }

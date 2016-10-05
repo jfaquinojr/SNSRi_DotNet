@@ -2,10 +2,10 @@
     <div class="tile-content iconic" id="{{device.Id}}">
         <div ng-click="Clicked(device)" style="position:absolute; width:150px;height:150px;top:0px;">   
             <div data-bind="visible: locationIsVisible">
-                <p class="v-align-top align-center margin5 uppercase" style="font-size: 14px" data-bind="text: location">{{device.Name}} ({{HomeSeer.name}})</p>
+                <p class="v-align-top align-center margin5 uppercase" style="font-size: 14px" data-bind="text: location">{{device.Name}}</p>
             </div>
             
-            <span class="tile-label" data-bind="text: deviceName() + ' ' + statusLabel()">{{device.Status}} ({{HomeSeer.value}})</span>
+            <span class="tile-label" data-bind="text: deviceName() + ' ' + statusLabel()">{{device.Status}} ({{device.Value}})</span>
             <img class="icon" src="{{HomeSeerUrl}}{{HomeSeer.status_image}}">
         </div>        
     </div>
