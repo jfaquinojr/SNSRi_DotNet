@@ -7,7 +7,7 @@ function deviceService($http) {
     
     var svc = $http;
     var self = this;
-    self.urlHomeSeer = "http://localhost:8002";
+    self.urlHomeSeer = globalUrlHomeSeer || "http://localhost:8002";
 
     return {
         getHomeSeerDevice: getHomeSeerDevice,

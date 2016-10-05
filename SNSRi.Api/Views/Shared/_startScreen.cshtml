@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using SNSRi
+<!DOCTYPE html>
 <html>
 <head lang="en">
     <base href="/">
@@ -30,65 +31,67 @@
 <event-sidebar></event-sidebar>
     
     
-    
+<script>
+    var globalUrlHomeSeer = '@Utility.GetConfig("HomeSeerURL", "http://localhost:8002")';
+</script>
 @Scripts.Render("~/bundles/main")
     
     
 <script>
        
 
-        function showCharms(id){
-            var  charm = $(id).data("charm");
-            if (charm.element.data("opened") === true) {
-                charm.close();
-            } else {
-                charm.open();
-            }
+    function showCharms(id){
+        var  charm = $(id).data("charm");
+        if (charm.element.data("opened") === true) {
+            charm.close();
+        } else {
+            charm.open();
         }
+    }
 
-        function setSearchPlace(el){
-            var a = $(el);
-            var text = a.text();
-            var toggle = a.parents('label').children('.dropdown-toggle');
+    function setSearchPlace(el){
+        var a = $(el);
+        var text = a.text();
+        var toggle = a.parents('label').children('.dropdown-toggle');
 
-            toggle.text(text);
-        }
+        toggle.text(text);
+    }
 
-        $(function(){
-            var current_tile_area_scheme = localStorage.getItem('tile-area-scheme') || "tile-area-scheme-dark";
-            $(".tile-area").removeClass (function (index, css) {
-                return (css.match (/(^|\s)tile-area-scheme-\S+/g) || []).join(' ');
-            }).addClass(current_tile_area_scheme);
+    $(function(){
+        var current_tile_area_scheme = localStorage.getItem('tile-area-scheme') || "tile-area-scheme-dark";
+        $(".tile-area").removeClass (function (index, css) {
+            return (css.match (/(^|\s)tile-area-scheme-\S+/g) || []).join(' ');
+        }).addClass(current_tile_area_scheme);
 
-            $(".schemeButtons .button").hover(
-                    function(){
-                        var b = $(this);
-                        var scheme = "tile-area-scheme-" +  b.data('scheme');
-                        $(".tile-area").removeClass (function (index, css) {
-                            return (css.match (/(^|\s)tile-area-scheme-\S+/g) || []).join(' ');
-                        }).addClass(scheme);
-                    },
-                    function(){
-                        $(".tile-area").removeClass (function (index, css) {
-                            return (css.match (/(^|\s)tile-area-scheme-\S+/g) || []).join(' ');
-                        }).addClass(current_tile_area_scheme);
-                    }
-            );
-
-            $(".schemeButtons .button").on("click", function(){
+        $(".schemeButtons .button").hover(
+            function(){
                 var b = $(this);
                 var scheme = "tile-area-scheme-" +  b.data('scheme');
-
                 $(".tile-area").removeClass (function (index, css) {
                     return (css.match (/(^|\s)tile-area-scheme-\S+/g) || []).join(' ');
                 }).addClass(scheme);
+            },
+            function(){
+                $(".tile-area").removeClass (function (index, css) {
+                    return (css.match (/(^|\s)tile-area-scheme-\S+/g) || []).join(' ');
+                }).addClass(current_tile_area_scheme);
+            }
+        );
 
-                current_tile_area_scheme = scheme;
-                localStorage.setItem('tile-area-scheme', scheme);
+        $(".schemeButtons .button").on("click", function(){
+            var b = $(this);
+            var scheme = "tile-area-scheme-" +  b.data('scheme');
 
-                showSettings();
-            });
+            $(".tile-area").removeClass (function (index, css) {
+                return (css.match (/(^|\s)tile-area-scheme-\S+/g) || []).join(' ');
+            }).addClass(scheme);
+
+            current_tile_area_scheme = scheme;
+            localStorage.setItem('tile-area-scheme', scheme);
+
+            showSettings();
         });
+    });
 
 </script>
 

@@ -66,16 +66,6 @@ namespace SNSRi.Api.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        private string GetConfig(string settingName, string defaultValue)
-        {
-            var value = ConfigurationManager.AppSettings[settingName];
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                value = defaultValue;
-            }
-            return value;
-        }
-
         [HttpPost]
         [ResponseType(typeof(void))]
         [Route("api/FactoryReset")]
@@ -83,7 +73,7 @@ namespace SNSRi.Api.Controllers
         {
             //TODO jaquino need to move this away from API and into MVC controller, maybe whip up a nice progress screen or something
 
-            var url = GetConfig("HomeSeerURL", "http://localhost:8002");
+            var url = Utility.GetConfig("HomeSeerURL", "http://localhost:8002");
             IEnumerable<HSDevice> hsDevices = GetHSDevices(url);
             HSLocation hsLocation = GetHSLocation(url);
 
