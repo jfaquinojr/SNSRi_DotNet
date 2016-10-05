@@ -1,7 +1,7 @@
 ﻿var app = angular.module("app");
 
 app.controller("EventsController",
-    function($scope, dataService) {
+    function($scope, dataService, $interval) {
 
         $scope.Tickets = [];
         $scope.Ticket = {};
@@ -58,6 +58,27 @@ app.controller("EventsController",
                     $scope.Ticket.Activities = result.data;
                 });
         }
+
+        function loadNewTicketswithinPastMinutes() {
+
+            console.log("loadNewTicketswithinPastMinutes");
+
+            dataService.getOpenTicketsPastSeconds(4).then(function (result) {
+                console.log("getOpenTicketsPastSeconds. count: " + result.data.length);
+                var countBefore = $scope.Tickets.length;
+                $scope.Tickets = _.uniq(_.union(result.data, $scope.Tickets), false, function (o) { return o.Id });
+                var countAfter = $scope.Tickets.length;
+                if (countBefore !== countAfter) {
+                    $.Notify({
+                        caption: "New Event",
+                        content: "An event has occurred.",
+                        type: "info"
+                    });
+                }
+            });
+        }
+
+        $interval(loadNewTicketswithinPastMinutes, 3000);
 
     });
 

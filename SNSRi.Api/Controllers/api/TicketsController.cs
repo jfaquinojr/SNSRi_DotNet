@@ -44,16 +44,26 @@ namespace SNSRi.Api.Controllers
 			return Ok(qryDevice.GetOpenEventTicketsByRoom(Id));
 		}
 
-		[HttpGet]
-		[Route("api/Tickets/Open/Past/Minutes/{minutes}")]
-		public IHttpActionResult GetOpenTicketsPastMinutes(int minutes = 1)
-		{
-			var qryDevice = new TicketQuery();
+        [HttpGet]
+        [Route("api/Tickets/Open/Past/Minutes/{minutes}")]
+        public IHttpActionResult GetOpenTicketsPastMinutes(int minutes = 1)
+        {
+            var qryDevice = new TicketQuery();
 
 
-			return Ok(qryDevice.GetOpenTicketsPastMinutes(minutes));
-		}
+            return Ok(qryDevice.GetOpenTicketsPastMinutes(minutes));
+        }
+
+        [HttpGet]
+        [Route("api/Tickets/Open/Past/Seconds/{seconds}")]
+        public IHttpActionResult GetOpenTicketsPastSeconds(int seconds = 1)
+        {
+            var qryDevice = new TicketQuery();
 
 
-	}
+            return Ok(qryDevice.GetOpenTicketsPast(seconds*1000));
+        }
+
+
+    }
 }

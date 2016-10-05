@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
 
-    var app = angular.module("app", ["ngAnimate", "ngRoute"]);
+    var app = angular.module("app", ["ngAnimate", "ngRoute", "angular-lodash"]);
 
     var tilesController = function ($scope) {
 

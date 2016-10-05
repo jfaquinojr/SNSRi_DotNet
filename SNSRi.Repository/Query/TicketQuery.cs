@@ -61,23 +61,32 @@ namespace SNSRi.Repository.Query
 		{
 			log.Info("GetOpenTicketsPastMinutes Enter");
 
-			var pastDateTime = DateTime.Now.AddMinutes(-minutes);
-			
-			var sql = $@"
+		    var result = GetOpenTicketsPast(minutes*60000);
+
+            log.Info("GetOpenTicketsPastMinutes Exit");
+			return result;
+		}
+
+        public IEnumerable<Ticket> GetOpenTicketsPast(int milliseconds)
+        {
+            log.Info("GetOpenTicketsPastMinutes Enter");
+
+            var pastDateTime = DateTime.Now.AddMilliseconds(-milliseconds);
+
+            var sql = $@"
 				select t.* from Ticket t
 				where t.TicketType = 'Event' and t.Status = 'Open'
 				and t.CreatedOn >= DateTime('{pastDateTime.ToString("yyyy-MM-dd HH:mm:ss")}')
 				order by t.CreatedOn DESC
 			" + generatePagingSQL();
 
-			log.LogSql(sql);
+            log.LogSql(sql);
 
-			var result = _connection.Query<Ticket>(sql);
+            var result = _connection.Query<Ticket>(sql);
 
-
-			log.LogSqlResult(result.Count());
-			log.Info("GetOpenTicketsPastMinutes Exit");
-			return result;
-		}
-	}
+            log.LogSqlResult(result.Count());
+            log.Info("GetOpenTicketsPastMinutes Exit");
+            return result;
+        }
+    }
 }

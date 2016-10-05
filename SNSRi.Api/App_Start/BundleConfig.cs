@@ -26,10 +26,12 @@ namespace SNSRi.Api
 
 			bundles.Add(new ScriptBundle("~/bundles/main").Include(
 					  "~/Scripts/jquery-2.1.3.js",
-					  "~/Scripts/angular.js",
+                      "~/Scripts/underscore.js",
+                      "~/Scripts/angular.js",
 					  "~/Scripts/angular-route.js",
-					  "~/Scripts/angular-animate.js",
-					  "~/Scripts/metro.js"));
+                      "~/Scripts/angular-animate.js",
+                      "~/Scripts/angular-lodash.js",
+                      "~/Scripts/metro.js"));
 
 			bundles.Add(new StyleBundle("~/Content/main").Include(
 					  "~/Content/metro.css",
