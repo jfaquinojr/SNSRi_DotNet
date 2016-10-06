@@ -58,5 +58,35 @@ app.controller("TilesController", function($scope, $window) {
         function (event) {
             $scope.$broadcast("CloseTicket", $scope.ticket.Id);
         });
+
+    $scope.$on("ThemesOpened",
+        function (event) {
+            $scope.$broadcast("OpenThemes");
+        });
+
+    $scope.$on("EventsCharmOpened",
+        function(event) {
+            $scope.$broadcast("OpenEventsCharm");
+        });
+
+
+    $scope.closeDialog = function(id) {
+        var dialog = $(id).data("dialog");
+        dialog.close();
+    }
+
+    $scope.openDialog = function (id) {
+        var dialog = $(id).data("dialog");
+        dialog.open();
+    }
+
+    $scope.showCharms = function (id) {
+        var charm = $(id).data("charm");
+        if (charm.element.data("opened") === true) {
+            charm.close();
+        } else {
+            charm.open();
+        }
+    }
 });
 

@@ -271,6 +271,7 @@
     <Content Include="app\devicesController.js" />
     <Content Include="app\tilesController.js" />
     <Content Include="app\roomsController.js" />
+    <Content Include="app\directives\themePicker.js" />
     <Content Include="app\toolboxController.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\action-center.css" />
@@ -374,6 +375,7 @@
     <Content Include="Views\Shared\PopupShowActivities.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Shared\ThemePicker.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

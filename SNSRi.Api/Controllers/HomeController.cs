@@ -61,5 +61,10 @@ namespace SNSRi.Api.Controllers
         {
             return PartialView();
         }
+
+        public ActionResult ThemePicker()
+        {
+            return PartialView();
+        }
     }
 }

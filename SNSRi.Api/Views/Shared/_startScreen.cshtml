@@ -40,58 +40,6 @@
 <script>
        
 
-    function showCharms(id){
-        var  charm = $(id).data("charm");
-        if (charm.element.data("opened") === true) {
-            charm.close();
-        } else {
-            charm.open();
-        }
-    }
-
-    function setSearchPlace(el){
-        var a = $(el);
-        var text = a.text();
-        var toggle = a.parents('label').children('.dropdown-toggle');
-
-        toggle.text(text);
-    }
-
-    $(function(){
-        var current_tile_area_scheme = localStorage.getItem('tile-area-scheme') || "tile-area-scheme-dark";
-        $(".tile-area").removeClass (function (index, css) {
-            return (css.match (/(^|\s)tile-area-scheme-\S+/g) || []).join(' ');
-        }).addClass(current_tile_area_scheme);
-
-        $(".schemeButtons .button").hover(
-            function(){
-                var b = $(this);
-                var scheme = "tile-area-scheme-" +  b.data('scheme');
-                $(".tile-area").removeClass (function (index, css) {
-                    return (css.match (/(^|\s)tile-area-scheme-\S+/g) || []).join(' ');
-                }).addClass(scheme);
-            },
-            function(){
-                $(".tile-area").removeClass (function (index, css) {
-                    return (css.match (/(^|\s)tile-area-scheme-\S+/g) || []).join(' ');
-                }).addClass(current_tile_area_scheme);
-            }
-        );
-
-        $(".schemeButtons .button").on("click", function(){
-            var b = $(this);
-            var scheme = "tile-area-scheme-" +  b.data('scheme');
-
-            $(".tile-area").removeClass (function (index, css) {
-                return (css.match (/(^|\s)tile-area-scheme-\S+/g) || []).join(' ');
-            }).addClass(scheme);
-
-            current_tile_area_scheme = scheme;
-            localStorage.setItem('tile-area-scheme', scheme);
-
-            showSettings();
-        });
-    });
 
 </script>
 
@@ -103,9 +51,11 @@
 <script src="~/app/roomsController.js"></script>
 <script src="~/app/devicesController.js"></script>
 <script src="~/app/eventsController.js"></script>
+<script src="~/app/directives/themePicker.js"></script>
 
 @RenderSection("scripts", required: false)
 
 <popup-show-activities></popup-show-activities>
+<theme-picker></theme-picker>
 </body>
 </html>

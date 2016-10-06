@@ -49,6 +49,12 @@ app.controller("EventsController",
                 }));
             });
 
+        $scope.$on("OpenEventsCharm",
+             function () {
+                 $scope.showCharms("#charmEvents");
+             });
+        
+
         $scope.editTicket = function(ticket)
         {
             $scope.$emit("EventOpened", ticket);
@@ -130,16 +136,6 @@ app.directive("popupShowActivities",
             restrict: "E",
             controller: function ($scope, dataService) {
 
-                function closeDialog(ticketId) {
-                    var dialog = $("#dialog-activities").data("dialog");
-                    dialog.close();
-                }
-
-                function openDialog(ticketId) {
-                    var dialog = $("#dialog-activities").data("dialog");
-                    dialog.open();
-                }
-
                 $scope.comment = "";
 
                 $scope.addActivity = function (comment) {
@@ -192,7 +188,7 @@ app.directive("popupShowActivities",
 
                                 $scope.$emit("TicketClosed");
 
-                                closeDialog($scope.ticket.Id);
+                                $scope.closeDialog("#dialog-activities");
 
                                 $.Notify({
                                     caption: "Success",
@@ -213,8 +209,9 @@ app.directive("popupShowActivities",
                     //alert("Child EditEvent: " + JSON.stringify(data));
                     //$scope.Ticket = data;
                     loadActivitiesFor($scope.ticket);
-                    openDialog($scope.ticket.Id);
+                    $scope.openDialog("#dialog-activities");
                 });
+
 
                 function loadActivitiesFor(ticket) {
                     var retval = [];

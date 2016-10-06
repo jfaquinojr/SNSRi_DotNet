@@ -3,13 +3,14 @@
 app.controller("ToolboxController",
     function($scope) {
 
-        $scope.LogOut = function () {
-            alert("Logout not yet implemented!");
+        $scope.openThemes = function () {
+            $scope.$emit("ThemesOpened");
         }
 
-        $scope.OpenActionCenter = function() {
-            alert("Action Center");
+        $scope.openEvents = function () {
+            $scope.$emit("EventsCharmOpened");
         }
+
     });
 
 
