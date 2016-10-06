@@ -2,6 +2,7 @@
 
 app.controller("TilesController", function($scope, $window) {
 
+    $scope.ticket = {};
     $scope.RefreshStartScreen = function() {
 
         var plugin = this;
@@ -45,6 +46,17 @@ app.controller("TilesController", function($scope, $window) {
     $scope.$on("roomChanged",
         function (event, roomId) {
             $scope.$broadcast("changeRoom", roomId);
+        });
+
+    $scope.$on("EventOpened",
+        function (event, ticket) {
+            $scope.ticket = ticket;
+            $scope.$broadcast("OpenEvent", ticket.Id);
+        });
+
+    $scope.$on("TicketClosed",
+        function (event) {
+            $scope.$broadcast("CloseTicket", $scope.ticket.Id);
         });
 });
 

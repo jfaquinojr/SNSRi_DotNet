@@ -4,7 +4,6 @@ app.controller("EventsController",
     function($scope, dataService, $interval) {
 
         $scope.Tickets = [];
-        $scope.Ticket = {};
 
         function loadTickets() {
             dataService.getOpenTickets()
@@ -17,18 +16,18 @@ app.controller("EventsController",
 
         function loadTicketsByRoom(roomId) {
             dataService.getOpenTicketsByRoom(roomId)
-               .then(function (result) {
-                   $scope.Tickets = result.data;
+                .then(function(result) {
+                    $scope.Tickets = result.data;
 
-                   console.log("loadTicketsByRoom. loaded " + result.data.length + " recrods.");
-               });
+                    console.log("loadTicketsByRoom. loaded " + result.data.length + " recrods.");
+                });
         }
 
         loadTickets();
 
 
         var reloadTickets = function(roomId) {
-  
+
             if (roomId > 0) {
                 loadTicketsByRoom(roomId);
             } else {
@@ -42,22 +41,21 @@ app.controller("EventsController",
                 reloadTickets(roomId);
             });
 
+        $scope.$on("CloseTicket",
+            function (event, ticketId) {
+                console.log("CloseTicket event triggered...");
+                $scope.Tickets = _.without($scope.Tickets, _.findWhere($scope.Tickets, {
+                    Id: ticketId
+                }));
+            });
+
         $scope.editTicket = function(ticket)
         {
-            $scope.Ticket = ticket;
-            loadActivitiesFor(ticket);
-            openDialog(ticket.Id);
+            $scope.$emit("EventOpened", ticket);
         }
 
 
-        function loadActivitiesFor(ticket) {
-            var retval = [];
-            dataService.getActivitiesForTicket(ticket.Id)
-                .then(function(result) {
-                    $scope.Ticket = ticket;
-                    $scope.Ticket.Activities = result.data;
-                });
-        }
+
 
         function loadNewTicketswithinPastMinutes() {
 
@@ -82,10 +80,7 @@ app.controller("EventsController",
 
     });
 
-function openDialog(ticketId) {
-    var dialog = $("#dialog-" + ticketId).data("dialog");
-    dialog.open();
-}
+
 
 function createActivity(ticket, comment) {
     return {
@@ -95,10 +90,7 @@ function createActivity(ticket, comment) {
     };
 }
 
-function closeDialog(ticketId) {
-    var dialog = $("#dialog-" + ticketId).data("dialog");
-    dialog.close();
-}
+
 
 app.directive("eventSidebar",
     function () {
@@ -136,10 +128,17 @@ app.directive("popupShowActivities",
         return {
             templateUrl: "Home/PopupShowActivities",
             restrict: "E",
-            scope: {
-                ticket: "="
-            },
             controller: function ($scope, dataService) {
+
+                function closeDialog(ticketId) {
+                    var dialog = $("#dialog-activities").data("dialog");
+                    dialog.close();
+                }
+
+                function openDialog(ticketId) {
+                    var dialog = $("#dialog-activities").data("dialog");
+                    dialog.open();
+                }
 
                 $scope.comment = "";
 
@@ -191,6 +190,8 @@ app.directive("popupShowActivities",
 
                                 $scope.comment = "";
 
+                                $scope.$emit("TicketClosed");
+
                                 closeDialog($scope.ticket.Id);
 
                                 $.Notify({
@@ -208,10 +209,25 @@ app.directive("popupShowActivities",
                             });
                 } // closeTicket
 
-            }
+                $scope.$on("OpenEvent", function (data) {
+                    //alert("Child EditEvent: " + JSON.stringify(data));
+                    //$scope.Ticket = data;
+                    loadActivitiesFor($scope.ticket);
+                    openDialog($scope.ticket.Id);
+                });
+
+                function loadActivitiesFor(ticket) {
+                    var retval = [];
+                    dataService.getActivitiesForTicket(ticket.Id)
+                        .then(function (result) {
+                            $scope.ticket = ticket;
+                            $scope.ticket.Activities = result.data;
+                        });
+                }
+
+            } // controller
         }
 
-    });
-
+    }); //directive: popupShowActivities
 
 
