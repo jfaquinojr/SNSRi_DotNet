@@ -32,6 +32,7 @@ app.controller("TilesController", function($scope, $window) {
 
         var addMouseWheel = function() {
             $("body")
+                .unmousewheel()
                 .mousewheel(function(event, delta, deltaX, deltaY) {
                     var page = $(document);
                     var scroll_value = delta * 50;
