@@ -208,14 +208,19 @@ app.directive("popupShowActivities",
                 $scope.$on("OpenEvent", function (data) {
                     //alert("Child EditEvent: " + JSON.stringify(data));
                     //$scope.Ticket = data;
-                    loadActivitiesFor($scope.ticket);
-                    $scope.openDialog("#dialog-activities");
+                    loadActivitiesFor($scope.ticket)
+                        .then(function() {
+                            //$scope.openDialog("#dialog-activities");
+                            hideMetroDialog("#dialog-activities");
+                            showMetroDialog("#dialog-activities", null);
+                        });
+
                 });
 
 
                 function loadActivitiesFor(ticket) {
                     var retval = [];
-                    dataService.getActivitiesForTicket(ticket.Id)
+                    return dataService.getActivitiesForTicket(ticket.Id)
                         .then(function (result) {
                             $scope.ticket = ticket;
                             $scope.ticket.Activities = result.data;
