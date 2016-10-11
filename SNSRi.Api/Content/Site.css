@@ -79,3 +79,12 @@
     -webkit-transition: .3s;
     transition: .3s
 }
+
+
+.event-item {
+    cursor: pointer;
+}
+
+.event-item:hover {
+    background-color: slategrey;
+}
