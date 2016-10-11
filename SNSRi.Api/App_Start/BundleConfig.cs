@@ -38,8 +38,24 @@ namespace SNSRi.Api
 					  "~/Content/metro-icons.css",
 					  "~/Content/metro-colors.css",
 					  "~/Content/site.css"));
-					  //"~/Content/metro-responsive.css",
-					  //"~/Content/metro-schemes.css"));
-		}
+            //"~/Content/metro-responsive.css",
+            //"~/Content/metro-schemes.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/admin").Include(
+                      "~/Scripts/jquery-2.1.3.js",
+                      "~/Scripts/underscore.js",
+                      "~/Scripts/angular.js",
+                      "~/Scripts/angular-route.js",
+                      "~/Scripts/angular-animate.js",
+                      "~/Scripts/angular-lodash.js",
+                      "~/Scripts/metro.js",
+                      "~/Scripts/jquery.dataTables.min.js"));
+
+            bundles.Add(new StyleBundle("~/Content/admin").Include(
+                      "~/Content/metro.css",
+                      "~/Content/metro-icons.css",
+                      "~/Content/metro-colors.css",
+                      "~/Content/metro-responsive.css"));
+        }
 	}
 }
