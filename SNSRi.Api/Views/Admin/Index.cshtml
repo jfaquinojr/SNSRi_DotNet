@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_adminSidebar.cshtml";
+}
+
+
+<h1 class="text-light">Devices <span class="mif-switch place-right"></span></h1>
+<hr class="thin bg-grayLighter">
+
+<div ng-view></div>
+
+
+@section scripts{
+@*<script src="/Scripts/jquery.js"></script>*@
+
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+@*<script src="/Scripts/angular.min.js"></script>*@
+<script src="~/Scripts/angular-datatables.js"></script>
+<link rel="stylesheet" href="/Content/datatables.bootstrap.min.css">
+<script src="~/app/admin/usersController.js"></script>
+}

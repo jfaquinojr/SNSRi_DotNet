@@ -6,12 +6,23 @@ using System.Web.Mvc;
 
 namespace SNSRi.Web.Controllers
 {
+    [Authorize]
     public class UsersController : Controller
     {
         // GET: Users
         public ActionResult Index()
         {
-            return View();
+            return PartialView();
+        }
+
+        public ActionResult Create()
+        {
+            return PartialView();
+        }
+
+        public ActionResult Edit()
+        {
+            return PartialView();
         }
     }
 }
