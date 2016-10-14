@@ -274,6 +274,7 @@
     <Content Include="app\admin\mainController.js" />
     <Content Include="app\admin\app-admin.js" />
     <Content Include="app\app.js" />
+    <Content Include="app\admin\directives\adminSidebar.js" />
     <Content Include="app\services\deviceService.js" />
     <Content Include="app\services\dataService.js" />
     <Content Include="app\eventsController.js" />
@@ -613,9 +614,9 @@
     <Content Include="Views\Shared\_adminSidebar.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\AdminSidebar.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\admin\directives\" />
     <Folder Include="App_Data\" />
     <Folder Include="Views\Events\" />
   </ItemGroup>
