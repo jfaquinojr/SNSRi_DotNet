@@ -31,7 +31,7 @@ app.directive("themePicker",
                                 return (css.match(/(^|\s)tile-area-scheme-\S+/g) || []).join(' ');
                             }).addClass(currentTileAreaScheme);
                         }
-                    );
+                    )
 
                     $(".schemeButtons .button").on("click", function () {
                         var b = $(this);

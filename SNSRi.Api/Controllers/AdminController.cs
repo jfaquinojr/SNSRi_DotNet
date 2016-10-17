@@ -14,5 +14,10 @@ namespace SNSRi.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult AdminSidebar()
+        {
+            return PartialView();
+        }
     }
 }

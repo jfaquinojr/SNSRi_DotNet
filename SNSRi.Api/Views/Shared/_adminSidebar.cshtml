@@ -48,13 +48,13 @@
                             $('.sidebar li').removeClass('active');
                             $(this).addClass('active');
                         }
-                    })
-        })
+                    });
+        });
     </script>
 </head>
 <body class="bg-steel" ng-app="app-admin" ng-controller="MainController">
-    <div class="app-bar fixed-top darcula" data-role="appbar">
-        <a class="app-bar-element branding">SNSRi</a>
+    <div class="app-bar fixed-top" data-role="appbar">
+        <a class="app-bar-element branding" href="/">SNSRi</a>
         <span class="app-bar-divider"></span>
 
         <div class="app-bar-element place-right">
@@ -65,40 +65,16 @@
                     <li><a href="" class="fg-white1 fg-hover-yellow">Sign Out</a></li>
                 </ul>
                 
+                the qui
+                
             </div>
         </div>
     </div>
 <div class="page-content">
     <div class="flex-grid no-responsive-future" style="height: 100%;">
         <div class="row" style="height: 100%">
-            <div class="cell size-x200" id="cell-sidebar" style="background-color: #71b1d1; height: 100%">
-                <ul class="sidebar2">
-                    <li>
-                        <a href="#">
-                            <span class="mif-users icon"></span>
-                            <span class="title">Users</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="mif-hotel icon"></span>
-                            <span class="title">Rooms</span>
-                        </a>
-                    </li>
-                    <li ng-class="" class="active">
-                        <a href="#">
-                            <span class="mif-switch icon"></span>
-                            <span class="title">Devices</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="mif-envelop icon"></span>
-                            <span class="title">Events</span>
-                        </a>
-                    </li>
-                    
-                </ul>
+            <div class="cell size-x200" id="cell-sidebar" style="height: 100%">
+                <admin-sidebar></admin-sidebar>
             </div>
             <div class="cell auto-size padding20 bg-white" id="cell-content">
                 @RenderBody()
