@@ -22,5 +22,13 @@ namespace SNSRi.Repository.Query
 		{
 		}
 
+	    public User ValidateUser(string email, string password)
+	    {
+            //TODO jaquino make parametarized
+	        string sql = $"select * from user where Email = '{email}' and Password = '{password}'";
+	        var result = _connection.Query<User>(sql);
+	        return result.FirstOrDefault();
+	    }
+
 	}
 }

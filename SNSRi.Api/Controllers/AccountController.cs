@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using SNSRi.Api.Models;
+using SNSRi.Repository.Query;
 
 namespace SNSRi.Api.Controllers
 {
@@ -24,7 +25,10 @@ namespace SNSRi.Api.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (Membership.ValidateUser(model.Email, model.Password))
+                var usersRepo = new UserQuery();
+                var user = usersRepo.ValidateUser(model.Email, model.Password);
+
+                if (null != user)
                 {
                     var identity = new ClaimsIdentity(new[]
                         {
