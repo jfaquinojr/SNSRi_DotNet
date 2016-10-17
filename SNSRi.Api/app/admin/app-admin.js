@@ -1,4 +1,4 @@
-﻿var app = angular.module("app-admin", ["ngRoute"]);
+﻿var app = angular.module("app-admin", ["ngRoute", "datatables"]);
 
 app.config(function ($routeProvider) {
     //$locationProvider.html5Mode(true);
