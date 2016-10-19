@@ -19,7 +19,7 @@ namespace SNSRi.Repository.Commands
 
         public virtual void Delete(int Id)
         {
-            BaseQuery<TEntity> query = default(BaseQuery<TEntity>);
+            var query = default(BaseQuery<TEntity>);
             var entity = query.GetById(Id);
             
         }
