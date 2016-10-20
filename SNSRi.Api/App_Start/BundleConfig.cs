@@ -56,10 +56,7 @@ namespace SNSRi.Api
                       "~/Content/metro-icons.css",
                       "~/Content/metro-colors.css",
                       "~/Content/metro-responsive.css",
-                      "~/Content/DataTables/css/jquery.datatables.css",
-                      "~/Content/DataTables/css/datatables.jqueryui.css",
-                      "~/Content/DataTables/css/datatables.bootstrap.css",
-                      "~/Content/datatables.bootstrap.min.css"));
+                      "~/Content/site.admin.css"));
         }
 	}
 }

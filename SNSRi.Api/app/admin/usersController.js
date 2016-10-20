@@ -1,4 +1,4 @@
-﻿var usersController = function($scope, DTOptionsBuilder, DTColumnBuilder, $http) {
+﻿var usersController = function($scope, DTOptionsBuilder, DTColumnBuilder, $http, $location) {
 
     var self = $scope;
 
@@ -24,6 +24,9 @@
     function selectUser(user) {
         $scope.message = user.Id + " - " + user.Email;
         $scope.SelectedUser = user;
+        var url = "/Users/Edit/" + user.Id;
+        //alert(url);
+        $location.path(url);
     }
 
     function rowCallback(nRow, aData, iDisplayIndex, iDisplayIndexFull) {

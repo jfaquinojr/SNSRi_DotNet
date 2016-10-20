@@ -444,6 +444,7 @@
     <Content Include="Content\metro-schemes.min.css" />
     <Content Include="Content\metro.css" />
     <Content Include="Content\metro.min.css" />
+    <Content Include="Content\site.admin.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\metro.svg" />
     <Content Include="Global.asax" />
@@ -616,6 +617,7 @@
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\AdminSidebar.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
