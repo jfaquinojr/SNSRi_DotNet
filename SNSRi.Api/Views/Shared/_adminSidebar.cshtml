@@ -60,30 +60,42 @@
     </div>
 </div>
 @Scripts.Render("~/bundles/admin")
-    <script>
-        function pushMessage(t) {
-            var mes = 'Info|Implement independently';
-            $.Notify({
-                caption: mes.split("|")[0],
-                content: mes.split("|")[1],
-                type: t
-            });
-        }
-
-        $(function() {
-            $('.sidebar')
-                .on('click',
-                    'li',
-                    function() {
-                        if (!$(this).hasClass('active')) {
-                            $('.sidebar li').removeClass('active');
-                            $(this).addClass('active');
-                        }
-                    });
+<script>
+    function pushMessage(t) {
+        var mes = 'Info|Implement independently';
+        $.Notify({
+            caption: mes.split("|")[0],
+            content: mes.split("|")[1],
+            type: t
         });
-    </script>
-<script src="~/app/admin/app-admin.js"></script>  
+    }
+
+    $(function() {
+        $('.sidebar')
+            .on('click',
+                'li',
+                function() {
+                    if (!$(this).hasClass('active')) {
+                        $('.sidebar li').removeClass('active');
+                        $(this).addClass('active');
+                    }
+                });
+    });
+</script>
+
+
+@*Library Scripts*@
+<script src="~/Scripts/angular-resource.js"></script>
+<script src="~/Scripts/angular-mocks.js"></script>
+
+<script src="~/app/admin/app-admin.js"></script>
+
+@*Services*@
+<script src="~/app/services/dataAccessService.js"></script>
+
+@*Controllers*@
 <script src="~/app/admin/mainController.js"></script>
+
 
 @RenderSection("scripts", required: false)
 </body>
