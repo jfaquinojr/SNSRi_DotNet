@@ -1,14 +1,29 @@
-var App;
-(function (App) {
-    var DeviceService = (function () {
-        function DeviceService($http) {
-            var _this = this;
-            this.$http = $http;
+﻿declare var HomeSeerUrl: string;
+
+module App {
+
+    
+
+    import Device = Data.Contracts.Device;
+
+    interface IDeviceService {
+        getHomeSeerDevice(refId: number): Device;
+        setHomeSeerDevice(device: Device): void;
+    }
+
+    class DeviceService implements IDeviceService {
+
+        private homeSeerUrl: string;
+
+        static $inject = ["$http"];
+
+        constructor(private $http: ng.IHttpService) {
             this.$http.get("/api/Config/HomeSeerUrl")
-                .then(function (url) {
-                _this.homeSeerUrl = url;
-            });
+                .then((url: string) => {
+                    this.homeSeerUrl = url;
+                });
         }
+
         //query(params: ng.): ng.IHttpPromise<Device> {
         //    const self = this;
         //    var sdata;
@@ -28,46 +43,60 @@ var App;
         //            return new Device($.extend(cdata, sdata));
         //        });
         //}
-        DeviceService.prototype.getHomeSeerDevice = function (refId) {
-            var self = this;
-            var url = self.homeSeerUrl + "/JSON?request=getstatus&ref=" + refId;
-            var dev;
-            var device;
+
+        getHomeSeerDevice(refId: number): Device {
+            const self = this;
+            const url = self.homeSeerUrl + "/JSON?request=getstatus&ref=" + refId;
+            var dev: Device;
+            let device: Device;
             self.$http.get(url)
-                .then(function (response) {
-                console.log(JSON.stringify(response.data));
-                dev.value = "OK LANG!~!!";
-            });
+                .then(response => {
+                    console.log(JSON.stringify(response.data));
+                    dev.value = "OK LANG!~!!";
+                });
+
             return dev;
-        };
-        DeviceService.prototype.setHomeSeerDevice = function (device) {
+        }
+
+        setHomeSeerDevice(device: Device): void {
             // wala pa masyadong docs
-        };
-        DeviceService.$inject = ["$http"];
-        return DeviceService;
-    }());
-})(App || (App = {}));
+        }
+    }
+}
+
 var app = angular.module("app");
+
 app.factory("deviceService", deviceService);
+
 function deviceService($http) {
+
+    
     var svc = $http;
     var self = this;
     self.urlHomeSeer = HomeSeerUrl || "http://localhost:8002";
+
     return {
         getHomeSeerDevice: getHomeSeerDevice,
         setHomeSeerDevice: setHomeSeerDevice,
         urlHomeSeer: self.urlHomeSeer
-    };
+    }
+
     function getHomeSeerDevice(refId) {
         var url = self.urlHomeSeer + "/JSON?request=getstatus&ref=" + refId;
         //console.log(url);
         return svc.get(url);
     }
+
     function setHomeSeerDevice() {
+        
     }
+
+
 }
+
+
 /*
-example data returned by
+example data returned by 
 /JSON?request=getstatus&ref=8:
 
 {
@@ -165,5 +194,4 @@ example data returned by
   "location": "Room 102",
   "location2": "1F"
 }
-*/ 
-//# sourceMappingURL=deviceService.js.map
+*/

@@ -16,6 +16,12 @@
     },
     "angularjs/angular-mocks.d.ts": {
       "commit": "d290d688b339e3609e77da9db008709e9051bb18"
+    },
+    "lodash/lodash.d.ts": {
+      "commit": "10685542728efb9dd1be9f6bbcc14c7451de2594"
+    },
+    "underscore/underscore.d.ts": {
+      "commit": "10685542728efb9dd1be9f6bbcc14c7451de2594"
     }
   }
 }

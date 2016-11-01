@@ -1,91 +1,121 @@
-﻿var app = angular.module("app");
+﻿
+module App {
 
-app.controller("EventsController",
-    function($scope, dataService, $interval) {
+    import Ticket = Data.Contracts.Ticket;
 
-        $scope.Tickets = [];
 
-        function loadTickets() {
-            dataService.getOpenTickets()
-                .then(function(result) {
-                    $scope.Tickets = result.data;
+    interface IEventsController {
+        
+    }
 
-                    console.log("loadTickets. loaded " + result.data.length + " recrods.");
+
+    class EventsController implements IEventsController {
+
+        tickets: Ticket[];
+        private _: any;
+
+        static $inject = ["$scope", "$interval", "dataService", "startScreenService", "$window"];
+
+        constructor(
+            private $scope: ng.IScope,
+            private $interval: ng.IIntervalService,
+            private dataService: DataService,
+            private startScreenService: StartScreenService,
+            private $window: any) {
+
+            const self = this;
+            this._ = $window._;
+
+            this.loadTickets();
+
+            this.$interval(() => this.loadNewTicketswithinPastMinutes(), 3000);
+
+
+            $scope.$on("changeRoom",
+                (event, roomId: number) => {
+                    self.reloadTickets(roomId);
+                });
+
+            $scope.$on("CloseTicket",
+                (event, ticketId: number) => {
+
+                    self.tickets = _.without(self.tickets,
+                        _.findWhere(self.tickets,
+                            {
+                            Id: ticketId
+                        }));
+                });
+
+            $scope.$on("OpenEventsCharm",
+                () => {
+                    startScreenService.showCharms("#charmEvents");
+                });
+
+        }
+
+
+        private editTicket(ticket) {
+            this.$scope.$emit("EventOpened", ticket);
+        }
+
+
+        private loadTickets(): void {
+            this.dataService.getOpenTickets()
+                .then(result => {
+                    this.tickets = result.data;
                 });
         }
 
-        function loadTicketsByRoom(roomId) {
-            dataService.getOpenTicketsByRoom(roomId)
-                .then(function(result) {
-                    $scope.Tickets = result.data;
-
-                    console.log("loadTicketsByRoom. loaded " + result.data.length + " recrods.");
+        private loadTicketsByRoom(roomId): void {
+            const self = this;
+            this.dataService.getOpenTicketsByRoom(roomId)
+                .then(result => {
+                    self.tickets = result.data;
                 });
         }
 
-        loadTickets();
-
-
-        var reloadTickets = function(roomId) {
+        private reloadTickets(roomId) {
 
             if (roomId > 0) {
-                loadTicketsByRoom(roomId);
+                this.loadTicketsByRoom(roomId);
             } else {
-                loadTickets();
+                this.loadTickets();
             }
 
         }
 
-        $scope.$on("changeRoom",
-            function(event, roomId) {
-                reloadTickets(roomId);
-            });
-
-        $scope.$on("CloseTicket",
-            function (event, ticketId) {
-                console.log("CloseTicket event triggered...");
-                $scope.Tickets = _.without($scope.Tickets, _.findWhere($scope.Tickets, {
-                    Id: ticketId
-                }));
-            });
-
-        $scope.$on("OpenEventsCharm",
-             function () {
-                 $scope.showCharms("#charmEvents");
-             });
-        
-
-        $scope.editTicket = function(ticket)
-        {
-            $scope.$emit("EventOpened", ticket);
-        }
-
-
-
-
-        function loadNewTicketswithinPastMinutes() {
+        public loadNewTicketswithinPastMinutes(): void {
 
             console.log("loadNewTicketswithinPastMinutes");
 
-            dataService.getOpenTicketsPastSeconds(4).then(function (result) {
-                console.log("getOpenTicketsPastSeconds. count: " + result.data.length);
-                var countBefore = $scope.Tickets.length;
-                $scope.Tickets = _.uniq(_.union(result.data, $scope.Tickets), false, function (o) { return o.Id });
-                var countAfter = $scope.Tickets.length;
-                if (countBefore !== countAfter) {
-                    $.Notify({
-                        caption: "New Event",
-                        content: "An event has occurred.",
-                        type: "info"
-                    });
-                }
-            });
+            const self = this;
+            this.dataService.getOpenTicketsPastSeconds(4)
+                .then(result => {
+                    console.log("getOpenTicketsPastSeconds. count: " + result.data.length);
+                    var countBefore = self.tickets.length;
+                    self.tickets = self._.uniq(
+                            self._.union(result.data, self.tickets),
+                            false,
+                            o => { return o.Id }
+                        );
+                    var countAfter = self.tickets.length;
+                    if (countBefore !== countAfter) {
+                            $.Notify({
+                            caption: "New Event",
+                            content: "An event has occurred.",
+                            type: "info"
+                        });
+                    }
+                });
         }
 
-        $interval(loadNewTicketswithinPastMinutes, 3000);
+    }
 
-    });
+    angular.module("app")
+    .service("dataService", App.DataService)
+    .controller("eventsController", EventsController);
 
+}
 
 
 function createActivity(ticket, comment) {
@@ -138,13 +168,13 @@ app.directive("popupShowActivities",
 
                 $scope.comment = "";
 
-                $scope.addActivity = function (comment) {
+                $scope.addActivity = comment => {
 
                     var activityData = createActivity($scope.ticket, comment);
 
                     dataService.createActivity(activityData)
                         .then(
-                            function (result) {
+                            result => {
                                 $scope.ticket.Activities.unshift({
                                     TicketId: $scope.ticket.Id,
                                     Comment: comment,
@@ -160,7 +190,7 @@ app.directive("popupShowActivities",
                                     type: "success"
                                 });
                             },
-                            function (error) {
+                            error => {
                                 $.Notify({
                                     caption: "Create Activity Failed",
                                     content: error,
@@ -169,7 +199,7 @@ app.directive("popupShowActivities",
                             });
                 }
 
-                $scope.closeTicket = function (comment) {
+                $scope.closeTicket = comment => {
 
                     var activityData = createActivity($scope.ticket, comment);
 
@@ -211,8 +241,8 @@ app.directive("popupShowActivities",
                     loadActivitiesFor($scope.ticket)
                         .then(function() {
                             //$scope.openDialog("#dialog-activities");
-                            hideMetroDialog("#dialog-activities");
-                            showMetroDialog("#dialog-activities", null);
+                            $scope.hideMetroDialog("#dialog-activities");
+                            $scope.showMetroDialog("#dialog-activities", null);
                         });
 
                 });

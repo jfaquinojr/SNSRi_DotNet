@@ -1,74 +1,54 @@
-﻿var app = angular.module("app");
-
-app.factory("dataService", dataService);
-
-function dataService($http) {
-
-
-    var svc = $http;
-
-    return {
-        getRoom: getRoom,
-        getRooms: getRooms,
-        getDevicesbyRoomId: getDevicesbyRoomId,
-        getOpenTickets: getOpenTickets,
-        getOpenTicketsRecent: getOpenTicketsRecent,
-        getOpenTicketsByRoom: getOpenTicketsByRoom,
-        getActivitiesForTicket: getActivitiesForTicket,
-        getOpenTicketsPastMinutes: getOpenTicketsPastMinutes,
-        getOpenTicketsPastSeconds: getOpenTicketsPastSeconds,
-        createActivity: createActivity,
-        closeTicket: closeTicket
-    }
-
-    function createActivity(activityData) {
-        return svc.post("/api/CreateActivity", JSON.stringify(activityData));
-    }
-
-    function closeTicket(activityData) {
-        return svc.post("/api/CloseTicket", JSON.stringify(activityData));
-    }
-
-    function getHomeSeerDevice(refId) {
-        return svc.get(urlHomeSeer + "/JSON?request=getstatus&ref=" + refId);
-    }
-
-    function getRooms() {
-        return svc.get("/api/Rooms");
-    }
-
-    function getRoom(id) {
-        return svc.get("/api/Rooms/" + id);
-    }
-
-    function getDevicesbyRoomId(roomId) {
-        return svc.get("/api/Rooms/" + roomId + "/Devices");
-    }
-
-    function getOpenTickets() {
-        return svc.get("/api/Tickets/Open");
-    }
-
-    function getOpenTicketsByRoom(roomId) {
-        return svc.get("/api/Tickets/Open/Room/" + roomId);
-    }
-
-    function getOpenTicketsRecent() {
-        return svc.get("/api/Tickets/Open/Past/Minutes/1");
-    }
-
-    function getActivitiesForTicket(ticketId) {
-        return svc.get("api/Tickets/" + ticketId + "/Activities");
-    }
-
-    function getOpenTicketsPastMinutes(minutes) {
-        return svc.get("api/Tickets/Open/Past/Minutes/" + minutes);
-    }
-
-    function getOpenTicketsPastSeconds(seconds) {
-        return svc.get("api/Tickets/Open/Past/Seconds/" + seconds);
-    }
-
-    
-
-}
+var App;
+(function (App) {
+    var DataService = (function () {
+        function DataService($http) {
+            var _this = this;
+            this.$http = $http;
+            this.$http.get("/api/Config/HomeSeerUrl").then(function (url) {
+                _this.homeSeerUrl = url;
+            });
+        }
+        DataService.prototype.createActivity = function (activity) {
+            return this.$http.post("/api/CreateActivity", JSON.stringify(activity));
+        };
+        DataService.prototype.closeTicket = function (activity) {
+            return this.$http.post("/api/CloseTicket", JSON.stringify(activity));
+        };
+        DataService.prototype.getHomeSeerDevice = function (refId) {
+            return this.$http.get(this.homeSeerUrl + "/JSON?request=getstatus&ref=" + refId);
+        };
+        DataService.prototype.getRooms = function () {
+            return this.$http.get("/api/Rooms");
+        };
+        DataService.prototype.getRoom = function (id) {
+            return this.$http.get("/api/Rooms/" + id);
+        };
+        DataService.prototype.getDevicesbyRoomId = function (roomId) {
+            return this.$http.get("/api/Rooms/" + roomId + "/Devices");
+        };
+        DataService.prototype.getOpenTickets = function () {
+            return this.$http.get("/api/Tickets/Open");
+        };
+        DataService.prototype.getOpenTicketsByRoom = function (roomId) {
+            return this.$http.get("/api/Tickets/Open/Room/" + roomId);
+        };
+        DataService.prototype.getOpenTicketsRecent = function () {
+            return this.$http.get("/api/Tickets/Open/Past/Minutes/1");
+        };
+        DataService.prototype.getActivitiesForTicket = function (ticketId) {
+            return this.$http.get("api/Tickets/" + ticketId + "/Activities");
+        };
+        DataService.prototype.getOpenTicketsPastMinutes = function (minutes) {
+            return this.$http.get("api/Tickets/Open/Past/Minutes/" + minutes);
+        };
+        DataService.prototype.getOpenTicketsPastSeconds = function (seconds) {
+            return this.$http.get("api/Tickets/Open/Past/Seconds/" + seconds);
+        };
+        DataService.$inject = ["$http"];
+        return DataService;
+    }());
+    App.DataService = DataService;
+    angular.module("app")
+        .service("dataService", DataService);
+})(App || (App = {}));
+//# sourceMappingURL=dataService.js.map

@@ -1,7 +1,7 @@
 ﻿var app = angular.module("app");
 
 app.controller("DevicesController",
-    function ($scope, $http, $routeParams, dataService) {
+    function ($scope, $http, $routeParams, dataService, startScreenService) {
         var scope = $scope;
         var svc = $http;
         var params = $routeParams;
@@ -28,7 +28,7 @@ app.controller("DevicesController",
         loadRoom(params.id);
         loadDevicesByRoomId(params.id);
 
-        $scope.RefreshStartScreen();
+        startScreenService.refreshStartScreen();
         
     });
 

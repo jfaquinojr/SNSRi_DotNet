@@ -260,6 +260,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\api\ActivitiesController.cs" />
     <Compile Include="Controllers\api\CommandsController.cs" />
+    <Compile Include="Controllers\api\ConfigController.cs" />
     <Compile Include="Controllers\api\DevicesController.cs" />
     <Compile Include="Controllers\api\RoomsController.cs" />
     <Compile Include="Controllers\api\UsersController.cs" />
@@ -290,16 +291,16 @@
     <Content Include="app\admin\mainController.js" />
     <Content Include="app\admin\app-admin.js" />
     <TypeScriptCompile Include="app\app.ts" />
-    <Content Include="app\app.js" />
     <Content Include="app\admin\directives\adminSidebar.js" />
     <TypeScriptCompile Include="app\controllers\tilesController.ts" />
-    <Content Include="app\services\deviceService.js" />
-    <Content Include="app\services\dataService.js" />
-    <Content Include="app\eventsController.js" />
-    <Content Include="app\devicesController.js" />
-    <Content Include="app\roomsController.js" />
+    <TypeScriptCompile Include="app\controllers\devicesController.ts" />
+    <TypeScriptCompile Include="app\HomeSeer.ts" />
+    <TypeScriptCompile Include="app\services\deviceService.ts" />
+    <TypeScriptCompile Include="app\services\dataService.ts" />
+    <TypeScriptCompile Include="app\controllers\eventsController.ts" />
+    <Content Include="app\controllers\roomsController.js" />
     <Content Include="app\directives\themePicker.js" />
-    <Content Include="app\toolboxController.js" />
+    <Content Include="app\controllers\toolboxController.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\action-center.css" />
     <Content Include="Content\datatables.bootstrap.min.css" />
@@ -638,6 +639,7 @@
     <Content Include="Views\Admin\AdminSidebar.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="tsd.json" />
+    <TypeScriptCompile Include="typings\underscore\underscore.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -665,10 +667,12 @@
     <TypeScriptCompile Include="app\contracts.ts" />
     <TypeScriptCompile Include="app\services\dataAccessService.ts" />
     <TypeScriptCompile Include="app\services\roomsService.ts" />
+    <TypeScriptCompile Include="app\services\startScreenService.ts" />
     <TypeScriptCompile Include="typings\angularjs\angular-mocks.d.ts" />
     <TypeScriptCompile Include="typings\angularjs\angular-resource.d.ts" />
     <TypeScriptCompile Include="typings\angularjs\angular.d.ts" />
     <TypeScriptCompile Include="typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="typings\metrojs\metrojs.d.ts" />
     <TypeScriptCompile Include="typings\tsd.d.ts" />
   </ItemGroup>
   <ItemGroup>

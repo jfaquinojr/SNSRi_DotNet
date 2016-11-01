@@ -14,7 +14,7 @@
 
 
 </head>
-<body style="overflow-y: hidden;" ng-app="app" ng-controller="TilesController">
+<body style="overflow-y: hidden;" ng-app="app" ng-controller="tilesController">
     
 
 <div id="start-area" tile-area class="tile-area tile-area-scheme-dark fg-white" style="height: 100%; max-height: 100% !important;">
@@ -31,27 +31,26 @@
 <event-sidebar></event-sidebar>
     
     
-<script>
-    var globalUrlHomeSeer = '@Utility.GetConfig("HomeSeerURL", "http://localhost:8002")';
-</script>
+
 @Scripts.Render("~/bundles/main")
     
     
-<script>
-       
-
-
-</script>
 
 <script src="~/app/app.js"></script>
+<script>
+    var HomeSeerUrl = '@Utility.GetConfig("HomeSeerURL", "http://localhost:8002")';
+</script>
 <script src="~/app/services/dataService.js"></script>
 <script src="~/app/services/deviceService.js"></script>
-<script src="~/app/controllers/tilesController.js"></script>
-<script src="~/app/toolboxController.js"></script>
-<script src="~/app/roomsController.js"></script>
-<script src="~/app/devicesController.js"></script>
-<script src="~/app/eventsController.js"></script>
+<script src="~/app/services/startScreenService.js"></script>
+
+<script src="~/app/controllers/toolboxController.js"></script>
+<script src="~/app/controllers/roomsController.js"></script>
+<script src="~/app/controllers/devicesController.js"></script>
+<script src="~/app/controllers/eventsController.js"></script>
 <script src="~/app/directives/themePicker.js"></script>
+
+<script src="~/app/controllers/tilesController.js"></script>
 
 @RenderSection("scripts", required: false)
 

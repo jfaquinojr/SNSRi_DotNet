@@ -1,8 +1,8 @@
 ﻿var app = angular.module("app");
 
 
-app.controller("RoomsController", ["$scope", "dataService",
-    function ($scope, dataService) {
+app.controller("RoomsController", ["$scope", "dataService", "startScreenService",
+    function ($scope, dataService, startScreenService) {
 
         $scope.Rooms = [];
 
@@ -17,7 +17,7 @@ app.controller("RoomsController", ["$scope", "dataService",
 
 
         loadRooms();
-        $scope.RefreshStartScreen();
+        startScreenService.refreshStartScreen();
     }]);
 
 app.directive("roomTile",
