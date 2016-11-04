@@ -20,9 +20,8 @@
 <div id="start-area" tile-area class="tile-area tile-area-scheme-dark fg-white" style="height: 100%; max-height: 100% !important;">
     <a style="color: white;" href="#/"><h1 class="tile-area-title">SNSRi</h1></a>
     
-    <div ng-controller="ToolboxController">
-        <toolbox></toolbox>
-    </div>
+    <toolbox></toolbox>
+
 
 
     @RenderBody()
@@ -40,17 +39,31 @@
 <script>
     var HomeSeerUrl = '@Utility.GetConfig("HomeSeerURL", "http://localhost:8002")';
 </script>
+
+@*services*@
 <script src="~/app/services/dataService.js"></script>
 <script src="~/app/services/deviceService.js"></script>
 <script src="~/app/services/startScreenService.js"></script>
+<script src="~/app/services/notificationService.js"></script>
 
+
+
+@*controllers*@
 <script src="~/app/controllers/toolboxController.js"></script>
 <script src="~/app/controllers/roomsController.js"></script>
 <script src="~/app/controllers/devicesController.js"></script>
 <script src="~/app/controllers/eventsController.js"></script>
-<script src="~/app/directives/themePicker.js"></script>
-
 <script src="~/app/controllers/tilesController.js"></script>
+
+
+
+@*directives*@
+<script src="~/app/directives/eventsSidebar.js"></script>
+@*<script src="~/app/directives/themePicker.js"></script>*@
+<script src="~/app/directives/Toolbox.js"></script>
+
+
+
 
 @RenderSection("scripts", required: false)
 

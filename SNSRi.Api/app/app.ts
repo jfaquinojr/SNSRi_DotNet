@@ -1,12 +1,11 @@
 ﻿module App {
 
-    angular.module("app", [
+    angular.module("app",
+        [
             "ngAnimate",
             "ngRoute",
             "angular-lodash"
-        ]);
-
-    angular.module("app")
+        ])
         .config($routeProvider => {
             //$locationProvider.html5Mode(true);
 
@@ -25,6 +24,10 @@
                     templateUrl: "Home/Oops"
                 });
 
-        });
+        })
+        .service("dataService", App.DataService)
+        .service("notificationService", App.NotificationService);
+    //.controller("eventsController", EventsController);
+    //.controller("toolboxController", ToolboxController); <-- no need. see _startscreen.cshtml
 
 }

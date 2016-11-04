@@ -1,6 +1,9 @@
 ﻿module App {
-    interface IStartScreenService {
+    export interface IStartScreenService {
         refreshStartScreen(): void;
+        showCharms(id: string): void;
+        openDialog(id: string): void;
+        closeDialog(id: string): void;
     }
 
     export class StartScreenService implements IStartScreenService {
@@ -52,17 +55,17 @@
         }
 
 
-        closeDialog(id) {
+        closeDialog(id: string): void {
             const dialog = $(id).data("dialog");
             dialog.close();
         }
 
-        openDialog(id) {
+        openDialog(id: string): void {
             const dialog = $(id).data("dialog");
             dialog.open();
         }
 
-        showCharms(id) {
+        showCharms(id: string): void {
             const charm = $(id).data("charm");
             if (charm.element.data("opened") === true) {
                 charm.close();

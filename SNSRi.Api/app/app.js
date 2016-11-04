@@ -4,8 +4,7 @@ var App;
         "ngAnimate",
         "ngRoute",
         "angular-lodash"
-    ]);
-    angular.module("app")
+    ])
         .config(function ($routeProvider) {
         //$locationProvider.html5Mode(true);
         $routeProvider
@@ -20,6 +19,8 @@ var App;
             .otherwise({
             templateUrl: "Home/Oops"
         });
-    });
+    })
+        .service("dataService", App.DataService)
+        .service("notificationService", App.NotificationService);
 })(App || (App = {}));
 //# sourceMappingURL=app.js.map

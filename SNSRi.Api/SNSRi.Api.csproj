@@ -294,13 +294,15 @@
     <Content Include="app\admin\directives\adminSidebar.js" />
     <TypeScriptCompile Include="app\controllers\tilesController.ts" />
     <TypeScriptCompile Include="app\controllers\devicesController.ts" />
+    <TypeScriptCompile Include="app\directives\eventsSidebar.ts" />
+    <TypeScriptCompile Include="app\directives\Toolbox.ts" />
     <TypeScriptCompile Include="app\HomeSeer.ts" />
     <TypeScriptCompile Include="app\services\deviceService.ts" />
     <TypeScriptCompile Include="app\services\dataService.ts" />
     <TypeScriptCompile Include="app\controllers\eventsController.ts" />
     <Content Include="app\controllers\roomsController.js" />
-    <Content Include="app\directives\themePicker.js" />
-    <Content Include="app\controllers\toolboxController.js" />
+    <TypeScriptCompile Include="app\directives\themePicker.ts" />
+    <TypeScriptCompile Include="app\controllers\toolboxController.ts" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\action-center.css" />
     <Content Include="Content\datatables.bootstrap.min.css" />
@@ -470,6 +472,7 @@
     <Content Include="Scripts\angular-datatables.js" />
     <Content Include="Scripts\angular-lodash.js" />
     <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-modal-service.js" />
     <Content Include="Scripts\angular-resource.js" />
     <Content Include="Scripts\angular-resource.min.js" />
     <Content Include="Scripts\angular-route.js" />
@@ -639,6 +642,7 @@
     <Content Include="Views\Admin\AdminSidebar.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="tsd.json" />
+    <TypeScriptCompile Include="app\services\NotificationService.ts" />
     <TypeScriptCompile Include="typings\underscore\underscore.d.ts" />
   </ItemGroup>
   <ItemGroup>

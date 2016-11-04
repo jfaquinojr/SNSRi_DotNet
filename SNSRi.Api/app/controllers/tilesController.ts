@@ -1,5 +1,5 @@
 ﻿
-module App {
+module App.Controllers {
     import Ticket = Data.Contracts.Ticket;
 
 
@@ -30,13 +30,13 @@ module App {
                         self.$scope.$broadcast("CloseTicket", self.ticket.id);
                     });
 
-                this.$scope.$on("ThemesOpened", event => {
-                        self.$scope.$broadcast("OpenThemes");
-                    });
+                //this.$scope.$on("ThemesOpened", event => {
+                //        self.$scope.$broadcast("OpenThemes");
+                //    });
 
-                this.$scope.$on("EventsCharmOpened", event => {
-                        self.$scope.$broadcast("OpenEventsCharm");
-                    });
+                //this.$scope.$on("EventsCharmOpened", event => {
+                //        self.$scope.$broadcast("OpenEventsCharm");
+                //    });
 
         }
 

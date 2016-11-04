@@ -1,8 +1,8 @@
 ﻿var app = angular.module("app");
 
 
-app.controller("RoomsController", ["$scope", "dataService", "startScreenService",
-    function ($scope, dataService, startScreenService) {
+app.controller("RoomsController", ["$scope", "dataService", "startScreenService", "notificationService",
+    function ($scope, dataService, startScreenService, notificationService) {
 
         $scope.Rooms = [];
 
@@ -18,6 +18,11 @@ app.controller("RoomsController", ["$scope", "dataService", "startScreenService"
 
         loadRooms();
         startScreenService.refreshStartScreen();
+
+        $scope.changeRoom = function(id)
+        {
+            notificationService.notify("changeRoom", { roomId: id });
+        }
     }]);
 
 app.directive("roomTile",
@@ -29,11 +34,13 @@ app.directive("roomTile",
             scope: {
                 room: "="
             },
-            controller: function($scope, $interval) {
-                $scope.changeRoom = function (roomId) {
-                    $scope.$emit("roomChanged", roomId);
-                }
-            }
+            controllerAs: "vm",
+            controller: "RoomsController"
+            //controller: function($scope, $interval) {
+            //    $scope.changeRoom = function (roomId) {
+            //        $scope.$emit("roomChanged", roomId);
+            //    }
+            //}
         };
 
     });

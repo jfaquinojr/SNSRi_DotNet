@@ -1,29 +1,35 @@
 var App;
 (function (App) {
     var EventsController = (function () {
-        function EventsController($scope, $interval, dataService, startScreenService, $window) {
+        function EventsController($scope, $interval, dataService, notificationService, $window) {
             var _this = this;
             this.$scope = $scope;
             this.$interval = $interval;
             this.dataService = dataService;
-            this.startScreenService = startScreenService;
+            this.notificationService = notificationService;
             this.$window = $window;
+            console.log("Inside App.EventsController");
             var self = this;
             this._ = $window._;
             this.loadTickets();
             this.$interval(function () { return _this.loadNewTicketswithinPastMinutes(); }, 3000);
-            $scope.$on("changeRoom", function (event, roomId) {
-                self.reloadTickets(roomId);
-            });
-            $scope.$on("CloseTicket", function (event, ticketId) {
-                self.tickets = _.without(self.tickets, _.findWhere(self.tickets, {
-                    Id: ticketId
-                }));
-            });
-            $scope.$on("OpenEventsCharm", function () {
-                startScreenService.showCharms("#charmEvents");
-            });
+            notificationService.subscribe("#charmEvents", function (event, args) { return _this.openEventsCharm(event, args); }, $scope);
+            notificationService.subscribe("changeRoom", function (event, args) { return _this.changeRoom(event, args); }, $scope);
+            notificationService.subscribe("CloseTicket", function (event, args) { return _this.closeTicket(event, args); }, $scope);
         }
+        EventsController.prototype.closeTicket = function (event, args) {
+            console.log(JSON.stringify(args));
+            var self = this;
+            self.tickets = _.without(self.tickets, _.findWhere(self.tickets, {
+                Id: args.ticketId
+            }));
+        };
+        EventsController.prototype.changeRoom = function (event, args) {
+            this.reloadTickets(args.roomId);
+        };
+        EventsController.prototype.openEventsCharm = function (event, args) {
+            this.showCharms("#charmEvents");
+        };
         EventsController.prototype.editTicket = function (ticket) {
             this.$scope.$emit("EventOpened", ticket);
         };
@@ -50,11 +56,11 @@ var App;
             }
         };
         EventsController.prototype.loadNewTicketswithinPastMinutes = function () {
-            console.log("loadNewTicketswithinPastMinutes");
+            //console.log("loadNewTicketswithinPastMinutes");
             var self = this;
             this.dataService.getOpenTicketsPastSeconds(4)
                 .then(function (result) {
-                console.log("getOpenTicketsPastSeconds. count: " + result.data.length);
+                //console.log("getOpenTicketsPastSeconds. count: " + result.data.length);
                 var countBefore = self.tickets.length;
                 self.tickets = self._.uniq(self._.union(result.data, self.tickets), false, function (o) { return o.Id; });
                 var countAfter = self.tickets.length;
@@ -67,12 +73,27 @@ var App;
                 }
             });
         };
-        EventsController.$inject = ["$scope", "$interval", "dataService", "startScreenService", "$window"];
+        EventsController.prototype.closeDialog = function (id) {
+            var dialog = $(id).data("dialog");
+            dialog.close();
+        };
+        EventsController.prototype.openDialog = function (id) {
+            var dialog = $(id).data("dialog");
+            dialog.open();
+        };
+        EventsController.prototype.showCharms = function (id) {
+            var charm = $(id).data("charm");
+            if (charm.element.data("opened") === true) {
+                charm.close();
+            }
+            else {
+                charm.open();
+            }
+        };
+        EventsController.$inject = ["$scope", "$interval", "dataService", "notificationService", "$window"];
         return EventsController;
     }());
-    angular.module("app")
-        .service("dataService", App.DataService)
-        .controller("eventsController", EventsController);
+    App.EventsController = EventsController;
 })(App || (App = {}));
 function createActivity(ticket, comment) {
     return {
@@ -81,12 +102,6 @@ function createActivity(ticket, comment) {
         CreatedBy: 1
     };
 }
-app.directive("eventSidebar", function () {
-    return {
-        templateUrl: "/Home/EventsCharm",
-        restrict: "E"
-    };
-});
 app.directive("eventTile", function () {
     return {
         templateUrl: "/Home/EventTile",
