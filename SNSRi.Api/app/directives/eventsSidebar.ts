@@ -9,6 +9,7 @@ module App.Directives {
         return {
             restrict: "E",
             scope: true,
+            controllerAs: "vm",
             controller: EventsController,
             templateUrl: "/Home/EventsCharm"
         }

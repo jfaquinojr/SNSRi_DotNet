@@ -8,6 +8,7 @@ var App;
             return {
                 restrict: "E",
                 scope: true,
+                controllerAs: "vm",
                 controller: EventsController,
                 templateUrl: "/Home/EventsCharm"
             };
