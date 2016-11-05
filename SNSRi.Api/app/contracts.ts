@@ -1,78 +1,78 @@
 ﻿module Data.Contracts {
 
     export class Room {
-        id: number;
-        name: string;
-        description: string;
-        sortOrder: number;
-        isHidden: boolean;
-        createdOn: any;
-        createdBy: number;
-        modifiedOn: any;
-        modifiedBy: number;
-        devices: Device[];
+        Id: number;
+        Name: string;
+        Description: string;
+        SortOrder: number;
+        IsHidden: boolean;
+        CreatedOn: any;
+        CreatedBy: number;
+        ModifiedOn: any;
+        ModifiedBy: number;
+        Devices: Device[];
     }
 
     export class User {
-        id: number;
-        createdOn: any;
-        createdBy: number;
-        modifiedOn: any;
-        modifiedBy: number;
-        username: string;
-        password: string;
-        email: string;
+        Id: number;
+        CreatedOn: any;
+        CreatedBy: number;
+        ModifiedOn: any;
+        ModifiedBy: number;
+        Username: string;
+        Password: string;
+        Email: string;
     }
 
 
     export class Ticket {
-        id: number;
-        createdOn: any;
-        createdBy: number;
-        modifiedOn: any;
-        modifiedBy: number;
-        name: string;
-        ticketType: string;
-        status: string;
-        description: string;
-        events: Event[];
+        Id: number;
+        CreatedOn: any;
+        CreatedBy: number;
+        ModifiedOn: any;
+        ModifiedBy: number;
+        Name: string;
+        TicketType: string;
+        Status: string;
+        Description: string;
+        Events: Event[];
     }
 
     export class Device {
-        id: number;
-        createdOn: any;
-        createdBy: number;
-        modifiedOn: any;
-        modifiedBy: number;
-        name: string;
-        referenceId: number;
-        status: string;
-        value: string;
-        hideFromView: boolean;
+        Id: number;
+        CreatedOn: any;
+        CreatedBy: number;
+        ModifiedOn: any;
+        ModifiedBy: number;
+        Name: string;
+        ReferenceId: number;
+        Status: string;
+        Value: string;
+        HideFromView: boolean;
     }
 
     export class Activity {
-        id: number;
-        createdOn: any;
-        createdBy: number;
-        modifiedOn: any;
-        modifiedBy: number;
-        ticketId: string;
-        comment: string;
-        room: Room;
+        Id: number;
+        CreatedOn: any;
+        CreatedBy: number;
+        ModifiedOn: any;
+        ModifiedBy: number;
+        TicketId: number;
+        Comment: string;
+        Room: Room;
     }
 
     export class Event {
-        id: number;
-        createdOn: any;
-        createdBy: number;
-        modifiedOn: any;
-        modifiedBy: number;
-        deviceId: number;
-        occurredOn: any;
-        newStatus: string;
-        oldStatus: string;
-        notes: string;
-        ticket: Ticket;
+        Id: number;
+        CreatedOn: any;
+        CreatedBy: number;
+        ModifiedOn: any;
+        ModifiedBy: number;
+        DeviceId: number;
+        OccurredOn: any;
+        NewStatus: string;
+        OldStatus: string;
+        Notes: string;
+        Ticket: Ticket;
     }
 }

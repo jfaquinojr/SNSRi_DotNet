@@ -1,31 +1,31 @@
 ﻿<div data-role="dialog" role="dialog" id="dialog-activities" data-overlay="true" class="padding20 dialog" data-close-button="true" data-width="500px">
-	<h3>{{ticket.Name}}</h3>
+	<h3>{{vm.ticket.Name}}</h3>
 	<p>
-	    {{ticket.Description}}
+	    {{vm.ticket.Description}}
 	</p>
     <div class="grid condensed">
         <div class="row">
             <div class="cell">
                 <div class="input-control textarea"
                 data-role="input" data-text-max-height="100" style="width: 100%;">
-                <textarea class="input-control" ng-model="comment" style="width: 100%; z-index: 9999;"></textarea>
+                <textarea class="input-control" ng-model="vm.comment" style="width: 100%; z-index: 9999;"></textarea>
                 </div>
             </div>
         </div>
                 
         <div class="row cells2">
             <div class="cell">
-                <button ng-disabled="!comment" class="button" ng-click="addActivity(comment)"><span class="mif-plus"></span> Add Activity</button>
+                <button ng-disabled="!vm.comment" class="button" ng-click="vm.addActivity(vm.comment)"><span class="mif-plus"></span> Add Activity</button>
             </div>
             <div class="cell">
-                <button ng-disabled="!comment" class="button primary place-right" ng-click="closeTicket(comment)"><span class="mif-checkmark"></span> Close Event</button>
+                <button ng-disabled="!vm.comment" class="button primary place-right" ng-click="vm.closeTicket(vm.comment)"><span class="mif-checkmark"></span> Close Event</button>
             </div>
         </div>
                 
         <div class="activities" style="padding-top: 20px; overflow-y: auto; overflow-x:hidden; ">
                     
   
-            <div class="row" ng-repeat="activity in ticket.Activities">
+            <div class="row" ng-repeat="activity in vm.activities">
                 <div class="cell">
                     <div class="panel">
                         <div class="content">

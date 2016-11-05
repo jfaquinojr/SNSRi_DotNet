@@ -11,10 +11,10 @@ var App;
                 this.$scope.$on("roomChanged", function (event, roomId) {
                     self.$scope.$broadcast("changeRoom", roomId);
                 });
-                this.$scope.$on("EventOpened", function (event, ticket) {
-                    self.ticket = ticket;
-                    self.$scope.$broadcast("OpenEvent", ticket.id);
-                });
+                //this.$scope.$on("EventOpened", (event:any, ticket: Ticket) => {
+                //        self.ticket = ticket;
+                //        self.$scope.$broadcast("OpenEvent", ticket.id);
+                //    });
                 this.$scope.$on("TicketClosed", function (event) {
                     self.$scope.$broadcast("CloseTicket", self.ticket.id);
                 });

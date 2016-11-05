@@ -21,10 +21,10 @@ module App.Controllers {
                         self.$scope.$broadcast("changeRoom", roomId);
                     });
 
-                this.$scope.$on("EventOpened", (event:any, ticket: Ticket) => {
-                        self.ticket = ticket;
-                        self.$scope.$broadcast("OpenEvent", ticket.id);
-                    });
+                //this.$scope.$on("EventOpened", (event:any, ticket: Ticket) => {
+                //        self.ticket = ticket;
+                //        self.$scope.$broadcast("OpenEvent", ticket.id);
+                //    });
 
                 this.$scope.$on("TicketClosed", event => {
                         self.$scope.$broadcast("CloseTicket", self.ticket.id);

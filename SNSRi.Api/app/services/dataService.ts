@@ -1,7 +1,7 @@
 ﻿module App {
 
     export interface IDataService {
-        createActivity(activity: Data.Contracts.Activity): ng.IHttpPromise<Data.Contracts.Ticket>;
+        createActivity(activity: Data.Contracts.Activity): ng.IHttpPromise<number>;
         closeTicket(activity: Data.Contracts.Activity): ng.IHttpPromise<Data.Contracts.Ticket>;
         getHomeSeerDevice(refId: number): any;
         getRooms(): ng.IHttpPromise<Data.Contracts.Room[]>;
@@ -27,7 +27,7 @@
         }
         
 
-        createActivity(activity: Data.Contracts.Activity): angular.IHttpPromise<Data.Contracts.Ticket> {
+        createActivity(activity: Data.Contracts.Activity): angular.IHttpPromise<number> {
             return this.$http.post("/api/CreateActivity", JSON.stringify(activity));
         }
 

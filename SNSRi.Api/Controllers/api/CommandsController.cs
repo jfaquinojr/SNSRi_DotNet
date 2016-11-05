@@ -49,7 +49,7 @@ namespace SNSRi.Api.Controllers
             activity.CreatedOn = DateTime.Now;
             var cmd = new ActivityCommand();
             activity.Id = cmd.Create(activity);
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok(activity.Id);
         }
 
 
