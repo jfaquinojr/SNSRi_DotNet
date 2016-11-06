@@ -1,21 +1,24 @@
 ﻿@{
     ViewBag.Title = "Admin";
-    Layout = "~/Views/Shared/_adminSidebar.cshtml";
+    Layout = "~/Views/Shared/_admin.cshtml";
 }
 
-
-<h1 class="text-light">{{SelectedPage.Title}} <span class="{{SelectedPage.Icon}} place-right"></span></h1>
+<h1><a href="/Admin/#/" class="nav-button transform"><span></span></a>&nbsp;{{SelectedPage.Title}}
+<span class="{{SelectedPage.Icon}} place-right"></span></h1>
 <hr class="thin bg-grayLighter">
 
 <div ng-view></div>
 
 
 @section scripts{
-@*<script src="/Scripts/jquery.js"></script>*@
 
-<script src="~/Scripts/jquery.dataTables.min.js"></script>
-@*<script src="/Scripts/angular.min.js"></script>*@
+@*external libraries*@
 <script src="~/Scripts/angular-datatables.js"></script>
+
+@*services*@
+<script src="~/app/services/usersDataService.js"></script>
+
+@*controllers*@
 <script src="~/app/admin/usersController.js"></script>
-<script src="~/app/admin/directives/adminSidebar.js"></script>
+
 }

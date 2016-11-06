@@ -1,18 +1,23 @@
-var App;
-(function (App) {
-    var UsersController = (function () {
-        function UsersController($scope, $location, usersDataService) {
-            this.$scope = $scope;
-            this.$location = $location;
-            this.usersDataService = usersDataService;
+﻿module App {
+    import User = Data.Contracts.User;
+
+    export class UsersController {
+
+        users: User[];
+        selectedUser: User;
+
+        static $inject = ["$scope", "$location", "usersDataService"];
+        constructor(public $scope, private $location, private usersDataService: IUsersDataService) {
+
             console.log("initializing UsersController");
-            var self = this;
+
+            const self = this;
+
             usersDataService.getAllUsers()
-                .then(function (result) {
-                self.users = result.data;
-                debugger;
-                console.log(JSON.stringify(self.users));
-            });
+                .then(result => {
+                    self.users = result.data;
+                    console.log(JSON.stringify(self.users));
+                });
             //this.$scope.dtOptions = DTOptionsBuilder.fromSource(JSON.stringify(data))
             //    .withPaginationType("full_numbers")
             //    .withOption("rowCallback", self.rowCallback);
@@ -21,23 +26,48 @@ var App;
             //    self.DTColumnBuilder.newColumn("Username").withTitle("User name"),
             //    self.DTColumnBuilder.newColumn("Email").withTitle("Email")
             //];
+
         }
-        UsersController.$inject = ["$scope", "$location", "usersDataService"];
-        return UsersController;
-    }());
-    App.UsersController = UsersController;
+
+        //private rowCallback(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+        //    // Unbind first in order to avoid any duplicate handler (see https://github.com/l-lin/angular-datatables/issues/87)
+        //    $("td", nRow).unbind("click");
+        //    $("td", nRow)
+        //        .bind("click", () => {
+        //                this.$scope.$apply(function() {
+        //                    this.selectUser(aData);
+        //                });
+        //            });
+        //    return nRow;
+        //}
+
+        //private selectUser(user) {
+        //    this.$scope.message = user.Id + " - " + user.Email;
+        //    this.$scope.SelectedUser = user;
+        //    const url = `/Users/Edit/${user.Id}`;
+        //    //alert(url);
+        //    this.$location.path(url);
+        //}
+    }
+
     angular.module("app")
         .controller("UsersController", UsersController);
-})(App || (App = {}));
+}
+
 //var usersController = function ($scope, DTOptionsBuilder, DTColumnBuilder, $http, $location) {
+
 //    var self = $scope;
+
 //    $scope.users = [];
+
 //    $scope.SelectedUser = {};
+
 //    $http.get("/api/users").then(function(results) {
 //        $scope.users = results.data;
 //        console.log("users count: " + $scope.users.length);
 //        console.log(JSON.stringify($scope.users));
 //    });
+
 //    $scope.dtOptions = DTOptionsBuilder.fromSource("/api/users?json=true")
 //        .withPaginationType("full_numbers")
 //        .withOption("rowCallback", rowCallback);
@@ -46,6 +76,7 @@ var App;
 //        DTColumnBuilder.newColumn("Username").withTitle("User name"),
 //        DTColumnBuilder.newColumn("Email").withTitle("Email")
 //    ];
+
 //    function selectUser(user) {
 //        $scope.message = user.Id + " - " + user.Email;
 //        $scope.SelectedUser = user;
@@ -53,6 +84,7 @@ var App;
 //        //alert(url);
 //        $location.path(url);
 //    }
+
 //    function rowCallback(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
 //        // Unbind first in order to avoid any duplicate handler (see https://github.com/l-lin/angular-datatables/issues/87)
 //        $("td", nRow).unbind("click");
@@ -63,5 +95,8 @@ var App;
 //        });
 //        return nRow;
 //    }
+    
+    
+
 //};
-//# sourceMappingURL=usersController.js.map
+

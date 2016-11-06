@@ -15,5 +15,5 @@
     console.log("MainController!!!");
 };
 
-angular.module("app-admin")
+angular.module("app")
     .controller("MainController", mainController);

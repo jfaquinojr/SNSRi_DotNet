@@ -22,7 +22,7 @@
     }
 
     angular
-        .module("app-admin")
+        .module("app")
         .service("dataAccessService",
             DataAccessService);
 }

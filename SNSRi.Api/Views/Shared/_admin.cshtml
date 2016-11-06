@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <base href="/">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SNSRi Admin :: @ViewBag.Title</title>
+
+
+    @Styles.Render("~/Content/admin")
+
+
+    <style>
+
+
+
+    </style>
+
+</head>
+<body class="" ng-app="app" ng-controller="MainController">
+    <div>
+        <header class="app-bar fixed-top navy" data-role="appbar">
+            <div class="container">
+                <a href="#/" class="app-bar-element branding"><img src="images/logo.png" style="height: 38px; display: inline-block; margin-right: 0px; margin-top: -10px;"></a>
+                
+                <ul class="app-bar-menu" ng-repeat="page in Pages">
+                    <li data-flexorderorigin="2" data-flexorder="3">
+                        <a href="/Admin/#/{{page.Name}}/" class=""><span class="{{page.Icon}}"></span> {{page.Title}}</a>
+                    </li>
+                </ul>
+
+                <span class="app-bar-pull"></span>
+
+                <div class="app-bar-pullbutton automatic" style="display: none;"></div><div class="clearfix" style="width: 0;"></div><nav class="app-bar-pullmenu hidden flexstyle-app-bar-menu" style="display: none;"><ul class="app-bar-pullmenubar hidden app-bar-menu"></ul></nav>
+            </div>
+        </header>
+    </div>
+
+    <div class="container page-content">
+        
+
+        @RenderBody()
+
+
+    </div>
+    @Scripts.Render("~/bundles/admin")
+
+
+
+    @*Library Scripts*@
+    <script src="~/Scripts/angular-resource.js"></script>
+    <script src="~/Scripts/angular-mocks.js"></script>
+
+    <script src="~/app/admin/app-admin.js"></script>
+
+    @*Services*@
+    <script src="~/app/services/dataAccessService.js"></script>
+    <script src="~/app/services/NotificationService.js"></script>
+
+    @*Controllers*@
+    <script src="~/app/admin/mainController.js"></script>
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,6 +1,7 @@
-﻿<div ng-controller="UsersController">
-    {{SelectedUser}}
-    <table datatable="" class="row-border dataTable striped border bordered" dt-options="dtOptions" dt-columns="dtColumns">
+﻿<div ng-controller="UsersController as vm">
+    
+
+    <table datatable="ng" class="row-border dataTable striped border bordered admin-table">
         <thead>
         <tr>
             <th>Id</th>
@@ -9,9 +10,11 @@
         </tr>
         </thead>
         <tbody>
+        <tr ng-repeat="user in vm.users">
+            <td>{{user.Id}}</td>
+            <td>{{user.Username}}</td>
+            <td>{{user.Email}}</td>
+        </tr>
         </tbody>
     </table>
 </div>
-@section scripts{
-
-}

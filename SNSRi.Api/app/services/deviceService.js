@@ -36,7 +36,7 @@ var App;
             self.$http.get(url)
                 .then(function (response) {
                 console.log(JSON.stringify(response.data));
-                dev.value = "OK LANG!~!!";
+                dev.Value = "OK LANG!~!!";
             });
             return dev;
         };

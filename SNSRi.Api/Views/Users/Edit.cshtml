@@ -1,230 +1,90 @@
-﻿@*<div id="debugging" class="flex-grid">
-    <div class="row cell-auto-size">
-        <div class="cell">xxx</div>
-        <div class="cell">2
-        </div>
-    </div>
-    
-    <div class="row cell-auto-size">
-        <div class="cell">xxx</div>
-        <div class="cell">2
-        </div>
-    </div>
-    
-    <div class="row cell-auto-size">
-        <div class="cell">6</div>
-        <div class="cell">6</div>
-    </div>
+﻿        <h3>Func examples</h3>
+        <form data-role="validator" data-show-required-state="false" data-hint-mode="line" data-hint-background="bg-red" data-hint-color="fg-white" data-hide-error="5000" novalidate="novalidate">
+            <div class="grid">
+                <div class="row">
+                    <div class="cell">
 
-</div>*@
+                        <div class="input-control text full-size">
+                            <input type="text" placeholder="default, no validate">
+                            <button class="button helper-button clear"><span class="mif-cross"></span></button>
+                        </div>
 
+                        <div class="input-control text" data-role="input">
+                            <input type="text" data-validate-func="required" placeholder="not empty" data-validate-hint="This field can not be empty" style="padding-right: 5px;">
+                            <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                            <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                        </div>
 
-<form class="form-horizontal" role="form">
+                        <div class="input-control text " data-role="input">
+                            <input type="text" data-validate-func="minlength" placeholder="min length 3" data-validate-arg="3" data-validate-hint="Min length 3 symbols" style="padding-right: 5px;">
+                            <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                            <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                        </div>
 
-<div class="form-body">
-    <div class="form-group">
-        <label class="col-md-3 control-label">Block Help</label>
-        <div class="col-md-9">
-            <input type="text" class="form-control" placeholder="Enter text">
-            <span class="help-block"> A block of help text. </span>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-md-3 control-label">Inline Help</label>
-        <div class="col-md-9">
-            <input type="text" class="form-control input-inline input-medium" placeholder="Enter text">
-            <span class="help-inline"> Inline help. </span>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-md-3 control-label">Input Group</label>
-        <div class="col-md-9">
-            <div class="input-inline input-medium">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                                                                <i class="fa fa-user"></i>
-                                                            </span>
-                    <input type="email" class="form-control" placeholder="Email Address">
+                        <div class="input-control text " data-role="input">
+                            <input type="text" data-validate-func="maxlength" placeholder="max length 6" data-validate-arg="6" data-validate-hint="Max length 6 symbols" style="padding-right: 5px;">
+                            <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                            <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                        </div>
+
+                        <div class="input-control text " data-role="input">
+                            <input type="text" data-validate-func="min" placeholder="min value 10" data-validate-arg="10" data-validate-hint="Value >= 10" style="padding-right: 5px;">
+                            <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                            <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                        </div>
+
+                        <div class="input-control text " data-role="input">
+                            <input type="text" data-validate-func="max" placeholder="max value 10" data-validate-arg="10" data-validate-hint="Value <= 10" style="padding-right: 5px;">
+                            <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                            <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                        </div>
+
+                        <div class="input-control text " data-role="input">
+                            <input type="text" data-validate-func="email" placeholder="email" data-validate-hint="Not valid email address" style="padding-right: 5px;">
+                            <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                            <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                        </div>
+
+                        <div class="input-control text " data-role="input">
+                            <input type="text" data-validate-func="url" placeholder="url" data-validate-hint="Value must be valid url" style="padding-right: 5px;">
+                            <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                            <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                        </div>
+
+                        <div class="input-control text " data-role="input">
+                            <input type="text" data-validate-func="date" placeholder="date" data-validate-hint="Value must be valid date string" style="padding-right: 5px;">
+                            <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                            <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                        </div>
+
+                        <div class="input-control text " data-role="input">
+                            <input type="text" data-validate-func="number" placeholder="number" data-validate-hint="Value must be a numeric" style="padding-right: 5px;">
+                            <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                            <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                        </div>
+
+                        <div class="input-control text " data-role="input">
+                            <input type="text" data-validate-func="digits" placeholder="digits" data-validate-hint="Value must contains only digits" style="padding-right: 5px;">
+                            <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                            <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                        </div>
+
+                        <div class="input-control text " data-role="input">
+                            <input type="text" data-validate-func="hexcolor" placeholder="hex color" data-validate-hint="Value must be a valid hex color" style="padding-right: 5px;">
+                            <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                            <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                        </div>
+
+                        <div class="input-control text " data-role="input">
+                            <input type="text" data-validate-func="pattern" placeholder="custom pattern: ^\d+$" data-validate-arg="^\d+$" data-validate-hint="Value must be eq to pattern" style="padding-right: 5px;">
+                            <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                            <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <span class="help-inline"> Inline help. </span>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-md-3 control-label">Email Address</label>
-        <div class="col-md-9">
-            <div class="input-group">
-                <span class="input-group-addon">
-                                                            <i class="fa fa-envelope"></i>
-                                                        </span>
-                <input type="email" class="form-control" placeholder="Email Address">
+            <hr class="thin">
+            <div class="form-actions padding10 no-padding-left">
+                <button class="button primary" type="button"><span class="mif-plus"></span>&nbsp;Save</button>
             </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-md-3 control-label">Password</label>
-        <div class="col-md-9">
-            <div class="input-group">
-                <input type="password" class="form-control" placeholder="Password">
-                <span class="input-group-addon">
-                                                            <i class="fa fa-user"></i>
-                                                        </span>
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-md-3 control-label">Left Icon</label>
-        <div class="col-md-9">
-            <div class="input-icon">
-                <i class="fa fa-bell-o"></i>
-                <input type="text" class="form-control" placeholder="Left icon">
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-md-3 control-label">Right Icon</label>
-        <div class="col-md-9">
-            <div class="input-icon right">
-                <i class="fa fa-microphone"></i>
-                <input type="text" class="form-control" placeholder="Right icon">
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-md-3 control-label">Icon Input in Group Input</label>
-        <div class="col-md-9">
-            <div class="input-group">
-                <div class="input-icon">
-                    <i class="fa fa-lock fa-fw"></i>
-                    <input id="newpassword" class="form-control" type="text" name="password" placeholder="password">
-                </div>
-                <span class="input-group-btn">
-                                                            <button id="genpassword" class="btn btn-success" type="button">
-                                                                <i class="fa fa-arrow-left fa-fw"></i> Random</button>
-                                                        </span>
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-md-3 control-label">Input With Spinner</label>
-        <div class="col-md-9">
-            <input type="password" class="form-control spinner" placeholder="Password">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-md-3 control-label">Static Control</label>
-        <div class="col-md-9">
-            <p class="form-control-static"> email@example.com </p>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-md-3 control-label">Disabled</label>
-        <div class="col-md-9">
-            <input type="password" class="form-control" placeholder="Disabled" disabled="">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-md-3 control-label">Readonly</label>
-        <div class="col-md-9">
-            <input type="password" class="form-control" placeholder="Readonly" readonly="">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-md-3 control-label">Dropdown</label>
-        <div class="col-md-9">
-            <select class="form-control">
-                <option>Option 1</option>
-                <option>Option 2</option>
-                <option>Option 3</option>
-                <option>Option 4</option>
-                <option>Option 5</option>
-            </select>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-md-3 control-label">Multiple Select</label>
-        <div class="col-md-9">
-            <select multiple="" class="form-control">
-                <option>Option 1</option>
-                <option>Option 2</option>
-                <option>Option 3</option>
-                <option>Option 4</option>
-                <option>Option 5</option>
-            </select>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-md-3 control-label">Textarea</label>
-        <div class="col-md-9">
-            <textarea class="form-control" rows="3"></textarea>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="exampleInputFile" class="col-md-3 control-label">File input</label>
-        <div class="col-md-9">
-            <input type="file" id="exampleInputFile">
-            <p class="help-block"> some help text here. </p>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-md-3 control-label">Checkboxes</label>
-        <div class="col-md-9">
-            <div class="checkbox-list">
-                <label>
-                    <div class="checker"><span><input type="checkbox"></span></div> Checkbox 1 </label>
-                <label>
-                    <div class="checker"><span><input type="checkbox"></span></div> Checkbox 1 </label>
-                <label>
-                    <div class="checker disabled"><span><input type="checkbox" disabled=""></span></div> Disabled </label>
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-md-3 control-label">Inline Checkboxes</label>
-        <div class="col-md-9">
-            <div class="checkbox-list">
-                <label class="checkbox-inline">
-                    <div class="checker" id="uniform-inlineCheckbox21"><span><input type="checkbox" id="inlineCheckbox21" value="option1"></span></div> Checkbox 1 </label>
-                <label class="checkbox-inline">
-                    <div class="checker" id="uniform-inlineCheckbox22"><span><input type="checkbox" id="inlineCheckbox22" value="option2"></span></div> Checkbox 2 </label>
-                <label class="checkbox-inline">
-                    <div class="checker disabled" id="uniform-inlineCheckbox23"><span><input type="checkbox" id="inlineCheckbox23" value="option3" disabled=""></span></div> Disabled </label>
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-md-3 control-label">Radio</label>
-        <div class="col-md-9">
-            <div class="radio-list">
-                <label>
-                    <div class="radio" id="uniform-optionsRadios22"><span><input type="radio" name="optionsRadios" id="optionsRadios22" value="option1" checked=""></span></div> Option 1 </label>
-                <label>
-                    <div class="radio" id="uniform-optionsRadios23"><span><input type="radio" name="optionsRadios" id="optionsRadios23" value="option2" checked=""></span></div> Option 2 </label>
-                <label>
-                    <div class="radio disabled" id="uniform-optionsRadios24"><span><input type="radio" name="optionsRadios" id="optionsRadios24" value="option2" disabled=""></span></div> Disabled </label>
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-md-3 control-label">Inline Radio</label>
-        <div class="col-md-9">
-            <div class="radio-list">
-                <label class="radio-inline">
-                    <div class="radio" id="uniform-optionsRadios25"><span><input type="radio" name="optionsRadios" id="optionsRadios25" value="option1" checked=""></span></div> Option 1 </label>
-                <label class="radio-inline">
-                    <div class="radio" id="uniform-optionsRadios26"><span class="checked"><input type="radio" name="optionsRadios" id="optionsRadios26" value="option2" checked=""></span></div> Option 2 </label>
-                <label class="radio-inline">
-                    <div class="radio disabled" id="uniform-optionsRadios27"><span><input type="radio" name="optionsRadios" id="optionsRadios27" value="option3" disabled=""></span></div> Disabled </label>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="form-actions">
-    <div class="row">
-        <div class="col-md-offset-3 col-md-9">
-            <button type="submit" class="btn green">Submit</button>
-            <button type="button" class="btn default">Cancel</button>
-        </div>
-    </div>
-</div>
-</form>
+        </form>

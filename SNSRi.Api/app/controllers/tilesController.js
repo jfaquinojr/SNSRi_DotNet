@@ -16,7 +16,7 @@ var App;
                 //        self.$scope.$broadcast("OpenEvent", ticket.id);
                 //    });
                 this.$scope.$on("TicketClosed", function (event) {
-                    self.$scope.$broadcast("CloseTicket", self.ticket.id);
+                    self.$scope.$broadcast("CloseTicket", self.ticket.Id);
                 });
                 //this.$scope.$on("ThemesOpened", event => {
                 //        self.$scope.$broadcast("OpenThemes");

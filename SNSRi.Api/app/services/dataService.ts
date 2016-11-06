@@ -36,7 +36,7 @@
         }
 
         getHomeSeerDevice(refId: number) {
-            return this.$http.get(this.homeSeerUrl + "/JSON?request=getstatus&ref=" + refId);
+            return this.$http.get(`${this.homeSeerUrl}/JSON?request=getstatus&ref=${refId}`);
         }
 
         getRooms(): angular.IHttpPromise<Data.Contracts.Room[]> {
@@ -44,11 +44,11 @@
         }
 
         getRoom(id: number): angular.IHttpPromise<Data.Contracts.Room> {
-            return this.$http.get("/api/Rooms/" + id);
+            return this.$http.get(`/api/Rooms/${id}`);
         }
 
         getDevicesbyRoomId(roomId: number): angular.IHttpPromise<Data.Contracts.Device[]> {
-            return this.$http.get("/api/Rooms/" + roomId + "/Devices");
+            return this.$http.get(`/api/Rooms/${roomId}/Devices`);
         }
 
         getOpenTickets(): angular.IHttpPromise<Data.Contracts.Ticket[]> {
@@ -56,7 +56,7 @@
         }
 
         getOpenTicketsByRoom(roomId: number): angular.IHttpPromise<Data.Contracts.Ticket[]> {
-            return this.$http.get("/api/Tickets/Open/Room/" + roomId);
+            return this.$http.get(`/api/Tickets/Open/Room/${roomId}`);
         }
 
         getOpenTicketsRecent(): angular.IHttpPromise<Data.Contracts.Ticket[]> {
@@ -64,11 +64,11 @@
         }
 
         getActivitiesForTicket(ticketId: number): angular.IHttpPromise<Data.Contracts.Activity[]> {
-            return this.$http.get("api/Tickets/" + ticketId + "/Activities");
+            return this.$http.get(`api/Tickets/${ticketId}/Activities`);
         }
 
         getOpenTicketsPastMinutes(minutes: number): angular.IHttpPromise<Data.Contracts.Ticket[]> {
-            return this.$http.get("api/Tickets/Open/Past/Minutes/" + minutes);
+            return this.$http.get(`api/Tickets/Open/Past/Minutes/${minutes}`);
         }
 
         getOpenTicketsPastSeconds(seconds: number): angular.IHttpPromise<Data.Contracts.Ticket[]> {

@@ -52,7 +52,7 @@ module App {
             self.$http.get(url)
                 .then(response => {
                     console.log(JSON.stringify(response.data));
-                    dev.value = "OK LANG!~!!";
+                    dev.Value = "OK LANG!~!!";
                 });
 
             return dev;

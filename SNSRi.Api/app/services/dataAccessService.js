@@ -14,7 +14,7 @@ var App;
         }());
         Common.DataAccessService = DataAccessService;
         angular
-            .module("app-admin")
+            .module("app")
             .service("dataAccessService", DataAccessService);
     })(Common = App.Common || (App.Common = {}));
 })(App || (App = {}));

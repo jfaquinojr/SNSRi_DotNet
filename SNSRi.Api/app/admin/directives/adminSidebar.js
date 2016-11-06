@@ -1,4 +1,4 @@
-﻿var app = angular.module("app-admin");
+﻿var app = angular.module("app");
 
 app.directive("adminSidebar", function() {
   return {

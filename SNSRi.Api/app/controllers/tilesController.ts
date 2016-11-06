@@ -27,7 +27,7 @@ module App.Controllers {
                 //    });
 
                 this.$scope.$on("TicketClosed", event => {
-                        self.$scope.$broadcast("CloseTicket", self.ticket.id);
+                        self.$scope.$broadcast("CloseTicket", self.ticket.Id);
                     });
 
                 //this.$scope.$on("ThemesOpened", event => {

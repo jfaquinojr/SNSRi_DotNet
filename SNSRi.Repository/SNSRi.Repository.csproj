@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseRepository.cs" />
+    <Compile Include="Commands\UserCommand.cs" />
     <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Commands\UIRoomDeviceCommand.cs" />
     <Compile Include="Commands\UIRoomCommand.cs" />

@@ -52,6 +52,17 @@ namespace SNSRi.Api.Controllers
             return Ok(activity.Id);
         }
 
+        [HttpPost]
+        [Route("api/CreateUser")]
+        [ResponseType(typeof(int))]
+        public IHttpActionResult CreateUser(User user)
+        {
+            user.CreatedOn = DateTime.Now;
+            var cmd = new UserCommand();
+            user.Id = cmd.Create(user);
+            return Ok(user.Id);
+        }
+
 
         [HttpPost]
         [Route("api/CloseTicket")]
