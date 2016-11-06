@@ -12,13 +12,9 @@ using System.Threading.Tasks;
 namespace SNSRi.Repository.Query
 {
 
-	public class UserQuery : PagedQuery<User>
+	public class UserQuery : BaseQuery<User>
 	{
 		public UserQuery() : base(ConnectionFactory.CreateSQLiteConnection())
-		{
-		}
-
-		public UserQuery(int page, int perPage) : base(ConnectionFactory.CreateSQLiteConnection(), page, perPage)
 		{
 		}
 
@@ -30,5 +26,11 @@ namespace SNSRi.Repository.Query
 	        return result.FirstOrDefault();
 	    }
 
+	    public override User GetById(int Id)
+	    {
+	        string sql = $"select * from user where Id = {Id}";
+            var result = _connection.Query<User>(sql);
+            return result.FirstOrDefault();
+        }
 	}
 }

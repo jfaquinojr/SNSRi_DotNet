@@ -47,18 +47,21 @@
 
 
 
-    @*Library Scripts*@
-    <script src="~/Scripts/angular-resource.js"></script>
-    <script src="~/Scripts/angular-mocks.js"></script>
+@*Library Scripts*@
+<script src="~/Scripts/angular-resource.js"></script>
+<script src="~/Scripts/angular-mocks.js"></script>
 
-    <script src="~/app/admin/app-admin.js"></script>
 
-    @*Services*@
-    <script src="~/app/services/dataAccessService.js"></script>
-    <script src="~/app/services/NotificationService.js"></script>
+<script src="~/app/contracts.js"></script>
+<script src="~/app/admin/app-admin.js"></script>
+    
 
-    @*Controllers*@
-    <script src="~/app/admin/mainController.js"></script>
+@*Services*@
+<script src="~/app/services/dataAccessService.js"></script>
+<script src="~/app/services/NotificationService.js"></script>
+
+@*Controllers*@
+<script src="~/app/admin/mainController.js"></script>
 
 
     @RenderSection("scripts", required: false)

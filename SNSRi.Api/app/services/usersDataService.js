@@ -12,13 +12,13 @@ var App;
             return this.$http.get("/api/Users/" + id);
         };
         UsersDataService.prototype.createUser = function (user) {
-            return this.$http.get("/api/CreateUser");
+            return this.$http.post("/api/CreateUser", user);
         };
         UsersDataService.prototype.deleteUser = function (id) {
-            return this.$http.get("/api/DeleteUser/" + id);
+            return this.$http.post("/api/DeleteUser/" + id);
         };
         UsersDataService.prototype.updateUser = function (user) {
-            throw new Error("Not implemented");
+            return this.$http.post("/api/UpdateUser", user);
         };
         UsersDataService.$inject = ["$http"];
         return UsersDataService;

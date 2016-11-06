@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
 using SNSRi.Api.Models.HomeSeer;
 using SNSRi.Repository;
@@ -61,6 +62,17 @@ namespace SNSRi.Api.Controllers
             var cmd = new UserCommand();
             user.Id = cmd.Create(user);
             return Ok(user.Id);
+        }
+
+        [HttpPost]
+        [Route("api/UpdateUser")]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult UpdateUser(User user)
+        {
+            user.ModifiedOn = DateTime.Now;
+            var cmd = new UserCommand();
+            cmd.Update(user);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
 

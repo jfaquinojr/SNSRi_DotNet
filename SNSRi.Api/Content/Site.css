@@ -88,3 +88,8 @@
 .event-item:hover {
     background-color: slategrey;
 }
+
+.dialog-overlay {
+    background-color: black;
+    opacity: 0.7;
+}

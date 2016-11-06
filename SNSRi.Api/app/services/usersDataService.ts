@@ -25,15 +25,15 @@
         }
 
         createUser(user: User): ng.IHttpPromise<number> {
-            return this.$http.get(`/api/CreateUser`);
+            return this.$http.post(`/api/CreateUser`, user);
         }
 
         deleteUser(id: number): ng.IHttpPromise<void> {
-            return this.$http.get(`/api/DeleteUser/${id}`);
+            return this.$http.post(`/api/DeleteUser/${id}`);
         }
 
         updateUser(user: User): ng.IHttpPromise<void> {
-            throw new Error("Not implemented");
+            return this.$http.post(`/api/UpdateUser`, user);
         }
     }
 

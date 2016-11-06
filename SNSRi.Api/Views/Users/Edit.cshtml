@@ -1,90 +1,49 @@
-﻿        <h3>Func examples</h3>
-        <form data-role="validator" data-show-required-state="false" data-hint-mode="line" data-hint-background="bg-red" data-hint-color="fg-white" data-hide-error="5000" novalidate="novalidate">
-            <div class="grid">
-                <div class="row">
-                    <div class="cell">
+﻿
 
-                        <div class="input-control text full-size">
-                            <input type="text" placeholder="default, no validate">
-                            <button class="button helper-button clear"><span class="mif-cross"></span></button>
-                        </div>
+<h3 ng-if="vm.selectedUser">Edit User</h3>
+<h3 ng-if="!vm.selectedUser">Create User</h3>
 
-                        <div class="input-control text" data-role="input">
-                            <input type="text" data-validate-func="required" placeholder="not empty" data-validate-hint="This field can not be empty" style="padding-right: 5px;">
-                            <span class="input-state-error mif-warning" style="right: 8px;"></span>
-                            <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
-                        </div>
 
-                        <div class="input-control text " data-role="input">
-                            <input type="text" data-validate-func="minlength" placeholder="min length 3" data-validate-arg="3" data-validate-hint="Min length 3 symbols" style="padding-right: 5px;">
-                            <span class="input-state-error mif-warning" style="right: 8px;"></span>
-                            <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
-                        </div>
-
-                        <div class="input-control text " data-role="input">
-                            <input type="text" data-validate-func="maxlength" placeholder="max length 6" data-validate-arg="6" data-validate-hint="Max length 6 symbols" style="padding-right: 5px;">
-                            <span class="input-state-error mif-warning" style="right: 8px;"></span>
-                            <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
-                        </div>
-
-                        <div class="input-control text " data-role="input">
-                            <input type="text" data-validate-func="min" placeholder="min value 10" data-validate-arg="10" data-validate-hint="Value >= 10" style="padding-right: 5px;">
-                            <span class="input-state-error mif-warning" style="right: 8px;"></span>
-                            <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
-                        </div>
-
-                        <div class="input-control text " data-role="input">
-                            <input type="text" data-validate-func="max" placeholder="max value 10" data-validate-arg="10" data-validate-hint="Value <= 10" style="padding-right: 5px;">
-                            <span class="input-state-error mif-warning" style="right: 8px;"></span>
-                            <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
-                        </div>
-
-                        <div class="input-control text " data-role="input">
-                            <input type="text" data-validate-func="email" placeholder="email" data-validate-hint="Not valid email address" style="padding-right: 5px;">
-                            <span class="input-state-error mif-warning" style="right: 8px;"></span>
-                            <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
-                        </div>
-
-                        <div class="input-control text " data-role="input">
-                            <input type="text" data-validate-func="url" placeholder="url" data-validate-hint="Value must be valid url" style="padding-right: 5px;">
-                            <span class="input-state-error mif-warning" style="right: 8px;"></span>
-                            <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
-                        </div>
-
-                        <div class="input-control text " data-role="input">
-                            <input type="text" data-validate-func="date" placeholder="date" data-validate-hint="Value must be valid date string" style="padding-right: 5px;">
-                            <span class="input-state-error mif-warning" style="right: 8px;"></span>
-                            <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
-                        </div>
-
-                        <div class="input-control text " data-role="input">
-                            <input type="text" data-validate-func="number" placeholder="number" data-validate-hint="Value must be a numeric" style="padding-right: 5px;">
-                            <span class="input-state-error mif-warning" style="right: 8px;"></span>
-                            <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
-                        </div>
-
-                        <div class="input-control text " data-role="input">
-                            <input type="text" data-validate-func="digits" placeholder="digits" data-validate-hint="Value must contains only digits" style="padding-right: 5px;">
-                            <span class="input-state-error mif-warning" style="right: 8px;"></span>
-                            <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
-                        </div>
-
-                        <div class="input-control text " data-role="input">
-                            <input type="text" data-validate-func="hexcolor" placeholder="hex color" data-validate-hint="Value must be a valid hex color" style="padding-right: 5px;">
-                            <span class="input-state-error mif-warning" style="right: 8px;"></span>
-                            <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
-                        </div>
-
-                        <div class="input-control text " data-role="input">
-                            <input type="text" data-validate-func="pattern" placeholder="custom pattern: ^\d+$" data-validate-arg="^\d+$" data-validate-hint="Value must be eq to pattern" style="padding-right: 5px;">
-                            <span class="input-state-error mif-warning" style="right: 8px;"></span>
-                            <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
-                        </div>
-                    </div>
+<form id="frmUser" name="frmUser" data-role="validator" data-show-required-state="false" data-hint-mode="line" data-hint-background="bg-red" data-hint-color="fg-white" data-hide-error="5000" novalidate="novalidate">
+    <div class="grid">
+            
+        <div class="row">
+            <div class="cell">
+                <label>Username</label>
+                <div class="input-control text full-size">
+                    <input ng-model="vm.editingUser.Username" type="text" placeholder="Username" data-validate-func="required" data-validate-hint="This field cannot be empty!" style="padding-right: 5px;" required>
+                    <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                    <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
                 </div>
             </div>
-            <hr class="thin">
-            <div class="form-actions padding10 no-padding-left">
-                <button class="button primary" type="button"><span class="mif-plus"></span>&nbsp;Save</button>
+        </div>
+                
+        <div class="row">
+            <div class="cell">
+                <label>Password</label>
+                <div class="input-control text full-size">
+                    <input ng-model="vm.editingUser.Password" type="password" placeholder="Password" data-validate-func="required" data-validate-hint="This field cannot be empty!" style="padding-right: 5px;" required>
+                    <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                    <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                </div>
             </div>
-        </form>
+        </div>
+                
+        <div class="row">
+            <div class="cell">
+                <label>Email</label>
+                <div class="input-control text full-size">
+                    <input ng-model="vm.editingUser.Email" type="email" placeholder="Email" data-validate-func="required" data-validate-hint="This field cannot be empty!" style="padding-right: 5px;" required>
+                    <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                    <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                </div>
+            </div>
+        </div>
+                
+    </div>
+    <hr class="thin">
+    <div class="form-actions padding10 no-padding-left">
+        <button ng-disabled="frmUser.$invalid" class="button primary" type="button" ng-click="vm.saveUser()"><span class="mif-checkmark"></span>&nbsp; Save</button>
+    </div>
+
+</form>

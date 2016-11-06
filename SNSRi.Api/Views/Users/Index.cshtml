@@ -1,12 +1,16 @@
 ﻿<div ng-controller="UsersController as vm">
     
 
+    <button class="button success" ng-click="vm.createUser()"><span class="mif-plus"></span> Create</button>
+    <hr class="thin bg-grayLighter">
+
     <table datatable="ng" class="row-border dataTable striped border bordered admin-table">
         <thead>
         <tr>
             <th>Id</th>
             <th>Username</th>
             <th>Email</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -14,7 +18,19 @@
             <td>{{user.Id}}</td>
             <td>{{user.Username}}</td>
             <td>{{user.Email}}</td>
+            <td>
+                <div class="place-right">
+                    <button class="button primary small-button" ng-click="vm.editUser(user)"><span class="mif-pencil"></span>&nbsp; Edit</button>
+                    <button class="button danger small-button" ng-click="vm.deleteUser(user)"><span class="mif-bin"></span>&nbsp; Delete</button>
+                </div>
+            </td>
         </tr>
         </tbody>
     </table>
+    
+    
+    <div data-role="dialog" role="dialog" id="dialog-userform" data-overlay="true" class="padding20 dialog" data-close-button="true" data-width="500px">
+        <user-form></user-form>
+    </div>
+
 </div>

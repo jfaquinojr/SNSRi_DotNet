@@ -15,7 +15,7 @@ namespace SNSRi.Repository.Commands
             log.Debug("Create Enter");
 
             entity.CreatedOn = DateTime.Now;
-            const string sql = "insert into Activity(TicketId, Comment, CreatedOn, CreatedBy, ModifiedOn, ModifiedBy) values(@TicketId, @Comment, @CreatedOn, @CreatedBy, @ModifiedOn, @ModifiedBy); SELECT last_insert_rowid()";
+            const string sql = "insert into user(Username, Password, Email, CreatedOn, CreatedBy) values(@Username, @Password, @Email, @CreatedOn, @CreatedBy); SELECT last_insert_rowid()";
 
             log.Debug($"SQL Statement: {sql}");
 
@@ -28,12 +28,40 @@ namespace SNSRi.Repository.Commands
 
 	    public override void Delete(User entity)
 	    {
-	        throw new NotImplementedException();
-	    }
+            log.Debug("Delete Enter");
 
-	    public override void Update(User entity)
+            entity.CreatedOn = DateTime.Now;
+	        const string sql = "delete from user where Id = @Id";
+
+            log.Debug($"SQL Statement: {sql}");
+
+	        _connection.Query<int>(sql, entity);
+
+            log.Debug("Delete Exit");
+        }
+
+	    public override void Update(User user)
 	    {
-	        throw new NotImplementedException();
+            log.Debug("Update Enter");
+
+            user.ModifiedOn = DateTime.Now;
+
+            var sql = $@"
+                update user set 
+                Username = @Username,
+                Password = @Password,
+                Email = @Email,
+                ModifiedOn = @ModifiedOn,
+                ModifiedBy = 1
+                where Id = @Id
+            ";
+
+            log.Debug($"SQL Statement: {sql}");
+
+	        _connection.Query<int>(sql, user);
+
+            log.Debug("Update Exit");
+
 	    }
 	}
 }
