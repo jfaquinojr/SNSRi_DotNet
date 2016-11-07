@@ -10,11 +10,7 @@ var App;
             console.log("initializing UsersController");
             var self = this;
             self.vm = $scope;
-            usersDataService.getAllUsers()
-                .then(function (result) {
-                self.users = result.data;
-                console.log(JSON.stringify(self.users));
-            });
+            this.loadUsers();
         }
         UsersController.prototype.editUser = function (user) {
             this.selectedUser = user;
@@ -26,6 +22,22 @@ var App;
             this.editingUser = new User();
             this.$window.showMetroDialog("#dialog-userform", null);
         };
+        UsersController.prototype.deleteUser = function (user) {
+            if (!confirm("Are you sure you want to delete this record?"))
+                return;
+            var self = this;
+            this.selectedUser = null;
+            this.editingUser = null;
+            this.usersDataService.deleteUser(user.Id)
+                .then(function () {
+                $.Notify({
+                    caption: "Deleted.",
+                    content: "User has been deleted.",
+                    type: "success"
+                });
+                self.loadUsers();
+            });
+        };
         UsersController.prototype.saveUser = function () {
             var user = this.editingUser;
             var self = this;
@@ -35,6 +47,14 @@ var App;
             else {
                 self._createUser(user);
             }
+            //self.loadUsers();
+        };
+        UsersController.prototype.loadUsers = function () {
+            var self = this;
+            this.usersDataService.getAllUsers()
+                .then(function (result) {
+                self.users = result.data;
+            });
         };
         UsersController.prototype._updateUser = function (user) {
             var self = this;
@@ -60,7 +80,9 @@ var App;
             var self = this;
             this.usersDataService.createUser(user)
                 .then(function (result) {
-                self.selectedUser = angular.copy(user, self.selectedUser);
+                user.Id = result.data;
+                self.users.push(user);
+                self.selectedUser = user;
                 $.Notify({
                     caption: "Created.",
                     content: "User has been created.",

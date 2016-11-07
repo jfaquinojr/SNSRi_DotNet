@@ -26,7 +26,7 @@ namespace SNSRi.Repository.Commands
             return id;
         }
 
-	    public override void Delete(UIRoom entity)
+	    public override void Delete(int Id)
 	    {
 	        throw new NotImplementedException();
 	    }

@@ -11,13 +11,39 @@
 
     export class UsersDataService implements IUsersDataService {
 
-        static $inject = ["$http"];
-        constructor(private $http) {
+        static $inject = ["$http", "$q", "$cacheFactory"];
+        constructor(private $http, private $q, private $cacheFactory) {
             console.log("initializing UsersDataService");
         }
 
         getAllUsers(): ng.IHttpPromise<User[]> {
-            return this.$http.get("/api/Users");
+
+            var deferred = this.$q.defer();
+
+            var usersDataCache = this.$cacheFactory.get("usersCache");
+
+            if (!usersDataCache) {
+                usersDataCache = this.$cacheFactory("usersCache");
+            }
+
+            var usersFromCache = usersDataCache.get("users");
+            if (usersFromCache) {
+                console.log("returning users from cache");
+                deferred.resolve(usersFromCache);
+            } else {
+
+                console.log("returning users from database");
+
+                this.$http.get("/api/Users")
+                    .then(result => {
+
+                        usersDataCache.put("users", result);
+
+                        deferred.resolve(result);
+                    });
+            }
+
+            return deferred.promise;
         }
 
         getUser(id: number): ng.IHttpPromise<User> {
@@ -25,15 +51,23 @@
         }
 
         createUser(user: User): ng.IHttpPromise<number> {
+            this.deleteFromCache();
             return this.$http.post(`/api/CreateUser`, user);
         }
 
         deleteUser(id: number): ng.IHttpPromise<void> {
+            this.deleteFromCache();
             return this.$http.post(`/api/DeleteUser/${id}`);
         }
 
         updateUser(user: User): ng.IHttpPromise<void> {
+            this.deleteFromCache();
             return this.$http.post(`/api/UpdateUser`, user);
+        }
+
+        private deleteFromCache() {
+            var usersCache = this.$cacheFactory.get("usersCache");
+            usersCache.remove("users");
         }
     }
 

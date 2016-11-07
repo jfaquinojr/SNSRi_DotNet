@@ -25,7 +25,7 @@ namespace SNSRi.Repository.Commands
             return id;
         }
 
-	    public override void Delete(Device entity)
+	    public override void Delete(int Id)
 	    {
 	        throw new NotImplementedException();
 	    }

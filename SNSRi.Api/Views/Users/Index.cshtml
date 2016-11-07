@@ -4,7 +4,7 @@
     <button class="button success" ng-click="vm.createUser()"><span class="mif-plus"></span> Create</button>
     <hr class="thin bg-grayLighter">
 
-    <table datatable="ng" class="row-border dataTable striped border bordered admin-table">
+    <table datatable="ng" dt-instance="vm.dtInstance" class="row-border dataTable striped border bordered admin-table">
         <thead>
         <tr>
             <th>Id</th>

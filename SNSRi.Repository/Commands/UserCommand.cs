@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using SNSRi.Entities;
+using SNSRi.Repository.Query;
 
 namespace SNSRi.Repository.Commands
 {
@@ -26,16 +27,15 @@ namespace SNSRi.Repository.Commands
             return id;
         }
 
-	    public override void Delete(User entity)
+	    public override void Delete(int Id)
 	    {
             log.Debug("Delete Enter");
 
-            entity.CreatedOn = DateTime.Now;
-	        const string sql = "delete from user where Id = @Id";
+	        var sql = $"delete from user where Id = {Id}";
 
             log.Debug($"SQL Statement: {sql}");
 
-	        _connection.Query<int>(sql, entity);
+	        _connection.Query<int>(sql);
 
             log.Debug("Delete Exit");
         }

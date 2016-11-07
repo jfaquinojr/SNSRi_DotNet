@@ -77,6 +77,17 @@ namespace SNSRi.Api.Controllers
 
 
         [HttpPost]
+        [Route("api/DeleteUser/{id}")]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult DeleteUser(int id)
+        {
+            var cmd = new UserCommand();
+            cmd.Delete(id);
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+
+        [HttpPost]
         [Route("api/CloseTicket")]
         [ResponseType(typeof(void))]
         public IHttpActionResult CloseTicket(Activity activity)

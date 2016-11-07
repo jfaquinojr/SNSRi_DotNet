@@ -17,11 +17,7 @@
             const self = this;
             self.vm = $scope;
 
-            usersDataService.getAllUsers()
-                .then(result => {
-                    self.users = result.data;
-                    console.log(JSON.stringify(self.users));
-                });
+            this.loadUsers();
 
         }
 
@@ -37,6 +33,26 @@
             this.$window.showMetroDialog("#dialog-userform", null);
         }
 
+        deleteUser(user: User): void {
+
+            if (!confirm("Are you sure you want to delete this record?"))
+                return;
+
+            const self = this;
+            this.selectedUser = null;
+            this.editingUser = null;
+            this.usersDataService.deleteUser(user.Id)
+                .then(() => {
+                    $.Notify({
+                        caption: "Deleted.",
+                        content: "User has been deleted.",
+                        type: "success"
+                    });
+
+                    self.loadUsers();
+                });
+        }
+
 
         saveUser() {
             const user = this.editingUser;
@@ -47,6 +63,15 @@
             } else {
                 self._createUser(user);
             }
+            //self.loadUsers();
+        }
+
+        private loadUsers() {
+            const self = this;
+            this.usersDataService.getAllUsers()
+                .then(result => {
+                    self.users = result.data;
+                });
         }
 
         private _updateUser(user: User) {
@@ -78,7 +103,9 @@
             this.usersDataService.createUser(user)
                 .then(result => {
 
-                    self.selectedUser = angular.copy(user, self.selectedUser);
+                    user.Id = result.data;
+                    self.users.push(user);
+                    self.selectedUser = user;
 
                     $.Notify({
                         caption: "Created.",

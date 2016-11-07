@@ -38,7 +38,7 @@ namespace SNSRi.Repository.Commands
             log.Debug("CloseTicket Exit");
         }
 
-		public override void Delete(Ticket entity)
+		public override void Delete(int Id)
 		{
 			throw new NotImplementedException();
 		}

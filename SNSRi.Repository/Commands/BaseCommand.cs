@@ -14,14 +14,7 @@ namespace SNSRi.Repository.Commands
         }
 
         public abstract int Create(TEntity entity);
-        public abstract void Delete(TEntity entity);
+        public abstract void Delete(int Id);
         public abstract void Update(TEntity entity);
-
-        public virtual void Delete(int Id)
-        {
-            var query = default(BaseQuery<TEntity>);
-            var entity = query.GetById(Id);
-            
-        }
     }
 }
