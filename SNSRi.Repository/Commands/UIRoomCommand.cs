@@ -28,12 +28,39 @@ namespace SNSRi.Repository.Commands
 
 	    public override void Delete(int Id)
 	    {
-	        throw new NotImplementedException();
-	    }
+            log.Debug("Delete Enter");
 
-	    public override void Update(UIRoom entity)
+            var sql = $"delete from UIRoom where Id = {Id}";
+
+            log.Debug($"SQL Statement: {sql}");
+
+            _connection.Query<int>(sql);
+
+            log.Debug("Delete Exit");
+        }
+
+	    public override void Update(UIRoom room)
 	    {
-	        throw new NotImplementedException();
-	    }
+            log.Debug("Update Enter");
+
+            room.ModifiedOn = DateTime.Now;
+
+            var sql = $@"
+                update UIRoom set 
+                Name = @Name,
+                Description = @Description,
+                SortOrder = @SortOrder,
+                IsHidden = @IsHidden,
+                ModifiedOn = @ModifiedOn,
+                ModifiedBy = 1
+                where Id = @Id
+            ";
+
+            log.Debug($"SQL Statement: {sql}");
+
+            _connection.Query<int>(sql, room);
+
+            log.Debug("Update Exit");
+        }
 	}
 }

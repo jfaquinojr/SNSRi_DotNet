@@ -291,12 +291,14 @@
   <ItemGroup>
     <Content Include="Views\Rooms\Index.cshtml" />
     <Content Include="Views\Devices\Index.cshtml" />
+    <Content Include="Views\Rooms\Edit.cshtml" />
     <TypeScriptCompile Include="app\admin\devicesController.ts" />
+    <TypeScriptCompile Include="app\admin\directives\roomForm.ts" />
     <TypeScriptCompile Include="app\admin\usersController.ts" />
     <TypeScriptCompile Include="app\admin\mainController.ts" />
     <Content Include="Views\Shared\_admin.cshtml" />
     <TypeScriptCompile Include="app\admin\app-admin.ts" />
-    <TypeScriptCompile Include="app\admin\directives\users\userForm.ts" />
+    <TypeScriptCompile Include="app\admin\directives\userForm.ts" />
     <TypeScriptCompile Include="app\app.ts" />
     <Content Include="app\admin\directives\adminSidebar.js" />
     <TypeScriptCompile Include="app\controllers\tilesController.ts" />
@@ -651,6 +653,7 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="tsd.json" />
     <TypeScriptCompile Include="app\services\NotificationService.ts" />
+    <TypeScriptCompile Include="app\services\roomsDataService.ts" />
     <TypeScriptCompile Include="app\services\usersDataService.ts" />
     <TypeScriptCompile Include="typings\underscore\underscore.d.ts" />
   </ItemGroup>

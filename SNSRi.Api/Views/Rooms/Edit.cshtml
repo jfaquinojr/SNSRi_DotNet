@@ -1,0 +1,61 @@
+﻿
+
+<h3 ng-if="vm.selectedRoom">Edit Room</h3>
+<h3 ng-if="!vm.selectedRoom">Create Room</h3>
+
+
+<form id="frmRoom" name="frmRoom" data-role="validator" data-show-required-state="false" data-hint-mode="line" data-hint-background="bg-red" data-hint-color="fg-white" data-hide-error="5000" novalidate="novalidate">
+    <div class="grid">
+            
+        <div class="row">
+            <div class="cell">
+                <label>Name</label>
+                <div class="input-control text full-size">
+                    <input ng-model="vm.editingRoom.Name" type="text" placeholder="Roomname" data-validate-func="required" data-validate-hint="This field cannot be empty!" style="padding-right: 5px;" required>
+                    <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                    <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                </div>
+            </div>
+        </div>
+                
+        <div class="row">
+            <div class="cell">
+                <label>Description</label>
+                <div class="input-control textarea full-size" data-role="input" data-text-auto-resize="true">
+                    <textarea ng-model="vm.editingRoom.Description" placeholder="Description" style="padding-right: 5px;"></textarea>
+                    <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                    <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="cell">
+                <label>Sort Order</label>
+                <div class="input-control text full-size">
+                    <input ng-model="vm.editingRoom.SortOrder" type="number" placeholder="Sort order" style="padding-right: 5px;" />
+                    <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                    <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="cell">
+                <label>Hidden</label>
+                <div class="">
+                    <label class="switch-original">
+                        <input type="checkbox" ng-model="vm.editingRoom.IsHidden">
+                        <span class="check"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+                
+    </div>
+    <hr class="thin">
+    <div class="form-actions padding10 no-padding-left">
+        <button ng-disabled="frmRoom.$invalid" class="button primary" type="button" ng-click="vm.saveRoom()"><span class="mif-checkmark"></span>&nbsp; Save</button>
+    </div>
+
+</form>
