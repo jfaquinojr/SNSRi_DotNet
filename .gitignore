@@ -244,3 +244,6 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /SNSRi.Api.vsext
+/.idea/*
+*.iml
+
