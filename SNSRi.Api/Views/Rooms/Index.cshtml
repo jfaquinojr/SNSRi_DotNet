@@ -1,0 +1,37 @@
+﻿
+<div ng-controller="roomsController as vm">
+    
+
+    <button class="button success" ng-click="vm.createRoom()"><span class="mif-plus"></span> Create</button>
+    <hr class="thin bg-grayLighter">
+
+    <table datatable="ng" dt-instance="vm.dtInstance" class="row-border dataTable striped border bordered admin-table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="room in vm.rooms">
+            <td>{{room.Id}}</td>
+            <td>{{room.Name}}</td>
+            <td>{{room.Description}}</td>
+            <td>
+                <div class="place-right">
+                    <button class="button primary small-button" ng-click="vm.editRoom(room)"><span class="mif-pencil"></span>&nbsp; Edit</button>
+                    <button class="button danger small-button" ng-click="vm.deleteRoom(room)"><span class="mif-bin"></span>&nbsp; Delete</button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    
+    
+    <div data-role="dialog" role="dialog" id="dialog-userform" data-overlay="true" class="padding20 dialog" data-close-button="true" data-width="500px">
+        <user-form></user-form>
+    </div>
+
+</div>

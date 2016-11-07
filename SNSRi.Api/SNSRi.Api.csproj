@@ -266,6 +266,8 @@
     <Compile Include="Controllers\api\UsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\api\TicketsController.cs" />
+    <Compile Include="Controllers\DevicesController.cs" />
+    <Compile Include="Controllers\RoomsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -287,8 +289,11 @@
     <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Rooms\Index.cshtml" />
+    <Content Include="Views\Devices\Index.cshtml" />
+    <TypeScriptCompile Include="app\admin\devicesController.ts" />
     <TypeScriptCompile Include="app\admin\usersController.ts" />
-    <Content Include="app\admin\mainController.js" />
+    <TypeScriptCompile Include="app\admin\mainController.ts" />
     <Content Include="Views\Shared\_admin.cshtml" />
     <TypeScriptCompile Include="app\admin\app-admin.ts" />
     <TypeScriptCompile Include="app\admin\directives\users\userForm.ts" />

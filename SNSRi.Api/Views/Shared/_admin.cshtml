@@ -17,15 +17,15 @@
     </style>
 
 </head>
-<body class="" ng-app="app" ng-controller="MainController">
+<body class="" ng-app="app" ng-controller="mainController as vm">
     <div>
         <header class="app-bar fixed-top navy" data-role="appbar">
             <div class="container">
                 <a href="#/" class="app-bar-element branding"><img src="images/logo.png" style="height: 38px; display: inline-block; margin-right: 0px; margin-top: -10px;"></a>
                 
-                <ul class="app-bar-menu" ng-repeat="page in Pages">
+                <ul class="app-bar-menu" ng-repeat="page in vm.pages">
                     <li data-flexorderorigin="2" data-flexorder="3">
-                        <a href="/Admin/#/{{page.Name}}/" class=""><span class="{{page.Icon}}"></span> {{page.Title}}</a>
+                        <a href="javascript:void(0);" class="" ng-click="vm.selectPage(page)"><span class="{{page.Icon}}"></span> {{page.Title}}</a>
                     </li>
                 </ul>
 

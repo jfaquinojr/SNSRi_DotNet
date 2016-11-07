@@ -3,8 +3,8 @@
     Layout = "~/Views/Shared/_admin.cshtml";
 }
 
-<h1><a href="/Admin/#/" class="nav-button transform"><span></span></a>&nbsp;{{SelectedPage.Title}}
-<span class="{{SelectedPage.Icon}} place-right"></span></h1>
+<h1><a href="/Admin/#/" class="nav-button transform"><span></span></a>&nbsp;{{vm.selectedPage.Title}}
+<span class="{{vm.selectedPage.Icon}} place-right"></span></h1>
 <hr class="thin bg-grayLighter">
 
 <div ng-view></div>
@@ -20,6 +20,8 @@
 
 @*controllers*@
 <script src="~/app/admin/usersController.js"></script>
+<script src="~/app/admin/roomsController.js"></script>
+<script src="~/app/admin/devicesController.js"></script>
 
 @*directives*@
 <script src="~/app/admin/directives/users/userForm.js"></script>

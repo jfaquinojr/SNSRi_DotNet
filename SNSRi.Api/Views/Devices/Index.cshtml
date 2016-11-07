@@ -1,0 +1,43 @@
+﻿
+<div ng-controller="devicesController as vm">
+    
+
+    <button class="button success" ng-click="vm.createDevice()"><span class="mif-plus"></span> Create</button>
+    <hr class="thin bg-grayLighter">
+
+    <table datatable="ng" dt-instance="vm.dtInstance" class="row-border dataTable striped border bordered admin-table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>ReferenceId</th>
+            <th>Status</th>
+            <th>Value</th>
+            <th>HideFromView</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="device in vm.devices">
+            <td>{{device.Id}}</td>
+            <td>{{device.Name}}</td>
+            <td>{{device.ReferenceId}}</td>
+            <td>{{device.Status}}</td>
+            <td>{{device.Value}}</td>
+            <td>{{device.HideFromView}}</td>
+            <td>
+                <div class="place-right">
+                    <button class="button primary small-button" ng-click="vm.editDevice(device)"><span class="mif-pencil"></span>&nbsp; Edit</button>
+                    <button class="button danger small-button" ng-click="vm.deleteDevice(device)"><span class="mif-bin"></span>&nbsp; Delete</button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    
+    
+    <div data-role="dialog" role="dialog" id="dialog-userform" data-overlay="true" class="padding20 dialog" data-close-button="true" data-width="500px">
+        <user-form></user-form>
+    </div>
+
+</div>
