@@ -15,11 +15,6 @@ namespace SNSRi.Web.Controllers
             return PartialView();
         }
 
-        public ActionResult Create()
-        {
-            return PartialView();
-        }
-
         public ActionResult Edit()
         {
             return PartialView();

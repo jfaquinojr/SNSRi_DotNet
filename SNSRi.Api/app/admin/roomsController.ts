@@ -8,6 +8,7 @@
         selectedRoom: Room;
         editingRoom: Room;
         vm: any;
+        loadingIndicator: any;
 
         static $inject = ["$scope", "$window", "$location", "roomsDataService"];
 
@@ -23,7 +24,7 @@
 
         private loadRooms() {
             const self = this;
-            this.roomsDataService.getAllRooms()
+            this.loadingIndicator = this.roomsDataService.getAllRooms()
                 .then(result => {
                     self.rooms = result.data;
                 });
@@ -37,7 +38,7 @@
             const self = this;
             this.selectedRoom = null;
             this.editingRoom = null;
-            this.roomsDataService.deleteRoom(room.Id)
+            this.loadingIndicator = this.roomsDataService.deleteRoom(room.Id)
                 .then(() => {
                     $.Notify({
                         caption: "Deleted.",
@@ -57,7 +58,10 @@
 
         editRoom(room: Room): void {
             this.selectedRoom = room;
-            this.editingRoom = angular.copy(room, this.editingRoom);
+            if (!angular.equals(room, this.editingRoom)) {
+                this.editingRoom = angular.copy(room, this.editingRoom);
+            }
+            
             this.$window.showMetroDialog("#dialog-roomform", null);
         }
 
@@ -74,11 +78,14 @@
 
         private _updateRoom(room: Room) {
             const self = this;
-            this.roomsDataService.updateRoom(room)
+            this.loadingIndicator = this.roomsDataService.updateRoom(room)
                 .then(result => {
 
-                    self.selectedRoom = angular.copy(room, self.selectedRoom);
-
+                    
+                    if (!angular.equals(room, self.selectedRoom)) {
+                        self.selectedRoom = angular.copy(room, self.selectedRoom);
+                    }
+                    
                     $.Notify({
                         caption: "Saved.",
                         content: "Room has been updated.",
@@ -98,12 +105,12 @@
 
         private _createRoom(room: Room) {
             const self = this;
-            this.roomsDataService.createRoom(room)
+            this.loadingIndicator = this.roomsDataService.createRoom(room)
                 .then(result => {
 
                     room.Id = result.data;
                     self.rooms.push(room);
-                    self.selectedRoom = room;
+                    self.selectedRoom = null;
 
                     $.Notify({
                         caption: "Created.",

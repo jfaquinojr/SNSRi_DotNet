@@ -1,0 +1,72 @@
+﻿
+
+<h3 ng-if="vm.selectedDevice">Edit Device</h3>
+<h3 ng-if="!vm.selectedDevice">Create Device</h3>
+
+
+<form id="frmDevice" name="frmDevice" data-role="validator" data-show-required-state="false" data-hint-mode="line" data-hint-background="bg-red" data-hint-color="fg-white" data-hide-error="5000" novalidate="novalidate">
+    <div class="grid">
+
+        <div class="row">
+            <div class="cell">
+                <label>Name</label>
+                <div class="input-control text full-size">
+                    <input ng-model="vm.editingDevice.Name" type="text" placeholder="Devicename" data-validate-func="required" data-validate-hint="This field cannot be empty!" style="padding-right: 5px;" required>
+                    <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                    <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="cell">
+                <label>Reference Id</label>
+                <div class="input-control text full-size">
+                    <input ng-model="vm.editingDevice.ReferenceId" type="number" placeholder="Reference Id" style="padding-right: 5px;" required />
+                    <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                    <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="cell">
+                <label>Status</label>
+                <div class="input-control text full-size">
+                    <input ng-model="vm.editingDevice.Status" type="text" placeholder="Status" style="padding-right: 5px;" />
+                    <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                    <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="cell">
+                <label>Value</label>
+                <div class="input-control text full-size">
+                    <input ng-model="vm.editingDevice.Value" type="text" placeholder="Value" style="padding-right: 5px;" />
+                    <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                    <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="cell">
+                <label>Hide From View</label>
+                <div class="">
+                    <label class="switch-original">
+                        <input type="checkbox" ng-model="vm.editingDevice.HideFromView">
+                        <span class="check"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <hr class="thin">
+    <div class="form-actions padding10 no-padding-left">
+        <button ng-disabled="frmDevice.$invalid" class="button primary" type="button" ng-click="vm.saveDevice()"><span class="mif-checkmark"></span>&nbsp; Save</button>
+    </div>
+
+</form>

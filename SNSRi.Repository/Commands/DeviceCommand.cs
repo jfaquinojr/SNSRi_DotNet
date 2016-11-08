@@ -27,12 +27,43 @@ namespace SNSRi.Repository.Commands
 
 	    public override void Delete(int Id)
 	    {
-	        throw new NotImplementedException();
-	    }
+            log.Debug("Delete Enter");
+
+            var sql = $"delete from Device where Id = {Id}";
+
+            log.Debug($"SQL Statement: {sql}");
+
+            _connection.Query<int>(sql);
+
+            log.Debug("Delete Exit");
+        }
 
 	    public override void Update(Device entity)
 	    {
-	        throw new NotImplementedException();
-	    }
+            log.Debug("Update Enter");
+
+            entity.ModifiedOn = DateTime.Now;
+
+            var sql = $@"
+                update Device set
+                Id = @Id,
+                ReferenceId = @ReferenceId,
+                Name = @Name,
+                Status = @Status,
+                CreatedOn = @CreatedOn,
+                CreatedBy = @CreatedBy,
+                ModifiedOn = @ModifiedOn,
+                ModifiedBy = @ModifiedBy,
+                Value = @Value,
+                HideFromView = @HideFromView
+                where Id = @Id
+            ";
+
+            log.Debug($"SQL Statement: {sql}");
+
+            _connection.Query<int>(sql, entity);
+
+            log.Debug("Update Exit");
+        }
 	}
 }

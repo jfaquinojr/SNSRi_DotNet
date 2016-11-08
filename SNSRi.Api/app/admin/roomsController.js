@@ -14,7 +14,7 @@ var App;
         }
         RoomsController.prototype.loadRooms = function () {
             var self = this;
-            this.roomsDataService.getAllRooms()
+            this.loadingIndicator = this.roomsDataService.getAllRooms()
                 .then(function (result) {
                 self.rooms = result.data;
             });
@@ -25,7 +25,7 @@ var App;
             var self = this;
             this.selectedRoom = null;
             this.editingRoom = null;
-            this.roomsDataService.deleteRoom(room.Id)
+            this.loadingIndicator = this.roomsDataService.deleteRoom(room.Id)
                 .then(function () {
                 $.Notify({
                     caption: "Deleted.",
@@ -42,7 +42,9 @@ var App;
         };
         RoomsController.prototype.editRoom = function (room) {
             this.selectedRoom = room;
-            this.editingRoom = angular.copy(room, this.editingRoom);
+            if (!angular.equals(room, this.editingRoom)) {
+                this.editingRoom = angular.copy(room, this.editingRoom);
+            }
             this.$window.showMetroDialog("#dialog-roomform", null);
         };
         RoomsController.prototype.saveRoom = function () {
@@ -57,9 +59,11 @@ var App;
         };
         RoomsController.prototype._updateRoom = function (room) {
             var self = this;
-            this.roomsDataService.updateRoom(room)
+            this.loadingIndicator = this.roomsDataService.updateRoom(room)
                 .then(function (result) {
-                self.selectedRoom = angular.copy(room, self.selectedRoom);
+                if (!angular.equals(room, self.selectedRoom)) {
+                    self.selectedRoom = angular.copy(room, self.selectedRoom);
+                }
                 $.Notify({
                     caption: "Saved.",
                     content: "Room has been updated.",
@@ -77,11 +81,11 @@ var App;
         };
         RoomsController.prototype._createRoom = function (room) {
             var self = this;
-            this.roomsDataService.createRoom(room)
+            this.loadingIndicator = this.roomsDataService.createRoom(room)
                 .then(function (result) {
                 room.Id = result.data;
                 self.rooms.push(room);
-                self.selectedRoom = room;
+                self.selectedRoom = null;
                 $.Notify({
                     caption: "Created.",
                     content: "Room has been created.",

@@ -14,7 +14,9 @@ var App;
         }
         UsersController.prototype.editUser = function (user) {
             this.selectedUser = user;
-            this.editingUser = angular.copy(user, this.editingUser);
+            if (!angular.equals(user, this.editingUser)) {
+                this.editingUser = angular.copy(user, this.editingUser);
+            }
             this.$window.showMetroDialog("#dialog-userform", null);
         };
         UsersController.prototype.createUser = function () {
@@ -28,7 +30,7 @@ var App;
             var self = this;
             this.selectedUser = null;
             this.editingUser = null;
-            this.usersDataService.deleteUser(user.Id)
+            this.loadingPromise = this.usersDataService.deleteUser(user.Id)
                 .then(function () {
                 $.Notify({
                     caption: "Deleted.",
@@ -51,16 +53,18 @@ var App;
         };
         UsersController.prototype.loadUsers = function () {
             var self = this;
-            this.usersDataService.getAllUsers()
+            this.loadingPromise = this.usersDataService.getAllUsers()
                 .then(function (result) {
                 self.users = result.data;
             });
         };
         UsersController.prototype._updateUser = function (user) {
             var self = this;
-            this.usersDataService.updateUser(user)
+            this.loadingPromise = this.usersDataService.updateUser(user)
                 .then(function (result) {
-                self.selectedUser = angular.copy(user, self.selectedUser);
+                if (!angular.equals(user, self.selectedUser)) {
+                    self.selectedUser = angular.copy(user, self.selectedUser);
+                }
                 $.Notify({
                     caption: "Saved.",
                     content: "User has been updated.",
@@ -78,7 +82,7 @@ var App;
         };
         UsersController.prototype._createUser = function (user) {
             var self = this;
-            this.usersDataService.createUser(user)
+            this.loadingPromise = this.usersDataService.createUser(user)
                 .then(function (result) {
                 user.Id = result.data;
                 self.users.push(user);

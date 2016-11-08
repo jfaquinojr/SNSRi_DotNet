@@ -26,19 +26,18 @@
                 usersDataCache = this.$cacheFactory("usersCache");
             }
 
-            var usersFromCache = usersDataCache.get("users");
+            const usersFromCache = usersDataCache.get("users");
             if (usersFromCache) {
                 console.log("returning users from cache");
                 deferred.resolve(usersFromCache);
+
             } else {
 
                 console.log("returning users from database");
 
                 this.$http.get("/api/Users")
                     .then(result => {
-
                         usersDataCache.put("users", result);
-
                         deferred.resolve(result);
                     });
             }
@@ -66,9 +65,10 @@
         }
 
         private deleteFromCache() {
-            var usersCache = this.$cacheFactory.get("usersCache");
+            const usersCache = this.$cacheFactory.get("usersCache");
             usersCache.remove("users");
         }
+
     }
 
     angular.module("app")

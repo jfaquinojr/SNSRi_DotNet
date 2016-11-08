@@ -7,6 +7,7 @@
         selectedUser: User;
         editingUser: User;
         vm: any;
+        loadingPromise: any; // cg-busy indicator
 
         static $inject = ["$scope", "$window", "$location", "usersDataService"];
 
@@ -23,7 +24,9 @@
 
         editUser(user: User): void {
             this.selectedUser = user;
-            this.editingUser = angular.copy(user, this.editingUser);
+            if (!angular.equals(user, this.editingUser)) {
+                this.editingUser = angular.copy(user, this.editingUser);
+            }
             this.$window.showMetroDialog("#dialog-userform", null);
         }
 
@@ -41,7 +44,7 @@
             const self = this;
             this.selectedUser = null;
             this.editingUser = null;
-            this.usersDataService.deleteUser(user.Id)
+            this.loadingPromise = this.usersDataService.deleteUser(user.Id)
                 .then(() => {
                     $.Notify({
                         caption: "Deleted.",
@@ -68,7 +71,7 @@
 
         private loadUsers() {
             const self = this;
-            this.usersDataService.getAllUsers()
+            this.loadingPromise = this.usersDataService.getAllUsers()
                 .then(result => {
                     self.users = result.data;
                 });
@@ -76,10 +79,13 @@
 
         private _updateUser(user: User) {
             const self = this;
-            this.usersDataService.updateUser(user)
+            this.loadingPromise = this.usersDataService.updateUser(user)
                 .then(result => {
 
-                    self.selectedUser = angular.copy(user, self.selectedUser);
+                    
+                    if (!angular.equals(user, self.selectedUser)) {
+                        self.selectedUser = angular.copy(user, self.selectedUser);
+                    }
 
                     $.Notify({
                         caption: "Saved.",
@@ -100,7 +106,7 @@
 
         private _createUser(user: User) {
             const self = this;
-            this.usersDataService.createUser(user)
+            this.loadingPromise = this.usersDataService.createUser(user)
                 .then(result => {
 
                     user.Id = result.data;

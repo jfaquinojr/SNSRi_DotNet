@@ -289,10 +289,14 @@
     <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\angular-busy.css" />
+    <Content Include="Scripts\angular-busy.js" />
     <Content Include="Views\Rooms\Index.cshtml" />
     <Content Include="Views\Devices\Index.cshtml" />
     <Content Include="Views\Rooms\Edit.cshtml" />
+    <Content Include="Views\Devices\Edit.cshtml" />
     <TypeScriptCompile Include="app\admin\devicesController.ts" />
+    <TypeScriptCompile Include="app\admin\directives\deviceForm.ts" />
     <TypeScriptCompile Include="app\admin\directives\roomForm.ts" />
     <TypeScriptCompile Include="app\admin\usersController.ts" />
     <TypeScriptCompile Include="app\admin\mainController.ts" />
@@ -307,6 +311,7 @@
     <TypeScriptCompile Include="app\directives\PopupShowActivities.ts" />
     <TypeScriptCompile Include="app\directives\Toolbox.ts" />
     <TypeScriptCompile Include="app\HomeSeer.ts" />
+    <TypeScriptCompile Include="app\services\deviceDataService.ts" />
     <TypeScriptCompile Include="app\services\deviceService.ts" />
     <TypeScriptCompile Include="app\services\dataService.ts" />
     <TypeScriptCompile Include="app\controllers\eventsController.ts" />
@@ -647,7 +652,6 @@
     <Content Include="Views\Shared\ThemePicker.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Shared\_adminSidebar.cshtml" />
-    <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\AdminSidebar.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />

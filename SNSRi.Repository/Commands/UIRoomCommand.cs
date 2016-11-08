@@ -52,7 +52,7 @@ namespace SNSRi.Repository.Commands
                 SortOrder = @SortOrder,
                 IsHidden = @IsHidden,
                 ModifiedOn = @ModifiedOn,
-                ModifiedBy = 1
+                ModifiedBy = @ModifiedBy
                 where Id = @Id
             ";
 

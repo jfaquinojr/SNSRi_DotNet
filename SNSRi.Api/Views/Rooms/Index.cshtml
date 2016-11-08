@@ -4,40 +4,41 @@
 
     <button class="button success" ng-click="vm.createRoom()"><span class="mif-plus"></span> Create</button>
     <hr class="thin bg-grayLighter">
-
-    <table datatable="ng" dt-instance="vm.dtInstance" class="row-border dataTable striped border bordered admin-table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Sort Order</th>
-            <th>Hidden</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="room in vm.rooms">
-            <td>{{room.Id}}</td>
-            <td>{{room.Name}}</td>
-            <td>{{room.Description}}</td>
-            <td>{{room.SortOrder}}</td>
-            <td>
+    
+    <div cg-busy="vm.loadingIndicator">
+        <table datatable="ng" dt-instance="vm.dtInstance" class="row-border dataTable striped border bordered admin-table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Sort Order</th>
+                <th>Hidden</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="room in vm.rooms">
+                <td>{{room.Id}}</td>
+                <td>{{room.Name}}</td>
+                <td>{{room.Description}}</td>
+                <td>{{room.SortOrder}}</td>
+                <td>
                     <label class="switch-original">
                         <input type="checkbox" ng-model="room.IsHidden" disabled>
                         <span class="check"></span>
                     </label>
-            </td>
-            <td>
-                <div class="place-right">
-                    <button class="button primary small-button" ng-click="vm.editRoom(room)"><span class="mif-pencil mif-sm"></span>&nbsp; Edit</button>
-                    <button class="button danger small-button" ng-click="vm.deleteRoom(room)"><span class="mif-bin"></span>&nbsp; Delete</button>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    
+                </td>
+                <td>
+                    <div class="place-right">
+                        <button class="button primary small-button" ng-click="vm.editRoom(room)"><span class="mif-pencil mif-sm"></span>&nbsp; Edit</button>
+                        <button class="button danger small-button" ng-click="vm.deleteRoom(room)"><span class="mif-bin"></span>&nbsp; Delete</button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
     
     <div data-role="dialog" role="dialog" id="dialog-roomform" data-overlay="true" class="padding20 dialog" data-close-button="true" data-width="500px">
         <room-form></room-form>

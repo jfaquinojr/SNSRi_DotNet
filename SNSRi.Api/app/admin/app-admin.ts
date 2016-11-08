@@ -1,4 +1,4 @@
-﻿var app = angular.module("app", ["ngRoute", "datatables"]);
+﻿var app = angular.module("app", ["ngRoute", "datatables", "cgBusy"]);
 
 app.config(function ($routeProvider) {
     //$locationProvider.html5Mode(true);
