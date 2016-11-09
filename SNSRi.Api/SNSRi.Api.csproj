@@ -290,6 +290,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\angular-busy.css" />
+    <Content Include="images\logo.png" />
     <Content Include="Scripts\angular-busy.js" />
     <Content Include="Views\Rooms\Index.cshtml" />
     <Content Include="Views\Devices\Index.cshtml" />
@@ -663,7 +664,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="images\" />
     <Folder Include="Views\Events\" />
   </ItemGroup>
   <ItemGroup>

@@ -15,11 +15,13 @@
 
 </head>
 <body style="overflow-y: hidden;" ng-app="app" ng-controller="tilesController">
-    
+
 
 <div id="start-area" tile-area class="tile-area tile-area-scheme-dark fg-white" style="height: 100%; max-height: 100% !important;">
-    <a style="color: white;" href="#/"><h1 class="tile-area-title">SNSRi</h1></a>
-    
+    <a href="#/" class="app-bar-element branding title-area">
+        <img src="images/logo.png" class="start-logo">
+    </a>
+
     <toolbox></toolbox>
 
 
@@ -27,48 +29,48 @@
     @RenderBody()
 </div>
 
-<event-sidebar></event-sidebar>
-    
-    
-
-@Scripts.Render("~/bundles/main")
-    
-    
-
-<script src="~/app/app.js"></script>
-<script>
-    var HomeSeerUrl = '@Utility.GetConfig("HomeSeerURL", "http://localhost:8002")';
-</script>
-
-@*services*@
-<script src="~/app/services/dataService.js"></script>
-<script src="~/app/services/deviceService.js"></script>
-<script src="~/app/services/startScreenService.js"></script>
-<script src="~/app/services/notificationService.js"></script>
+    <event-sidebar></event-sidebar>
 
 
 
-@*controllers*@
-<script src="~/app/controllers/toolboxController.js"></script>
-<script src="~/app/controllers/roomsController.js"></script>
-<script src="~/app/controllers/devicesController.js"></script>
-<script src="~/app/controllers/eventsController.js"></script>
-<script src="~/app/controllers/tilesController.js"></script>
+    @Scripts.Render("~/bundles/main")
 
 
 
-@*directives*@
-<script src="~/app/directives/eventsSidebar.js"></script>
-@*<script src="~/app/directives/themePicker.js"></script>*@
-<script src="~/app/directives/PopupShowActivities.js"></script>
-<script src="~/app/directives/Toolbox.js"></script>
+    <script src="~/app/app.js"></script>
+    <script>
+        var HomeSeerUrl = '@Utility.GetConfig("HomeSeerURL", "http://localhost:8002")';
+    </script>
+
+    @*services*@
+    <script src="~/app/services/dataService.js"></script>
+    <script src="~/app/services/deviceService.js"></script>
+    <script src="~/app/services/startScreenService.js"></script>
+    <script src="~/app/services/notificationService.js"></script>
+
+
+
+    @*controllers*@
+    <script src="~/app/controllers/toolboxController.js"></script>
+    <script src="~/app/controllers/roomsController.js"></script>
+    <script src="~/app/controllers/devicesController.js"></script>
+    <script src="~/app/controllers/eventsController.js"></script>
+    <script src="~/app/controllers/tilesController.js"></script>
+
+
+
+    @*directives*@
+    <script src="~/app/directives/eventsSidebar.js"></script>
+    @*<script src="~/app/directives/themePicker.js"></script>*@
+    <script src="~/app/directives/PopupShowActivities.js"></script>
+    <script src="~/app/directives/Toolbox.js"></script>
 
 
 
 
-@RenderSection("scripts", required: false)
+    @RenderSection("scripts", required: false)
 
-<popup-show-activities></popup-show-activities>
-<theme-picker></theme-picker>
+    <popup-show-activities></popup-show-activities>
+    <theme-picker></theme-picker>
 </body>
 </html>
