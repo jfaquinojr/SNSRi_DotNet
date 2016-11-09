@@ -41,7 +41,19 @@
     </div>
     
     <div data-role="dialog" role="dialog" id="dialog-roomform" data-overlay="true" class="padding20 dialog" data-close-button="true" data-width="500px">
-        <room-form></room-form>
+        <div class="tabcontrol">
+            <ul class="tabs">
+                <li class="active"><a href="#room">Edit Room</a></li>
+                <li><a href="#devices">Devices</a></li>
+            </ul>
+            <div class="frames">
+                <div class="frame bg-white" id="room">
+                    <room-form></room-form>
+                </div>
+                
+                <div class="frame" id="devices">4</div>
+            </div>
+        </div>
     </div>
 
 </div>
