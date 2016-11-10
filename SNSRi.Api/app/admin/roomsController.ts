@@ -9,6 +9,7 @@
         editingRoom: Room;
         vm: any;
         loadingIndicator: any;
+        selectedTab: number;
 
         static $inject = ["$scope", "$window", "$location", "roomsDataService"];
 
@@ -17,7 +18,7 @@
 
             const self = this;
             self.vm = $scope;
-
+            self.selectedTab = 1;
             this.loadRooms();
         }
 
@@ -74,6 +75,10 @@
             } else {
                 self._createRoom(room);
             }
+        }
+
+        selectTab(tab: number): void {
+            this.selectedTab = tab;
         }
 
         private _updateRoom(room: Room) {

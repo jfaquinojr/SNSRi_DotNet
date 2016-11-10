@@ -43,15 +43,17 @@
     <div data-role="dialog" role="dialog" id="dialog-roomform" data-overlay="true" class="padding20 dialog" data-close-button="true" data-width="500px">
         <div class="tabcontrol">
             <ul class="tabs">
-                <li class="active"><a href="#room">Edit Room</a></li>
-                <li><a href="#devices">Devices</a></li>
+                <li ng-class="{'active':vm.selectedTab===1}"><a href="javascript:void(0);" ng-click="vm.selectTab(1)">Room</a></li>
+                <li ng-class="{'active':vm.selectedTab===2}"><a href="javascript:void(0);" ng-click="vm.selectTab(2)">Devices</a></li>
             </ul>
             <div class="frames">
-                <div class="frame bg-white" id="room">
+                <div class="frame bg-white" id="room" ng-show="vm.selectedTab===1">
                     <room-form></room-form>
                 </div>
                 
-                <div class="frame" id="devices">4</div>
+                <div class="frame" id="devices" ng-show="vm.selectedTab===2">
+                    the quick brown fox jumps over the lazy dog.
+                </div>
             </div>
         </div>
     </div>

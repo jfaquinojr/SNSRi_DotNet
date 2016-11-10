@@ -10,6 +10,7 @@ var App;
             console.log("initializing RoomsController");
             var self = this;
             self.vm = $scope;
+            self.selectedTab = 1;
             this.loadRooms();
         }
         RoomsController.prototype.loadRooms = function () {
@@ -56,6 +57,9 @@ var App;
             else {
                 self._createRoom(room);
             }
+        };
+        RoomsController.prototype.selectTab = function (tab) {
+            this.selectedTab = tab;
         };
         RoomsController.prototype._updateRoom = function (room) {
             var self = this;

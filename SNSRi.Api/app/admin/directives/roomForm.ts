@@ -11,12 +11,7 @@
 
         return {
             restrict: "E",
-            scope: {
-                room: "="
-            },
-            templateUrl: "/Rooms/Edit",
-            controller: RoomController,
-            controllerAs: "vm"
+            templateUrl: "/Rooms/Edit"
         }
     }
 
