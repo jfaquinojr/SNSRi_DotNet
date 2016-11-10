@@ -296,8 +296,10 @@
     <Content Include="Views\Devices\Index.cshtml" />
     <Content Include="Views\Rooms\Edit.cshtml" />
     <Content Include="Views\Devices\Edit.cshtml" />
+    <Content Include="Views\Rooms\RoomDevices.cshtml" />
     <TypeScriptCompile Include="app\admin\devicesController.ts" />
     <TypeScriptCompile Include="app\admin\directives\deviceForm.ts" />
+    <TypeScriptCompile Include="app\admin\directives\roomDevicesForm.ts" />
     <TypeScriptCompile Include="app\admin\directives\roomForm.ts" />
     <TypeScriptCompile Include="app\admin\usersController.ts" />
     <TypeScriptCompile Include="app\admin\mainController.ts" />

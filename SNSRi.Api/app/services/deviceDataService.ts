@@ -3,6 +3,7 @@
 
     export interface IDeviceDataService {
         getAllDevices(): ng.IHttpPromise<Device[]>;
+        getDevicesByRoomId(roomId: number): ng.IHttpPromise<Device[]>;
         getDevice(id: number): ng.IHttpPromise<Device>;
         createDevice(device: Device): ng.IHttpPromise<number>;
         deleteDevice(id: number): ng.IHttpPromise<void>;
@@ -44,6 +45,20 @@
 
             return deferred.promise;
             
+        }
+
+        getDevicesByRoomId(roomId: number): ng.IHttpPromise<Device[]> {
+
+            var deferred = this.$q.defer();
+
+            console.log("returning devices from database");
+
+            this.$http.get(`api/Rooms/${roomId}/Devices`)
+                .then(result => {
+                    deferred.resolve(result);
+                });
+
+            return deferred.promise;
         }
 
         getDevice(id: number): angular.IHttpPromise<Device> {

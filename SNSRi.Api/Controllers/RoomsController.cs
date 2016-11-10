@@ -19,5 +19,10 @@ namespace SNSRi.Web.Controllers
         {
             return PartialView();
         }
+
+        public ActionResult RoomDevices()
+        {
+            return PartialView();
+        }
     }
 }

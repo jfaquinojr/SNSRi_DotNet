@@ -2,11 +2,12 @@ var App;
 (function (App) {
     var Room = Data.Contracts.Room;
     var RoomsController = (function () {
-        function RoomsController($scope, $window, $location, roomsDataService) {
+        function RoomsController($scope, $window, $location, roomsDataService, deviceDataService) {
             this.$scope = $scope;
             this.$window = $window;
             this.$location = $location;
             this.roomsDataService = roomsDataService;
+            this.deviceDataService = deviceDataService;
             console.log("initializing RoomsController");
             var self = this;
             self.vm = $scope;
@@ -37,11 +38,13 @@ var App;
             });
         };
         RoomsController.prototype.createRoom = function () {
+            this.selectedTab = 1;
             this.selectedRoom = null;
             this.editingRoom = new Room();
             this.$window.showMetroDialog("#dialog-roomform", null);
         };
         RoomsController.prototype.editRoom = function (room) {
+            this.selectedTab = 1;
             this.selectedRoom = room;
             if (!angular.equals(room, this.editingRoom)) {
                 this.editingRoom = angular.copy(room, this.editingRoom);
@@ -60,6 +63,18 @@ var App;
         };
         RoomsController.prototype.selectTab = function (tab) {
             this.selectedTab = tab;
+        };
+        RoomsController.prototype.showDevices = function () {
+            this.loadDevices(this.selectedRoom.Id);
+            this.selectTab(2);
+        };
+        RoomsController.prototype.loadDevices = function (roomId) {
+            var self = this;
+            this.loadingIndicator = this.deviceDataService.getDevicesByRoomId(roomId)
+                .then(function (result) {
+                console.log("room " + roomId + " has " + result.data.length + " devices...");
+                self.devices = result.data;
+            });
         };
         RoomsController.prototype._updateRoom = function (room) {
             var self = this;
@@ -105,7 +120,7 @@ var App;
                 });
             });
         };
-        RoomsController.$inject = ["$scope", "$window", "$location", "roomsDataService"];
+        RoomsController.$inject = ["$scope", "$window", "$location", "roomsDataService", "deviceDataService"];
         return RoomsController;
     }());
     App.RoomsController = RoomsController;

@@ -1,0 +1,21 @@
+﻿
+<div class="grid">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Device</th>
+            <th>Hidden</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="device in vm.devices">
+            <td>{{device.Id}}</td>
+            <td>{{device.Name}}</td>
+            <td>{{device.HideFromView}}</td>
+            <td><button class="button small-button danger"><span class="mif-bin"></span></button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

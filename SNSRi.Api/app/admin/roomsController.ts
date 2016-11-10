@@ -1,6 +1,7 @@
 ﻿module App {
 
     import Room = Data.Contracts.Room;
+    import Device = Data.Contracts.Device;
 
     export class RoomsController {
 
@@ -10,10 +11,11 @@
         vm: any;
         loadingIndicator: any;
         selectedTab: number;
+        devices: Device[];
 
-        static $inject = ["$scope", "$window", "$location", "roomsDataService"];
+        static $inject = ["$scope", "$window", "$location", "roomsDataService", "deviceDataService"];
 
-        constructor(public $scope, private $window, private $location, private roomsDataService: IRoomsDataService) {
+        constructor(public $scope, private $window, private $location, private roomsDataService: IRoomsDataService, private deviceDataService: IDeviceDataService) {
             console.log("initializing RoomsController");
 
             const self = this;
@@ -52,12 +54,14 @@
         }
 
         createRoom(): void {
+            this.selectedTab = 1;
             this.selectedRoom = null;
             this.editingRoom = new Room();
             this.$window.showMetroDialog("#dialog-roomform", null);
         }
 
         editRoom(room: Room): void {
+            this.selectedTab = 1;
             this.selectedRoom = room;
             if (!angular.equals(room, this.editingRoom)) {
                 this.editingRoom = angular.copy(room, this.editingRoom);
@@ -79,6 +83,20 @@
 
         selectTab(tab: number): void {
             this.selectedTab = tab;
+        }
+
+        showDevices() {
+            this.loadDevices(this.selectedRoom.Id);
+            this.selectTab(2);
+        }
+
+        private loadDevices(roomId: number): void {
+            const self = this;
+            this.loadingIndicator = this.deviceDataService.getDevicesByRoomId(roomId)
+                .then(result => {
+                    console.log("room " + roomId + " has " + result.data.length + " devices...");
+                    self.devices = result.data;
+                });
         }
 
         private _updateRoom(room: Room) {

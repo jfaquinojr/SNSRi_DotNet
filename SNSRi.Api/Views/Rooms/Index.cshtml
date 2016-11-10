@@ -44,15 +44,15 @@
         <div class="tabcontrol">
             <ul class="tabs">
                 <li ng-class="{'active':vm.selectedTab===1}"><a href="javascript:void(0);" ng-click="vm.selectTab(1)">Room</a></li>
-                <li ng-class="{'active':vm.selectedTab===2}"><a href="javascript:void(0);" ng-click="vm.selectTab(2)">Devices</a></li>
+                <li ng-class="{'active':vm.selectedTab===2}" ng-show="vm.selectedRoom"><a href="javascript:void(0);" ng-click="vm.showDevices()">Devices</a></li>
             </ul>
             <div class="frames">
                 <div class="frame bg-white" id="room" ng-show="vm.selectedTab===1">
                     <room-form></room-form>
                 </div>
                 
-                <div class="frame" id="devices" ng-show="vm.selectedTab===2">
-                    the quick brown fox jumps over the lazy dog.
+                <div class="frame bg-white" id="devices" ng-show="vm.selectedTab===2">
+                    <room-devices-form></room-devices-form>
                 </div>
             </div>
         </div>

@@ -28,6 +28,15 @@ var App;
             }
             return deferred.promise;
         };
+        DeviceDataService.prototype.getDevicesByRoomId = function (roomId) {
+            var deferred = this.$q.defer();
+            console.log("returning devices from database");
+            this.$http.get("api/Rooms/" + roomId + "/Devices")
+                .then(function (result) {
+                deferred.resolve(result);
+            });
+            return deferred.promise;
+        };
         DeviceDataService.prototype.getDevice = function (id) {
             return this.$http.get("/api/Devices/" + id);
         };
