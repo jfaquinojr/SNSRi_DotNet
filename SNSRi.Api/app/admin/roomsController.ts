@@ -11,17 +11,17 @@
         vm: any;
         loadingIndicator: any;
         selectedTab: number;
-        devices: Device[];
 
         static $inject = ["$scope", "$window", "$location", "roomsDataService", "deviceDataService"];
 
         constructor(public $scope, private $window, private $location, private roomsDataService: IRoomsDataService, private deviceDataService: IDeviceDataService) {
             console.log("initializing RoomsController");
-
+            console.debug("RoomsController scope", $scope);
             const self = this;
             self.vm = $scope;
             self.selectedTab = 1;
             this.loadRooms();
+            self.$scope.roomDevices = [] as Device[];
         }
 
 
@@ -90,12 +90,16 @@
             this.selectTab(2);
         }
 
+        removeDevice(device: Device): void {
+            alert('device removed');
+        }
+
         private loadDevices(roomId: number): void {
             const self = this;
             this.loadingIndicator = this.deviceDataService.getDevicesByRoomId(roomId)
                 .then(result => {
                     console.log("room " + roomId + " has " + result.data.length + " devices...");
-                    self.devices = result.data;
+                    self.$scope.roomDevices = result.data;
                 });
         }
 

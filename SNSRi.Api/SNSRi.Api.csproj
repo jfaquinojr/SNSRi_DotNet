@@ -292,13 +292,16 @@
     <Content Include="Content\angular-busy.css" />
     <Content Include="images\logo.png" />
     <Content Include="Scripts\angular-busy.js" />
+    <Content Include="Scripts\angular-select2.js" />
     <Content Include="Views\Rooms\Index.cshtml" />
     <Content Include="Views\Devices\Index.cshtml" />
     <Content Include="Views\Rooms\Edit.cshtml" />
     <Content Include="Views\Devices\Edit.cshtml" />
     <Content Include="Views\Rooms\RoomDevices.cshtml" />
+    <Content Include="Views\Rooms\AddRoomDevice.cshtml" />
     <TypeScriptCompile Include="app\admin\devicesController.ts" />
     <TypeScriptCompile Include="app\admin\directives\deviceForm.ts" />
+    <TypeScriptCompile Include="app\admin\directives\addRoomDevice.ts" />
     <TypeScriptCompile Include="app\admin\directives\roomDevicesForm.ts" />
     <TypeScriptCompile Include="app\admin\directives\roomForm.ts" />
     <TypeScriptCompile Include="app\admin\usersController.ts" />

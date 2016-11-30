@@ -1,0 +1,17 @@
+﻿<style>
+    .input-control .select2-container {
+        width: 100% !important;
+    }
+</style>
+<div class="grid">
+    <div class="row">
+        <div class="input-control text full-size" data-role="input">
+            <select ui-select2 id="newdevices" name="newdevices"
+                ng-model="rdvm.selectedDevice" 
+                ng-options="device.Name for device in rdvm.devices track by device.Id">
+            </select>
+            <button class="button success" ng-disabled="!rdvm.selectedDevice" ng-click="rdvm.addDevice(rdvm.selectedDevice)"><span class="mif-plus"></span></button>
+        </div>
+    </div>
+
+</div>

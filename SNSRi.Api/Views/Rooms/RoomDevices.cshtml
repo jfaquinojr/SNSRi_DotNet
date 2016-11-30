@@ -10,11 +10,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="device in vm.devices">
+        <tr ng-repeat="device in roomDevices">
             <td>{{device.Id}}</td>
             <td>{{device.Name}}</td>
             <td>{{device.HideFromView}}</td>
-            <td><button class="button small-button danger"><span class="mif-bin"></span></button></td>
+            <td><button class="button small-button danger" ng-click="vm.removeDevice(device)"><span class="mif-bin"></span></button></td>
         </tr>
         </tbody>
     </table>

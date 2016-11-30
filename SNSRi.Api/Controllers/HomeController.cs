@@ -66,5 +66,10 @@ namespace SNSRi.Api.Controllers
         {
             return PartialView();
         }
+
+	    public ActionResult Partials(string viewName)
+	    {
+	        return PartialView(viewName);
+	    }
     }
 }
