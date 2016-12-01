@@ -9,7 +9,10 @@ app.controller("RoomsController", ["$scope", "dataService", "startScreenService"
         var loadRooms = function() {
             dataService.getRooms()
                 .then(function(result) {
-                    $scope.Rooms = result.data;
+                    $scope.Rooms = _.reject(result.data,
+                        function(room) {
+                            return room.IsHidden;
+                        });
                     $scope.$emit("roomChanged", 0);
                 });
             

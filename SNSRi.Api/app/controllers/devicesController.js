@@ -10,7 +10,9 @@ app.controller("DevicesController", function ($scope, $http, $routeParams, dataS
     };
     var loadDevicesByRoomId = function (roomId) {
         dataService.getDevicesbyRoomId(roomId).then(function (result) {
-            scope.Devices = result.data;
+            scope.Devices = _.reject(result.data, function (device) {
+                return device.HideFromView;
+            });
         });
     };
     var loadRoom = function (roomId) {

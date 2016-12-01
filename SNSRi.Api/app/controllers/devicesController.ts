@@ -15,7 +15,11 @@ app.controller("DevicesController",
 
         var loadDevicesByRoomId = function(roomId) {
             dataService.getDevicesbyRoomId(roomId).then(function (result) {
-                scope.Devices = result.data;
+
+                scope.Devices = _.reject(result.data, (device: Data.Contracts.Device) => {
+                    return device.HideFromView;
+                });
+
             });
         }
 
