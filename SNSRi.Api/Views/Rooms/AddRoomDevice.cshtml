@@ -1,12 +1,13 @@
 ﻿<style>
-    .input-control .select2-container {
+    /*.input-control select {
         width: 100% !important;
-    }
+        padding-right: 57px;
+    }*/
 </style>
 <div class="grid">
     <div class="row">
         <div class="input-control text full-size" data-role="input">
-            <select ui-select2 id="newdevices" name="newdevices"
+            <select id="newdevices" name="newdevices"
                 ng-model="rdvm.selectedDevice" 
                 ng-options="device.Name for device in rdvm.devices track by device.Id">
             </select>

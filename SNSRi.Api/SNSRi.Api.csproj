@@ -262,6 +262,7 @@
     <Compile Include="Controllers\api\CommandsController.cs" />
     <Compile Include="Controllers\api\ConfigController.cs" />
     <Compile Include="Controllers\api\DevicesController.cs" />
+    <Compile Include="Controllers\api\RoomDeviceController.cs" />
     <Compile Include="Controllers\api\RoomsController.cs" />
     <Compile Include="Controllers\api\UsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

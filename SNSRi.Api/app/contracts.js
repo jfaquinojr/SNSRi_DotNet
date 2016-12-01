@@ -38,6 +38,12 @@ var Data;
             return Event;
         }());
         Contracts.Event = Event;
+        var UIRoomDevice = (function () {
+            function UIRoomDevice() {
+            }
+            return UIRoomDevice;
+        }());
+        Contracts.UIRoomDevice = UIRoomDevice;
     })(Contracts = Data.Contracts || (Data.Contracts = {}));
 })(Data || (Data = {}));
 //# sourceMappingURL=contracts.js.map

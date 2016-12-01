@@ -52,6 +52,12 @@ var App;
             this.deleteFromCache();
             return this.$http.post("/api/UpdateDevice", device);
         };
+        DeviceDataService.prototype.createRoomDevice = function (roomDevice) {
+            return this.$http.post("/api/CreateRoomDevice", roomDevice);
+        };
+        DeviceDataService.prototype.deleteRoomDevice = function (id) {
+            return this.$http.post("/api/DeleteRoomDevice/" + id);
+        };
         DeviceDataService.prototype.deleteFromCache = function () {
             var devicesCache = this.$cacheFactory.get("devicesCache");
             devicesCache.remove("devices");

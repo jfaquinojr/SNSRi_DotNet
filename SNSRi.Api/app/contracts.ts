@@ -75,4 +75,16 @@
         Notes: string;
         Ticket: Ticket;
     }
+
+    export class UIRoomDevice {
+        Id: number;
+        CreatedOn: any;
+        CreatedBy: number;
+        ModifiedOn: any;
+        ModifiedBy: number;
+        UIRoomId: number;
+        DeviceId: number;
+        SortOrder: number;
+        DisplayText: string;
+    }
 }

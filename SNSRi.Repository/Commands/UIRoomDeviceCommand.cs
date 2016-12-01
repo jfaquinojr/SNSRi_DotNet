@@ -29,8 +29,16 @@ namespace SNSRi.Repository.Commands
 
 	    public override void Delete(int Id)
 	    {
-	        throw new NotImplementedException();
-	    }
+            log.Debug("Delete Enter");
+
+            var sql = $"delete from UIRoomDevice where Id = {Id}";
+
+            log.Debug($"SQL Statement: {sql}");
+
+            _connection.Query<int>(sql);
+
+            log.Debug("Delete Exit");
+        }
 
 	    public override void Update(UIRoomDevice entity)
 	    {

@@ -44,7 +44,7 @@
         <div class="tabcontrol">
             <ul class="tabs">
                 <li ng-class="{'active':vm.selectedTab===1}"><a href="javascript:void(0);" ng-click="vm.selectTab(1)">Room</a></li>
-                <li ng-class="{'active':vm.selectedTab===2}" ng-show="vm.selectedRoom"><a href="javascript:void(0);" ng-click="vm.showDevices()">Devices</a></li>
+                <li ng-class="{'active':vm.selectedTab===2}" ng-show="selectedRoom"><a href="javascript:void(0);" ng-click="vm.showDevices()">Devices</a></li>
             </ul>
             <div class="frames">
                 <div class="frame bg-white" id="room" ng-show="vm.selectedTab===1">

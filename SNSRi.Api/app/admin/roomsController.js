@@ -9,10 +9,13 @@ var App;
             this.roomsDataService = roomsDataService;
             this.deviceDataService = deviceDataService;
             console.log("initializing RoomsController");
+            console.debug("RoomsController scope", $scope);
             var self = this;
             self.vm = $scope;
             self.selectedTab = 1;
             this.loadRooms();
+            self.$scope.roomDevices = [];
+            self.$scope.selectedRoom = {};
         }
         RoomsController.prototype.loadRooms = function () {
             var self = this;
@@ -25,7 +28,7 @@ var App;
             if (!confirm("Are you sure you want to delete this record?"))
                 return;
             var self = this;
-            this.selectedRoom = null;
+            this.$scope.selectedRoom = null;
             this.editingRoom = null;
             this.loadingIndicator = this.roomsDataService.deleteRoom(room.Id)
                 .then(function () {
@@ -39,13 +42,13 @@ var App;
         };
         RoomsController.prototype.createRoom = function () {
             this.selectedTab = 1;
-            this.selectedRoom = null;
+            this.$scope.selectedRoom = null;
             this.editingRoom = new Room();
             this.$window.showMetroDialog("#dialog-roomform", null);
         };
         RoomsController.prototype.editRoom = function (room) {
             this.selectedTab = 1;
-            this.selectedRoom = room;
+            this.$scope.selectedRoom = room;
             if (!angular.equals(room, this.editingRoom)) {
                 this.editingRoom = angular.copy(room, this.editingRoom);
             }
@@ -54,7 +57,7 @@ var App;
         RoomsController.prototype.saveRoom = function () {
             var room = this.editingRoom;
             var self = this;
-            if (this.selectedRoom) {
+            if (this.$scope.selectedRoom) {
                 self._updateRoom(room);
             }
             else {
@@ -65,23 +68,39 @@ var App;
             this.selectedTab = tab;
         };
         RoomsController.prototype.showDevices = function () {
-            this.loadDevices(this.selectedRoom.Id);
+            this.loadDevices(this.$scope.selectedRoom.Id);
             this.selectTab(2);
+        };
+        RoomsController.prototype.removeDevice = function (device) {
+            if (!confirm("Are you sure you want to delete this record?"))
+                return;
+            var self = this;
+            this.loadingIndicator = this.deviceDataService.deleteRoomDevice(device.Id)
+                .then(function () {
+                self.$scope.roomDevices = _.reject(self.$scope.roomDevices, function (dev) {
+                    return dev.Id === device.Id;
+                });
+                $.Notify({
+                    caption: "Deleted.",
+                    content: "Device has been deleted.",
+                    type: "success"
+                });
+            });
         };
         RoomsController.prototype.loadDevices = function (roomId) {
             var self = this;
             this.loadingIndicator = this.deviceDataService.getDevicesByRoomId(roomId)
                 .then(function (result) {
                 console.log("room " + roomId + " has " + result.data.length + " devices...");
-                self.devices = result.data;
+                self.$scope.roomDevices = result.data;
             });
         };
         RoomsController.prototype._updateRoom = function (room) {
             var self = this;
             this.loadingIndicator = this.roomsDataService.updateRoom(room)
                 .then(function (result) {
-                if (!angular.equals(room, self.selectedRoom)) {
-                    self.selectedRoom = angular.copy(room, self.selectedRoom);
+                if (!angular.equals(room, self.$scope.selectedRoom)) {
+                    self.$scope.selectedRoom = angular.copy(room, self.$scope.selectedRoom);
                 }
                 $.Notify({
                     caption: "Saved.",
@@ -104,7 +123,7 @@ var App;
                 .then(function (result) {
                 room.Id = result.data;
                 self.rooms.push(room);
-                self.selectedRoom = null;
+                self.$scope.selectedRoom = null;
                 $.Notify({
                     caption: "Created.",
                     content: "Room has been created.",

@@ -6,7 +6,6 @@
     export class RoomsController {
 
         rooms: Room[];
-        selectedRoom: Room;
         editingRoom: Room;
         vm: any;
         loadingIndicator: any;
@@ -22,6 +21,7 @@
             self.selectedTab = 1;
             this.loadRooms();
             self.$scope.roomDevices = [] as Device[];
+            self.$scope.selectedRoom = {} as Room;
         }
 
 
@@ -39,7 +39,7 @@
                 return;
 
             const self = this;
-            this.selectedRoom = null;
+            this.$scope.selectedRoom = null;
             this.editingRoom = null;
             this.loadingIndicator = this.roomsDataService.deleteRoom(room.Id)
                 .then(() => {
@@ -55,14 +55,14 @@
 
         createRoom(): void {
             this.selectedTab = 1;
-            this.selectedRoom = null;
+            this.$scope.selectedRoom = null;
             this.editingRoom = new Room();
             this.$window.showMetroDialog("#dialog-roomform", null);
         }
 
         editRoom(room: Room): void {
             this.selectedTab = 1;
-            this.selectedRoom = room;
+            this.$scope.selectedRoom = room;
             if (!angular.equals(room, this.editingRoom)) {
                 this.editingRoom = angular.copy(room, this.editingRoom);
             }
@@ -74,7 +74,7 @@
             const room = this.editingRoom;
             const self = this;
 
-            if (this.selectedRoom) {
+            if (this.$scope.selectedRoom) {
                 self._updateRoom(room);
             } else {
                 self._createRoom(room);
@@ -86,12 +86,29 @@
         }
 
         showDevices() {
-            this.loadDevices(this.selectedRoom.Id);
+            this.loadDevices(this.$scope.selectedRoom.Id);
             this.selectTab(2);
         }
 
         removeDevice(device: Device): void {
-            alert('device removed');
+            if (!confirm("Are you sure you want to delete this record?"))
+                return;
+            const self = this;
+
+            this.loadingIndicator = this.deviceDataService.deleteRoomDevice(device.Id)
+                .then(() => {
+
+                    self.$scope.roomDevices = _.reject(self.$scope.roomDevices,
+                        (dev: Device) => {
+                            return dev.Id === device.Id;
+                        });
+
+                    $.Notify({
+                        caption: "Deleted.",
+                        content: "Device has been deleted.",
+                        type: "success"
+                    });
+                });
         }
 
         private loadDevices(roomId: number): void {
@@ -109,8 +126,8 @@
                 .then(result => {
 
                     
-                    if (!angular.equals(room, self.selectedRoom)) {
-                        self.selectedRoom = angular.copy(room, self.selectedRoom);
+                    if (!angular.equals(room, self.$scope.selectedRoom)) {
+                        self.$scope.selectedRoom = angular.copy(room, self.$scope.selectedRoom);
                     }
                     
                     $.Notify({
@@ -137,7 +154,7 @@
 
                     room.Id = result.data;
                     self.rooms.push(room);
-                    self.selectedRoom = null;
+                    self.$scope.selectedRoom = null;
 
                     $.Notify({
                         caption: "Created.",
