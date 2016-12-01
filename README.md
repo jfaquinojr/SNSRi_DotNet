@@ -1,5 +1,7 @@
 # SNSRi 
 
+###Dashboard for Homeseer
+
 Lets you manage IoT devices via a Windows 8/Metro UI driven interface.
 
 The name is play on *Sensory*.
