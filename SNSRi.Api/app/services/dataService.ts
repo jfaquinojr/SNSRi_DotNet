@@ -1,9 +1,11 @@
 ﻿module App {
+    import HomeSeerDevice = Data.HomeSeer.HomeSeerDevice;
 
     export interface IDataService {
         createActivity(activity: Data.Contracts.Activity): ng.IHttpPromise<number>;
         closeTicket(activity: Data.Contracts.Activity): ng.IHttpPromise<Data.Contracts.Ticket>;
         getHomeSeerDevice(refId: number): any;
+        setHomeSeerDevice(refId: number, value: string): any;
         getRooms(): ng.IHttpPromise<Data.Contracts.Room[]>;
         getRoom(id: number): ng.IHttpPromise<Data.Contracts.Room>;
         getDevicesbyRoomId(roomId: number): ng.IHttpPromise<Data.Contracts.Device[]>;
@@ -12,7 +14,8 @@
         getOpenTicketsRecent(): ng.IHttpPromise<Data.Contracts.Ticket[]>;
         getActivitiesForTicket(ticketId: number): ng.IHttpPromise<Data.Contracts.Activity[]>;
         getOpenTicketsPastMinutes(minutes: number): ng.IHttpPromise<Data.Contracts.Ticket[]>;
-        getOpenTicketsPastSeconds(seconds: number) : ng.IHttpPromise<Data.Contracts.Ticket[]>;
+        getOpenTicketsPastSeconds(seconds: number): ng.IHttpPromise<Data.Contracts.Ticket[]>;
+        getHomeSeerUrl(): ng.IHttpPromise<string>;
     }
 
     export class DataService implements IDataService {
@@ -21,8 +24,8 @@
 
         static $inject = ["$http"];
         constructor(private $http: ng.IHttpService) {
-            this.$http.get("/api/Config/HomeSeerUrl").then((url: string) => {
-                this.homeSeerUrl = url;
+            this.getHomeSeerUrl().then((result: any) => {
+                this.homeSeerUrl = result.data;
             });
         }
         
@@ -35,8 +38,12 @@
             return this.$http.post("/api/CloseTicket", JSON.stringify(activity));
         }
 
-        getHomeSeerDevice(refId: number) {
+        getHomeSeerDevice(refId: number): any {
             return this.$http.get(`${this.homeSeerUrl}/JSON?request=getstatus&ref=${refId}`);
+        }
+
+        setHomeSeerDevice(refId: number, value: string): any {
+            return this.$http.get(`${this.homeSeerUrl}/JSON?request=controldevicebyvalue&ref=${refId}&value=${value}`);
         }
 
         getRooms(): angular.IHttpPromise<Data.Contracts.Room[]> {
@@ -73,6 +80,10 @@
 
         getOpenTicketsPastSeconds(seconds: number): angular.IHttpPromise<Data.Contracts.Ticket[]> {
             return this.$http.get(`api/Tickets/Open/Past/Seconds/${seconds}`);
+        }
+
+        getHomeSeerUrl(): ng.IHttpPromise<string> {
+            return this.$http.get("/api/Config/HomeSeerUrl");
         }
     }
 

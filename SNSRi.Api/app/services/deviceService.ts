@@ -1,98 +1,98 @@
-﻿declare var HomeSeerUrl: string;
+﻿//declare var HomeSeerUrl: string;
 
-module App {
-
-    
-
-    import Device = Data.Contracts.Device;
-
-    interface IDeviceService {
-        getHomeSeerDevice(refId: number): Device;
-        setHomeSeerDevice(device: Device): void;
-    }
-
-    class DeviceService implements IDeviceService {
-
-        private homeSeerUrl: string;
-
-        static $inject = ["$http"];
-
-        constructor(private $http: ng.IHttpService) {
-            this.$http.get("/api/Config/HomeSeerUrl")
-                .then((url: string) => {
-                    this.homeSeerUrl = url;
-                });
-        }
-
-        //query(params: ng.): ng.IHttpPromise<Device> {
-        //    const self = this;
-        //    var sdata;
-        //    return self.$http.get($.getJSON(params.url + "/JSON?request=getstatus&ref=" + params.ref))
-        //        .then(function(data) {
-        //            sdata = data;
-        //            return $.getJSON(params.url + "/JSON?request=getcontrol&ref=" + params.ref);
-        //        })
-        //        .then(function(cdata) {
-        //            return cdata;
-        //        })
-        //        .catch(function(e) {
-        //            console.log(params.ref + " device is not controllable");
-        //            return "";
-        //        })
-        //        .then(function(cdata) {
-        //            return new Device($.extend(cdata, sdata));
-        //        });
-        //}
-
-        getHomeSeerDevice(refId: number): Device {
-            const self = this;
-            const url = self.homeSeerUrl + "/JSON?request=getstatus&ref=" + refId;
-            var dev: Device;
-            let device: Device;
-            self.$http.get(url)
-                .then(response => {
-                    console.log(JSON.stringify(response.data));
-                    dev.Value = "OK LANG!~!!";
-                });
-
-            return dev;
-        }
-
-        setHomeSeerDevice(device: Device): void {
-            // wala pa masyadong docs
-        }
-    }
-}
-
-var app = angular.module("app");
-
-app.factory("deviceService", deviceService);
-
-function deviceService($http) {
+//module App {
 
     
-    var svc = $http;
-    var self = this;
-    self.urlHomeSeer = HomeSeerUrl || "http://localhost:8002";
 
-    return {
-        getHomeSeerDevice: getHomeSeerDevice,
-        setHomeSeerDevice: setHomeSeerDevice,
-        urlHomeSeer: self.urlHomeSeer
-    }
+//    import Device = Data.Contracts.Device;
 
-    function getHomeSeerDevice(refId) {
-        var url = self.urlHomeSeer + "/JSON?request=getstatus&ref=" + refId;
-        //console.log(url);
-        return svc.get(url);
-    }
+//    export interface IDeviceService {
+//        getHomeSeerDevice(refId: number): Device;
+//        setHomeSeerDevice(device: Device): void;
+//    }
 
-    function setHomeSeerDevice() {
+//    class DeviceService implements IDeviceService {
+
+//        private homeSeerUrl: string;
+
+//        static $inject = ["$http"];
+
+//        constructor(private $http: ng.IHttpService) {
+//            this.$http.get("/api/Config/HomeSeerUrl")
+//                .then((url: string) => {
+//                    this.homeSeerUrl = url;
+//                });
+//        }
+
+//        //query(params: ng.): ng.IHttpPromise<Device> {
+//        //    const self = this;
+//        //    var sdata;
+//        //    return self.$http.get($.getJSON(params.url + "/JSON?request=getstatus&ref=" + params.ref))
+//        //        .then(function(data) {
+//        //            sdata = data;
+//        //            return $.getJSON(params.url + "/JSON?request=getcontrol&ref=" + params.ref);
+//        //        })
+//        //        .then(function(cdata) {
+//        //            return cdata;
+//        //        })
+//        //        .catch(function(e) {
+//        //            console.log(params.ref + " device is not controllable");
+//        //            return "";
+//        //        })
+//        //        .then(function(cdata) {
+//        //            return new Device($.extend(cdata, sdata));
+//        //        });
+//        //}
+
+//        getHomeSeerDevice(refId: number): Device {
+//            const self = this;
+//            const url = self.homeSeerUrl + "/JSON?request=getstatus&ref=" + refId;
+//            var dev: Device;
+//            let device: Device;
+//            self.$http.get(url)
+//                .then(response => {
+//                    console.log(JSON.stringify(response.data));
+//                    dev.Value = "OK LANG!~!!";
+//                });
+
+//            return dev;
+//        }
+
+//        setHomeSeerDevice(device: Device): void {
+//            // wala pa masyadong docs
+//        }
+//    }
+//}
+
+//var app = angular.module("app");
+
+//app.factory("deviceService", deviceService);
+
+//function deviceService($http) {
+
+    
+//    var svc = $http;
+//    var self = this;
+//    self.urlHomeSeer = HomeSeerUrl || "http://localhost:8002";
+
+//    return {
+//        getHomeSeerDevice: getHomeSeerDevice,
+//        setHomeSeerDevice: setHomeSeerDevice,
+//        urlHomeSeer: self.urlHomeSeer
+//    }
+
+//    function getHomeSeerDevice(refId) {
+//        var url = self.urlHomeSeer + "/JSON?request=getstatus&ref=" + refId;
+//        //console.log(url);
+//        return svc.get(url);
+//    }
+
+//    function setHomeSeerDevice() {
         
-    }
+//    }
 
 
-}
+//}
 
 
 /*

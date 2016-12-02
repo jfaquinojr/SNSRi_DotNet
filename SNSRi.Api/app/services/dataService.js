@@ -4,8 +4,8 @@ var App;
         function DataService($http) {
             var _this = this;
             this.$http = $http;
-            this.$http.get("/api/Config/HomeSeerUrl").then(function (url) {
-                _this.homeSeerUrl = url;
+            this.getHomeSeerUrl().then(function (result) {
+                _this.homeSeerUrl = result.data;
             });
         }
         DataService.prototype.createActivity = function (activity) {
@@ -16,6 +16,9 @@ var App;
         };
         DataService.prototype.getHomeSeerDevice = function (refId) {
             return this.$http.get(this.homeSeerUrl + "/JSON?request=getstatus&ref=" + refId);
+        };
+        DataService.prototype.setHomeSeerDevice = function (refId, value) {
+            return this.$http.get(this.homeSeerUrl + "/JSON?request=controldevicebyvalue&ref=" + refId + "&value=" + value);
         };
         DataService.prototype.getRooms = function () {
             return this.$http.get("/api/Rooms");
@@ -43,6 +46,9 @@ var App;
         };
         DataService.prototype.getOpenTicketsPastSeconds = function (seconds) {
             return this.$http.get("api/Tickets/Open/Past/Seconds/" + seconds);
+        };
+        DataService.prototype.getHomeSeerUrl = function () {
+            return this.$http.get("/api/Config/HomeSeerUrl");
         };
         DataService.$inject = ["$http"];
         return DataService;

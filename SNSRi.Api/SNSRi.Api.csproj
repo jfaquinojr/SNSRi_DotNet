@@ -314,6 +314,7 @@
     <Content Include="app\admin\directives\adminSidebar.js" />
     <TypeScriptCompile Include="app\controllers\tilesController.ts" />
     <TypeScriptCompile Include="app\controllers\devicesController.ts" />
+    <TypeScriptCompile Include="app\directives\deviceTile.ts" />
     <TypeScriptCompile Include="app\directives\eventsSidebar.ts" />
     <TypeScriptCompile Include="app\directives\PopupShowActivities.ts" />
     <TypeScriptCompile Include="app\directives\Toolbox.ts" />
