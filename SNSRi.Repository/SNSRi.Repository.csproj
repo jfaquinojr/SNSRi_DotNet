@@ -48,6 +48,10 @@
       <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
@@ -77,6 +81,16 @@
     <Compile Include="Commands\ActivityCommand.cs" />
     <Compile Include="Commands\DeviceCommand.cs" />
     <Compile Include="Commands\TicketCommand.cs" />
+    <Compile Include="DeviceRepository.cs" />
+    <Compile Include="HomeSeerUnitOfWork.cs" />
+    <Compile Include="IDeviceRepository.cs" />
+    <Compile Include="IHomeSeerUnitOfWork.cs" />
+    <Compile Include="IRepository.cs" />
+    <Compile Include="IRoomDeviceRepository.cs" />
+    <Compile Include="IRoomRepository.cs" />
+    <Compile Include="ITicketRepository.cs" />
+    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="IUserRepository.cs" />
     <Compile Include="Query\BaseQuery.cs" />
     <Compile Include="ConnectionFactory.cs" />
     <Compile Include="Query\ActivityQuery.cs" />
@@ -90,9 +104,18 @@
     <Compile Include="Query\UIRoomQuery.cs" />
     <Compile Include="Query\UserQuery.cs" />
     <Compile Include="RepositoryLoggerExtensions.cs" />
+    <Compile Include="Repsitory.cs" />
+    <Compile Include="RoomDeviceRepository.cs" />
+    <Compile Include="RoomRepository.cs" />
+    <Compile Include="SNSRiContext.cs" />
+    <Compile Include="TicketRepository.cs" />
+    <Compile Include="UnitOfWork.cs" />
+    <Compile Include="UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

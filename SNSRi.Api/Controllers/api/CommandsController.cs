@@ -12,7 +12,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
-using SNSRi.Api.Models.HomeSeer;
+using SNSRi.Entities.HomeSeer;
 using SNSRi.Repository;
 
 namespace SNSRi.Api.Controllers
@@ -26,7 +26,7 @@ namespace SNSRi.Api.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult ChangeDeviceValue(int Id, Event entity)
         {
-            var qryDevice = new DeviceQuery();
+            var qryDevice = new DeviceRepository(new SNSRiContext());
             var device = qryDevice.GetByReferenceId(Id);
 
             if (device == null)
@@ -105,57 +105,9 @@ namespace SNSRi.Api.Controllers
         [Route("api/FactoryReset")]
         public IHttpActionResult FactoryReset()
         {
-            //TODO jaquino need to move this away from API and into MVC controller, maybe whip up a nice progress screen or something
-
+            var uof = new HomeSeerUnitOfWork(new SNSRiContext());
             var url = Utility.GetConfig("HomeSeerURL", "http://localhost:8002");
-            IEnumerable<HSDevice> hsDevices = GetHSDevices(url);
-            HSLocation hsLocation = GetHSLocation(url);
-
-            Truncate("UIRoomDevice");
-            Truncate("UIRoom");
-            Truncate("Device");
-
-            var cmdRoom = new UIRoomCommand();
-            var rooms = new List<UIRoom>();
-            foreach (var hsLocationRoom in hsLocation.Rooms)
-            {
-                if (hsLocationRoom.ToLower() == "all") // skip this room
-                    continue;
-
-                var room = new UIRoom
-                {
-                    Name = hsLocationRoom,
-                    CreatedOn = DateTime.Now,
-                    CreatedBy = 1
-                };
-                room.Id = cmdRoom.Create(room);
-                rooms.Add(room);
-            }
-
-            var cmdRoomDevice = new UIRoomDeviceCommand();
-            var cmdDevice = new DeviceCommand();
-            foreach (var hsDevice in hsDevices)
-            {
-                var device = new Device
-                {
-                    Name = hsDevice.Name,
-                    ReferenceId = hsDevice.Ref,
-                    Status = hsDevice.Status,
-                    CreatedBy = 1,
-                    CreatedOn = DateTime.Now,
-                    Value = hsDevice.Value,
-                    HideFromView = hsDevice.HideFromView
-                };
-                device.Id = cmdDevice.Create(device);
-
-                cmdRoomDevice.Create(new UIRoomDevice
-                {
-                    UIRoomId = rooms.First(r => r.Name == hsDevice.Location).Id,
-                    DeviceId = device.Id,
-                    CreatedBy = 1,
-                    CreatedOn = DateTime.Now
-                });
-            }
+            uof.FactoryReset(url);
 
             return StatusCode(HttpStatusCode.NoContent);
         }

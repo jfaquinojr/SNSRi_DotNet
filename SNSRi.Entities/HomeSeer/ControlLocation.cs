@@ -1,4 +1,4 @@
-﻿namespace SNSRi.Api.Models.HomeSeer
+﻿namespace SNSRi.Entities.HomeSeer
 {
     public class ControlLocation
     {

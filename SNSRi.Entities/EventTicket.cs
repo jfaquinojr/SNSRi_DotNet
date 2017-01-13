@@ -11,5 +11,7 @@ namespace SNSRi.Entities
 		public int Id { get; set; }
 		public int EventId { get; set; }
 		public int TicketId { get; set; }
+	    public Event Event { get; set; }
+	    public Ticket Ticket { get; set; }
 	}
 }

@@ -44,6 +44,10 @@
     <Compile Include="Device.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="EventTicket.cs" />
+    <Compile Include="HomeSeer\ControlLocation.cs" />
+    <Compile Include="HomeSeer\ControlPair.cs" />
+    <Compile Include="HomeSeer\HSDevice.cs" />
+    <Compile Include="HomeSeer\HSLocation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ticket.cs" />
     <Compile Include="UIRoom.cs" />

@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using SNSRi.Entities;
+using SNSRi.Repository;
 using SNSRi.Repository.Commands;
 using SNSRi.Repository.Query;
 
@@ -17,9 +18,9 @@ namespace SNSRi.Api.Controllers.api
         [Route("api/Devices")]
         public IHttpActionResult GetDevices()
         {
-            var query = new DeviceQuery();
+            var query = new DeviceRepository(new SNSRiContext());
 
-            return Ok(query.Search());
+            return Ok(query.GetAll(1, 1000));
         }
 
         [Route("api/Rooms/{roomId}/Devices")]
@@ -36,8 +37,9 @@ namespace SNSRi.Api.Controllers.api
         public IHttpActionResult CreateDevice(Device device)
         {
             device.CreatedOn = DateTime.Now;
-            var cmd = new DeviceCommand();
-            device.Id = cmd.Create(device);
+            var uof = new UnitOfWork(new SNSRiContext());
+            uof.Devices.Add(device);
+            uof.Complete();
             return Ok(device.Id);
         }
 
@@ -47,8 +49,8 @@ namespace SNSRi.Api.Controllers.api
         public IHttpActionResult UpdateDevice(Device device)
         {
             device.ModifiedOn = DateTime.Now;
-            var cmd = new DeviceCommand();
-            cmd.Update(device);
+            var uof = new UnitOfWork(new SNSRiContext());
+            uof.Complete();
             return StatusCode(HttpStatusCode.NoContent);
         }
 
@@ -58,8 +60,9 @@ namespace SNSRi.Api.Controllers.api
         [ResponseType(typeof(void))]
         public IHttpActionResult DeleteDevice(int id)
         {
-            var cmd = new DeviceCommand();
-            cmd.Delete(id);
+            var uof = new UnitOfWork(new SNSRiContext());
+            uof.Devices.Remove(id);
+            uof.Complete();
             return StatusCode(HttpStatusCode.NoContent);
         }
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace SNSRi.Api.Models.HomeSeer
+namespace SNSRi.Entities.HomeSeer
 {
     public class HSDevice
     {

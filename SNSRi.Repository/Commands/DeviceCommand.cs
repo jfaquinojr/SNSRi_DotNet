@@ -8,7 +8,7 @@ using SNSRi.Entities;
 
 namespace SNSRi.Repository.Commands
 {
-	public class DeviceCommand : BaseCommand<Device>
+	public class DeviceCommand_Old : BaseCommand<Device>
 	{
 	    public override int Create(Device entity)
 	    {
