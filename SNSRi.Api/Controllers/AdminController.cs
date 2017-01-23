@@ -19,5 +19,10 @@ namespace SNSRi.Web.Controllers
         {
             return PartialView();
         }
+
+        public ActionResult FactoryReset()
+        {
+            return PartialView();
+        }
     }
 }

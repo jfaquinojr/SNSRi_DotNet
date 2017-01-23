@@ -29,7 +29,8 @@
             this.pages = [
                 { Name: "Users", Icon: "mif-users", Title: "Users", Url: "" },
                 { Name: "Rooms", Icon: "mif-hotel", Title: "Rooms", Url: "" },
-                { Name: "Devices", Icon: "mif-switch", Title: "Devices", Url: "" }
+                { Name: "Devices", Icon: "mif-switch", Title: "Devices", Url: "" },
+                { Name: "FactoryReset", Icon: "mif-loop2", Title: "Factory Reset", Url: "" }
             ];
 
             this.selectedPage = this.pages[0];
@@ -37,9 +38,14 @@
         }
 
         selectPage(page: AdminPage) {
-            console.log("New Page selected");
+            //console.log("New Page selected");
             this.selectedPage = page;
-            this.$location.path("/" + page.Name);
+            if (page.Url) {
+                this.$location.path(page.Url);
+
+            } else {
+                this.$location.path("/" + page.Name);
+            }
         }
     }
 

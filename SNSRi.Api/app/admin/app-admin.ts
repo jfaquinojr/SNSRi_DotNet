@@ -11,15 +11,15 @@ app.config(function ($routeProvider) {
         })
         .when("/Rooms/",
         {
-            templateUrl: "Rooms/Index",
+            templateUrl: "Rooms/Index"
         })
         .when("/Devices/",
         {
-            templateUrl: "Devices/Index",
+            templateUrl: "Devices/Index"
         })
-        .when("/Events/",
+        .when("/FactoryReset/",
         {
-            templateUrl: "Events/Index",
+            templateUrl: "Admin/FactoryReset"
         })
         .otherwise({
             templateUrl: "Home/Oops"

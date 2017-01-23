@@ -300,6 +300,7 @@
     <Content Include="Views\Devices\Edit.cshtml" />
     <Content Include="Views\Rooms\RoomDevices.cshtml" />
     <Content Include="Views\Rooms\AddRoomDevice.cshtml" />
+    <Content Include="Views\Admin\FactoryReset.cshtml" />
     <TypeScriptCompile Include="app\admin\devicesController.ts" />
     <TypeScriptCompile Include="app\admin\directives\deviceForm.ts" />
     <TypeScriptCompile Include="app\admin\directives\addRoomDevice.ts" />

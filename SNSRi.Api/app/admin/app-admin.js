@@ -6,13 +6,13 @@ app.config(function ($routeProvider) {
         templateUrl: "Users/Index"
     })
         .when("/Rooms/", {
-        templateUrl: "Rooms/Index",
+        templateUrl: "Rooms/Index"
     })
         .when("/Devices/", {
-        templateUrl: "Devices/Index",
+        templateUrl: "Devices/Index"
     })
-        .when("/Events/", {
-        templateUrl: "Events/Index",
+        .when("/FactoryReset/", {
+        templateUrl: "Admin/FactoryReset"
     })
         .otherwise({
         templateUrl: "Home/Oops"
