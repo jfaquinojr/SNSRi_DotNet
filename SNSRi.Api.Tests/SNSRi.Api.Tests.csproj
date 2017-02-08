@@ -34,7 +34,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -91,6 +93,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FactoryResetTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
@@ -104,6 +107,14 @@
     <ProjectReference Include="..\SNSRi.Api\SNSRi.Api.csproj">
       <Project>{85E46A08-2721-4707-932F-2E1D7235A924}</Project>
       <Name>SNSRi.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SNSRi.Business\SNSRi.Business.csproj">
+      <Project>{0179CDBE-59E6-4478-96FE-0403A9497AD7}</Project>
+      <Name>SNSRi.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SNSRi.Entities\SNSRi.Entities.csproj">
+      <Project>{DCB12518-6834-4FDD-8086-105202A7D319}</Project>
+      <Name>SNSRi.Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

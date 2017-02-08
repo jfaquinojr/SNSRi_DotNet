@@ -6,8 +6,9 @@ namespace SNSRi.Repository
 {
     public interface IHomeSeerUnitOfWork: IUnitOfWork
     {
-        void FactoryReset(string urlHomeSeer);
-        IEnumerable<HSDevice> GetHSDevices(string urlHomeSeer);
-        HSLocation GetHSLocation(string urlHomeSeer);
+        void FactoryReset(IEnumerable<HSDevice> devices);
+        void FactorySync(IEnumerable<HSDevice> devices);
+        //IEnumerable<HSDevice> GetHSDevices(string urlHomeSeer);
+        //HSLocations GetHSLocation(string urlHomeSeer);
     }
 }

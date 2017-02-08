@@ -46,10 +46,16 @@ namespace SNSRi.Api.Controllers.api
         [HttpPost]
         [Route("api/UpdateDevice")]
         [ResponseType(typeof(void))]
-        public IHttpActionResult UpdateDevice(Device device)
+        public IHttpActionResult UpdateDevice(Device model)
         {
-            device.ModifiedOn = DateTime.Now;
             var uof = new UnitOfWork(new SNSRiContext());
+            var device = uof.Devices.Get(model.Id);
+            device.ModifiedOn = DateTime.Now;
+            device.Name = model.Name;
+            device.HideFromView = model.HideFromView;
+            device.ReferenceId = model.ReferenceId;
+            device.Status = model.Status;
+            device.Value = model.Value;
             uof.Complete();
             return StatusCode(HttpStatusCode.NoContent);
         }

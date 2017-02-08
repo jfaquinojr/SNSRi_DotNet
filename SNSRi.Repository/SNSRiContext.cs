@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using SNSRi.Entities;
+using SNSRi.Entities.HomeSeer;
 using static SNSRi.Repository.ConnectionFactory;
 
 namespace SNSRi.Repository
@@ -27,5 +28,6 @@ namespace SNSRi.Repository
         public DbSet<User> Users { get; set; }
         public DbSet<Device> Devices { get; set; }
         public DbSet<Activity> Activities { get; set; }
+        public DbSet<HSDevice> HSDevices { get; set; }
     }
 }

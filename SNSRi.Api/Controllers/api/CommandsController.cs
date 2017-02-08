@@ -17,6 +17,7 @@ using SNSRi.Repository;
 
 namespace SNSRi.Api.Controllers
 {
+    //[Authorize]
     public class CommandsController : ApiController
     {
 
@@ -107,7 +108,19 @@ namespace SNSRi.Api.Controllers
         {
             var uof = new HomeSeerUnitOfWork(new SNSRiContext());
             var url = Utility.GetConfig("HomeSeerURL", "http://localhost:8002");
-            uof.FactoryReset(url);
+            uof.FactoryReset(GetHSDevices(url));
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        [HttpPost]
+        [ResponseType(typeof(void))]
+        [Route("api/FactorySync")]
+        public IHttpActionResult FactorySync()
+        {
+            var uof = new HomeSeerUnitOfWork(new SNSRiContext());
+            var url = Utility.GetConfig("HomeSeerURL", "http://localhost:8002");
+            uof.FactorySync(GetHSDevices(url));
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -133,16 +146,24 @@ namespace SNSRi.Api.Controllers
                         Ref = hsDev.@ref,
                         Value = hsDev.value.ToString(),
                         HideFromView = (bool) hsDev.hide_from_view,
-                        Location2 = hsDev.location2
+                        Location2 = hsDev.location2,
+                        DeviceTypeString = hsDev.device_type_string,
+                        LastChange = DateTime.Parse(hsDev.last_change.ToString()),
+                        Relationship = hsDev.relationship,
+                        //DeviceType = hsDev.associated_devices,
+                        DeviceImage = hsDev.device_image,
+                        UserNote = hsDev.UserNote,
+                        UserAccess = hsDev.UserAccess,
+                        StatusImage = hsDev.status_image
                     });
                 }
             }
             return ret;
         }
 
-        private HSLocation GetHSLocation(string urlHomeSeer)
+        private HSLocations GetHSLocation(string urlHomeSeer)
         {
-            var ret = new HSLocation();
+            var ret = new HSLocations();
             urlHomeSeer = urlHomeSeer.TrimEnd('/') + "/JSON?request=getlocations";
             using (var client = new HttpClient())
             {

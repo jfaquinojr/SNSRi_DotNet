@@ -83,8 +83,10 @@
     <Compile Include="Commands\TicketCommand.cs" />
     <Compile Include="DeviceRepository.cs" />
     <Compile Include="HomeSeerUnitOfWork.cs" />
+    <Compile Include="HSDeviceRepository.cs" />
     <Compile Include="IDeviceRepository.cs" />
     <Compile Include="IHomeSeerUnitOfWork.cs" />
+    <Compile Include="IHSDeviceRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IRoomDeviceRepository.cs" />
     <Compile Include="IRoomRepository.cs" />
@@ -119,6 +121,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SNSRi.Business\SNSRi.Business.csproj">
+      <Project>{0179CDBE-59E6-4478-96FE-0403A9497AD7}</Project>
+      <Name>SNSRi.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SNSRi.Entities\SNSRi.Entities.csproj">
       <Project>{dcb12518-6834-4fdd-8086-105202a7d319}</Project>
       <Name>SNSRi.Entities</Name>

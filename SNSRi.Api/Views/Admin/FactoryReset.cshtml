@@ -1,7 +1,36 @@
-﻿<div class="padding10 bg-red fg-white text-accent">WARNING! This will reset your data to HomeSeer defaults. Rooms and Devices information will be lost. Proceed with caution.</div>
+﻿<div ng-controller="factoryResetController as vm">
 
-<button class="command-button warning" ng-click="">
-    <span class="icon mif-warning"></span>
-    Reset
-    <small>This is your last warning.</small>
-</button>
+    <div class="padding10 bg-orange fg-white text-accent">WARNING! This will reset your data to HomeSeer defaults. Rooms and Devices information will be lost. Proceed with caution. Click the <span class="tag alert">big red</span> button when ready.</div>
+    
+    
+    <div class="grid">
+        <div class="row cells3">
+            <div class="cell">&nbsp;</div>
+            <div class="cell">
+        
+                <button class="command-button danger btn-factory-reset" ng-click="vm.clearData()">
+                    <span class="icon mif-warning"></span>
+                    Yes, Wipe my Data
+                    <small>This is your last warning.</small>
+                </button>    
+
+            </div>
+            <div class="cell">&nbsp;</div>
+        </div>
+        <div class="row cells3">
+            <div class="cell">&nbsp;</div>
+            <div class="cell">
+        
+                <button class="command-button info btn-factory-reset" ng-click="vm.syncData()">
+                    <span class="icon mif-info"></span>
+                    No, Just Sync
+                    <small>Merge device data.</small>
+                </button>    
+
+            </div>
+            <div class="cell">&nbsp;</div>
+        </div>
+
+    </div>
+
+</div>

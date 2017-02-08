@@ -20,9 +20,9 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -306,6 +306,7 @@
     <TypeScriptCompile Include="app\admin\directives\addRoomDevice.ts" />
     <TypeScriptCompile Include="app\admin\directives\roomDevicesForm.ts" />
     <TypeScriptCompile Include="app\admin\directives\roomForm.ts" />
+    <TypeScriptCompile Include="app\admin\factoryResetController.ts" />
     <TypeScriptCompile Include="app\admin\usersController.ts" />
     <TypeScriptCompile Include="app\admin\mainController.ts" />
     <Content Include="Views\Shared\_admin.cshtml" />
