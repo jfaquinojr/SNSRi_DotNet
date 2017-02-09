@@ -20,6 +20,18 @@
                 });
         }
 
+        public syncData(): void {
+            const self = this;
+            self.$http.post("/api/FactorySync", { withCredentials: true })
+                .then(() => {
+                    $.Notify({
+                        caption: "Sync Complete.",
+                        content: "HomeSeer data has been synced.",
+                        type: "success"
+                    });
+                });
+        }
+
     }
 
     angular.module("app")

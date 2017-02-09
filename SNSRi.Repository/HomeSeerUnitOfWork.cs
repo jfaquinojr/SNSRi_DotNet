@@ -73,19 +73,96 @@ namespace SNSRi.Repository
                 }
                 catch (Exception)
                 {
-                    
+                    dbTran.Rollback();
                     throw;
                 }
                 
             }
-
-
-            
         }
 
         public void FactorySync(IEnumerable<HSDevice> devices)
         {
-            throw new NotImplementedException();
+            var currentDevices = this._context.HSDevices.ToList();
+            var result = SNSRi.Business.FactoryReset.Instance.CompareDevices(currentDevices, devices);
+
+            using (var dbTran = base._context.Database.BeginTransaction())
+            {
+                try
+                {
+                    DeleteHSDevices(result.DeletedDevices);
+                    AddHSDevices(result.AddedDevices);
+                    _context.SaveChanges();
+                    dbTran.Commit();
+                }
+                catch (Exception e)
+                {
+                    dbTran.Rollback();
+                    Console.WriteLine(e);
+                    throw;
+                }
+            }
+        }
+
+        private void AddHSDevices(IEnumerable<HSDevice> devices)
+        {
+            foreach (var dev in devices)
+            {
+                _context.HSDevices.Add(dev);
+                _context.SaveChanges();
+
+                AddUIDevice(dev);
+            }
+
+        }
+
+        private void AddUIDevice(HSDevice dev)
+        {
+            var uiDevice = ObjectConverter.ConvertToDevice(dev);
+            _context.Devices.Add(uiDevice);
+
+            AddUIRoomDevice(dev, uiDevice);
+        }
+
+        private void AddUIRoomDevice(HSDevice hsDev, Device uiDev)
+        {
+            var room = _context.Rooms.FirstOrDefault(r => r.SourceRoom == hsDev.Location);
+            if (room != null)
+            {
+                _context.RoomDevices.Add(new UIRoomDevice()
+                {
+                    DeviceId = uiDev.Id,
+                    UIRoomId = room.Id
+                });
+            }
+            else
+            {
+                _context.RoomDevices.Add(new UIRoomDevice()
+                {
+                    DeviceId = uiDev.Id,
+                    UIRoomId = _context.Rooms.First().Id
+                });
+            }
+        }
+
+        private void DeleteHSDevices(IEnumerable<HSDevice> devices)
+        {
+            foreach (var device in devices)
+            {
+
+                DeleteUIRoomDevice(device);
+
+                var devToRemove = _context.HSDevices.Single(d => d.Name == device.Name && d.Location == device.Location && d.Location2 == device.Location2 && d.Ref == device.Ref);
+                _context.HSDevices.Remove(devToRemove);
+            }
+        }
+
+        private void DeleteUIRoomDevice(HSDevice device)
+        {
+            var dev = _context.RoomDevices.FirstOrDefault(r => r.DeviceId == device.Id);
+            if (dev != null)
+            {
+                _context.RoomDevices.Remove(dev);
+            }
         }
     }
 }

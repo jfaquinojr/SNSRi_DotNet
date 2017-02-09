@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using SNSRi.Api.Models;
+using SNSRi.Repository;
 using SNSRi.Repository.Query;
 
 namespace SNSRi.Api.Controllers
@@ -42,6 +43,10 @@ namespace SNSRi.Api.Controllers
                     var authManager = ctx.Authentication;
 
                     authManager.SignIn(identity);
+
+                    var uof = new HomeSeerUnitOfWork(new SNSRiContext());
+                    var url = Utility.GetConfig("HomeSeerURL", "http://localhost:8002");
+                    uof.FactorySync(GetHSDevices(url));
 
                     return Redirect(Url.Action("index", "home"));
                 }

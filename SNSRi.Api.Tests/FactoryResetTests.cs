@@ -193,6 +193,41 @@ namespace SNSRi.Api.Tests
             Assert.IsTrue(result.AddedDevices.Count == 1);
         }
 
+
+        [TestMethod]
+        public void FactoryReset_CompareRandomSortedDevices_MustStillMatch()
+        {
+            // Arrange
+
+
+            // get the list of existing homeseer devices
+            var devices1 = new List<HSDevice>
+            {
+                createDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
+                createDevice("Device Two", "Location1", "Location2", "1", "On", false, 2),
+                createDevice("Device Three", "Location1", "Location2", "1", "On", false, 3),
+                createDevice("Device Four", "Location1", "Location2", "1", "On", false, 4),
+                createDevice("Device Five", "Location1", "Location2", "1", "On", false, 5),
+            };
+
+
+            // get the list of fresh homeseer devices
+            var devices2 = new List<HSDevice>()
+            {
+                createDevice("Device Five", "Location1", "Location2", "1", "On", false, 5),
+                createDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
+                createDevice("Device Four", "Location1", "Location2", "1", "On", false, 4),
+                createDevice("Device Three", "Location1", "Location2", "1", "On", false, 3),
+                createDevice("Device Two", "Location1", "Location2", "1", "On", false, 2),
+            };
+
+            // check if list has changed
+            var result = FactoryReset.Instance.CompareDevices(devices1, devices2);
+
+            // Assert
+            Assert.IsFalse(result.HasChanges);
+        }
+
         [TestMethod]
         public void FactoryReset_CompareDevices_ThreeDevicseAdded()
         {

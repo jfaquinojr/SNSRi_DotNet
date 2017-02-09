@@ -8,7 +8,7 @@ namespace SNSRi.Entities.HomeSeer
 {
     public class HSDevice : IEquatable<HSDevice>
     {
-        [Key]
+        public int Id { get; set; }
         public int Ref { get; set; }
         public string Name { get; set; }
         public string Location { get; set; }

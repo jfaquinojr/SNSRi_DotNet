@@ -16,6 +16,17 @@ var App;
                 });
             });
         };
+        FactoryResetController.prototype.syncData = function () {
+            var self = this;
+            self.$http.post("/api/FactorySync", { withCredentials: true })
+                .then(function () {
+                $.Notify({
+                    caption: "Sync Complete.",
+                    content: "HomeSeer data has been synced.",
+                    type: "success"
+                });
+            });
+        };
         FactoryResetController.$inject = ["$scope", "$http"];
         return FactoryResetController;
     }());

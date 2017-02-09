@@ -125,7 +125,7 @@ namespace SNSRi.Api.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        private IEnumerable<HSDevice> GetHSDevices(string urlHomeSeer)
+        public IEnumerable<HSDevice> GetHSDevices(string urlHomeSeer)
         {
             var ret = new List<HSDevice>();
             urlHomeSeer = urlHomeSeer.TrimEnd('/') + "/JSON?request=getstatus";
