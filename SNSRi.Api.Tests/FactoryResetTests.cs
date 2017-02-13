@@ -158,7 +158,7 @@ namespace SNSRi.Api.Tests
             };
 
             // check if list has changed
-            var result = FactoryReset.Instance.CompareDevices(devices1, devices2);
+            var result = new FactoryReset(null).CompareDevices(devices1, devices2);
 
             // Assert
             Assert.IsFalse(result.HasChanges);
@@ -187,7 +187,8 @@ namespace SNSRi.Api.Tests
             };
 
             // check if list has changed
-            var result = FactoryReset.Instance.CompareDevices(devices1, devices2);
+            
+            var result = new FactoryReset(null).CompareDevices(devices1, devices2);
 
             // Assert
             Assert.IsTrue(result.AddedDevices.Count == 1);
@@ -222,7 +223,7 @@ namespace SNSRi.Api.Tests
             };
 
             // check if list has changed
-            var result = FactoryReset.Instance.CompareDevices(devices1, devices2);
+            var result = new FactoryReset(null).CompareDevices(devices1, devices2);
 
             // Assert
             Assert.IsFalse(result.HasChanges);
@@ -253,7 +254,7 @@ namespace SNSRi.Api.Tests
             };
 
             // check if list has changed
-            var result = FactoryReset.Instance.CompareDevices(devices1, devices2);
+            var result = new FactoryReset(null).CompareDevices(devices1, devices2);
 
             // Assert
             Assert.IsTrue(result.AddedDevices.Count == 3);
@@ -279,7 +280,7 @@ namespace SNSRi.Api.Tests
             };
 
             // check if list has changed
-            var result = FactoryReset.Instance.CompareDevices(devices1, devices2);
+            var result = new FactoryReset(null).CompareDevices(devices1, devices2);
 
             // Assert
             Assert.IsTrue(result.AddedDevices.Count == 0 && result.DeletedDevices.Count == 1);
@@ -304,7 +305,7 @@ namespace SNSRi.Api.Tests
             };
 
             // check if list has changed
-            var result = FactoryReset.Instance.CompareDevices(devices1, devices2);
+            var result = new FactoryReset(null).CompareDevices(devices1, devices2);
 
             // Assert
             Assert.IsTrue(result.AddedDevices.Count == 0 && result.DeletedDevices.Count == 2);
@@ -330,7 +331,7 @@ namespace SNSRi.Api.Tests
             };
 
             // check if list has changed
-            var result = FactoryReset.Instance.CompareDevices(devices1, devices2);
+            var result = new FactoryReset(null).CompareDevices(devices1, devices2);
 
             // Assert
             Assert.IsTrue(result.AddedDevices.Count == 1 && result.DeletedDevices.Count == 1);
@@ -338,17 +339,27 @@ namespace SNSRi.Api.Tests
 
 
         [TestMethod]
-        public void FactoryReset_DeviceNameThatIncludesRoot_MustBeHidden()
+        public void FactoryReset_GetHSDevices_ShouldReturnListOfHSDevices()
         {
-            var devices1 = new List<HSDevice>
-            {
-                createDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
-                createDevice("Device Two", "Location1", "Location2", "1", "On", false, 2),
-                createDevice("Device Root", "Location1", "Location2", "1", "On", false, 3)
-            };
+            var devices1 = new FactoryReset(null).GetHSDevices("");
 
-            //FactoryReset.Instance
-            
+            Assert.IsInstanceOfType(devices1, typeof(IEnumerable<HSDevice>));
+
         }
+
+
+        //[TestMethod]
+        //public void FactoryReset_DeviceNameThatIncludesRoot_MustBeHidden()
+        //{
+        //    var devices1 = new List<HSDevice>
+        //    {
+        //        createDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
+        //        createDevice("Device Two", "Location1", "Location2", "1", "On", false, 2),
+        //        createDevice("Device Root", "Location1", "Location2", "1", "On", false, 3)
+        //    };
+
+        //    //FactoryReset.Instance
+
+        //}
     }
 }

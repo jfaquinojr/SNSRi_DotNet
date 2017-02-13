@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using SNSRi.Api.Models;
+using SNSRi.Business;
 using SNSRi.Repository;
 using SNSRi.Repository.Query;
 
@@ -14,6 +15,15 @@ namespace SNSRi.Api.Controllers
 {
     public class AccountController : Controller
     {
+        private IFactoryReset _factoryReset;
+        private IHomeSeerUnitOfWork _homeSeerUnitOfWork;
+
+        public AccountController(IFactoryReset factoryReset, IHomeSeerUnitOfWork homeSeerUnitOfWork)
+        {
+            this._factoryReset = factoryReset;
+            this._homeSeerUnitOfWork = homeSeerUnitOfWork;
+        }
+
         [AllowAnonymous]
         public ActionResult Login()
         {
@@ -26,8 +36,7 @@ namespace SNSRi.Api.Controllers
         {
             if (ModelState.IsValid)
             {
-                var usersRepo = new UserQuery();
-                var user = usersRepo.ValidateUser(model.Email, model.Password);
+                var user = new UserQuery().ValidateUser(model.Email, model.Password);
 
                 if (null != user)
                 {
@@ -44,9 +53,8 @@ namespace SNSRi.Api.Controllers
 
                     authManager.SignIn(identity);
 
-                    var uof = new HomeSeerUnitOfWork(new SNSRiContext());
                     var url = Utility.GetConfig("HomeSeerURL", "http://localhost:8002");
-                    uof.FactorySync(GetHSDevices(url));
+                    _homeSeerUnitOfWork.FactorySync(_factoryReset.GetHSDevices(url));
 
                     return Redirect(Url.Action("index", "home"));
                 }

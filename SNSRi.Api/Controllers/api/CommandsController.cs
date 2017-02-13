@@ -12,6 +12,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
+using SNSRi.Business;
 using SNSRi.Entities.HomeSeer;
 using SNSRi.Repository;
 
@@ -20,6 +21,13 @@ namespace SNSRi.Api.Controllers
     //[Authorize]
     public class CommandsController : ApiController
     {
+        private IFactoryReset _factoryReset;
+        private IHomeSeerUnitOfWork _homeSeerUnitOfWork;
+        public CommandsController(IFactoryReset factoryReset, IHomeSeerUnitOfWork homeSeerUnitOfWork)
+        {
+            _factoryReset = factoryReset;
+            _homeSeerUnitOfWork = homeSeerUnitOfWork;
+        }
 
         // POST: api/ChangeDeviceValue/5
         [HttpPost]
@@ -106,9 +114,8 @@ namespace SNSRi.Api.Controllers
         [Route("api/FactoryReset")]
         public IHttpActionResult FactoryReset()
         {
-            var uof = new HomeSeerUnitOfWork(new SNSRiContext());
             var url = Utility.GetConfig("HomeSeerURL", "http://localhost:8002");
-            uof.FactoryReset(GetHSDevices(url));
+            _homeSeerUnitOfWork.FactoryReset(_factoryReset.GetHSDevices(url));
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -118,73 +125,12 @@ namespace SNSRi.Api.Controllers
         [Route("api/FactorySync")]
         public IHttpActionResult FactorySync()
         {
-            var uof = new HomeSeerUnitOfWork(new SNSRiContext());
             var url = Utility.GetConfig("HomeSeerURL", "http://localhost:8002");
-            uof.FactorySync(GetHSDevices(url));
+            _homeSeerUnitOfWork.FactorySync(_factoryReset.GetHSDevices(url));
 
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        public IEnumerable<HSDevice> GetHSDevices(string urlHomeSeer)
-        {
-            var ret = new List<HSDevice>();
-            urlHomeSeer = urlHomeSeer.TrimEnd('/') + "/JSON?request=getstatus";
-            using (var client = new HttpClient())
-            {
-                var response = client.GetStringAsync(urlHomeSeer);
-
-                dynamic results = JsonConvert.DeserializeObject<dynamic>(response.Result);
-
-                var hsDevices = results.Devices;
-                foreach (var hsDev in hsDevices)
-                {
-                    ret.Add(new HSDevice
-                    {
-                        Name = hsDev.name,
-                        Status = hsDev.status,
-                        Location = hsDev.location,
-                        Ref = hsDev.@ref,
-                        Value = hsDev.value.ToString(),
-                        HideFromView = (bool) hsDev.hide_from_view,
-                        Location2 = hsDev.location2,
-                        DeviceTypeString = hsDev.device_type_string,
-                        LastChange = DateTime.Parse(hsDev.last_change.ToString()),
-                        Relationship = hsDev.relationship,
-                        //DeviceType = hsDev.associated_devices,
-                        DeviceImage = hsDev.device_image,
-                        UserNote = hsDev.UserNote,
-                        UserAccess = hsDev.UserAccess,
-                        StatusImage = hsDev.status_image
-                    });
-                }
-            }
-            return ret;
-        }
-
-        private HSLocations GetHSLocation(string urlHomeSeer)
-        {
-            var ret = new HSLocations();
-            urlHomeSeer = urlHomeSeer.TrimEnd('/') + "/JSON?request=getlocations";
-            using (var client = new HttpClient())
-            {
-                var response = client.GetStringAsync(urlHomeSeer);
-
-                dynamic results = JsonConvert.DeserializeObject<dynamic>(response.Result);
-
-                var rooms = results.location1;
-                foreach (var hsRoom in rooms)
-                {
-                    ret.Rooms.Add(hsRoom.ToString());
-                }
-
-                var floors = results.location2;
-                foreach (var hsFloor in floors)
-                {
-                    ret.Floors.Add(hsFloor.ToString());
-                }
-            }
-            return ret;
-        }
 
         private static void Truncate(string table)
         {

@@ -28,12 +28,6 @@ namespace SNSRi.Api
             var cors = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(cors);
 
-            //config.Routes.MapHttpRoute(
-            //    name: "DefaultApi",
-            //    routeTemplate: "api/{controller}/{id}",
-            //    defaults: new { id = RouteParameter.Optional }
-            //);
-
             // Controller Only
             // To handle routes like `/api/VTRouting`
             config.Routes.MapHttpRoute(

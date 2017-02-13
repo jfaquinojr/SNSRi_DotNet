@@ -14,6 +14,12 @@ namespace SNSRi.Api.Controllers.api
 {
     public class DevicesController : ApiController
     {
+        private IUnitOfWork _unitOfWork;
+        public DevicesController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
         [HttpGet]
         [Route("api/Devices")]
         public IHttpActionResult GetDevices()
@@ -37,9 +43,8 @@ namespace SNSRi.Api.Controllers.api
         public IHttpActionResult CreateDevice(Device device)
         {
             device.CreatedOn = DateTime.Now;
-            var uof = new UnitOfWork(new SNSRiContext());
-            uof.Devices.Add(device);
-            uof.Complete();
+            _unitOfWork.Devices.Add(device);
+            _unitOfWork.Complete();
             return Ok(device.Id);
         }
 
@@ -48,15 +53,14 @@ namespace SNSRi.Api.Controllers.api
         [ResponseType(typeof(void))]
         public IHttpActionResult UpdateDevice(Device model)
         {
-            var uof = new UnitOfWork(new SNSRiContext());
-            var device = uof.Devices.Get(model.Id);
+            var device = _unitOfWork.Devices.Get(model.Id);
             device.ModifiedOn = DateTime.Now;
             device.Name = model.Name;
             device.HideFromView = model.HideFromView;
             device.ReferenceId = model.ReferenceId;
             device.Status = model.Status;
             device.Value = model.Value;
-            uof.Complete();
+            _unitOfWork.Complete();
             return StatusCode(HttpStatusCode.NoContent);
         }
 
@@ -66,9 +70,8 @@ namespace SNSRi.Api.Controllers.api
         [ResponseType(typeof(void))]
         public IHttpActionResult DeleteDevice(int id)
         {
-            var uof = new UnitOfWork(new SNSRiContext());
-            uof.Devices.Remove(id);
-            uof.Complete();
+            _unitOfWork.Devices.Remove(id);
+            _unitOfWork.Complete();
             return StatusCode(HttpStatusCode.NoContent);
         }
     }

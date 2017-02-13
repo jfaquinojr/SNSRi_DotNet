@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using log4net;
+using SNSRi.Web;
+using SNSRi.Web.App_Start;
 
 namespace SNSRi.Api
 {
@@ -19,13 +21,14 @@ namespace SNSRi.Api
 		{
             Log.Debug("Application started");
 
-			AreaRegistration.RegisterAllAreas();
+            AreaRegistration.RegisterAllAreas();
 			GlobalConfiguration.Configure(WebApiConfig.Register);
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
+            UnityConfig.RegisterComponents();
 
-            GlobalConfiguration.Configuration.Formatters.JsonFormatter.MediaTypeMappings.Add(new QueryStringMapping("json", "true", "application/json"));
+            //GlobalConfiguration.Configuration.Formatters.JsonFormatter.MediaTypeMappings.Add(new QueryStringMapping("json", "true", "application/json"));
         }
 	}
 }

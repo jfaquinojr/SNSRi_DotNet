@@ -2,8 +2,8 @@
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public ITicketRepository Tickets { get; private set; }
-        public IUserRepository Users { get; private set; }
+        public ITicketRepository Tickets { get; set; }
+        public IUserRepository Users { get; set; }
         public IDeviceRepository Devices { get; set; }
         public IRoomDeviceRepository RoomDevices { get; set; }
         public IRoomRepository Rooms { get; set; }
@@ -11,15 +11,21 @@
 
         protected readonly SNSRiContext _context;
 
-        public UnitOfWork(SNSRiContext context)
+        public UnitOfWork(SNSRiContext context, 
+            ITicketRepository ticketRepository,
+            IUserRepository userRepository, 
+            IDeviceRepository deviceRepository,
+            IRoomDeviceRepository roomDeviceRepository,
+            IRoomRepository roomRepository, 
+            IHSDeviceRepository hsDeviceRepository)
         {
             _context = context;
-            Tickets = new TicketRepository(_context);
-            Users = new UserRepository(_context);
-            Devices = new DeviceRepository(_context);
-            RoomDevices = new RoomDeviceRepository(_context);
-            Rooms = new RoomRepository(_context);
-            HSDevices = new HSDeviceRepository(_context);
+            Tickets = ticketRepository;
+            Users = userRepository;
+            Devices = deviceRepository;
+            RoomDevices = roomDeviceRepository;
+            Rooms = roomRepository;
+            HSDevices = hsDeviceRepository;
         }
 
 
@@ -32,6 +38,7 @@
         {
             _context.Dispose();
         }
+
 
     }
 }

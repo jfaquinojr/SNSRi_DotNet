@@ -13,14 +13,24 @@ namespace SNSRi.Repository
 {
     public class HomeSeerUnitOfWork : UnitOfWork, IHomeSeerUnitOfWork
     {
+        private IFactoryReset _factoryReset;
+
+        public HomeSeerUnitOfWork(
+            IFactoryReset factoryReset,
+            SNSRiContext context,
+            ITicketRepository ticketRepository,
+            IUserRepository userRepository,
+            IDeviceRepository deviceRepository,
+            IRoomDeviceRepository roomDeviceRepository,
+            IRoomRepository roomRepository,
+            IHSDeviceRepository hsDeviceRepository) : base(context, ticketRepository, userRepository, deviceRepository, roomDeviceRepository, roomRepository, hsDeviceRepository)
+        {
+            this._factoryReset = factoryReset;
+        }
+
         private void Truncate(string table)
         {
             base._context.Database.ExecuteSqlCommand($"DELETE FROM {table}");
-        }
-
-        public HomeSeerUnitOfWork(SNSRiContext context) : base(context)
-        {
-            
         }
 
         public void FactoryReset(IEnumerable<HSDevice> devices)
@@ -83,7 +93,7 @@ namespace SNSRi.Repository
         public void FactorySync(IEnumerable<HSDevice> devices)
         {
             var currentDevices = this._context.HSDevices.ToList();
-            var result = SNSRi.Business.FactoryReset.Instance.CompareDevices(currentDevices, devices);
+            var result = _factoryReset.CompareDevices(currentDevices, devices);
 
             using (var dbTran = base._context.Database.BeginTransaction())
             {

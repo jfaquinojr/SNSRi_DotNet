@@ -8,7 +8,6 @@ namespace SNSRi.Repository
     {
         void FactoryReset(IEnumerable<HSDevice> devices);
         void FactorySync(IEnumerable<HSDevice> devices);
-        //IEnumerable<HSDevice> GetHSDevices(string urlHomeSeer);
-        //HSLocations GetHSLocation(string urlHomeSeer);
+
     }
 }
