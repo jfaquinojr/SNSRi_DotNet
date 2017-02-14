@@ -6,6 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SNSRi.Business;
 using SNSRi.Entities;
 using SNSRi.Entities.HomeSeer;
+using SNSRi.Api.Tests.Helpers;
 
 namespace SNSRi.Api.Tests
 {
@@ -78,19 +79,19 @@ namespace SNSRi.Api.Tests
         [TestMethod]
         public void Convert_WhenDeviceNameIncludesRoot_MustBeHidden()
         {
-            Assert.IsTrue(ObjectConverter.ConvertToDevice(createDevice("DeviceWithRootInName", "Location1", "Location2", "1", "On", false, 3)).HideFromView);
+            Assert.IsTrue(ObjectConverter.ConvertToDevice(TestHelper.CreateHSDevice("DeviceWithRootInName", "Location1", "Location2", "1", "On", false, 3)).HideFromView);
         }
 
         [TestMethod]
         public void Convert_WhenDeviceNameIncludesBattery_MustBeHidden()
         {
-            Assert.IsTrue(ObjectConverter.ConvertToDevice(createDevice("DeviceWithBatteryInName", "Location1", "Location2", "1", "On", false, 3)).HideFromView);
+            Assert.IsTrue(ObjectConverter.ConvertToDevice(TestHelper.CreateHSDevice("DeviceWithBatteryInName", "Location1", "Location2", "1", "On", false, 3)).HideFromView);
         }
 
         [TestMethod]
         public void Convert_WhenDeviceNameDoesntIncludesBatteryOrRoot_MustBeVisible()
         {
-            Assert.IsFalse(ObjectConverter.ConvertToDevice(createDevice("NormalEverydayDevice", "Location1", "Location2", "1", "On", false, 3)).HideFromView);
+            Assert.IsFalse(ObjectConverter.ConvertToDevice(TestHelper.CreateHSDevice("NormalEverydayDevice", "Location1", "Location2", "1", "On", false, 3)).HideFromView);
         }
 
 
@@ -121,21 +122,6 @@ namespace SNSRi.Api.Tests
         }
 
 
-        private HSDevice createDevice(string name, string location1, string location2, string value, string status,
-            bool hide, int refId)
-        {
-            return new HSDevice
-            {
-                Name = name,
-                Location = location1,
-                Location2 = location2,
-                Value = value,
-                Status = status,
-                HideFromView = hide,
-                Ref = refId
-            };
-        }
-
         [TestMethod]
         public void FactoryReset_CompareDevices_NoChanges()
         {
@@ -145,16 +131,16 @@ namespace SNSRi.Api.Tests
             // get the list of existing homeseer devices
             var devices1 = new List<HSDevice>
             {
-                createDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
-                createDevice("Device Two", "Location1", "Location2", "1", "On", false, 2)
+                TestHelper.CreateHSDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
+                TestHelper.CreateHSDevice("Device Two", "Location1", "Location2", "1", "On", false, 2)
             };
 
 
             // get the list of fresh homeseer devices
             var devices2 = new List<HSDevice>()
             {
-                createDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
-                createDevice("Device Two", "Location1", "Location2", "1", "On", false, 2)
+                TestHelper.CreateHSDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
+                TestHelper.CreateHSDevice("Device Two", "Location1", "Location2", "1", "On", false, 2)
             };
 
             // check if list has changed
@@ -173,17 +159,17 @@ namespace SNSRi.Api.Tests
             // get the list of existing homeseer devices
             var devices1 = new List<HSDevice>
             {
-                createDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
-                createDevice("Device Two", "Location1", "Location2", "1", "On", false, 2)
+                TestHelper.CreateHSDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
+                TestHelper.CreateHSDevice("Device Two", "Location1", "Location2", "1", "On", false, 2)
             };
 
 
             // get the list of fresh homeseer devices
             var devices2 = new List<HSDevice>()
             {
-                createDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
-                createDevice("Device Two", "Location1", "Location2", "1", "On", false, 2),
-                createDevice("Device Three", "Location1", "Location2", "1", "On", false, 2)
+                TestHelper.CreateHSDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
+                TestHelper.CreateHSDevice("Device Two", "Location1", "Location2", "1", "On", false, 2),
+                TestHelper.CreateHSDevice("Device Three", "Location1", "Location2", "1", "On", false, 2)
             };
 
             // check if list has changed
@@ -204,22 +190,22 @@ namespace SNSRi.Api.Tests
             // get the list of existing homeseer devices
             var devices1 = new List<HSDevice>
             {
-                createDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
-                createDevice("Device Two", "Location1", "Location2", "1", "On", false, 2),
-                createDevice("Device Three", "Location1", "Location2", "1", "On", false, 3),
-                createDevice("Device Four", "Location1", "Location2", "1", "On", false, 4),
-                createDevice("Device Five", "Location1", "Location2", "1", "On", false, 5),
+                TestHelper.CreateHSDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
+                TestHelper.CreateHSDevice("Device Two", "Location1", "Location2", "1", "On", false, 2),
+                TestHelper.CreateHSDevice("Device Three", "Location1", "Location2", "1", "On", false, 3),
+                TestHelper.CreateHSDevice("Device Four", "Location1", "Location2", "1", "On", false, 4),
+                TestHelper.CreateHSDevice("Device Five", "Location1", "Location2", "1", "On", false, 5),
             };
 
 
             // get the list of fresh homeseer devices
             var devices2 = new List<HSDevice>()
             {
-                createDevice("Device Five", "Location1", "Location2", "1", "On", false, 5),
-                createDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
-                createDevice("Device Four", "Location1", "Location2", "1", "On", false, 4),
-                createDevice("Device Three", "Location1", "Location2", "1", "On", false, 3),
-                createDevice("Device Two", "Location1", "Location2", "1", "On", false, 2),
+                TestHelper.CreateHSDevice("Device Five", "Location1", "Location2", "1", "On", false, 5),
+                TestHelper.CreateHSDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
+                TestHelper.CreateHSDevice("Device Four", "Location1", "Location2", "1", "On", false, 4),
+                TestHelper.CreateHSDevice("Device Three", "Location1", "Location2", "1", "On", false, 3),
+                TestHelper.CreateHSDevice("Device Two", "Location1", "Location2", "1", "On", false, 2),
             };
 
             // check if list has changed
@@ -238,19 +224,19 @@ namespace SNSRi.Api.Tests
             // get the list of existing homeseer devices
             var devices1 = new List<HSDevice>
             {
-                createDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
-                createDevice("Device Two", "Location1", "Location2", "1", "On", false, 2)
+                TestHelper.CreateHSDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
+                TestHelper.CreateHSDevice("Device Two", "Location1", "Location2", "1", "On", false, 2)
             };
 
 
             // get the list of fresh homeseer devices
             var devices2 = new List<HSDevice>()
             {
-                createDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
-                createDevice("Device Two", "Location1", "Location2", "1", "On", false, 2),
-                createDevice("Device Three", "Location1", "Location2", "1", "On", false, 3),
-                createDevice("Device Four", "Location1", "Location2", "1", "On", false, 4),
-                createDevice("Device Five", "Location1", "Location2", "1", "On", false, 5)
+                TestHelper.CreateHSDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
+                TestHelper.CreateHSDevice("Device Two", "Location1", "Location2", "1", "On", false, 2),
+                TestHelper.CreateHSDevice("Device Three", "Location1", "Location2", "1", "On", false, 3),
+                TestHelper.CreateHSDevice("Device Four", "Location1", "Location2", "1", "On", false, 4),
+                TestHelper.CreateHSDevice("Device Five", "Location1", "Location2", "1", "On", false, 5)
             };
 
             // check if list has changed
@@ -266,17 +252,17 @@ namespace SNSRi.Api.Tests
             // get the list of existing homeseer devices
             var devices1 = new List<HSDevice>
             {
-                createDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
-                createDevice("Device Two", "Location1", "Location2", "1", "On", false, 2),
-                createDevice("Device Three", "Location1", "Location2", "1", "On", false, 2)
+                TestHelper.CreateHSDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
+                TestHelper.CreateHSDevice("Device Two", "Location1", "Location2", "1", "On", false, 2),
+                TestHelper.CreateHSDevice("Device Three", "Location1", "Location2", "1", "On", false, 2)
             };
 
 
             // get the list of fresh homeseer devices
             var devices2 = new List<HSDevice>()
             {
-                createDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
-                createDevice("Device Two", "Location1", "Location2", "1", "On", false, 2),
+                TestHelper.CreateHSDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
+                TestHelper.CreateHSDevice("Device Two", "Location1", "Location2", "1", "On", false, 2),
             };
 
             // check if list has changed
@@ -292,16 +278,16 @@ namespace SNSRi.Api.Tests
             // get the list of existing homeseer devices
             var devices1 = new List<HSDevice>
             {
-                createDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
-                createDevice("Device Two", "Location1", "Location2", "1", "On", false, 2),
-                createDevice("Device Three", "Location1", "Location2", "1", "On", false, 2)
+                TestHelper.CreateHSDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
+                TestHelper.CreateHSDevice("Device Two", "Location1", "Location2", "1", "On", false, 2),
+                TestHelper.CreateHSDevice("Device Three", "Location1", "Location2", "1", "On", false, 2)
             };
 
 
             // get the list of fresh homeseer devices
             var devices2 = new List<HSDevice>()
             {
-                createDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
+                TestHelper.CreateHSDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
             };
 
             // check if list has changed
@@ -318,16 +304,16 @@ namespace SNSRi.Api.Tests
             // get the list of existing homeseer devices
             var devices1 = new List<HSDevice>
             {
-                createDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
-                createDevice("Device Two", "Location1", "Location2", "1", "On", false, 2)
+                TestHelper.CreateHSDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
+                TestHelper.CreateHSDevice("Device Two", "Location1", "Location2", "1", "On", false, 2)
             };
 
 
             // get the list of fresh homeseer devices
             var devices2 = new List<HSDevice>()
             {
-                createDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
-                createDevice("Device Renamed", "Location1", "Location2", "1", "On", false, 2),
+                TestHelper.CreateHSDevice("Device One", "Location1", "Location2", "1", "On", false, 1),
+                TestHelper.CreateHSDevice("Device Renamed", "Location1", "Location2", "1", "On", false, 2),
             };
 
             // check if list has changed
@@ -341,10 +327,10 @@ namespace SNSRi.Api.Tests
         [TestMethod]
         public void FactoryReset_GetHSDevices_ShouldReturnListOfHSDevices()
         {
-            var devices1 = new FactoryReset(null).GetHSDevices("");
+            var fakeHttp = new Fakes.FakeHttpClient();
+            var devices1 = new FactoryReset(fakeHttp).GetHSDevices("");
 
             Assert.IsInstanceOfType(devices1, typeof(IEnumerable<HSDevice>));
-
         }
 
 

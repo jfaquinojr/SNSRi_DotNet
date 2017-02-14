@@ -18,6 +18,16 @@ namespace SNSRi.Entities
 		public int? ModifiedBy { get; set; }
 	    public string Value { get; set; }
 	    public bool HideFromView { get; set; }
-        public string SectionGroup { get; set; }
+        public string TileGroup { get; set; }
+        public int TileSize { get; set; }
+        public string TileImage { get; set; }
+    }
+
+    enum TileSizes
+    {
+        Normal = 0,
+        Wide = 1,
+        Small = 2,
+        Large = 3,
     }
 }
