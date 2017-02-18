@@ -9,6 +9,7 @@ using SNSRi.Entities;
 using SNSRi.Repository;
 using SNSRi.Repository.Commands;
 using SNSRi.Repository.Query;
+using AutoMapper;
 
 namespace SNSRi.Api.Controllers.api
 {
@@ -52,12 +53,8 @@ namespace SNSRi.Api.Controllers.api
         public IHttpActionResult UpdateDevice(Device model)
         {
             var device = _unitOfWork.Devices.Get(model.Id);
+            Mapper.Map(model, device);
             device.ModifiedOn = DateTime.Now;
-            device.Name = model.Name;
-            device.HideFromView = model.HideFromView;
-            device.ReferenceId = model.ReferenceId;
-            device.Status = model.Status;
-            device.Value = model.Value;
             _unitOfWork.Complete();
             return StatusCode(HttpStatusCode.NoContent);
         }

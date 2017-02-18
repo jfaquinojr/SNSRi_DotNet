@@ -64,6 +64,7 @@ var App;
                 .then(function (result) {
                 if (!angular.equals(device, self.selectedDevice)) {
                     self.selectedDevice = angular.copy(device, self.selectedDevice);
+                    alert(JSON.stringify(self.selectedDevice));
                 }
                 $.Notify({
                     caption: "Saved.",

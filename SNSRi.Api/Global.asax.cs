@@ -24,6 +24,7 @@ namespace SNSRi.Api
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AutoMapperConfig.ConfigureMapping();
 
             //GlobalConfiguration.Configuration.Formatters.JsonFormatter.MediaTypeMappings.Add(new QueryStringMapping("json", "true", "application/json"));
             Log.Logger = new LoggerConfiguration()

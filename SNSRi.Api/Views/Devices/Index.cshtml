@@ -11,10 +11,11 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>ReferenceId</th>
+                <th>Ref Id</th>
                 <th>Status</th>
                 <th>Value</th>
-                <th>HideFromView</th>
+                <th>Hidden</th>
+                <th>Tile Group</th>
                 <th></th>
             </tr>
             </thead>
@@ -26,6 +27,7 @@
                 <td>{{device.Status}}</td>
                 <td>{{device.Value}}</td>
                 <td>{{device.HideFromView}}</td>
+                <td>{{device.TileGroup}}</td>
                 <td>
                     <div class="place-right">
                         <button class="button primary small-button" ng-click="vm.editDevice(device)"><span class="mif-pencil"></span>&nbsp; Edit</button>

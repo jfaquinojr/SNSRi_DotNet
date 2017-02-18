@@ -12,6 +12,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SQLite;
 using System.Data.Common;
+using AutoMapper;
 
 namespace SNSRi.Web
 {
@@ -55,9 +56,8 @@ namespace SNSRi.Web
             container.RegisterType<IFactoryResetter, FactoryResetter>();
             container.RegisterType<IHttpClient, SNSRiHttpClient>();
             container.RegisterType<DbContext, SNSRiContext>(new PerRequestLifetimeManager());
-            container.RegisterType<IDbConnection, SQLiteConnection>(new InjectionConstructor(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString));
-            container.RegisterType<DbConnection, SQLiteConnection>(new InjectionConstructor(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString));
-
+            //container.RegisterType<IDbConnection, SQLiteConnection>(new InjectionConstructor(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString));
+            //container.RegisterType<DbConnection, SQLiteConnection>(new InjectionConstructor(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString));
         }
 
         public static void RegisterComponents()
