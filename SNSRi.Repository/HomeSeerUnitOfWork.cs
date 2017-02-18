@@ -36,7 +36,7 @@ namespace SNSRi.Repository
                     Truncate("Device");
                     Truncate("HSDevice");
 
-                    var locations = hsDevices.Select(d => d.Location);
+                    var locations = hsDevices.Select(d => d.Location).Distinct();
                     foreach (string location in locations)
                     {
                         this.Rooms.Add(roomConverter(location));

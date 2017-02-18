@@ -48,6 +48,7 @@ namespace SNSRi.Business
             return new UIRoom
             {
                 Name = roomName,
+                SourceRoom = roomName,
                 CreatedOn = DateTime.Now
             };
         }
