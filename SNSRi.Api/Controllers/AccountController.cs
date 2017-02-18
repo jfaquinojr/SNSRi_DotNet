@@ -17,12 +17,10 @@ namespace SNSRi.Api.Controllers
     public class AccountController : Controller
     {
         private IFactoryResetter _factoryReset;
-        private IHomeSeerUnitOfWork _homeSeerUnitOfWork;
 
-        public AccountController(IFactoryResetter factoryReset, IHomeSeerUnitOfWork homeSeerUnitOfWork)
+        public AccountController(IFactoryResetter factoryReset)
         {
             this._factoryReset = factoryReset;
-            this._homeSeerUnitOfWork = homeSeerUnitOfWork;
         }
 
         [AllowAnonymous]
@@ -55,7 +53,7 @@ namespace SNSRi.Api.Controllers
                     authManager.SignIn(identity);
 
                     var url = Utility.GetConfig("HomeSeerURL", "http://localhost:8002");
-                    _homeSeerUnitOfWork.FactorySync(_factoryReset.GetHSDevices(url));
+                    _factoryReset.FactorySync();
 
                     return Redirect(Url.Action("index", "home"));
                 }

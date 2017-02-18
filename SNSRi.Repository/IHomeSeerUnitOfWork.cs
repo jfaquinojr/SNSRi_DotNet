@@ -8,7 +8,6 @@ namespace SNSRi.Repository
     public interface IHomeSeerUnitOfWork: IUnitOfWork
     {
         void FactoryReset(IEnumerable<HSDevice> hsDevices, Func<HSDevice, Device> deviceConverter, Func<string, UIRoom> roomConverter);
-        void FactorySync(IEnumerable<HSDevice> hsDevices);
-        //void AddUIDevices(IEnumerable<Device> devices, string roomName);
+        void FactorySync(IEnumerable<HSDevice> addedDevices, IEnumerable<HSDevice> deletedDevices, Func<HSDevice, Device> deviceConverter);
     }
 }

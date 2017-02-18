@@ -52,11 +52,11 @@ namespace SNSRi.Business
                 {
                     Name = hsDev.name,
                     Status = hsDev.status,
-                    Location = hsDev.location2,
+                    Location = hsDev.location,
                     Ref = hsDev.@ref,
                     Value = hsDev.value.ToString(),
                     HideFromView = (bool) hsDev.hide_from_view,
-                    Location2 = hsDev.location,
+                    Location2 = hsDev.location2,
                     DeviceTypeString = hsDev.device_type_string,
                     LastChange = DateTime.Parse(hsDev.last_change.ToString()),
                     Relationship = hsDev.relationship,
@@ -81,7 +81,13 @@ namespace SNSRi.Business
 
         public void FactorySync()
         {
-            _uof.FactorySync(GetHSDevices(_url));
+            var currentDevices = _uof.HSDevices.GetAll();
+            var hsDevices = GetHSDevices(_url);
+            var result = CompareDevices(currentDevices, hsDevices);
+            if (result.HasChanges)
+            {
+                _uof.FactorySync(result.AddedDevices, result.DeletedDevices, ObjectConverter.ConvertToDevice);
+            }
         }
 
     }

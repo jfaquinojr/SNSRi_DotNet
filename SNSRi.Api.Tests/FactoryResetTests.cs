@@ -107,9 +107,22 @@ namespace SNSRi.Api.Tests
             Assert.IsTrue(true);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void Convert_NullRoomName_MustThrowError()
+        {
+            // Arrange
+
+            // Act
+            var room = ObjectConverter.ConvertToRoom(null);
+
+            // Assert
+            Assert.IsTrue(true);
+        }
+
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(InvalidOperationException))]
         public void Convert_HSRoomNameIsAll_MustThrowException()
         {
             // Arrange

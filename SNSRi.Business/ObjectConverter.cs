@@ -40,9 +40,14 @@ namespace SNSRi.Business
 
         public static UIRoom ConvertToRoom(string roomName)
         {
+            if (string.IsNullOrWhiteSpace(roomName))
+            {
+                throw new InvalidOperationException("Room name must not be empty");
+            }
+
             if (roomName.ToLower() == "all")
             {
-                throw new ArgumentException("All room should be skipped", nameof(roomName));
+                throw new InvalidOperationException("All room should be skipped");
             }
 
             return new UIRoom
