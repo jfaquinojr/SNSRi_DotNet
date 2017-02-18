@@ -49,6 +49,9 @@
         Status: string;
         Value: string;
         HideFromView: boolean;
+        TileGroup: string;
+        TileSize: number;
+        TileImage: string;
     }
 
     export class Activity {

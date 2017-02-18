@@ -10,15 +10,16 @@ using SNSRi.Api.Models;
 using SNSRi.Business;
 using SNSRi.Repository;
 using SNSRi.Repository.Query;
+using SNSRi.Common;
 
 namespace SNSRi.Api.Controllers
 {
     public class AccountController : Controller
     {
-        private IFactoryReset _factoryReset;
+        private IFactoryResetter _factoryReset;
         private IHomeSeerUnitOfWork _homeSeerUnitOfWork;
 
-        public AccountController(IFactoryReset factoryReset, IHomeSeerUnitOfWork homeSeerUnitOfWork)
+        public AccountController(IFactoryResetter factoryReset, IHomeSeerUnitOfWork homeSeerUnitOfWork)
         {
             this._factoryReset = factoryReset;
             this._homeSeerUnitOfWork = homeSeerUnitOfWork;

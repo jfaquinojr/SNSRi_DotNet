@@ -13,8 +13,12 @@ namespace SNSRi.Repository
 	{
 		internal static IDbConnection CreateSQLiteConnection()
 		{
-			var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-			return new SQLiteConnection(connectionString);
+            return new SQLiteConnection(GetConnectionString());
 		}
+
+        internal static string GetConnectionString()
+        {
+            return ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        }
 	}
 }

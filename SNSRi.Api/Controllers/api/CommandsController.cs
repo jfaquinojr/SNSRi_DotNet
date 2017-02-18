@@ -15,18 +15,20 @@ using Newtonsoft.Json;
 using SNSRi.Business;
 using SNSRi.Entities.HomeSeer;
 using SNSRi.Repository;
+using SNSRi.Common;
 
 namespace SNSRi.Api.Controllers
 {
     //[Authorize]
     public class CommandsController : ApiController
     {
-        private IFactoryReset _factoryReset;
-        private IHomeSeerUnitOfWork _homeSeerUnitOfWork;
-        public CommandsController(IFactoryReset factoryReset, IHomeSeerUnitOfWork homeSeerUnitOfWork)
+        private IFactoryResetter _factoryReset;
+        private IDeviceRepository _deviceRepository;
+
+        public CommandsController(IFactoryResetter factoryReset, IDeviceRepository deviceRepository)
         {
             _factoryReset = factoryReset;
-            _homeSeerUnitOfWork = homeSeerUnitOfWork;
+            _deviceRepository = deviceRepository;
         }
 
         // POST: api/ChangeDeviceValue/5
@@ -35,8 +37,7 @@ namespace SNSRi.Api.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult ChangeDeviceValue(int Id, Event entity)
         {
-            var qryDevice = new DeviceRepository(new SNSRiContext());
-            var device = qryDevice.GetByReferenceId(Id);
+            var device = _deviceRepository.GetByReferenceId(Id);
 
             if (device == null)
             {
@@ -114,9 +115,7 @@ namespace SNSRi.Api.Controllers
         [Route("api/FactoryReset")]
         public IHttpActionResult FactoryReset()
         {
-            var url = Utility.GetConfig("HomeSeerURL", "http://localhost:8002");
-            _homeSeerUnitOfWork.FactoryReset(_factoryReset.GetHSDevices(url));
-
+            _factoryReset.FactoryReset();
             return StatusCode(HttpStatusCode.NoContent);
         }
 
@@ -125,16 +124,8 @@ namespace SNSRi.Api.Controllers
         [Route("api/FactorySync")]
         public IHttpActionResult FactorySync()
         {
-            var url = Utility.GetConfig("HomeSeerURL", "http://localhost:8002");
-            _homeSeerUnitOfWork.FactorySync(_factoryReset.GetHSDevices(url));
-
+            _factoryReset.FactorySync();
             return StatusCode(HttpStatusCode.NoContent);
-        }
-
-
-        private static void Truncate(string table)
-        {
-            BaseRepository.ExecuteSql($"DELETE FROM {table}");
         }
 
     }

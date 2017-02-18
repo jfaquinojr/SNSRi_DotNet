@@ -101,7 +101,7 @@ namespace SNSRi.Api.Tests
             // Arrange
 
             // Act
-            var room = ObjectConverter.ConvertToRoom("My Room", 1);
+            var room = ObjectConverter.ConvertToRoom("My Room");
 
             // Assert
             Assert.IsTrue(true);
@@ -115,7 +115,7 @@ namespace SNSRi.Api.Tests
             // Arrange
             
             // Act
-            var room = ObjectConverter.ConvertToRoom("All", 1);
+            var room = ObjectConverter.ConvertToRoom("All");
 
             // Assert
             Assert.IsTrue(false);
@@ -144,7 +144,7 @@ namespace SNSRi.Api.Tests
             };
 
             // check if list has changed
-            var result = new FactoryReset(null).CompareDevices(devices1, devices2);
+            var result = new FactoryResetter(null, null).CompareDevices(devices1, devices2);
 
             // Assert
             Assert.IsFalse(result.HasChanges);
@@ -174,7 +174,7 @@ namespace SNSRi.Api.Tests
 
             // check if list has changed
             
-            var result = new FactoryReset(null).CompareDevices(devices1, devices2);
+            var result = new FactoryResetter(null, null).CompareDevices(devices1, devices2);
 
             // Assert
             Assert.IsTrue(result.AddedDevices.Count == 1);
@@ -209,7 +209,7 @@ namespace SNSRi.Api.Tests
             };
 
             // check if list has changed
-            var result = new FactoryReset(null).CompareDevices(devices1, devices2);
+            var result = new FactoryResetter(null, null).CompareDevices(devices1, devices2);
 
             // Assert
             Assert.IsFalse(result.HasChanges);
@@ -240,7 +240,7 @@ namespace SNSRi.Api.Tests
             };
 
             // check if list has changed
-            var result = new FactoryReset(null).CompareDevices(devices1, devices2);
+            var result = new FactoryResetter(null, null).CompareDevices(devices1, devices2);
 
             // Assert
             Assert.IsTrue(result.AddedDevices.Count == 3);
@@ -266,7 +266,7 @@ namespace SNSRi.Api.Tests
             };
 
             // check if list has changed
-            var result = new FactoryReset(null).CompareDevices(devices1, devices2);
+            var result = new FactoryResetter(null, null).CompareDevices(devices1, devices2);
 
             // Assert
             Assert.IsTrue(result.AddedDevices.Count == 0 && result.DeletedDevices.Count == 1);
@@ -291,7 +291,7 @@ namespace SNSRi.Api.Tests
             };
 
             // check if list has changed
-            var result = new FactoryReset(null).CompareDevices(devices1, devices2);
+            var result = new FactoryResetter(null, null).CompareDevices(devices1, devices2);
 
             // Assert
             Assert.IsTrue(result.AddedDevices.Count == 0 && result.DeletedDevices.Count == 2);
@@ -317,7 +317,7 @@ namespace SNSRi.Api.Tests
             };
 
             // check if list has changed
-            var result = new FactoryReset(null).CompareDevices(devices1, devices2);
+            var result = new FactoryResetter(null, null).CompareDevices(devices1, devices2);
 
             // Assert
             Assert.IsTrue(result.AddedDevices.Count == 1 && result.DeletedDevices.Count == 1);
@@ -328,7 +328,7 @@ namespace SNSRi.Api.Tests
         public void FactoryReset_GetHSDevices_ShouldReturnListOfHSDevices()
         {
             var fakeHttp = new Fakes.FakeHttpClient();
-            var devices1 = new FactoryReset(fakeHttp).GetHSDevices("");
+            var devices1 = new FactoryResetter(fakeHttp, null).GetHSDevices("");
 
             Assert.IsInstanceOfType(devices1, typeof(IEnumerable<HSDevice>));
         }

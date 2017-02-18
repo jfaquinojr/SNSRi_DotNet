@@ -18,6 +18,9 @@ namespace SNSRi.Web.App_Start
             FilterProviders.Providers.Remove(FilterProviders.Providers.OfType<FilterAttributeFilterProvider>().First());
             FilterProviders.Providers.Add(new UnityFilterAttributeFilterProvider(container));
 
+            UnityConfig.RegisterComponents();
+            UnityConfig.RegisterTypes(container);
+
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
 
             // TODO: Uncomment if you want to use PerRequestLifetimeManager

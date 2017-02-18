@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SNSRi.Business</RootNamespace>
     <AssemblyName>SNSRi.Business</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -60,17 +61,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComparisonResult.cs" />
-    <Compile Include="FactoryReset.cs" />
+    <Compile Include="FactoryResetter.cs" />
+    <Compile Include="IBusinessLayer.cs" />
     <Compile Include="IFactoryReset.cs" />
     <Compile Include="IHttpClient.cs" />
+    <Compile Include="IRoomsBL.cs" />
     <Compile Include="ObjectConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoomsBL.cs" />
     <Compile Include="SNSRiHttpClient.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SNSRi.Common\SNSRi.Common.csproj">
+      <Project>{0B8E33C1-95A9-4C70-9813-B649A68C32D4}</Project>
+      <Name>SNSRi.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SNSRi.Entities\SNSRi.Entities.csproj">
       <Project>{DCB12518-6834-4FDD-8086-105202A7D319}</Project>
       <Name>SNSRi.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SNSRi.Repository\SNSRi.Repository.csproj">
+      <Project>{7b2e5218-0bd6-4ccd-8147-e21f1be17c3a}</Project>
+      <Name>SNSRi.Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

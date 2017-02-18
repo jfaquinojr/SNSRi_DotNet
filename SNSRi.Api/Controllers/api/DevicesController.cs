@@ -15,26 +15,24 @@ namespace SNSRi.Api.Controllers.api
     public class DevicesController : ApiController
     {
         private IUnitOfWork _unitOfWork;
-        public DevicesController(IUnitOfWork unitOfWork)
+        private IDeviceRepository _deviceRepository;
+        public DevicesController(IUnitOfWork unitOfWork, IDeviceRepository deviceRepository)
         {
             _unitOfWork = unitOfWork;
+            _deviceRepository = deviceRepository;
         }
 
         [HttpGet]
         [Route("api/Devices")]
         public IHttpActionResult GetDevices()
         {
-            var query = new DeviceRepository(new SNSRiContext());
-
-            return Ok(query.GetAll(1, 1000));
+            return Ok(_deviceRepository.GetAll(1, 1000));
         }
 
         [Route("api/Rooms/{roomId}/Devices")]
         public IHttpActionResult GetDevicesByRoom(int roomId)
         {
-            var query = new DeviceQuery();
-
-            return Ok(query.GetByRoomId(roomId));
+            return Ok(_deviceRepository.GetByRoomId(roomId));
         }
 
         [HttpPost]

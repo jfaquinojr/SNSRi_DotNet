@@ -13,6 +13,11 @@ namespace SNSRi.Api.Controllers.api
 {
     public class RoomsController : ApiController
     {
+        public RoomsController()
+        {
+
+        }
+
         [HttpGet]
         [Route("api/Rooms")]
         public IHttpActionResult GetRooms()

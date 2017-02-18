@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
-using SNSRi.Business;
 using SNSRi.Entities;
 using SNSRi.Entities.HomeSeer;
 using SNSRi.Repository.Commands;
@@ -13,10 +12,8 @@ namespace SNSRi.Repository
 {
     public class HomeSeerUnitOfWork : UnitOfWork, IHomeSeerUnitOfWork
     {
-        private IFactoryReset _factoryReset;
 
         public HomeSeerUnitOfWork(
-            IFactoryReset factoryReset,
             SNSRiContext context,
             ITicketRepository ticketRepository,
             IUserRepository userRepository,
@@ -25,18 +22,10 @@ namespace SNSRi.Repository
             IRoomRepository roomRepository,
             IHSDeviceRepository hsDeviceRepository) : base(context, ticketRepository, userRepository, deviceRepository, roomDeviceRepository, roomRepository, hsDeviceRepository)
         {
-            this._factoryReset = factoryReset;
         }
 
-        private void Truncate(string table)
+        public void FactoryReset(IEnumerable<HSDevice> hsDevices, Func<HSDevice, Device> deviceConverter, Func<string, UIRoom> roomConverter)
         {
-            base._context.Database.ExecuteSqlCommand($"DELETE FROM {table}");
-        }
-
-        public void FactoryReset(IEnumerable<HSDevice> devices)
-        {
-            var hsDevices = devices;
-            var hsLocations = devices.Select(d => d.Location).Distinct();
 
             using (var dbTran = base._context.Database.BeginTransaction())
             {
@@ -47,33 +36,27 @@ namespace SNSRi.Repository
                     Truncate("Device");
                     Truncate("HSDevice");
 
-                    var rooms = new List<UIRoom>();
-                    foreach (var hsLocationRoom in hsLocations)
+                    var locations = hsDevices.Select(d => d.Location);
+                    foreach (string location in locations)
                     {
-                        if (hsLocationRoom.ToLower() == "all") // skip this room
-                            continue;
-
-                        var room = ObjectConverter.ConvertToRoom(hsLocationRoom, 1);
-                        this.Rooms.Add(room);
-                        rooms.Add(room);
+                        this.Rooms.Add(roomConverter(location));
                     }
 
                     foreach (var hsDevice in hsDevices)
                     {
-                        var device = ObjectConverter.ConvertToDevice(hsDevice);
+                        var device = deviceConverter(hsDevice);
                         this.Devices.Add(device);
-                        _context.SaveChanges(); // get a fresh ID from DB
+                        _context.SaveChanges(); // get a fresh DeviceID from DB
 
-                       
+
                         var rd = new UIRoomDevice
                         {
-                            UIRoomId = rooms.First(r => r.Name == hsDevice.Location).Id,
+                            UIRoomId = this.Rooms.GetAll().First(r => r.SourceRoom == hsDevice.Location).Id,
                             DeviceId = device.Id,
                             CreatedBy = 1,
                             CreatedOn = DateTime.Now
                         };
                         this.RoomDevices.Add(rd);
-
 
                         this.HSDevices.Add(hsDevice);
                     }
@@ -86,93 +69,72 @@ namespace SNSRi.Repository
                     dbTran.Rollback();
                     throw;
                 }
-                
+
             }
         }
 
         public void FactorySync(IEnumerable<HSDevice> devices)
         {
-            var currentDevices = this._context.HSDevices.ToList();
-            var result = _factoryReset.CompareDevices(currentDevices, devices);
-
-            using (var dbTran = base._context.Database.BeginTransaction())
-            {
-                try
-                {
-                    DeleteHSDevices(result.DeletedDevices);
-                    AddHSDevices(result.AddedDevices);
-                    _context.SaveChanges();
-                    dbTran.Commit();
-                }
-                catch (Exception e)
-                {
-                    dbTran.Rollback();
-                    Console.WriteLine(e);
-                    throw;
-                }
-            }
+            throw new NotImplementedException();
         }
 
-        private void AddHSDevices(IEnumerable<HSDevice> devices)
+        private void Truncate(string table)
         {
-            foreach (var dev in devices)
-            {
-                _context.HSDevices.Add(dev);
-                _context.SaveChanges();
-
-                AddUIDevice(dev);
-            }
-
+            base._context.Database.ExecuteSqlCommand($"DELETE FROM {table}");
         }
 
-        private void AddUIDevice(HSDevice dev)
-        {
-            var uiDevice = ObjectConverter.ConvertToDevice(dev);
-            _context.Devices.Add(uiDevice);
 
-            AddUIRoomDevice(dev, uiDevice);
-        }
+        //public void AddUIDevices(IEnumerable<Device> devices, string roomName)
+        //{
+        //    foreach (var device in devices)
+        //    {
+        //        _context.Devices.Add(device);
+        //        _context.SaveChanges();
+        //        AddUIRoomDevice(device, roomName);
+        //    }
+            
+        //}
 
-        private void AddUIRoomDevice(HSDevice hsDev, Device uiDev)
-        {
-            var room = _context.Rooms.FirstOrDefault(r => r.SourceRoom == hsDev.Location);
-            if (room != null)
-            {
-                _context.RoomDevices.Add(new UIRoomDevice()
-                {
-                    DeviceId = uiDev.Id,
-                    UIRoomId = room.Id
-                });
-            }
-            else
-            {
-                _context.RoomDevices.Add(new UIRoomDevice()
-                {
-                    DeviceId = uiDev.Id,
-                    UIRoomId = _context.Rooms.First().Id
-                });
-            }
-        }
+        //private void AddUIRoomDevice(Device dev, string roomName)
+        //{
+        //    var room = _context.Rooms.FirstOrDefault(r => r.SourceRoom == roomName || r.Name == roomName);
+        //    if (room != null)
+        //    {
+        //        _context.RoomDevices.Add(new UIRoomDevice()
+        //        {
+        //            DeviceId = dev.Id,
+        //            UIRoomId = room.Id
+        //        });
+        //    }
+        //    else
+        //    {
+        //        _context.RoomDevices.Add(new UIRoomDevice()
+        //        {
+        //            DeviceId = dev.Id,
+        //            UIRoomId = _context.Rooms.First().Id
+        //        });
+        //    }
+        //}
 
-        private void DeleteHSDevices(IEnumerable<HSDevice> devices)
-        {
-            foreach (var device in devices)
-            {
+        //private void DeleteHSDevices(IEnumerable<HSDevice> devices)
+        //{
+        //    foreach (var device in devices)
+        //    {
 
-                DeleteUIRoomDevice(device);
+        //        DeleteUIRoomDevice(device);
 
-                var devToRemove = _context.HSDevices.Single(d => d.Name == device.Name && d.Location == device.Location && d.Location2 == device.Location2 && d.Ref == device.Ref);
-                _context.HSDevices.Remove(devToRemove);
-            }
-        }
+        //        var devToRemove = _context.HSDevices.Single(d => d.Name == device.Name && d.Location == device.Location && d.Location2 == device.Location2 && d.Ref == device.Ref);
+        //        _context.HSDevices.Remove(devToRemove);
+        //    }
+        //}
 
-        private void DeleteUIRoomDevice(HSDevice device)
-        {
-            var dev = _context.RoomDevices.FirstOrDefault(r => r.DeviceId == device.Id);
-            if (dev != null)
-            {
-                _context.RoomDevices.Remove(dev);
-            }
-        }
+        //private void DeleteUIRoomDevice(HSDevice device)
+        //{
+        //    var dev = _context.RoomDevices.FirstOrDefault(r => r.DeviceId == device.Id);
+        //    if (dev != null)
+        //    {
+        //        _context.RoomDevices.Remove(dev);
+        //    }
+        //}
     }
 }

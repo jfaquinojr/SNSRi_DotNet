@@ -6,6 +6,12 @@ using System;
 using SNSRi.Repository;
 using SNSRi.Business;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure.Interception;
+using SNSRi.Common;
+using System.Configuration;
+using System.Data;
+using System.Data.SQLite;
+using System.Data.Common;
 
 namespace SNSRi.Web
 {
@@ -46,9 +52,11 @@ namespace SNSRi.Web
             container.RegisterType<IHSDeviceRepository, HSDeviceRepository>();
             container.RegisterType<IUnitOfWork, UnitOfWork>();
             container.RegisterType<IHomeSeerUnitOfWork, HomeSeerUnitOfWork>();
-            container.RegisterType<IFactoryReset, FactoryReset>();
+            container.RegisterType<IFactoryResetter, FactoryResetter>();
             container.RegisterType<IHttpClient, SNSRiHttpClient>();
-            container.RegisterType<DbContext, SNSRiContext>();
+            container.RegisterType<DbContext, SNSRiContext>(new PerRequestLifetimeManager());
+            container.RegisterType<IDbConnection, SQLiteConnection>(new InjectionConstructor(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString));
+            container.RegisterType<DbConnection, SQLiteConnection>(new InjectionConstructor(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString));
 
         }
 

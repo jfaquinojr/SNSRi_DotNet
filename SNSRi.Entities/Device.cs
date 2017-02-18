@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace SNSRi.Entities
 	    public string Value { get; set; }
 	    public bool HideFromView { get; set; }
         public string TileGroup { get; set; }
-        public int TileSize { get; set; }
+        public int? TileSize { get; set; }
         public string TileImage { get; set; }
     }
 

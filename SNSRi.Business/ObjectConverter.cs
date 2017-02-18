@@ -38,7 +38,7 @@ namespace SNSRi.Business
             return device;
         }
 
-        public static UIRoom ConvertToRoom(string roomName, int userId)
+        public static UIRoom ConvertToRoom(string roomName)
         {
             if (roomName.ToLower() == "all")
             {
@@ -48,8 +48,7 @@ namespace SNSRi.Business
             return new UIRoom
             {
                 Name = roomName,
-                CreatedOn = DateTime.Now,
-                CreatedBy = userId
+                CreatedOn = DateTime.Now
             };
         }
     }

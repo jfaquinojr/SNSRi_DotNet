@@ -9,7 +9,7 @@ namespace SNSRi.Repository
 {
     public class SNSRiContext : DbContext
     {
-        public SNSRiContext() : base((DbConnection) CreateSQLiteConnection(), true)
+        public SNSRiContext() : base("DefaultConnection")
         {
             
         }

@@ -9,10 +9,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SNSRi.Repository</RootNamespace>
     <AssemblyName>SNSRi.Repository</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -135,10 +136,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SNSRi.Business\SNSRi.Business.csproj">
-      <Project>{0179CDBE-59E6-4478-96FE-0403A9497AD7}</Project>
-      <Name>SNSRi.Business</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SNSRi.Entities\SNSRi.Entities.csproj">
       <Project>{dcb12518-6834-4fdd-8086-105202a7d319}</Project>
       <Name>SNSRi.Entities</Name>

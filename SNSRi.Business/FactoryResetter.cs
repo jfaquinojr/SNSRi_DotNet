@@ -6,15 +6,21 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using SNSRi.Entities.HomeSeer;
+using SNSRi.Repository;
+using SNSRi.Common;
 
 namespace SNSRi.Business
 {
-    public class FactoryReset : IDisposable, IFactoryReset
+    public class FactoryResetter : IDisposable, IFactoryResetter
     {
+        private IHomeSeerUnitOfWork _uof;
         private IHttpClient _httpClient;
-        public FactoryReset(IHttpClient httpClient)
+        private readonly string _url;
+        public FactoryResetter(IHttpClient httpClient, IHomeSeerUnitOfWork uof)
         {
             _httpClient = httpClient;
+            _uof = uof;
+            _url = Utility.GetConfig("HomeSeerURL", "http://localhost:8002");
         }
 
         public ComparisonResult CompareDevices(IEnumerable<HSDevice> devices1, IEnumerable<HSDevice> devices2)
@@ -67,5 +73,16 @@ namespace SNSRi.Business
         public void Dispose()
         {
         }
+
+        public void FactoryReset()
+        {
+            _uof.FactoryReset(GetHSDevices(_url), ObjectConverter.ConvertToDevice, ObjectConverter.ConvertToRoom);
+        }
+
+        public void FactorySync()
+        {
+            _uof.FactorySync(GetHSDevices(_url));
+        }
+
     }
 }
