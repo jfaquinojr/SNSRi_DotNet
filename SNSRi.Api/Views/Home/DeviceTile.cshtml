@@ -1,12 +1,20 @@
 ﻿<div class="tile fg-white   bg-green" data-role="tile">
     <div class="tile-content iconic" id="{{vm.device.Id}}">
         <div ng-click="vm.clicked(device)" style="position:absolute; width:150px;height:150px;top:0px;">   
-            <div data-bind="visible: locationIsVisible">
-                <p class="v-align-top align-center margin5 uppercase" style="font-size: 14px" data-bind="text: location">{{device.Name}}</p>
-            </div>
+
+            <div ng-if="vm.hs.status_image">
+                <div data-bind="visible: locationIsVisible">
+                    <p class="v-align-top align-center margin5 uppercase" style="font-size: 14px" data-bind="text: location">{{device.Name}}</p>
+                </div>
             
+                <img class="icon" ng-src="{{vm.HomeSeerUrl}}/{{vm.hs.status_image}}">
+            </div>
+            <div ng-if="!vm.hs.status_image">
+                <div data-bind="visible: locationIsVisible">
+                    <p class="v-align-middle align-center margin5 uppercase" style="font-size: 18px; margin-top:50px;">{{device.Name}}</p>
+                </div>
+            </div>
             <span class="tile-label" data-bind="text: deviceName() + ' ' + statusLabel()">{{device.Status}} ({{device.Value}})</span>
-            <img class="icon" ng-src="{{vm.HomeSeerUrl}}/{{vm.hs.status_image}}">
         </div>        
     </div>
 </div>
