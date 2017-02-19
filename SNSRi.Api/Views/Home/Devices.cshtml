@@ -1,19 +1,26 @@
 ﻿
-<div tile-group tile-area class="tile-group seven" ng-controller="DevicesController">
-    <span class="tile-group-title">
-    <a href="#/">
-        <span class="mif-arrow-left fg-white" style="margin-bottom: 3px;"></span>
-    </a>
-    &nbsp; {{Room.Name}}
-    </span>
-    <div class="tile-container">
+
+<div ng-repeat="deviceGroup in DeviceGroups" ng-controller="DevicesController">
+
+    <div tile-group tile-area class="tile-group" ng-class="sizeOfGroup(deviceGroup.Devices.length)">
+
+        <span class="tile-group-title" ng-if="deviceGroup.TileGroup != 'null'">
+        &nbsp; {{deviceGroup.TileGroup}} 
+        </span>
+        <span class="tile-group-title" ng-if="deviceGroup.TileGroup == 'null'">
+        &nbsp; General
+        </span>
+        <div class="tile-container">
   
-        <div ng-repeat="device in Devices">
-            <device-tile device="device"></device-tile>
+            <div ng-repeat="device in deviceGroup.Devices">
+                <device-tile device="device"></device-tile>
+            </div>
         </div>
-       
     </div>
+
 </div>
+
+
 
 
 
