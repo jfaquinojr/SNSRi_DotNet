@@ -4,7 +4,8 @@ app.controller("DevicesController",
         var scope = $scope;
         var svc = $http;
         var params = $routeParams;
-
+        
+        scope.RoomResidents = [];
         scope.DeviceGroups = [];
         
         scope.Devices = [];
@@ -49,8 +50,17 @@ app.controller("DevicesController",
             });
         }
 
+        var loadRoomResidents = function (roomId) {
+             svc.get(`/api/Rooms/${roomId}/Residents`)
+                 .then(results => {
+                     console.log("RoomResidents: " + JSON.stringify(results.data));
+                     scope.RoomResidents = results.data;
+                });
+        }
+
         loadRoom(params.id);
         loadDevicesByRoomId(params.id);
+        loadRoomResidents(params.id);
 
         startScreenService.refreshStartScreen();
 

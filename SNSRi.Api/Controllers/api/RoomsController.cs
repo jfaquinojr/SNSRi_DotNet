@@ -8,14 +8,16 @@ using System.Web.Http.Description;
 using SNSRi.Entities;
 using SNSRi.Repository.Commands;
 using SNSRi.Repository.Query;
+using SNSRi.Repository;
 
 namespace SNSRi.Api.Controllers.api
 {
     public class RoomsController : ApiController
     {
-        public RoomsController()
+        private IResidentRepository _residentRepository;
+        public RoomsController(IResidentRepository residentRepository)
         {
-
+            _residentRepository = residentRepository;
         }
 
         [HttpGet]
@@ -67,6 +69,13 @@ namespace SNSRi.Api.Controllers.api
             var cmd = new UIRoomCommand();
             cmd.Delete(id);
             return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        [HttpGet]
+        [Route("api/Rooms/{id}/Residents")]
+        public IHttpActionResult GetResidentsByRoom(int id)
+        {
+            return Ok(_residentRepository.GetAllByRoomId(id));
         }
     }
 }

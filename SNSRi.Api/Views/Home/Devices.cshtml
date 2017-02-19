@@ -1,6 +1,10 @@
 ﻿
+<div ng-controller="DevicesController">
+<div style="margin-left:80px;" ng-if="RoomResidents.length > 0">
+Residents: <span ng-repeat="resident in RoomResidents">{{resident.Firstname}} {{resident.Lastname}}</span>
+</div>
 
-<div ng-repeat="deviceGroup in DeviceGroups" ng-controller="DevicesController">
+<div ng-repeat="deviceGroup in DeviceGroups">
 
     <div tile-group tile-area class="tile-group" ng-class="sizeOfGroup(deviceGroup.Devices.length)">
 
@@ -20,7 +24,7 @@
 
 </div>
 
-
+</div>
 
 
 

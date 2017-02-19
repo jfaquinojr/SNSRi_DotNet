@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using SNSRi.Entities;
 using System.Linq;
+using System;
 
 namespace SNSRi.Repository
 {
@@ -18,6 +19,11 @@ namespace SNSRi.Repository
                 .Include(e => e.UIRoom)
                 .ToList();
             return residents;
+        }
+
+        public IEnumerable<Resident> GetAllByRoomId(int Id)
+        {
+            return SNSRiContext.Residents.Where(r => r.UIRoomId == Id).ToList();
         }
 
         private SNSRiContext SNSRiContext
