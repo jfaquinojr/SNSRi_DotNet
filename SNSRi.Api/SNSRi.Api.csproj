@@ -369,6 +369,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\controllers\roomsController.ts" />
+    <TypeScriptCompile Include="app\admin\directives\adminSidebar.ts" />
     <Content Include="Content\angular-busy.css" />
     <Content Include="images\logo.png" />
     <Content Include="Scripts\angular-busy.js" />
@@ -392,7 +394,6 @@
     <TypeScriptCompile Include="app\admin\app-admin.ts" />
     <TypeScriptCompile Include="app\admin\directives\userForm.ts" />
     <TypeScriptCompile Include="app\app.ts" />
-    <Content Include="app\admin\directives\adminSidebar.js" />
     <TypeScriptCompile Include="app\controllers\tilesController.ts" />
     <TypeScriptCompile Include="app\controllers\devicesController.ts" />
     <TypeScriptCompile Include="app\directives\deviceTile.ts" />
@@ -404,7 +405,6 @@
     <TypeScriptCompile Include="app\services\deviceService.ts" />
     <TypeScriptCompile Include="app\services\dataService.ts" />
     <TypeScriptCompile Include="app\controllers\eventsController.ts" />
-    <Content Include="app\controllers\roomsController.js" />
     <TypeScriptCompile Include="app\directives\themePicker.ts" />
     <TypeScriptCompile Include="app\controllers\toolboxController.ts" />
     <Content Include="Areas\HelpPage\HelpPage.css" />

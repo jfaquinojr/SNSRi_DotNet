@@ -247,3 +247,7 @@ ModelManifest.xml
 /.idea/*
 *.iml
 
+# Ignores compiled TypeScript files
+SNSRi.Api/app/**/*.map
+SNSRi.Api/app/**/*.js
+
