@@ -20,6 +20,18 @@
                     templateUrl: "Home/Devices",
                     controller: "DevicesController"
                 })
+                .when("/Welcome/",
+                {
+                    templateUrl: "Home/Partials/?viewName=/Views/Home/Welcome.cshtml"
+                })
+                .when("/Help/",
+                {
+                    templateUrl: "Home/Partials/?viewName=/Views/Home/Welcome.cshtml"
+                })
+                .when("/Support/",
+                {
+                    templateUrl: "Home/Partials/?viewName=/Views/Home/Welcome.cshtml"
+                })
                 .otherwise({
                     templateUrl: "Home/Oops"
                 });

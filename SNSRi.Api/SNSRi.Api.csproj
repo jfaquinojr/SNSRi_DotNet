@@ -373,6 +373,7 @@
   <ItemGroup>
     <Content Include="Views\Rooms\Edit.cshtml" />
     <Content Include="Views\Rooms\Index.cshtml" />
+    <Content Include="Views\Home\Welcome.cshtml" />
     <TypeScriptCompile Include="app\admin\directives\residentForm.ts" />
     <TypeScriptCompile Include="app\admin\residentsController.ts" />
     <TypeScriptCompile Include="app\controllers\roomsController.ts" />
