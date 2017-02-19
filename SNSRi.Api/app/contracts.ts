@@ -1,5 +1,18 @@
 ﻿module Data.Contracts {
 
+    export class Resident {
+        Id: number;
+        Firstname: string;
+        Lastname: string;
+        Notes: string;
+        CreatedOn: any;
+        CreatedBy: number;
+        ModifiedOn: any;
+        ModifiedBy: number;
+        UIRoom: Room;
+        UIRoomId: number;
+    }
+
     export class Room {
         Id: number;
         Name: string;
@@ -11,6 +24,7 @@
         ModifiedOn: any;
         ModifiedBy: number;
         Devices: Device[];
+        Residents: Resident[];
     }
 
     export class User {
@@ -52,6 +66,7 @@
         TileGroup: string;
         TileSize: number;
         TileImage: string;
+        Room: Room;
     }
 
     export class Activity {

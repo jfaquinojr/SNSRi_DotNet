@@ -1,0 +1,56 @@
+﻿
+<div ng-controller="residentsController as vm">
+    
+
+    <button class="button success" ng-click="vm.createResident()"><span class="mif-plus"></span> Create</button>
+    <hr class="thin bg-grayLighter">
+    
+    <div cg-busy="vm.loadingIndicator">
+        <table datatable="ng" dt-instance="vm.dtInstance" class="row-border dataTable striped border bordered admin-table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Notes</th>
+                <th>Room</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="resident in vm.residents">
+                <td>{{resident.Id}}</td>
+                <td>{{resident.Firstname}}</td>
+                <td>{{resident.Lastname}}</td>
+                <td>{{resident.Notes}}</td>
+                <td>{{resident.UIRoom.Name}}</td>
+                <td>
+                    <div class="place-right">
+                        <button class="button primary small-button" ng-click="vm.editResident(resident)"><span class="mif-pencil mif-sm"></span>&nbsp; Edit</button>
+                        <button class="button danger small-button" ng-click="vm.deleteResident(resident)"><span class="mif-bin"></span>&nbsp; Delete</button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div data-role="dialog" role="dialog" id="dialog-residentform" data-overlay="true" class="padding20 dialog" data-close-button="true" data-width="500px">
+        <div class="tabcontrol">
+            <ul class="tabs">
+                <li ng-class="{'active':vm.selectedTab===1}"><a href="javascript:void(0);" ng-click="vm.selectTab(1)">Resident</a></li>
+                <li ng-class="{'active':vm.selectedTab===2}" ng-show="selectedResident"><a href="javascript:void(0);" ng-click="vm.showDevices()">Devices</a></li>
+            </ul>
+            <div class="frames">
+                <div class="frame bg-white" id="resident" ng-show="vm.selectedTab===1">
+                    <resident-form></resident-form>
+                </div>
+                <div class="frame bg-white" id="devices" ng-show="vm.selectedTab===2">
+                    <add-resident-device></add-resident-device>
+                    <resident-devices-form></resident-devices-form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

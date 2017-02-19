@@ -13,6 +13,10 @@ app.config(function ($routeProvider) {
         {
             templateUrl: "Rooms/Index"
         })
+        .when("/Residents/",
+        {
+            templateUrl: "Residents/Index"
+        })
         .when("/Devices/",
         {
             templateUrl: "Devices/Index"

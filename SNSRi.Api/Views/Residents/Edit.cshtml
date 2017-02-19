@@ -1,0 +1,59 @@
+﻿
+
+<h3 ng-if="vm.selectedResident">Edit Resident</h3>
+<h3 ng-if="!vm.selectedResident">Create Resident</h3>
+
+
+<form id="frmResident" name="frmResident" data-role="validator" data-show-required-state="false" data-hint-mode="line" data-hint-background="bg-red" data-hint-color="fg-white" data-hide-error="5000" novalidate="novalidate">
+    <div class="grid">
+            
+        <div class="row">
+            <div class="cell">
+                <label>Firstname</label>
+                <div class="input-control text full-size">
+                    <input ng-model="vm.editingResident.Firstname" type="text" placeholder="Firstname" data-validate-func="required" data-validate-hint="This field cannot be empty!" style="padding-right: 5px;" required>
+                    <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                    <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="cell">
+                <label>Lastname</label>
+                <div class="input-control text full-size">
+                    <input ng-model="vm.editingResident.Lastname" type="text" placeholder="Lastname" data-validate-func="required" data-validate-hint="This field cannot be empty!" style="padding-right: 5px;" required>
+                    <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                    <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                </div>
+            </div>
+        </div>
+                
+        <div class="row">
+            <div class="cell">
+                <label>Notes</label>
+                <div class="input-control textarea full-size" data-role="input" data-text-auto-resize="true">
+                    <textarea ng-model="vm.editingResident.Notes" placeholder="Resident Notes" style="padding-right: 5px;"></textarea>
+                    <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                    <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-control text full-size" data-role="input" cg-busy="vm.loadingRoomsIndicator">
+                <select id="newdevices" name="newdevices"
+                    ng-model="vm.editingResident.UIRoom" 
+                    ng-options="room.Name for room in vm.Rooms track by room.Id">
+                </select>
+            </div>
+        </div>
+       
+                
+    </div>
+    <hr class="thin">
+    <div class="form-actions padding10 no-padding-left">
+        <button ng-disabled="frmResident.$invalid" class="button primary" type="button" ng-click="vm.saveResident()"><span class="mif-checkmark"></span>&nbsp; Save</button>
+    </div>
+
+</form>

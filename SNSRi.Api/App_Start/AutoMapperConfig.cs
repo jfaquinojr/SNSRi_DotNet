@@ -7,6 +7,7 @@ using SNSRi.Business;
 using System.Net.Http;
 using AutoMapper;
 using SNSRi.Entities;
+using SNSRi.Entities.HomeSeer;
 
 namespace SNSRi.Web
 {
@@ -17,6 +18,12 @@ namespace SNSRi.Web
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<Device, Device>();
+                cfg.CreateMap<Ticket, Ticket>();
+                cfg.CreateMap<User, User>();
+                cfg.CreateMap<UIRoomDevice, UIRoomDevice>();
+                cfg.CreateMap<UIRoom, UIRoom>();
+                cfg.CreateMap<Resident, Resident>();
+                cfg.CreateMap<HSDevice, HSDevice>();
             });
         }
     }

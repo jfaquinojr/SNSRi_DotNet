@@ -20,7 +20,8 @@ namespace SNSRi.Repository
             IDeviceRepository deviceRepository,
             IRoomDeviceRepository roomDeviceRepository,
             IRoomRepository roomRepository,
-            IHSDeviceRepository hsDeviceRepository) : base(context, ticketRepository, userRepository, deviceRepository, roomDeviceRepository, roomRepository, hsDeviceRepository)
+            IResidentRepository residentRepository,
+            IHSDeviceRepository hsDeviceRepository) : base(context, ticketRepository, userRepository, deviceRepository, roomDeviceRepository, roomRepository, hsDeviceRepository, residentRepository)
         {
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace SNSRi.Repository
             Context.Set<TEntity>().AddRange(entities);
         }
 
-        public IEnumerable<TEntity> GetAll(int pageIndex, int rowsCount = 10)
+        public virtual IEnumerable<TEntity> GetAll(int pageIndex, int rowsCount = 10)
         {
             if (pageIndex < 1)
             {
@@ -67,6 +68,11 @@ namespace SNSRi.Repository
         public void RemoveRange(IEnumerable<TEntity> entities)
         {
             Context.Set<TEntity>().RemoveRange(entities);
+        }
+
+        public void Update(TEntity entity)
+        {
+            Context.Entry<TEntity>(entity).State = EntityState.Modified;
         }
     }
 }

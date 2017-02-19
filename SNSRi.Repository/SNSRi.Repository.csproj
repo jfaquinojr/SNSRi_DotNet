@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
       <Private>True</Private>
@@ -103,6 +106,7 @@
     <Compile Include="IHomeSeerUnitOfWork.cs" />
     <Compile Include="IHSDeviceRepository.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="IResidentRepository.cs" />
     <Compile Include="IRoomDeviceRepository.cs" />
     <Compile Include="IRoomRepository.cs" />
     <Compile Include="ITicketRepository.cs" />
@@ -122,6 +126,7 @@
     <Compile Include="Query\UserQuery.cs" />
     <Compile Include="RepositoryLoggerExtensions.cs" />
     <Compile Include="Repsitory.cs" />
+    <Compile Include="ResidentRepository.cs" />
     <Compile Include="RoomDeviceRepository.cs" />
     <Compile Include="RoomRepository.cs" />
     <Compile Include="SNSRiContext.cs" />

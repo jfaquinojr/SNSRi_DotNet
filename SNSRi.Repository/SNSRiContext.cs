@@ -29,5 +29,6 @@ namespace SNSRi.Repository
         public DbSet<Device> Devices { get; set; }
         public DbSet<Activity> Activities { get; set; }
         public DbSet<HSDevice> HSDevices { get; set; }
+        public DbSet<Resident> Residents { get; set; }
     }
 }

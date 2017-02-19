@@ -345,12 +345,14 @@
     <Compile Include="Controllers\api\CommandsController.cs" />
     <Compile Include="Controllers\api\ConfigController.cs" />
     <Compile Include="Controllers\api\DevicesController.cs" />
+    <Compile Include="Controllers\api\ResidentsController.cs" />
     <Compile Include="Controllers\api\RoomDeviceController.cs" />
     <Compile Include="Controllers\api\RoomsController.cs" />
     <Compile Include="Controllers\api\UsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\api\TicketsController.cs" />
     <Compile Include="Controllers\DevicesController.cs" />
+    <Compile Include="Controllers\ResidentsController.cs" />
     <Compile Include="Controllers\RoomsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
@@ -369,15 +371,19 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Rooms\Edit.cshtml" />
+    <Content Include="Views\Rooms\Index.cshtml" />
+    <TypeScriptCompile Include="app\admin\directives\residentForm.ts" />
+    <TypeScriptCompile Include="app\admin\residentsController.ts" />
     <TypeScriptCompile Include="app\controllers\roomsController.ts" />
     <TypeScriptCompile Include="app\admin\directives\adminSidebar.ts" />
     <Content Include="Content\angular-busy.css" />
     <Content Include="images\logo.png" />
     <Content Include="Scripts\angular-busy.js" />
     <Content Include="Scripts\angular-select2.js" />
-    <Content Include="Views\Rooms\Index.cshtml" />
+    <Content Include="Views\Residents\Index.cshtml" />
     <Content Include="Views\Devices\Index.cshtml" />
-    <Content Include="Views\Rooms\Edit.cshtml" />
+    <Content Include="Views\Residents\Edit.cshtml" />
     <Content Include="Views\Devices\Edit.cshtml" />
     <Content Include="Views\Rooms\RoomDevices.cshtml" />
     <Content Include="Views\Rooms\AddRoomDevice.cshtml" />

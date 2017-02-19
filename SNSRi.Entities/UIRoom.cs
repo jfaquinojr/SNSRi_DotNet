@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,5 +19,10 @@ namespace SNSRi.Entities
 		public DateTime? ModifiedOn { get; set; }
 		public int? ModifiedBy { get; set; }
 	    public string SourceRoom { get; set; }
-	}
+
+        [NotMapped]
+        public IEnumerable<Resident> Residents { get; set; }
+        //public IEnumerable<Device> Devices { get; set; }
+
+    }
 }

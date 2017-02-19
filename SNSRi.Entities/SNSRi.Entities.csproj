@@ -53,9 +53,11 @@
     <Compile Include="HomeSeer\HSDevice.cs" />
     <Compile Include="HomeSeer\HSLocations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoomResident.cs" />
     <Compile Include="Ticket.cs" />
     <Compile Include="UIRoom.cs" />
     <Compile Include="UIRoomDevice.cs" />
+    <Compile Include="Resident.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

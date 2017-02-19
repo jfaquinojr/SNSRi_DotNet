@@ -56,6 +56,9 @@ namespace SNSRi.Web
             container.RegisterType<IFactoryResetter, FactoryResetter>();
             container.RegisterType<IHttpClient, SNSRiHttpClient>();
             container.RegisterType<DbContext, SNSRiContext>(new PerRequestLifetimeManager());
+            container.RegisterType<IResidentBL, ResidentBL>();
+            container.RegisterType<IResidentRepository, ResidentRepository>();
+
             //container.RegisterType<IDbConnection, SQLiteConnection>(new InjectionConstructor(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString));
             //container.RegisterType<DbConnection, SQLiteConnection>(new InjectionConstructor(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString));
         }
