@@ -1,13 +1,13 @@
-20/02/2017 7:16 PM [Critical] Method not found: 'AutoMapper.IMappingExpression`2<!!0,!!1> AutoMapper.Mapper.CreateMap()'.
-   at KalikoCMS.Data.AutoMapperConfiguration.Configure()
+20/02/2017 11:44 PM [Critical] Unable to load one or more of the requested types. Retrieve the LoaderExceptions property for more information.
+   at System.Reflection.RuntimeModule.GetTypes(RuntimeModule module)
+   at System.Reflection.RuntimeModule.GetTypes()
+   at System.Reflection.Assembly.GetTypes()
+   at KalikoCMS.Core.InterfaceReader.<>c.<GetTypesWithInterface>b__0_0(Assembly s)
+   at System.Linq.Enumerable.<SelectManyIterator>d__16`2.MoveNext()
+   at System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at KalikoCMS.Core.InterfaceReader.GetTypesWithInterface(Type interfaceType)
+   at KalikoCMS.Modules.InitModule.GetStartupSequence()
    at KalikoCMS.Modules.InitModule.RunInitializingSteps()
-   at KalikoCMS.Modules.InitModule.InitializeApplication()20/02/2017 7:18 PM [Critical] Method not found: 'AutoMapper.IMappingExpression`2<!!0,!!1> AutoMapper.Mapper.CreateMap()'.
-   at KalikoCMS.Data.AutoMapperConfiguration.Configure()
-   at KalikoCMS.Modules.InitModule.RunInitializingSteps()
-   at KalikoCMS.Modules.InitModule.InitializeApplication()20/02/2017 7:38 PM [Critical] Method not found: 'AutoMapper.IMappingExpression`2<!!0,!!1> AutoMapper.Mapper.CreateMap()'.
-   at KalikoCMS.Data.AutoMapperConfiguration.Configure()
-   at KalikoCMS.Modules.InitModule.RunInitializingSteps()
-   at KalikoCMS.Modules.InitModule.InitializeApplication()20/02/2017 7:38 PM [Critical] Method not found: 'AutoMapper.IMappingExpression`2<!!0,!!1> AutoMapper.Mapper.CreateMap()'.
-   at KalikoCMS.Data.AutoMapperConfiguration.Configure()
-   at KalikoCMS.Modules.InitModule.RunInitializingSteps()
-   at KalikoCMS.Modules.InitModule.InitializeApplication()
+   at KalikoCMS.Modules.InitModule.InitializeApplication()20/02/2017 11:44 PM [Critical] Could not load file or assembly 'System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040) | Could not load file or assembly 'System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040) | Could not load file or assembly 'System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040) | Could not load file or assembly 'System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040) | Could not load file or assembly 'System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040) | Could not load file or assembly 'System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040) | Could not load file or assembly 'System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040) | Could not load file or assembly 'System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040)
