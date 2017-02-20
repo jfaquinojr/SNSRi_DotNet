@@ -1,0 +1,13 @@
+20/02/2017 7:16 PM [Critical] Method not found: 'AutoMapper.IMappingExpression`2<!!0,!!1> AutoMapper.Mapper.CreateMap()'.
+   at KalikoCMS.Data.AutoMapperConfiguration.Configure()
+   at KalikoCMS.Modules.InitModule.RunInitializingSteps()
+   at KalikoCMS.Modules.InitModule.InitializeApplication()20/02/2017 7:18 PM [Critical] Method not found: 'AutoMapper.IMappingExpression`2<!!0,!!1> AutoMapper.Mapper.CreateMap()'.
+   at KalikoCMS.Data.AutoMapperConfiguration.Configure()
+   at KalikoCMS.Modules.InitModule.RunInitializingSteps()
+   at KalikoCMS.Modules.InitModule.InitializeApplication()20/02/2017 7:38 PM [Critical] Method not found: 'AutoMapper.IMappingExpression`2<!!0,!!1> AutoMapper.Mapper.CreateMap()'.
+   at KalikoCMS.Data.AutoMapperConfiguration.Configure()
+   at KalikoCMS.Modules.InitModule.RunInitializingSteps()
+   at KalikoCMS.Modules.InitModule.InitializeApplication()20/02/2017 7:38 PM [Critical] Method not found: 'AutoMapper.IMappingExpression`2<!!0,!!1> AutoMapper.Mapper.CreateMap()'.
+   at KalikoCMS.Data.AutoMapperConfiguration.Configure()
+   at KalikoCMS.Modules.InitModule.RunInitializingSteps()
+   at KalikoCMS.Modules.InitModule.InitializeApplication()
