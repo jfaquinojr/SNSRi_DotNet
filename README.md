@@ -9,7 +9,7 @@ The name is play on *Sensory*.
 
 
 ### Developed using
-* Visual Studio 2015 
+* Visual Studio 2017RC
 * ASP.NET and C#
 * [Typescript](http://typescriptlang.org/)
 * [Angular JS 1.x](https://angularjs.org/)
