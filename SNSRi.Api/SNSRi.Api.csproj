@@ -64,6 +64,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AspNet.Identity.DataAccess, Version=2.1.0.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AspNet.Identity.DataAccess.2.1.0.7\lib\AspNet.Identity.DataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="AutoMapper, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
@@ -95,6 +98,9 @@
     </Reference>
     <Reference Include="KalikoCMS.Engine, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\KalikoCMS.Core.1.2.0\lib\KalikoCMS.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="KalikoCMS.Identity, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\KalikoCMS.Identity.1.2.0\lib\KalikoCMS.Identity.dll</HintPath>
     </Reference>
     <Reference Include="KalikoCMS.Mvc, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\KalikoCMS.Mvc.1.2.0\lib\KalikoCMS.Mvc.dll</HintPath>
@@ -326,6 +332,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SQLiteAssemblyBinding.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
@@ -377,6 +384,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -389,79 +410,93 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Admin\Assets\fonts\hind\OFL.txt" />
-    <Content Include="Admin\Assets\fonts\hind\webfont-hind.css" />
-    <Content Include="Admin\Assets\images\defaultpagetype.png" />
-    <Content Include="Admin\Assets\images\error-image.jpg" />
-    <Content Include="Admin\Assets\images\loading.gif" />
-    <Content Include="Admin\Assets\images\logo.png" />
-    <Content Include="Admin\Assets\images\no-image.jpg" />
-    <Content Include="Admin\Assets\images\progressbar.gif" />
-    <Content Include="Admin\Assets\js\kalikocms.admin.core.min.js" />
-    <Content Include="Admin\Assets\js\kalikocms.admin.editor.min.js" />
-    <Content Include="Admin\Assets\js\kalikocms.admin.fileupload.min.js" />
-    <Content Include="Admin\Assets\js\kalikocms.admin.imageeditor.min.js" />
-    <Content Include="Admin\Assets\js\kalikocms.admin.js" />
-    <Content Include="Admin\Assets\js\kalikocms.admin.taginput.min.js" />
-    <Content Include="Admin\Assets\themes\dakota\theme.js" />
-    <Content Include="Admin\Assets\themes\dakota\theme.min.css" />
-    <Content Include="Admin\Assets\vendors\bootstrap-markdown\js\bootstrap-markdown.customization.js" />
-    <Content Include="Admin\Assets\vendors\font-awesome\fonts\fontawesome-webfont.svg" />
-    <Content Include="Admin\Assets\vendors\html5shiv.min.js" />
-    <Content Include="Admin\Assets\vendors\jquery\css\jquery.fileupload-ui.css" />
-    <Content Include="Admin\Assets\vendors\jquery\css\jquery.jcrop.min.css" />
-    <Content Include="Admin\Assets\vendors\jquery\css\selectric.css" />
-    <Content Include="Admin\Assets\vendors\jquery\js\jquery-1.10.2.min.js" />
-    <Content Include="Admin\Assets\vendors\tinymce\plugins\visualblocks\css\visualblocks.css" />
-    <Content Include="Admin\Assets\vendors\tinymce\skins\lightgray\content.inline.min.css" />
-    <Content Include="Admin\Assets\vendors\tinymce\skins\lightgray\content.min.css" />
-    <Content Include="Admin\Assets\vendors\tinymce\skins\lightgray\fonts\tinymce-small.svg" />
-    <Content Include="Admin\Assets\vendors\tinymce\skins\lightgray\fonts\tinymce.svg" />
-    <Content Include="Admin\Assets\vendors\tinymce\skins\lightgray\img\anchor.gif" />
-    <Content Include="Admin\Assets\vendors\tinymce\skins\lightgray\img\loader.gif" />
-    <Content Include="Admin\Assets\vendors\tinymce\skins\lightgray\img\object.gif" />
-    <Content Include="Admin\Assets\vendors\tinymce\skins\lightgray\img\trans.gif" />
-    <Content Include="Admin\Assets\vendors\tinymce\skins\lightgray\skin.ie7.min.css" />
-    <Content Include="Admin\Assets\vendors\tinymce\skins\lightgray\skin.min.css" />
-    <Content Include="Admin\Assets\vendors\tinymce\tinymce.license.txt" />
-    <Content Include="Admin\Content\Default.aspx" />
-    <Content Include="Admin\Content\Dialogs\EditCollectionPropertyDialog.aspx" />
-    <Content Include="Admin\Content\Dialogs\EditImageDialog.aspx" />
-    <Content Include="Admin\Content\Dialogs\PageVersionDialog.aspx" />
-    <Content Include="Admin\Content\Dialogs\SelectFileDialog.aspx" />
-    <Content Include="Admin\Content\Dialogs\SelectLinkDialog.aspx" />
-    <Content Include="Admin\Content\Dialogs\SelectPageDialog.aspx" />
-    <Content Include="Admin\Content\Dialogs\SelectPagetypeDialog.aspx" />
-    <Content Include="Admin\Content\EditPage.aspx" />
-    <Content Include="Admin\Content\EditSite.aspx" />
-    <Content Include="Admin\Content\PageTree\PageTreeControl.ascx" />
-    <Content Include="Admin\Content\PropertyType\BooleanPropertyEditor.ascx" />
-    <Content Include="Admin\Content\PropertyType\CollectionPropertyEditor.ascx" />
-    <Content Include="Admin\Content\PropertyType\CollectionPropertyEditor.js" />
-    <Content Include="Admin\Content\PropertyType\CompositePropertyEditor.ascx" />
-    <Content Include="Admin\Content\PropertyType\DateTimePropertyEditor.ascx" />
-    <Content Include="Admin\Content\PropertyType\FilePropertyEditor.ascx" />
-    <Content Include="Admin\Content\PropertyType\FilePropertyEditor.js" />
-    <Content Include="Admin\Content\PropertyType\HtmlPropertyEditor.ascx" />
-    <Content Include="Admin\Content\PropertyType\ImagePropertyEditor.ascx" />
-    <Content Include="Admin\Content\PropertyType\ImagePropertyEditor.js" />
-    <Content Include="Admin\Content\PropertyType\LinkPropertyEditor.ascx" />
-    <Content Include="Admin\Content\PropertyType\LinkPropertyEditor.js" />
-    <Content Include="Admin\Content\PropertyType\MarkdownPropertyEditor.ascx" />
-    <Content Include="Admin\Content\PropertyType\NumericPropertyEditor.ascx" />
-    <Content Include="Admin\Content\PropertyType\PageLinkPropertyEditor.ascx" />
-    <Content Include="Admin\Content\PropertyType\PageLinkPropertyEditor.js" />
-    <Content Include="Admin\Content\PropertyType\SelectorPropertyEditor.ascx" />
-    <Content Include="Admin\Content\PropertyType\StringPropertyEditor.ascx" />
-    <Content Include="Admin\Content\PropertyType\TagPropertyEditor.ascx" />
-    <Content Include="Admin\Content\PropertyType\TextPropertyEditor.ascx" />
-    <Content Include="Admin\Content\PropertyType\UniversalDateTimePropertyEditor.ascx" />
-    <Content Include="Admin\Default.aspx" />
-    <Content Include="Admin\Search\Default.aspx" />
-    <Content Include="Admin\Templates\Units\SideNavigation.ascx" />
-    <Content Include="Admin\Templates\Units\TopNavigation.ascx" />
+    <Content Include="Admincms\Assets\fonts\hind\OFL.txt" />
+    <Content Include="Admincms\Assets\fonts\hind\webfont-hind.css" />
+    <Content Include="Admincms\Assets\images\defaultpagetype.png" />
+    <Content Include="Admincms\Assets\images\error-image.jpg" />
+    <Content Include="Admincms\Assets\images\loading.gif" />
+    <Content Include="Admincms\Assets\images\logo.png" />
+    <Content Include="Admincms\Assets\images\no-image.jpg" />
+    <Content Include="Admincms\Assets\images\progressbar.gif" />
+    <Content Include="Admincms\Assets\js\kalikocms.admin.core.min.js" />
+    <Content Include="Admincms\Assets\js\kalikocms.admin.editor.min.js" />
+    <Content Include="Admincms\Assets\js\kalikocms.admin.fileupload.min.js" />
+    <Content Include="Admincms\Assets\js\kalikocms.admin.imageeditor.min.js" />
+    <Content Include="Admincms\Assets\js\kalikocms.admin.js" />
+    <Content Include="Admincms\Assets\js\kalikocms.admin.taginput.min.js" />
+    <Content Include="Admincms\Assets\themes\dakota\theme.js" />
+    <Content Include="Admincms\Assets\themes\dakota\theme.min.css" />
+    <Content Include="Admincms\Assets\vendors\bootstrap-markdown\js\bootstrap-markdown.customization.js" />
+    <Content Include="Admincms\Assets\vendors\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Admincms\Assets\vendors\html5shiv.min.js" />
+    <Content Include="Admincms\Assets\vendors\jquery\css\jquery.fileupload-ui.css" />
+    <Content Include="Admincms\Assets\vendors\jquery\css\jquery.jcrop.min.css" />
+    <Content Include="Admincms\Assets\vendors\jquery\css\selectric.css" />
+    <Content Include="Admincms\Assets\vendors\jquery\js\jquery-1.10.2.min.js" />
+    <Content Include="Admincms\Assets\vendors\tinymce\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="Admincms\Assets\vendors\tinymce\skins\lightgray\content.inline.min.css" />
+    <Content Include="Admincms\Assets\vendors\tinymce\skins\lightgray\content.min.css" />
+    <Content Include="Admincms\Assets\vendors\tinymce\skins\lightgray\fonts\tinymce-small.svg" />
+    <Content Include="Admincms\Assets\vendors\tinymce\skins\lightgray\fonts\tinymce.svg" />
+    <Content Include="Admincms\Assets\vendors\tinymce\skins\lightgray\img\anchor.gif" />
+    <Content Include="Admincms\Assets\vendors\tinymce\skins\lightgray\img\loader.gif" />
+    <Content Include="Admincms\Assets\vendors\tinymce\skins\lightgray\img\object.gif" />
+    <Content Include="Admincms\Assets\vendors\tinymce\skins\lightgray\img\trans.gif" />
+    <Content Include="Admincms\Assets\vendors\tinymce\skins\lightgray\skin.ie7.min.css" />
+    <Content Include="Admincms\Assets\vendors\tinymce\skins\lightgray\skin.min.css" />
+    <Content Include="Admincms\Assets\vendors\tinymce\tinymce.license.txt" />
+    <Content Include="Admincms\Content\Default.aspx" />
+    <Content Include="Admincms\Content\Dialogs\EditCollectionPropertyDialog.aspx" />
+    <Content Include="Admincms\Content\Dialogs\EditImageDialog.aspx" />
+    <Content Include="Admincms\Content\Dialogs\PageVersionDialog.aspx" />
+    <Content Include="Admincms\Content\Dialogs\SelectFileDialog.aspx" />
+    <Content Include="Admincms\Content\Dialogs\SelectLinkDialog.aspx" />
+    <Content Include="Admincms\Content\Dialogs\SelectPageDialog.aspx" />
+    <Content Include="Admincms\Content\Dialogs\SelectPagetypeDialog.aspx" />
+    <Content Include="Admincms\Content\EditPage.aspx" />
+    <Content Include="Admincms\Content\EditSite.aspx" />
+    <Content Include="Admincms\Content\PageTree\PageTreeControl.ascx" />
+    <Content Include="Admincms\Content\PropertyType\BooleanPropertyEditor.ascx" />
+    <Content Include="Admincms\Content\PropertyType\CollectionPropertyEditor.ascx" />
+    <Content Include="Admincms\Content\PropertyType\CollectionPropertyEditor.js" />
+    <Content Include="Admincms\Content\PropertyType\CompositePropertyEditor.ascx" />
+    <Content Include="Admincms\Content\PropertyType\DateTimePropertyEditor.ascx" />
+    <Content Include="Admincms\Content\PropertyType\FilePropertyEditor.ascx" />
+    <Content Include="Admincms\Content\PropertyType\FilePropertyEditor.js" />
+    <Content Include="Admincms\Content\PropertyType\HtmlPropertyEditor.ascx" />
+    <Content Include="Admincms\Content\PropertyType\ImagePropertyEditor.ascx" />
+    <Content Include="Admincms\Content\PropertyType\ImagePropertyEditor.js" />
+    <Content Include="Admincms\Content\PropertyType\LinkPropertyEditor.ascx" />
+    <Content Include="Admincms\Content\PropertyType\LinkPropertyEditor.js" />
+    <Content Include="Admincms\Content\PropertyType\MarkdownPropertyEditor.ascx" />
+    <Content Include="Admincms\Content\PropertyType\NumericPropertyEditor.ascx" />
+    <Content Include="Admincms\Content\PropertyType\PageLinkPropertyEditor.ascx" />
+    <Content Include="Admincms\Content\PropertyType\PageLinkPropertyEditor.js" />
+    <Content Include="Admincms\Content\PropertyType\SelectorPropertyEditor.ascx" />
+    <Content Include="Admincms\Content\PropertyType\StringPropertyEditor.ascx" />
+    <Content Include="Admincms\Content\PropertyType\TagPropertyEditor.ascx" />
+    <Content Include="Admincms\Content\PropertyType\TextPropertyEditor.ascx" />
+    <Content Include="Admincms\Content\PropertyType\UniversalDateTimePropertyEditor.ascx" />
+    <Content Include="Admincms\Default.aspx" />
+    <Content Include="Admincms\Search\Default.aspx" />
+    <Content Include="Admincms\Templates\Units\SideNavigation.ascx" />
+    <Content Include="Admincms\Templates\Units\TopNavigation.ascx" />
+    <Content Include="Admin\Identity\CreateRole.aspx" />
+    <Content Include="Admin\Identity\CreateUser.aspx" />
+    <Content Include="Admin\Identity\Default.aspx" />
+    <Content Include="Admin\Identity\DeleteRole.aspx" />
+    <Content Include="Admin\Identity\DeleteUser.aspx" />
+    <Content Include="Admin\Identity\EditRole.aspx" />
+    <Content Include="Admin\Identity\EditUser.aspx" />
+    <Content Include="Admin\Identity\IdentityMenu.ascx" />
+    <Content Include="Admin\Identity\Roles.aspx" />
+    <Content Include="Admin\Identity\Users.aspx" />
+    <Content Include="App_Data\empty.txt" />
     <Content Include="Files\Readme.txt" />
     <Content Include="ImageCache\readme.txt" />
+    <Content Include="Login.aspx" />
+    <Content Include="Logout.aspx" />
+    <Content Include="SetupAdminAccount.aspx" />
     <Content Include="Views\Rooms\Edit.cshtml" />
     <Content Include="Views\Rooms\Index.cshtml" />
     <Content Include="Views\Home\Welcome.cshtml" />
@@ -709,39 +744,39 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
-    <Content Include="Admin\Templates\MasterPages\Base.Master" />
-    <Content Include="Admin\Templates\MasterPages\Admin.Master" />
-    <Content Include="Admin\Handlers\MarkdownHandler.ashx" />
-    <Content Include="Admin\Handlers\FileHandler.ashx" />
-    <Content Include="Admin\Handlers\Base64Handler.ashx" />
-    <Content Include="Admin\Content\PageTree\JQueryTreeContent.ashx" />
-    <Content Include="Admin\Content\Dialogs\Dialog.Master" />
-    <Content Include="Admin\Assets\vendors\tinymce\skins\lightgray\fonts\tinymce.woff" />
-    <Content Include="Admin\Assets\vendors\tinymce\skins\lightgray\fonts\tinymce.ttf" />
-    <Content Include="Admin\Assets\vendors\tinymce\skins\lightgray\fonts\tinymce.eot" />
-    <Content Include="Admin\Assets\vendors\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
-    <Content Include="Admin\Assets\vendors\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
-    <Content Include="Admin\Assets\vendors\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
-    <Content Include="Admin\Assets\vendors\font-awesome\fonts\FontAwesome.otf" />
-    <Content Include="Admin\Assets\vendors\font-awesome\fonts\fontawesome-webfont.woff" />
-    <Content Include="Admin\Assets\vendors\font-awesome\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Admin\Assets\vendors\font-awesome\fonts\fontawesome-webfont.eot" />
-    <Content Include="Admin\Assets\images\Thumbnail.ashx" />
-    <Content Include="Admin\Assets\fonts\hind\hind-semibold-webfont.woff" />
-    <Content Include="Admin\Assets\fonts\hind\hind-semibold-webfont.ttf" />
-    <Content Include="Admin\Assets\fonts\hind\hind-semibold-webfont.eot" />
-    <Content Include="Admin\Assets\fonts\hind\hind-regular-webfont.woff" />
-    <Content Include="Admin\Assets\fonts\hind\hind-regular-webfont.ttf" />
-    <Content Include="Admin\Assets\fonts\hind\hind-regular-webfont.eot" />
-    <Content Include="Admin\Assets\fonts\hind\hind-medium-webfont.woff" />
-    <Content Include="Admin\Assets\fonts\hind\hind-medium-webfont.ttf" />
-    <Content Include="Admin\Assets\fonts\hind\hind-medium-webfont.eot" />
-    <Content Include="Admin\Assets\fonts\hind\hind-light-webfont.woff" />
-    <Content Include="Admin\Assets\fonts\hind\hind-light-webfont.ttf" />
-    <Content Include="Admin\Assets\fonts\hind\hind-light-webfont.eot" />
-    <Content Include="Admin\Assets\fonts\hind\hind-bold-webfont.woff" />
-    <Content Include="Admin\Assets\fonts\hind\hind-bold-webfont.ttf" />
-    <Content Include="Admin\Assets\fonts\hind\hind-bold-webfont.eot" />
+    <Content Include="Admincms\Templates\MasterPages\Base.Master" />
+    <Content Include="Admincms\Templates\MasterPages\Admin.Master" />
+    <Content Include="Admincms\Handlers\MarkdownHandler.ashx" />
+    <Content Include="Admincms\Handlers\FileHandler.ashx" />
+    <Content Include="Admincms\Handlers\Base64Handler.ashx" />
+    <Content Include="Admincms\Content\PageTree\JQueryTreeContent.ashx" />
+    <Content Include="Admincms\Content\Dialogs\Dialog.Master" />
+    <Content Include="Admincms\Assets\vendors\tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="Admincms\Assets\vendors\tinymce\skins\lightgray\fonts\tinymce.ttf" />
+    <Content Include="Admincms\Assets\vendors\tinymce\skins\lightgray\fonts\tinymce.eot" />
+    <Content Include="Admincms\Assets\vendors\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
+    <Content Include="Admincms\Assets\vendors\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
+    <Content Include="Admincms\Assets\vendors\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
+    <Content Include="Admincms\Assets\vendors\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Admincms\Assets\vendors\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Admincms\Assets\vendors\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Admincms\Assets\vendors\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Admincms\Assets\images\Thumbnail.ashx" />
+    <Content Include="Admincms\Assets\fonts\hind\hind-semibold-webfont.woff" />
+    <Content Include="Admincms\Assets\fonts\hind\hind-semibold-webfont.ttf" />
+    <Content Include="Admincms\Assets\fonts\hind\hind-semibold-webfont.eot" />
+    <Content Include="Admincms\Assets\fonts\hind\hind-regular-webfont.woff" />
+    <Content Include="Admincms\Assets\fonts\hind\hind-regular-webfont.ttf" />
+    <Content Include="Admincms\Assets\fonts\hind\hind-regular-webfont.eot" />
+    <Content Include="Admincms\Assets\fonts\hind\hind-medium-webfont.woff" />
+    <Content Include="Admincms\Assets\fonts\hind\hind-medium-webfont.ttf" />
+    <Content Include="Admincms\Assets\fonts\hind\hind-medium-webfont.eot" />
+    <Content Include="Admincms\Assets\fonts\hind\hind-light-webfont.woff" />
+    <Content Include="Admincms\Assets\fonts\hind\hind-light-webfont.ttf" />
+    <Content Include="Admincms\Assets\fonts\hind\hind-light-webfont.eot" />
+    <Content Include="Admincms\Assets\fonts\hind\hind-bold-webfont.woff" />
+    <Content Include="Admincms\Assets\fonts\hind\hind-bold-webfont.ttf" />
+    <Content Include="Admincms\Assets\fonts\hind\hind-bold-webfont.eot" />
     <None Include="Properties\PublishProfiles\Local IIS.pubxml" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-route.min.js.map" />
@@ -882,7 +917,6 @@
     <TypeScriptCompile Include="typings\underscore\underscore.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Views\Events\" />
   </ItemGroup>
   <ItemGroup>
