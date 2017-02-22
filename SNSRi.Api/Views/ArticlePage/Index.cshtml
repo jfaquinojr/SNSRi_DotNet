@@ -1,0 +1,18 @@
+﻿
+@model SNSRi.Web.PageTypes.ArticlePageType
+ 
+@{
+    Layout = "~/Views/Shared/_startScreen.cshtml";
+}
+
+<div>
+    <!-- Check if top image is defined -->
+    @if (!string.IsNullOrEmpty(Model.TopImage.ImageUrl))
+    {
+        @Model.TopImage.ToHtml()
+    }
+    <h1>@Model.Heading.Value</h1>
+    <p class="preamble">@Model.Preamble.Value</p>
+    @Model.MainBody.Value
+    <p>Created: @Model.CreatedDate</p>
+</div>

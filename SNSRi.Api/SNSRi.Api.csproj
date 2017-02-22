@@ -375,6 +375,7 @@
     <Compile Include="Controllers\api\RoomDeviceController.cs" />
     <Compile Include="Controllers\api\RoomsController.cs" />
     <Compile Include="Controllers\api\UsersController.cs" />
+    <Compile Include="Controllers\ArticlePageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\api\TicketsController.cs" />
     <Compile Include="Controllers\DevicesController.cs" />
@@ -403,6 +404,8 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\SimpleLoginModel.cs" />
     <Compile Include="Models\TicketActivityViewModel.cs" />
+    <Compile Include="PageTypes\StartPage.cs" />
+    <Compile Include="PageTypes\ArticlePageType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Providers\CustomMembershipProvider.cs" />
@@ -500,6 +503,7 @@
     <Content Include="Views\Rooms\Edit.cshtml" />
     <Content Include="Views\Rooms\Index.cshtml" />
     <Content Include="Views\Home\Welcome.cshtml" />
+    <Content Include="Views\ArticlePage\Index.cshtml" />
     <TypeScriptCompile Include="app\admin\directives\residentForm.ts" />
     <TypeScriptCompile Include="app\admin\residentsController.ts" />
     <TypeScriptCompile Include="app\controllers\roomsController.ts" />
