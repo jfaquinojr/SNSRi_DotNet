@@ -25,7 +25,15 @@
     <div class="tile-area-controls">
         <div class="app-bar" style="background-color:inherit;">
         <div class="app-bar-element place-right active-container">
-        <a class="fg-white" href="~/Login.aspx">Login</a>
+            @if (Request.IsAuthenticated)
+            {
+                <a class="fg-white" href="~/Logout.aspx">Logout</a>
+            }
+            else
+            {
+                <a class="fg-white" href="~/Login.aspx">Login</a>
+            }
+
         </div>
         </div>
     </div>
@@ -33,11 +41,14 @@
     @*<toolbox></toolbox>*@
 
 <div class="app-bar darcula" style="position:absolute; top:34px; left:240px; width:600px; background-color:inherit;" >
-    <a class="app-bar-element" href="#/Welcome/">Welcome</a>
-    <a class="app-bar-element" href="#/Welcome/">Facility</a>
-    <a class="app-bar-element" href="#/Welcome/">Resident</a>
-    <a class="app-bar-element" href="#/Welcome/">Documentation</a>
-    <a class="app-bar-element" href="#/Welcome/">Support</a>
+    <a class="app-bar-element" href="/">Welcome</a>
+    <a class="app-bar-element" href="/Home/#/">Facility</a>
+    @if (Request.IsAuthenticated)
+    {
+        <a class="app-bar-element" href="/Admin/#/Residents/">Resident</a>
+    }
+    <a class="app-bar-element" href="/Documentation/">Documentation</a>
+    <a class="app-bar-element" href="/Support/">Support</a>
 
 </div>
 

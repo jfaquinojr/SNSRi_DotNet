@@ -76,7 +76,7 @@
     <br>
     <div class="form-actions">
         <asp:Button runat="server" OnClick="LogIn" Text="Log in" CssClass="button primary" />
-        <p>for demo purposes, use demo@mail.com/Password@123</p>
+        <p>for demo purposes, use demo/Password@123</p>
     </div>
 
     </div>

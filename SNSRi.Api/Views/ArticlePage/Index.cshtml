@@ -5,7 +5,8 @@
     Layout = "~/Views/Shared/_startScreen.cshtml";
 }
 
-<div>
+<div class="tile-group">
+<div style="width: 600px;">
     <!-- Check if top image is defined -->
     @if (!string.IsNullOrEmpty(Model.TopImage.ImageUrl))
     {
@@ -13,6 +14,9 @@
     }
     <h1>@Model.Heading.Value</h1>
     <p class="preamble">@Model.Preamble.Value</p>
-    @Model.MainBody.Value
+
+    @Html.Raw(Model.MainBody.Value)
     <p>Created: @Model.CreatedDate</p>
+</div>
+
 </div>
