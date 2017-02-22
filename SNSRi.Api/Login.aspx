@@ -37,7 +37,7 @@
     <% ((TextBox)LoginForm.FindControl("Password")).Attributes.Add("placeholder", "Password"); %>
 
 
-<div class="login-form padding20 block-shadow" style="opacity: 1; transform: scale(1); transition: 0.5s;">
+<div class="login-form padding20" style="opacity: 1; transform: scale(1); transition: 0.5s;">
     
 
 <div class="login">

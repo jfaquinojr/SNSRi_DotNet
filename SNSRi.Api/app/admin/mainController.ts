@@ -27,9 +27,8 @@
             this.userId = 1;
 
             this.pages = [
-                { Name: "Users", Icon: "mif-users", Title: "Users", Url: "" },
-                { Name: "Rooms", Icon: "mif-hotel", Title: "Rooms", Url: "" },
                 { Name: "Residents", Icon: "mif-user-check", Title: "Residents", Url: "" },
+                { Name: "Rooms", Icon: "mif-hotel", Title: "Rooms", Url: "" },
                 { Name: "Devices", Icon: "mif-switch", Title: "Devices", Url: "" },
                 { Name: "FactoryReset", Icon: "mif-loop2", Title: "Factory Reset", Url: "" }
             ];
