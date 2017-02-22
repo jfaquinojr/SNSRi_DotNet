@@ -41,11 +41,36 @@
         </div>
 
         <div class="row">
-            <div class="input-control text full-size" data-role="input" cg-busy="vm.loadingRoomsIndicator">
-                <select id="newdevices" name="newdevices"
-                    ng-model="vm.editingResident.UIRoom" 
-                    ng-options="room.Name for room in vm.Rooms track by room.Id">
-                </select>
+            <div class="cell">
+                <label>Room</label>
+                <div class="input-control text full-size" data-role="input" cg-busy="vm.loadingRoomsIndicator">
+                    <select id="newdevices" name="newdevices"
+                        ng-model="vm.editingResident.UIRoom" 
+                        ng-options="room.Name for room in vm.Rooms track by room.Id">
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="cell">
+                <label>Birthdate</label>
+                <div class="input-control text full-size">
+                    <input ng-model="vm.editingResident.Birthdate" type="date" placeholder="Birthdate" style="padding-right: 5px;">
+                    <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                    <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="cell">
+                <label>Gender</label>
+                <div class="input-control text full-size">
+                    <input ng-model="vm.editingResident.Gender" type="text" placeholder="Gender" style="padding-right: 5px;">
+                    <span class="input-state-error mif-warning" style="right: 8px;"></span>
+                    <span class="input-state-success mif-checkmark" style="right: 8px;"></span>
+                </div>
             </div>
         </div>
        

@@ -14,6 +14,8 @@
                 <th>Lastname</th>
                 <th>Notes</th>
                 <th>Room</th>
+                <th>BirthDate</th>
+                <th>Gender</th>
                 <th></th>
             </tr>
             </thead>
@@ -24,6 +26,9 @@
                 <td>{{resident.Lastname}}</td>
                 <td>{{resident.Notes}}</td>
                 <td>{{resident.UIRoom.Name}}</td>
+                <td>{{resident.Birthdate|date:'MM/dd/yyyy'}}</td>
+                <td>{{resident.Gender}}</td>
+
                 <td>
                     <div class="place-right">
                         <button class="button primary small-button" ng-click="vm.editResident(resident)"><span class="mif-pencil mif-sm"></span>&nbsp; Edit</button>

@@ -11,6 +11,8 @@
         ModifiedBy: number;
         UIRoom: Room;
         UIRoomId: number;
+        Birthdate: Date;
+        Gender: string;
     }
 
     export class Room {

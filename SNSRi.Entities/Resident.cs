@@ -18,6 +18,8 @@ namespace SNSRi.Entities
 		public int? CreatedBy { get; set; }
 		public int? ModifiedBy { get; set; }
         public int? UIRoomId { get; set; }
+        public DateTime? Birthdate { get; set; }
+        public string Gender { get; set; }
 
         //[ForeignKey("UIRoomId")]
         public virtual UIRoom UIRoom { get; set; }
