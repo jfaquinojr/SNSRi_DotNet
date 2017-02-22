@@ -27,7 +27,7 @@
         <div class="app-bar-element place-right active-container">
             @if (Request.IsAuthenticated)
             {
-                <a class="fg-white" href="~/Logout.aspx">Logout</a>
+                <a class="fg-white" href="~/Logout.aspx">Logout @User.Identity.Name</a>
             }
             else
             {

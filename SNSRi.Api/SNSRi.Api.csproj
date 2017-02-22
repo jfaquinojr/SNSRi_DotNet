@@ -365,7 +365,6 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\api\ActivitiesController.cs" />
     <Compile Include="Controllers\api\CommandsController.cs" />
@@ -907,7 +906,6 @@
     <Content Include="Views\Home\EventTile.cshtml" />
     <Content Include="Views\Shared\PopupShowActivities.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\ThemePicker.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Shared\_adminSidebar.cshtml" />
