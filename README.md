@@ -19,4 +19,4 @@ The name is play on *Sensory*.
 
 ### Setup
 * Install [HomeSeer](http://homeseer.com/current-downloads.html)
-* Build and install [SNSRi Plugin](https://github.com/jfaquinojr/SNSRi_Plugin) for HomeSeer
+* Build and install [SNSRi Plugin](https://github.com/jfaquinojr/SNSRi_Plugin) for HomeSeer (Optional)
