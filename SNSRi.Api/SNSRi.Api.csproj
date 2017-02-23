@@ -496,6 +496,7 @@
     <Content Include="App_Data\empty.txt" />
     <Content Include="Files\Readme.txt" />
     <Content Include="ImageCache\readme.txt" />
+    <Content Include="images\logo-white.png" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="SetupAdminAccount.aspx" />
