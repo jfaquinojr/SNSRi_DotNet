@@ -3,6 +3,8 @@ using Serilog;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using HomeSeerAPI;
+using static HomeSeerAPI.Enums;
 
 namespace SNSRi.Plugin
 {
@@ -77,5 +79,14 @@ namespace SNSRi.Plugin
             Log.Information("Event transmitted..");
         }
 
+        public void TransmitMessage(string msg)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TransmitEvent(HSEvent hsEvent)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
