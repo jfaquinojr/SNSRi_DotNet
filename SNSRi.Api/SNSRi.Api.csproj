@@ -109,6 +109,15 @@
       <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=1.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.1.2.2\lib\net40\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Owin, Version=1.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Owin.1.2.2\lib\net45\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=1.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.1.2.2\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -409,6 +418,7 @@
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Providers\CustomMembershipProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
+    <Compile Include="SNSRiHub.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
