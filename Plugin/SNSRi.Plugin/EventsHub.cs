@@ -4,7 +4,6 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using HomeSeerAPI;
-using static HomeSeerAPI.Enums;
 
 namespace SNSRi.Plugin
 {
@@ -28,6 +27,30 @@ namespace SNSRi.Plugin
             Log.Logger = logger;
             Log.Logger.Information("Created EventsHub instance at {ExecutionTime}", Environment.TickCount);
             ConnectoToServer(_url);
+        }
+
+        public void TransmitMessage(string msg)
+        {
+            Log.Information("Transmitting message {Message}", msg);
+            if (_hub == null)
+            {
+                Log.Warning("Hub on '{_url}' is not yet initialized", _url);
+                return;
+            }
+            _hub.Invoke<string>("transmitEvent", msg);
+            Log.Information("Message transmitted..");
+        }
+
+        public void TransmitEvent(EventMessage eventMessage)
+        {
+            Log.Information("Transmitting event with object {EventMessage}", eventMessage);
+            if (_hub == null)
+            {
+                Log.Warning("Hub on '{_url}' is not yet initialized", _url);
+                return;
+            }
+            _hub.Invoke<string>("transmitEvent", eventMessage);
+            Log.Information("Event transmitted..");
         }
 
         private void ConnectoToServer(string url)
@@ -65,28 +88,6 @@ namespace SNSRi.Plugin
                     Thread.Sleep(5000);
                 }
             });
-        }
-
-        public void TransmitEvent(string msg)
-        {
-            Log.Information("Transmitting event with message {msg}", msg);
-            if (_hub == null)
-            {
-                Log.Warning("Hub on '{_url}' is not yet initialized", _url);
-                return;
-            }
-            _hub.Invoke<string>("transmitEvent", msg);
-            Log.Information("Event transmitted..");
-        }
-
-        public void TransmitMessage(string msg)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void TransmitEvent(HSEvent hsEvent)
-        {
-            throw new NotImplementedException();
         }
     }
 }

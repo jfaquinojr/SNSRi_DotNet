@@ -80,6 +80,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventMessage.cs" />
     <Compile Include="EventsHub.cs" />
     <Compile Include="IEventsHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
