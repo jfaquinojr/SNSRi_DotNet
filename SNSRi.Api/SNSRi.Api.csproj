@@ -158,8 +158,26 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="OneTrueError.Client, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\OneTrueError.Client.1.0.1\lib\net40\OneTrueError.Client.dll</HintPath>
+    </Reference>
     <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
       <HintPath>..\packages\Serilog.2.4.0\lib\net45\Serilog.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Formatting.Compact, Version=1.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Formatting.Compact.1.0.0\lib\net45\Serilog.Formatting.Compact.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.File, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.File.3.2.0\lib\net45\Serilog.Sinks.File.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.PeriodicBatching, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.PeriodicBatching.2.1.0\lib\net45\Serilog.Sinks.PeriodicBatching.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.RollingFile, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.RollingFile.3.3.0\lib\net45\Serilog.Sinks.RollingFile.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.Seq, Version=3.2.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.Seq.3.2.0\lib\net45\Serilog.Sinks.Seq.dll</HintPath>
     </Reference>
     <Reference Include="Serilog.Sinks.Stackify, Version=1.0.15.39355, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Serilog.Sinks.Stackify.1.25.4\lib\net45\Serilog.Sinks.Stackify.dll</HintPath>
@@ -509,6 +527,7 @@
     <Content Include="images\logo-white.png" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
+    <Content Include="Nuget\ReadMe.txt" />
     <Content Include="SetupAdminAccount.aspx" />
     <Content Include="Views\Rooms\Edit.cshtml" />
     <Content Include="Views\Rooms\Index.cshtml" />
