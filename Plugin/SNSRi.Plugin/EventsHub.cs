@@ -9,24 +9,43 @@ namespace SNSRi.Plugin
 {
     public class EventsHub : IEventsHub
     {
-        private static IHubProxy _hub;
-        private string _url; 
-        public EventsHub(string url)
+        private static IEventsHub _instance;
+        private IHubProxy _hub;
+        private static string _url;
+        private object _lock = new object();
+
+        static EventsHub()
         {
-            _url = url;
             Log.Logger = new LoggerConfiguration()
+                .WriteTo.Console()
                 .WriteTo.File("log.txt")
                 .WriteTo.Seq("http://localhost:5341")
                 .CreateLogger();
-            Log.Logger.Information("Created EventsHub instance at {ExecutionTime}", Environment.TickCount);
-            ConnectoToServer(_url);
+            Log.Information("Created EventsHub instance at {ExecutionTime} (ctor1)", Environment.TickCount);
         }
-        public EventsHub(string url, ILogger logger)
+
+        private EventsHub(string url)
         {
             _url = url;
-            Log.Logger = logger;
-            Log.Logger.Information("Created EventsHub instance at {ExecutionTime}", Environment.TickCount);
-            ConnectoToServer(_url);
+            Console.WriteLine("Inside EventsHub ctor");
+        }
+
+        public static IEventsHub CreateInstance(string url)
+        {
+            Log.Information("Start CreateInstance");
+
+            if (string.IsNullOrWhiteSpace(url))
+            {
+                throw new ArgumentException("url is required", nameof(url));
+            }
+
+            if (_url != url || _instance == null)
+            {
+                _url = url;
+                _instance = new EventsHub(_url);
+                Log.Information("Instance Created.");
+            }
+            return _instance;
         }
 
         public void TransmitMessage(string msg)
@@ -34,7 +53,7 @@ namespace SNSRi.Plugin
             Log.Information("Transmitting message {Message}", msg);
             if (_hub == null)
             {
-                Log.Warning("Hub on '{_url}' is not yet initialized", _url);
+                Log.Warning("Hub on '{HubUrl}' is not yet initialized", _url);
                 return;
             }
             _hub.Invoke<string>("transmitEvent", msg);
@@ -43,51 +62,22 @@ namespace SNSRi.Plugin
 
         public void TransmitEvent(EventMessage eventMessage)
         {
-            Log.Information("Transmitting event with object {EventMessage}", eventMessage);
-            if (_hub == null)
+            Log.Information("Enter TransmitEvent");
+            
+
+            var hubConnection = new HubConnection(_url);
+            _hub = hubConnection.CreateHubProxy("snsri");
+            hubConnection.Start().ContinueWith(task=>
             {
-                Log.Warning("Hub on '{_url}' is not yet initialized", _url);
-                return;
-            }
-            _hub.Invoke<string>("transmitEvent", eventMessage);
-            Log.Information("Event transmitted..");
-        }
+                Log.Information("Transmitting event with object {@EventMessage}", eventMessage);
 
-        private void ConnectoToServer(string url)
-        {
+                _hub.Invoke<string>("transmitEvent", eventMessage);
 
-            if (_hub != null)
-            {
-                Log.Information("There is already an existing hub {url}", url);
-                return;
-            }
-
-            Task.Factory.StartNew(() =>
-            {
-                var attempts = 0;
-                var max = 5;
-                Log.Information("Attemtping to connect to {url}", url);
-                while (_hub == null && attempts < max)
-                {
-                    attempts += 1;
-                    Log.Information("Attempt number {attempts} or {max}", attempts, max);
-                    try
-                    {
-
-                        var hubConnection = new HubConnection(url);
-                        _hub = hubConnection.CreateHubProxy("snsri");
-                        hubConnection.Start();
-                        Log.Information("Connection to {url} successful.", url);
-                        break;
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Error("Unable to Connect to SignalR {Error}", ex);
-                    }
-
-                    Thread.Sleep(5000);
-                }
+                Log.Information("Event {@EventMessage} transmitted..", eventMessage);
             });
+
+            Log.Information("Exit TransmitEvent");
         }
+
     }
 }
