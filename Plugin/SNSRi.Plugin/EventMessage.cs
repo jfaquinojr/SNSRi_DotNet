@@ -8,7 +8,7 @@ namespace SNSRi.Plugin
 {
     public class EventMessage
     {
-        public HSEvent HSEvent { get; set; }
+        public int HSEventType { get; set; }
         public IEnumerable<string> Parameters { get; set; }
     }
 }
