@@ -61,7 +61,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComparisonResult.cs" />
+    <Compile Include="EventMonitor.cs" />
+    <Compile Include="EventServerity.cs" />
     <Compile Include="FactoryResetter.cs" />
+    <Compile Include="HSEventMessage.cs" />
+    <Compile Include="HSEventValueChanged.cs" />
     <Compile Include="IBusinessDataLayer.cs" />
     <Compile Include="IBusinessLayer.cs" />
     <Compile Include="IFactoryReset.cs" />

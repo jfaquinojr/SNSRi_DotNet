@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
+using SNSRi.Business;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +13,11 @@ namespace SNSRi.Web
     {
         public void TransmitEvent(HSEventMessage eventMsg)
         {
-            Clients.All.transmitEvent();
+            if(eventMsg.HSEventType == 1024)
+            {
+                HSEventValueChanged changedEvent = eventMsg as HSEventValueChanged;
+                Clients.All.transmitEvent();
+            }
         }
-
-        public class HSEventMessage
-        {
-            public int EventType { get; set; }
-            public IEnumerable<string> Parameters { get; set; }
-        }
-
     }
 }
