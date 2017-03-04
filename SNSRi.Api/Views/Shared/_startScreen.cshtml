@@ -8,10 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico"/>
     <title>SNSRi | @ViewBag.Title</title>
-
     
     @Styles.Render("~/Content/main")
-
 
 </head>
 <body style="overflow-y: hidden;" ng-app="app" ng-controller="tilesController">
@@ -62,12 +60,31 @@
 
 
     @Scripts.Render("~/bundles/main")
-
+    <script src="~/Scripts/jquery.signalR-1.2.2.js"></script>
+    <script src="signalr/hubs"></script>
 
 
     <script src="~/app/app.js"></script>
     <script>
+
+        var snsriHub;
+
         var HomeSeerUrl = '@Utility.GetConfig("HomeSeerURL", "http://localhost:8002")';
+        $.connection.hub.logging = true;
+
+        snsriHub = $.connection.snsri;
+        snsriHub.client.changeEvent = onChangeEvent;
+
+        $.connection.hub.start();
+
+        function onChangeEvent(refId, newValue, oldValue) {
+            console.log("Device " + refId + " changed value from " + oldValue + " to " + newValue);
+        }
+
+        $.connection.hub.error(function (err) {
+            var msg = "An error occurred: " + err;
+            alert(msg);
+        })
     </script>
 
     @*services*@
@@ -93,9 +110,6 @@
     <script src="~/app/directives/PopupShowActivities.js"></script>
     <script src="~/app/directives/Toolbox.js"></script>
     <script src="~/app/directives/deviceTile.js"></script>
-
-
-
 
     @RenderSection("scripts", required: false)
 

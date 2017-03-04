@@ -16,7 +16,7 @@
 
             self.loadHomeSeerDevice();
 
-            self.stop = self.$interval(() => self.loadHomeSeerDevice(), 3000);
+            //self.stop = self.$interval(() => self.loadHomeSeerDevice(), 3000);
 
             $scope.$on("$destroy",
                 () => {
@@ -54,8 +54,10 @@
                     self.hs = values[1].data.Devices[0] as HomeSeerDevice;
 
                     //update self
-                    self.$scope.device.Value = parseInt(self.hs.value);
-
+                    if (self.hs) {
+                        self.$scope.device.Value = parseInt(self.hs.value);
+                    }
+                    
                     console.log("loadHomeSeerDevice");
                 });
         }

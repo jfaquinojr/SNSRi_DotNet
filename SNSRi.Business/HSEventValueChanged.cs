@@ -13,7 +13,7 @@
         {
             get
             {
-                return Parameters[2];
+                return Parameters[3];
             }
         }
         public int ReferenceId
@@ -21,7 +21,7 @@
             get
             {
                 int n = 0;
-                int.TryParse(Parameters[3], out n);
+                int.TryParse(Parameters[4], out n);
                 return n;
             }
         }

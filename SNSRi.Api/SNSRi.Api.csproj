@@ -528,6 +528,8 @@
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="Nuget\ReadMe.txt" />
+    <Content Include="Scripts\jquery.signalR-1.2.2.js" />
+    <Content Include="Scripts\jquery.signalR-1.2.2.min.js" />
     <Content Include="SetupAdminAccount.aspx" />
     <Content Include="Views\Rooms\Edit.cshtml" />
     <Content Include="Views\Rooms\Index.cshtml" />
@@ -945,6 +947,7 @@
     <Content Include="tsd.json" />
     <TypeScriptCompile Include="app\services\NotificationService.ts" />
     <TypeScriptCompile Include="app\services\roomsDataService.ts" />
+    <TypeScriptCompile Include="app\services\signalRService.ts" />
     <TypeScriptCompile Include="app\services\usersDataService.ts" />
     <TypeScriptCompile Include="typings\underscore\underscore.d.ts" />
   </ItemGroup>

@@ -11,12 +11,20 @@ namespace SNSRi.Web
     [HubName("snsri")]
     public class SNSRiHub: Hub
     {
-        public void TransmitEvent(HSEventMessage eventMsg)
+        public void TransmitEvent(HSEventValueChanged eventMsg)
         {
+            var monitor = new EventMonitor();
             if(eventMsg.HSEventType == 1024)
             {
-                HSEventValueChanged changedEvent = eventMsg as HSEventValueChanged;
-                Clients.All.transmitEvent();
+                switch (monitor.CheckEvent(eventMsg))
+                {
+                    case EventServerity.Emergency:
+                        Clients.All.transmitEmergency();
+                        break;
+                    default:
+                        Clients.All.changeEvent(eventMsg.ReferenceId, eventMsg.NewValue, eventMsg.OldValue);
+                        break;
+                }
             }
         }
     }

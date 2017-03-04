@@ -8,6 +8,10 @@ namespace SNSRi.Business
 {
     public class EventMonitor
     {
-        //EventServerity CheckEvent(HSEvent)
+        public EventServerity CheckEvent(HSEventMessage eventMessage)
+        {
+            //TODO jfa: DO SOME BUSINESS STUFF HERE
+            return EventServerity.Normal;
+        }
     }
 }
