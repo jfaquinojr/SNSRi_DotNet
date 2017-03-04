@@ -11,7 +11,7 @@ namespace SNSRi.Repository
     {
         public SNSRiContext() : base("DefaultConnection")
         {
-            
+            Database.SetInitializer<SNSRiContext>(null);
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
