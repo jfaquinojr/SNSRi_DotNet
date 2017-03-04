@@ -66,25 +66,7 @@
 
     <script src="~/app/app.js"></script>
     <script>
-
-        var snsriHub;
-
         var HomeSeerUrl = '@Utility.GetConfig("HomeSeerURL", "http://localhost:8002")';
-        $.connection.hub.logging = true;
-
-        snsriHub = $.connection.snsri;
-        snsriHub.client.changeEvent = onChangeEvent;
-
-        $.connection.hub.start();
-
-        function onChangeEvent(refId, newValue, oldValue) {
-            console.log("Device " + refId + " changed value from " + oldValue + " to " + newValue);
-        }
-
-        $.connection.hub.error(function (err) {
-            var msg = "An error occurred: " + err;
-            alert(msg);
-        })
     </script>
 
     @*services*@
@@ -92,7 +74,7 @@
     <script src="~/app/services/deviceService.js"></script>
     <script src="~/app/services/startScreenService.js"></script>
     <script src="~/app/services/notificationService.js"></script>
-
+    <script src="~/app/services/signalRService.js"></script>
 
 
     @*controllers*@

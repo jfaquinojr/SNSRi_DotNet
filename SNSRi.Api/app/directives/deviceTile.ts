@@ -10,13 +10,21 @@
         private stop: any;
         private hs: HomeSeerDevice;
 
-        static inject = ["$scope", "$interval", "$q", "dataService"];
-        constructor(private $scope, private $interval: ng.IIntervalService, private $q, private dataService: IDataService) {
+        static $inject = ["$scope", "$interval", "$q", "dataService", "signalRService"];
+        constructor(private $scope, private $interval: ng.IIntervalService,
+            private $q, private dataService: IDataService, signalRService: ISignalRService) {
             const self = this;
 
             self.loadHomeSeerDevice();
 
             //self.stop = self.$interval(() => self.loadHomeSeerDevice(), 3000);
+
+            signalRService.addHandler("changeEvent", function (refId: number, newValue: string, oldValue: string) {
+                
+                console.log("changeEvent invoked. refID: " + refId);
+            });
+            signalRService.init(() => { console.log("initializing signalRService"); });
+
 
             $scope.$on("$destroy",
                 () => {
