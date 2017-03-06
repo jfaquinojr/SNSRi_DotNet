@@ -1,5 +1,6 @@
 ﻿module Data.HomeSeer {
     export class HomeSeerDevice {
+        ref: number;
         name: string;
         location: string;
         location2: string;

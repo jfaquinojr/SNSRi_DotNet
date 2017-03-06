@@ -30,7 +30,6 @@ module App {
             self.handlers.push({
                 eventName: eventName,
                 handler: function (result) {
-                    console.log("Server called " + eventName);
                     self.$rootScope.$apply(handler(result));
                 }
             });
