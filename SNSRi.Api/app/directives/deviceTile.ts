@@ -41,6 +41,7 @@
 
             if (refId === self.device.ReferenceId) {
                 console.log("changeEvent invoked. refID: " + refId);
+                self.loadHomeSeerDevice();
             }
         }
 
