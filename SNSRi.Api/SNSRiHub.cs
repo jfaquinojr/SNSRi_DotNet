@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
+using Serilog;
+using Serilog.Core;
 using SNSRi.Business;
 using System;
 using System.Collections.Generic;
@@ -13,16 +15,23 @@ namespace SNSRi.Web
     {
         public void TransmitEvent(HSEventValueChanged eventMsg)
         {
+            Log.Information("Event received {@EventMessage}");
             var monitor = new EventMonitor();
             if(eventMsg.HSEventType == 1024)
             {
                 switch (monitor.CheckEvent(eventMsg))
                 {
                     case EventServerity.Emergency:
+                        Log.Debug("Emergency event: {@EventMessage}");
                         Clients.All.transmitEmergency();
                         break;
                     default:
-                        Clients.All.changeEvent(eventMsg.ReferenceId, eventMsg.NewValue, eventMsg.OldValue);
+                        Clients.All.changeEvent(new
+                        {
+                            ReferenceId = eventMsg.ReferenceId,
+                            NewValue    = eventMsg.NewValue,
+                            OldValue    = eventMsg.OldValue
+                        });
                         break;
                 }
             }

@@ -8,8 +8,8 @@
         public HomeSeerUrl: string;
         public hs: HomeSeerDevice;
         public device: Device;
-
-        private stop: any;
+        public oldValue: string;
+        public newValue: string;
 
         static $inject = ["$scope", "$interval", "$q", "dataService", "signalRService"];
         constructor(private $scope, private $interval: ng.IIntervalService,
@@ -17,44 +17,39 @@
             const self = this;
 
             self.device = $scope.device;
-
+            self.oldValue = self.device.Value;
+            self.newValue = self.device.Value;
 
             self.loadHomeSeerDevice();
 
-            //self.stop = self.$interval(() => self.loadHomeSeerDevice(), 3000);
-
             signalRService.addHandler("changeEvent", self.changeEvent.bind(self));
-            signalRService.init(() => { console.log("initializing signalRService"); });
+            signalRService.init(() => { console.log("initializing signalRService for device: " + self.device.Name); });
 
 
-            //$scope.$on("$destroy",
-            //    () => {
-            //        if (angular.isDefined(self.stop)) {
-            //            self.$interval.cancel(self.stop);
-            //            self.stop = undefined;
-            //        }
-            //    });
+            $scope.$on("$destroy",
+                () => {
+                    console.debug("$destroying for device-tile for " + self.device.Name);
+                    signalRService.stop(() => { console.info("destroying signalRService for device: " + self.device.Name) });
+                });
         }
 
-        public changeEvent(refId: number, newValue: string, oldValue: string): void {
+        public changeEvent(response: any): void {
             const self = this;
-
+            const refId = response.ReferenceId;
+            const newValue = response.NewValue;
+            const oldValue = response.OldValue;
             if (refId === self.device.ReferenceId) {
-                console.log("changeEvent invoked. refID: " + refId);
+                self.newValue = newValue;
+                self.oldValue = oldValue;
+                console.log("changeEvent invoked. refID: " + refId + ". old: " + oldValue + " - new: " + newValue);
                 self.loadHomeSeerDevice();
             }
         }
 
         public clicked(device: Device): void {
-            //alert(JSON.stringify(device));
-            //toggle device
-            let newValue = "0";
-            if (device.Value == "0") {
-                newValue = "100";
-            } else {
-                newValue = "0";
-            }
-            this.dataService.setHomeSeerDevice(device.ReferenceId, newValue);
+            const self = this;
+            console.debug("sending old value: " + self.oldValue);
+            this.dataService.setHomeSeerDevice(device.ReferenceId, self.oldValue);
         }
 
 
@@ -77,6 +72,14 @@
                     //update self
                     if (self.hs) {
                         self.$scope.device.Value = parseInt(self.hs.value);
+                        if (self.$scope.device.Value === '100') {
+                            self.newValue = '100';
+                            self.oldValue = '0';
+                        }
+                        else {
+                            self.newValue = '0';
+                            self.oldValue = '100';
+                        }
                     }
                 });
         }

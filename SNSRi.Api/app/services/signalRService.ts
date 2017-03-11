@@ -5,6 +5,7 @@ module App {
         addHandler(eventName: string, handler: any);
         invoke(methodName: string): void;
         init(initFunction: () => any): void;
+        stop(initFunction: () => any): void;
     }
 
     export class SignalRService implements ISignalRService {
@@ -27,12 +28,17 @@ module App {
             if (self.isInitialized === true)
                 throw new Error("Service already initialized. You can't add handlers any more");
 
-            self.handlers.push({
-                eventName: eventName,
-                handler: function (result) {
-                    self.$rootScope.$apply(handler(result));
-                }
-            });
+            if (!_.some(self.handlers, (item) => {return item.eventName === eventName;}))
+            {
+                self.handlers.push({
+                    eventName: eventName,
+                    handler: function (result) {
+                        console.debug(JSON.stringify(result));
+                        self.$rootScope.$apply(handler(result));
+                    }
+                });
+            }
+
         }
 
         public invoke(methodName: string): void {
@@ -81,6 +87,13 @@ module App {
             });	
 
             
+        }
+
+        public stop(initFunction: () => any): void {
+            const self = this;
+            initFunction();
+            self.connection.hub.stop();
+            self.isInitialized = false;
         }
 
     }
