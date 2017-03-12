@@ -21,7 +21,8 @@ namespace SNSRi.Repository
             IRoomDeviceRepository roomDeviceRepository,
             IRoomRepository roomRepository,
             IResidentRepository residentRepository,
-            IHSDeviceRepository hsDeviceRepository) : base(context, ticketRepository, userRepository, deviceRepository, roomDeviceRepository, roomRepository, hsDeviceRepository, residentRepository)
+            IHSDeviceRepository hsDeviceRepository,
+            IDeviceControlRepository deviceControlRepository) : base(context, ticketRepository, userRepository, deviceRepository, roomDeviceRepository, roomRepository, hsDeviceRepository, residentRepository, deviceControlRepository)
         {
         }
 
@@ -36,6 +37,7 @@ namespace SNSRi.Repository
                     Truncate("UIRoom");
                     Truncate("Device");
                     Truncate("HSDevice");
+                    Truncate("DeviceControl");
 
                     var roomNames = hsDevices.Select(d => d.Location2).Distinct();
                     foreach (var roomName in roomNames)
@@ -60,6 +62,28 @@ namespace SNSRi.Repository
                         this.RoomDevices.Add(rd);
 
                         this.HSDevices.Add(hsDevice);
+
+
+                        foreach (var pair in hsDevice.ControlPairs)
+                        {
+                            this.DeviceControls.Add(new DeviceControl
+                            {
+                                DoUpdate = pair.Do_Update,
+                                SingleRangeEntry = pair.SingleRangeEntry,
+                                ButtonType = pair.ControlButtonType,
+                                ButtonCustom = pair.ControlButtonCustom,
+                                CCIndex = pair.CCIndex,
+                                Range = pair.Range,
+                                DeviceId = device.Id,
+                                Label = pair.Label,
+                                ControlType = pair.ControlType,
+                                ControlValue = pair.ControlValue,
+                                ControlString = pair.ControlString,
+                                ControlStringList = pair.ControlStringList,
+                                ControlStringSelected = pair.ControlStringSelected,
+                                ControlFlag = pair.ControlFlag
+                            });
+                        }
                     }
 
                     _context.SaveChanges();

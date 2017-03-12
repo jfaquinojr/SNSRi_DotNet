@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Activity.cs" />
     <Compile Include="Device.cs" />
+    <Compile Include="DeviceControl.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="EventTicket.cs" />
     <Compile Include="HomeSeer\ControlLocation.cs" />

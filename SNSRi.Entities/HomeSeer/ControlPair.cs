@@ -1,7 +1,10 @@
-﻿namespace SNSRi.Entities.HomeSeer
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SNSRi.Entities.HomeSeer
 {
     public class ControlPair
     {
+        public int Id { get; set; }
         public bool Do_Update { get; set; } 
         public bool SingleRangeEntry { get; set; } 
         public int ControlButtonType { get; set; }
@@ -11,7 +14,7 @@
         public int Ref { get; set; }
         public string Label { get; set; }
         public int ControlType { get; set; }
-        public ControlLocation ControlLocation { get; set; }
+        //public ControlLocation ControlLocation { get; set; }
 
         public int ControlUse { get; set; }
         public string ControlValue { get; set; }

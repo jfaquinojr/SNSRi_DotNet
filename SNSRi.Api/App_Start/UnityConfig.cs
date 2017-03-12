@@ -58,6 +58,7 @@ namespace SNSRi.Web
             container.RegisterType<DbContext, SNSRiContext>(new PerRequestLifetimeManager());
             container.RegisterType<IResidentBL, ResidentBL>();
             container.RegisterType<IResidentRepository, ResidentRepository>();
+            container.RegisterType<IDeviceControlRepository, DeviceControlRepository>();
 
             //container.RegisterType<IDbConnection, SQLiteConnection>(new InjectionConstructor(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString));
             //container.RegisterType<DbConnection, SQLiteConnection>(new InjectionConstructor(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString));

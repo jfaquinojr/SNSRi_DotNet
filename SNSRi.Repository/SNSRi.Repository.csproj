@@ -103,9 +103,11 @@
     <Compile Include="Commands\ActivityCommand.cs" />
     <Compile Include="Commands\DeviceCommand.cs" />
     <Compile Include="Commands\TicketCommand.cs" />
+    <Compile Include="DeviceControlRepository.cs" />
     <Compile Include="DeviceRepository.cs" />
     <Compile Include="HomeSeerUnitOfWork.cs" />
     <Compile Include="HSDeviceRepository.cs" />
+    <Compile Include="IDeviceControlRepository.cs" />
     <Compile Include="IDeviceRepository.cs" />
     <Compile Include="IHomeSeerUnitOfWork.cs" />
     <Compile Include="IHSDeviceRepository.cs" />

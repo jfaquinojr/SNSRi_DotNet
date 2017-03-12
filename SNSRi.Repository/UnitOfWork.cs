@@ -9,6 +9,7 @@
         public IRoomRepository Rooms { get; set; }
         public IResidentRepository Residents { get; set; }
         public IHSDeviceRepository HSDevices { get; set; }
+        public IDeviceControlRepository DeviceControls { get; set; }
 
         protected readonly SNSRiContext _context;
 
@@ -19,7 +20,8 @@
             IRoomDeviceRepository roomDeviceRepository,
             IRoomRepository roomRepository, 
             IHSDeviceRepository hsDeviceRepository,
-            IResidentRepository residentRepository)
+            IResidentRepository residentRepository,
+            IDeviceControlRepository deviceControlRepository)
         {
             _context = context;
             Tickets = ticketRepository;
@@ -29,6 +31,7 @@
             Rooms = roomRepository;
             HSDevices = hsDeviceRepository;
             Residents = residentRepository;
+            DeviceControls = deviceControlRepository;
         }
 
 

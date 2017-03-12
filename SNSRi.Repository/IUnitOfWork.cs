@@ -11,6 +11,7 @@ namespace SNSRi.Repository
         IRoomRepository Rooms { get; set; }
         IResidentRepository Residents { get; set; }
         IHSDeviceRepository HSDevices { get; set; }
+        IDeviceControlRepository DeviceControls { get; set; }
         int Complete();
     }
 }

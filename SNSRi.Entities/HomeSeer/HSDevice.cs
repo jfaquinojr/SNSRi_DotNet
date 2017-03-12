@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -26,7 +27,8 @@ namespace SNSRi.Entities.HomeSeer
         public string StatusImage{ get; set; }
 
         //public IEnumerable<string> AssociatedDevices { get; set; }
-        //public List<ControlPair> ControlPairs { get; set; }
+        [NotMapped]
+        public List<ControlPair> ControlPairs { get; set; }
 
 
 
@@ -75,5 +77,5 @@ namespace SNSRi.Entities.HomeSeer
         }
         #endregion
 
-    }
+    }   
 }
