@@ -12,7 +12,7 @@
     @Styles.Render("~/Content/main")
 
 </head>
-<body style="overflow-y: hidden;" ng-app="app" ng-controller="tilesController">
+<body style="overflow-y: hidden;" ng-app="app" ng-controller="tilesController as vmTiles">
 
 
 <div id="start-area" tile-area class="tile-area tile-area-scheme-grayed fg-white" style="height: 100%; max-height: 100% !important; width: 1920px;">
@@ -47,6 +47,11 @@
     }
     <a class="app-bar-element" href="/">Documentation</a>
     <a class="app-bar-element" href="/">Support</a>
+    @if (Request.IsAuthenticated)
+    {
+        <a class="app-bar-element" href="javascript:void(0);" ng-click="vmTiles.openAlerts()">Alerts</a>
+    }
+    
 
 </div>
 

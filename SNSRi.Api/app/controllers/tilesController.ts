@@ -8,11 +8,12 @@ module App.Controllers {
 
         private ticket: Ticket;
 
-        static $inject = ["$scope", "$window", "startScreenService"];
+        static $inject = ["$scope", "$window", "startScreenService", "notificationService"];
         constructor(
             public $scope: ng.IScope,
             private $window,
-            private startScreenService: StartScreenService) {
+            private startScreenService: StartScreenService,
+            private notificationService: INotificationService) {
 
 
                 const self = this;
@@ -37,7 +38,11 @@ module App.Controllers {
                 //this.$scope.$on("EventsCharmOpened", event => {
                 //        self.$scope.$broadcast("OpenEventsCharm");
                 //    });
+        }
 
+        openAlerts() {
+            console.log("openEvents");
+            this.notificationService.notify("#charmEvents", {});
         }
 
     }
