@@ -161,8 +161,8 @@ CREATE TABLE HSDevice (
 );
 
 
--- Table: DeviceControls
-CREATE TABLE DeviceControls (
+-- Table: DeviceControl
+CREATE TABLE DeviceControl (
     Id                    INTEGER PRIMARY KEY AUTOINCREMENT,
     DeviceId              INTEGER REFERENCES Device (Id),
     DoUpdate              BOOLEAN,
