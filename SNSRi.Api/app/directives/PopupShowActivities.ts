@@ -14,10 +14,28 @@
         ticket: Ticket;
         activities: Activity[];
         comment: string;
+        private sourceId = "PopupShowActivitiesController";
 
-        static $inject = ["$scope", "$window", "dataService", "notificationService"];
-        constructor(private $scope, private $window: any, private dataService: IDataService, private notificationService: INotificationService) {
+        static $inject = ["$scope", "$window", "dataService", "notificationService", "signalRService"];
+        constructor(private $scope, private $window: any, private dataService: IDataService, private notificationService: INotificationService,
+            private signalRService: ISignalRService) {
+
+            const self = this;
+
             notificationService.subscribe("editTicketEvent", (event, args) => this.eventOpened(event, args), $scope);
+
+            signalRService.addHandler("transmitEmergency", self.sourceId, self.transmitEmergency.bind(self));
+            signalRService.init(self.sourceId, () => { console.log("initializing signalRService for PopupShowActivitiesController"); });
+
+            $scope.$on("$destroy",
+                () => {
+                    signalRService.stop("EventSidebarController", () => { console.info("destroying signalRService for PopupShowActivitiesController"); });
+                });
+        }
+
+        private transmitEmergency(response): void {
+            const self = this;
+            self.eventOpened(null, response);
         }
 
         addActivity(comment: string): void {

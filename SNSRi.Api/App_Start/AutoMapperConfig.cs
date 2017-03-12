@@ -24,6 +24,7 @@ namespace SNSRi.Web
                 cfg.CreateMap<UIRoom, UIRoom>();
                 cfg.CreateMap<Resident, Resident>();
                 cfg.CreateMap<HSDevice, HSDevice>();
+                cfg.CreateMap<Event, Event>();
             });
         }
     }

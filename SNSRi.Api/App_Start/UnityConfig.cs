@@ -41,6 +41,11 @@ namespace SNSRi.Web
         /// change the defaults), as Unity allows resolving a concrete type even if it was not previously registered.</remarks>
         public static void RegisterTypes(IUnityContainer container)
         {
+            RegisterTypes(container, new PerRequestLifetimeManager());
+        }
+
+        public static void RegisterTypes(IUnityContainer container, LifetimeManager lifetimeManager)
+        {
             // NOTE: To load from web.config uncomment the line below. Make sure to add a Microsoft.Practices.Unity.Configuration to the using statements.
             // container.LoadConfiguration();
 
@@ -55,13 +60,13 @@ namespace SNSRi.Web
             container.RegisterType<IHomeSeerUnitOfWork, HomeSeerUnitOfWork>();
             container.RegisterType<IFactoryResetter, FactoryResetter>();
             container.RegisterType<IHttpClient, SNSRiHttpClient>();
-            container.RegisterType<DbContext, SNSRiContext>(new PerRequestLifetimeManager());
+            container.RegisterType<DbContext, SNSRiContext>(lifetimeManager);
             container.RegisterType<IResidentBL, ResidentBL>();
             container.RegisterType<IResidentRepository, ResidentRepository>();
             container.RegisterType<IDeviceControlRepository, DeviceControlRepository>();
-
-            //container.RegisterType<IDbConnection, SQLiteConnection>(new InjectionConstructor(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString));
-            //container.RegisterType<DbConnection, SQLiteConnection>(new InjectionConstructor(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString));
+            container.RegisterType<IEventRepository, EventRepository>();
+            container.RegisterType<IEventMonitor, EventMonitor>();
+            container.RegisterType<ITicketingUnitOfWork, TicketingUnitOfWork>();
         }
 
         public static void RegisterComponents()

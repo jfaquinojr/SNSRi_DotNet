@@ -31,27 +31,6 @@ namespace SNSRi.Api.Controllers
             _deviceRepository = deviceRepository;
         }
 
-        // POST: api/ChangeDeviceValue/5
-        [HttpPost]
-        [Route("api/ChangeDeviceValue/{id}")]
-        [ResponseType(typeof(void))]
-        public IHttpActionResult ChangeDeviceValue(int Id, Event entity)
-        {
-            var device = _deviceRepository.GetByReferenceId(Id);
-
-            if (device == null)
-            {
-                var httpError = new HttpError($"Device with ReferenceId: {Id} was not found");
-                var errorResponse = Request.CreateErrorResponse(HttpStatusCode.NotFound, httpError);
-                throw new HttpResponseException(errorResponse);
-            }
-
-            var cmdEvent = new EventCommand();
-            cmdEvent.Create(new Event(device.Id, entity.NewStatus, device.Status, entity.OccurredOn));
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
         [HttpPost]
         [Route("api/CreateActivity")]
         [ResponseType(typeof(void))]

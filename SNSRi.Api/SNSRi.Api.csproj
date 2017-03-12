@@ -438,6 +438,7 @@
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="SNSRiHub.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="UnityHubActivator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admincms\Assets\fonts\hind\OFL.txt" />

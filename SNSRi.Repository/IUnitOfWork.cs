@@ -12,6 +12,7 @@ namespace SNSRi.Repository
         IResidentRepository Residents { get; set; }
         IHSDeviceRepository HSDevices { get; set; }
         IDeviceControlRepository DeviceControls { get; set; }
+        IEventRepository Events { get; set; }
         int Complete();
     }
 }

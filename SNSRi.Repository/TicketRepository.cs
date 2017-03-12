@@ -42,10 +42,11 @@ namespace SNSRi.Repository
 
         public IEnumerable<Ticket> GetOpenTicketsPastMinutes(int minutes)
         {
-            return GetOpenTicketsPast(minutes*60000);
+            return GetOpenTicketsPast(minutes * 60000);
         }
 
-        public SNSRiContext SNSRiContext {
+        public SNSRiContext SNSRiContext
+        {
             get
             {
                 return base.Context as SNSRiContext;
