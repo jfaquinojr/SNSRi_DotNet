@@ -72,13 +72,13 @@
                     //update self
                     if (self.hs) {
                         self.$scope.device.Value = parseInt(self.hs.value);
-                        if (self.$scope.device.Value === '100') {
-                            self.newValue = '100';
-                            self.oldValue = '0';
+                        if (self.$scope.device.Value === 100) {
+                            self.newValue = "100";
+                            self.oldValue = "0";
                         }
                         else {
-                            self.newValue = '0';
-                            self.oldValue = '100';
+                            self.newValue = "0";
+                            self.oldValue = "100";
                         }
                     }
                 });

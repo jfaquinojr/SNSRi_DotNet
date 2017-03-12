@@ -28,16 +28,13 @@ module App {
             if (self.isInitialized === true)
                 throw new Error("Service already initialized. You can't add handlers any more");
 
-            if (!_.some(self.handlers, (item) => {return item.eventName === eventName;}))
-            {
-                self.handlers.push({
-                    eventName: eventName,
-                    handler: function (result) {
-                        console.debug(JSON.stringify(result));
-                        self.$rootScope.$apply(handler(result));
-                    }
-                });
-            }
+            self.handlers.push({
+                eventName: eventName,
+                handler: function (result) {
+                    //console.debug(JSON.stringify(result));
+                    self.$rootScope.$apply(handler(result));
+                }
+            });
 
         }
 
