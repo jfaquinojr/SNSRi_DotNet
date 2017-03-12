@@ -31,6 +31,7 @@
                 $scope);
 
             signalRService.addHandler("changeEvent", "EventSidebarController", self.changeEvent.bind(self));
+            signalRService.addHandler("transmitEmergency", "EventSidebarController", self.transmitEmergency.bind(self));
             signalRService.init("EventSidebarController", () => { console.log("initializing signalR for SideBar"); });
 
             $scope.$on("$destroy",
@@ -49,6 +50,11 @@
                 content: "A device with Id " + refId + " has changed value from " + oldValue + " to " + newValue + ".",
                 type: "info"
             });
+        }
+
+        public transmitEmergency(response: any): void {
+            const self = this;
+            self.loadTickets();
         }
 
         private closeTicket(event: any, ticket: Ticket): void {

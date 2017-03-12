@@ -27,13 +27,14 @@ namespace SNSRi.Repository
         {
         }
 
-        public int CreateTicket(string name, string type, int eventId)
+        public int CreateTicket(string name, string severity, int eventId)
         {
             var ticket = new Ticket
             {
                 Name = name,
-                Status = "New",
-                TicketType = type,
+                Status = "Open",
+                TicketType = "Event",
+                Severity = severity,
                 CreatedBy = SessionProvider.CurrentUserId,
                 CreatedOn = DateTime.Now
             };
