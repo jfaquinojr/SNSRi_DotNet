@@ -127,6 +127,23 @@
                 CreatedBy: 1
             } as Activity;
         }
+
+        private getPopupClass(ticket: Ticket) {
+
+            if (!ticket) {
+                return;
+            }
+
+            if (ticket.Severity === "Emergency") {
+                return "popup-emergency";
+            }
+            if (ticket.Severity === "Warning") {
+                return "popup-warning";
+            }
+            if (ticket.Severity === "Alert") {
+                return "popup-alert";
+            }
+        }
     }
 
     export function PopupShowActivitiesDirective(): ng.IDirective {

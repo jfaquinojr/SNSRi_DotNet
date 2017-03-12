@@ -59,11 +59,7 @@
 
         private closeTicket(event: any, ticket: Ticket): void {
             const self = this;
-            self.tickets = _.without(self.tickets,
-                _.findWhere(self.tickets,
-                    {
-                        id: ticket.Id
-                    }));
+            self.loadTickets();
         }
 
         private changeRoom(event: any, args: any): void {

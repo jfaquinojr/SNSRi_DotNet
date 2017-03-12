@@ -57,6 +57,7 @@ namespace SNSRi.Api.Controllers
             return PartialView();
         }
 
+        [AllowAnonymous]
         public ActionResult PopupShowActivities()
         {
             return PartialView();

@@ -523,6 +523,7 @@
     <Content Include="Admincms\Templates\Units\SideNavigation.ascx" />
     <Content Include="Admincms\Templates\Units\TopNavigation.ascx" />
     <Content Include="App_Data\empty.txt" />
+    <Content Include="Content\popup-show-activities.css" />
     <Content Include="Files\Readme.txt" />
     <Content Include="ImageCache\readme.txt" />
     <Content Include="images\logo-white.png" />

@@ -51,6 +51,7 @@
         TicketType: string;
         Status: string;
         Description: string;
+        Severity: string;
         Events: Event[];
     }
 
