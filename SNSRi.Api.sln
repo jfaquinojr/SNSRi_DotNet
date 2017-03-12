@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26206.0
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SNSRi.Api", "SNSRi.Api\SNSRi.Api.csproj", "{85E46A08-2721-4707-932F-2E1D7235A924}"
 EndProject
@@ -22,6 +22,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SNSRi.Plugin", "Plugin\SNSRi.Plugin\SNSRi.Plugin.csproj", "{3FE51422-DB85-459B-A713-AB7C3E69B4F7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{0CA4C975-6E77-4553-BD39-5B8D476F6054}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SNSRi.Database", "SNSRi.Database\SNSRi.Database.csproj", "{11192FF6-7B5A-4B79-8272-D982A6AD3755}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -435,6 +437,54 @@ Global
 		{3FE51422-DB85-459B-A713-AB7C3E69B4F7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3FE51422-DB85-459B-A713-AB7C3E69B4F7}.Release|x86.ActiveCfg = Release|Any CPU
 		{3FE51422-DB85-459B-A713-AB7C3E69B4F7}.Release|x86.Build.0 = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Debug|x86.Build.0 = Debug|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.HTZEES2|Any CPU.ActiveCfg = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.HTZEES2|Any CPU.Build.0 = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.HTZEES2|x86.ActiveCfg = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.HTZEES2|x86.Build.0 = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.HTZEES2ASCII|Any CPU.ActiveCfg = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.HTZEES2ASCII|Any CPU.Build.0 = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.HTZEES2ASCII|x86.ActiveCfg = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.HTZEES2ASCII|x86.Build.0 = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Debug|x86.ActiveCfg = Debug|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Debug|x86.Build.0 = Debug|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Release SEL|Any CPU.ActiveCfg = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Release SEL|Any CPU.Build.0 = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Release SEL|x86.ActiveCfg = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Release SEL|x86.Build.0 = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Release|Any CPU.Build.0 = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Release|x86.ActiveCfg = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Release|x86.Build.0 = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Zee Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Zee Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Zee Debug|x86.ActiveCfg = Debug|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Zee Debug|x86.Build.0 = Debug|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Zee Plus Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Zee Plus Release|Any CPU.Build.0 = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Zee Plus Release|x86.ActiveCfg = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Zee Plus Release|x86.Build.0 = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Zee Release ASCII|Any CPU.ActiveCfg = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Zee Release ASCII|Any CPU.Build.0 = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Zee Release ASCII|x86.ActiveCfg = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Zee Release ASCII|x86.Build.0 = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Zee Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Zee Release|Any CPU.Build.0 = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Zee Release|x86.ActiveCfg = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux Zee Release|x86.Build.0 = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux ZeePlus Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux ZeePlus Release|Any CPU.Build.0 = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux ZeePlus Release|x86.ActiveCfg = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Linux ZeePlus Release|x86.Build.0 = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Release|x86.ActiveCfg = Release|Any CPU
+		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
