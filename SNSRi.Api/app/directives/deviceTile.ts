@@ -10,6 +10,7 @@
         public device: Device;
         public oldValue: string;
         public newValue: string;
+        private sourceId: string;
 
         static $inject = ["$scope", "$interval", "$q", "dataService", "signalRService"];
         constructor(private $scope, private $interval: ng.IIntervalService,
@@ -22,14 +23,15 @@
 
             self.loadHomeSeerDevice();
 
-            signalRService.addHandler("changeEvent", self.changeEvent.bind(self));
-            signalRService.init(() => { console.log("initializing signalRService for device: " + self.device.Name); });
+            self.sourceId = "device" + self.device.Id;
+            signalRService.addHandler("changeEvent", self.sourceId, self.changeEvent.bind(self));
+            signalRService.init(self.sourceId, () => { console.log("initializing signalRService for device: " + self.device.Name); });
 
 
             $scope.$on("$destroy",
                 () => {
                     console.debug("$destroying for device-tile for " + self.device.Name);
-                    signalRService.stop(() => { console.info("destroying signalRService for device: " + self.device.Name) });
+                    signalRService.stop(self.sourceId, () => { console.info("destroying signalRService for device: " + self.device.Name) });
                 });
         }
 

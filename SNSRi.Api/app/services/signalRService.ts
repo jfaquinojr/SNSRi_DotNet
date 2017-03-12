@@ -2,16 +2,16 @@
 module App {
 
     export interface ISignalRService {
-        addHandler(eventName: string, handler: any);
-        invoke(methodName: string): void;
-        init(initFunction: () => any): void;
-        stop(initFunction: () => any): void;
+        addHandler(eventName: string, sourceId: string, handler: any);
+        invoke(methodName: string, sourceId: string): void;
+        init(sourceId: string, initFunction: () => any): void;
+        stop(sourceId: string, initFunction: () => any): void;
     }
 
     export class SignalRService implements ISignalRService {
 
-        private handlers = [];
-        private isInitialized: boolean;
+        private handlers = {};
+        private isInitialized = {};
         private connection: any;
         private hub: any;
 
@@ -23,24 +23,25 @@ module App {
             self.hub = jquery.connection.snsri;
         }
 
-        public addHandler(eventName: string, handler: any): void {
+        public addHandler(eventName: string, sourceId: string, handler: any): void {
             const self = this;
-            if (self.isInitialized === true)
+            self.isInitialized[sourceId] = self.isInitialized[sourceId] || false;
+            if (self.isInitialized[sourceId] === true)
                 throw new Error("Service already initialized. You can't add handlers any more");
 
-            self.handlers.push({
+            self.handlers[sourceId] = self.handlers[sourceId] || [];
+            self.handlers[sourceId].push({
                 eventName: eventName,
                 handler: function (result) {
-                    //console.debug(JSON.stringify(result));
                     self.$rootScope.$apply(handler(result));
                 }
             });
 
         }
 
-        public invoke(methodName: string): void {
+        public invoke(methodName: string, sourceId: string): void {
             const self = this;
-            if (self.isInitialized == false)
+            if (self.isInitialized[sourceId] == false)
                 throw new Error("Call init() before invoking server methods");
 
             self.hub.invoke.apply(self.hub, arguments)
@@ -53,17 +54,17 @@ module App {
         }
 
 
-        public init(initFunction: ()=>any): void {
+        public init(sourceId: string, initFunction: ()=>any): void {
             const self = this;
             
 
-            if (self.handlers.length == 0)
+            if (self.handlers[sourceId].length == 0)
                 throw new Error("No handlers defined. Please, add handlers first, than call init()");
 
             self.connection.hub.logging = true;
             self.hub = self.connection.snsri;
 
-            $.each(self.handlers, function () {
+            $.each(self.handlers[sourceId], function () {
                 var handlerItem = this;
                 self.hub.on(handlerItem.eventName, handlerItem.handler);
             });
@@ -71,7 +72,7 @@ module App {
             self.connection.hub.start()
                 .done(function () {
                     console.log("Connection started.");
-                    self.isInitialized = true;
+                    self.isInitialized[sourceId] = true;
                     initFunction();
                 })
                 .fail(function () {
@@ -86,11 +87,11 @@ module App {
             
         }
 
-        public stop(initFunction: () => any): void {
+        public stop(sourceId: string, initFunction: () => any): void {
             const self = this;
             initFunction();
             self.connection.hub.stop();
-            self.isInitialized = false;
+            self.isInitialized[sourceId] = false;
         }
 
     }
