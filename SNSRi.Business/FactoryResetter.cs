@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using SNSRi.Entities.HomeSeer;
 using SNSRi.Repository;
 using SNSRi.Common;
+using Serilog;
 
 namespace SNSRi.Business
 {
@@ -46,68 +47,92 @@ namespace SNSRi.Business
             var hsDevices = resultsStatus.Devices;
             foreach (var hsDev in hsDevices)
             {
-                var dev = new HSDevice
+                try
                 {
-                    Name = hsDev.name,
-                    Status = hsDev.status,
-                    Location = hsDev.location,
-                    Ref = hsDev.@ref,
-                    Value = hsDev.value.ToString(),
-                    HideFromView = (bool)hsDev.hide_from_view,
-                    Location2 = hsDev.location2,
-                    DeviceTypeString = hsDev.device_type_string,
-                    LastChange = DateTime.Parse(hsDev.last_change.ToString()),
-                    Relationship = hsDev.relationship,
-                    //DeviceType = hsDev.associated_devices,
-                    DeviceImage = hsDev.device_image,
-                    UserNote = hsDev.UserNote,
-                    UserAccess = hsDev.UserAccess,
-                    StatusImage = hsDev.status_image,
-                    ControlPairs = resultsControls.Where(d => d.Ref == int.Parse(hsDev.@ref.ToString())).ToList()
-                };
+                    var dev = new HSDevice
+                    {
+                        Name = hsDev.name,
+                        Status = hsDev.status,
+                        Location = hsDev.location,
+                        Ref = hsDev.@ref,
+                        Value = hsDev.value.ToString(),
+                        HideFromView = (bool)hsDev.hide_from_view,
+                        Location2 = hsDev.location2,
+                        DeviceTypeString = hsDev.device_type_string,
+                        LastChange = DateTime.Parse(hsDev.last_change.ToString()),
+                        Relationship = hsDev.relationship,
+                        //DeviceType = hsDev.associated_devices,
+                        DeviceImage = hsDev.device_image,
+                        UserNote = hsDev.UserNote,
+                        UserAccess = hsDev.UserAccess,
+                        StatusImage = hsDev.status_image,
+                        ControlPairs = resultsControls.Where(d => d.Ref == int.Parse(hsDev.@ref.ToString())).ToList()
+                    };
 
-                ret.Add(dev);
+                    ret.Add(dev);
+                }
+                catch(Exception ex)
+                {
+                    Log.Error(ex, "Unable to Map HomeSeer Device to SNSRi HSDevice: " + hsDev.Name);
+                }
+               
             }
             return ret;
 
             dynamic GetDevicesStatus()
             {
-                var url = urlHomeSeer.TrimEnd('/') + "/JSON?request=getstatus";
-                var jsonData = _httpClient.GetStringAsync(url);
-                dynamic results = JsonConvert.DeserializeObject<dynamic>(jsonData);
-                return results;
+                try
+                {
+                    var url = urlHomeSeer.TrimEnd('/') + "/JSON?request=getstatus";
+                    var jsonData = _httpClient.GetStringAsync(url);
+                    dynamic results = JsonConvert.DeserializeObject<dynamic>(jsonData);
+                    return results;
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, "Error in GetDevicesStatus");
+                }
+                return "";
             }
 
             List<ControlPair> GetDeviceControls()
             {
-                var url = urlHomeSeer.TrimEnd('/') + "/JSON?request=getcontrol";
-                var jsonData = _httpClient.GetStringAsync(url);
-                dynamic results = JsonConvert.DeserializeObject<dynamic>(jsonData);
-
                 var pairs = new List<ControlPair>();
-                foreach (var device in results.Devices)
+                try
                 {
-                    foreach(var pair in device.ControlPairs)
+                    var url = urlHomeSeer.TrimEnd('/') + "/JSON?request=getcontrol";
+                    var jsonData = _httpClient.GetStringAsync(url);
+                    dynamic results = JsonConvert.DeserializeObject<dynamic>(jsonData);
+
+                    
+                    foreach (var device in results.Devices)
                     {
-                        pairs.Add(new ControlPair
+                        foreach (var pair in device.ControlPairs)
                         {
-                            Do_Update = pair.Do_Update,
-                            SingleRangeEntry = pair.SingleRangeEntry,
-                            ControlButtonType = pair.ControlButtonType,
-                            ControlButtonCustom = pair.ControlButtonCustom,
-                            CCIndex = pair.CCIndex,
-                            Range = pair.Range,
-                            Ref = pair.Ref,
-                            Label = pair.Label,
-                            ControlType = pair.ControlType,
-                            ControlUse = pair.ControlUse,
-                            ControlValue = pair.ControlValue,
-                            ControlString = pair.ControlString,
-                            ControlStringList = pair.ControlStringList,
-                            ControlStringSelected = pair.ControlStringSelected,
-                            ControlFlag = pair.ControlFlag
-                        });
+                            pairs.Add(new ControlPair
+                            {
+                                Do_Update = pair.Do_Update,
+                                SingleRangeEntry = pair.SingleRangeEntry,
+                                ControlButtonType = pair.ControlButtonType,
+                                ControlButtonCustom = pair.ControlButtonCustom,
+                                CCIndex = pair.CCIndex,
+                                Range = pair.Range,
+                                Ref = pair.Ref,
+                                Label = pair.Label,
+                                ControlType = pair.ControlType,
+                                ControlUse = pair.ControlUse,
+                                ControlValue = pair.ControlValue,
+                                ControlString = pair.ControlString,
+                                ControlStringList = pair.ControlStringList,
+                                ControlStringSelected = pair.ControlStringSelected,
+                                ControlFlag = pair.ControlFlag
+                            });
+                        }
                     }
+                }
+                catch(Exception ex)
+                {
+                    Log.Error(ex, "Error in GetDeviceControls");
                 }
                 return pairs;
             }

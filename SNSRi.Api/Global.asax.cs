@@ -29,7 +29,7 @@ namespace SNSRi.Api
 
             //GlobalConfiguration.Configuration.Formatters.JsonFormatter.MediaTypeMappings.Add(new QueryStringMapping("json", "true", "application/json"));
             Log.Logger = new LoggerConfiguration()
-                .WriteTo.File("log.txt")
+                .WriteTo.RollingFile("/logs/log.txt")
                 .WriteTo.Seq("http://localhost:5341")
                 .CreateLogger();
 
@@ -40,6 +40,7 @@ namespace SNSRi.Api
 
             EntityFrameworkProfiler.Initialize(EntityFrameworkVersion.EntityFramework6);
 
+            Environment.SetEnvironmentVariable("BASEDIR", AppDomain.CurrentDomain.BaseDirectory);
         }
 
         protected void Application_Error(object sender, EventArgs e)
