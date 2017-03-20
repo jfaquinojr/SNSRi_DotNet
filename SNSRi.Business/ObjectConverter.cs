@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SNSRi.Entities;
 using SNSRi.Entities.HomeSeer;
+using Serilog;
 
 namespace SNSRi.Business
 {
@@ -42,12 +43,14 @@ namespace SNSRi.Business
         {
             if (string.IsNullOrWhiteSpace(roomName))
             {
-                throw new InvalidOperationException("Room name must not be empty");
+                Log.Warning("Room name is empty");
+                //throw new InvalidOperationException("Room name must not be empty");
             }
 
             if (roomName.ToLower() == "all")
             {
-                throw new InvalidOperationException("All room should be skipped");
+                //throw new InvalidOperationException("All room should be skipped");
+                Log.Warning("All room should be skipped");
             }
 
             return new UIRoom
