@@ -38,20 +38,20 @@
    
     @*<toolbox></toolbox>*@
 
-<div class="app-bar darcula" style="position:absolute; top:34px; left:240px; width:600px; background-color:inherit;" >
+<div class="app-bar darcula" style="position:absolute; top:34px; left:240px; width:700px; background-color:inherit;" >
     <a class="app-bar-element" href="/">Welcome</a>
     <a class="app-bar-element" href="/Home/#/">Facility</a>
-    @if (Request.IsAuthenticated)
-    {
-        <a class="app-bar-element" href="/Admin/#/Residents/">Resident</a>
-    }
     <a class="app-bar-element" href="/">Documentation</a>
     <a class="app-bar-element" href="/">Support</a>
     @if (Request.IsAuthenticated)
     {
+        if (User.IsInRole("WebAdmin"))
+        {
+            <a class="app-bar-element" href="/admincms">Manage Content</a>
+        }
+        <a class="app-bar-element" href="/Admin/#/Residents/">Resident</a>
         <a class="app-bar-element" href="javascript:void(0);" ng-click="vmTiles.openAlerts()">Alerts</a>
     }
-    
 
 </div>
 
