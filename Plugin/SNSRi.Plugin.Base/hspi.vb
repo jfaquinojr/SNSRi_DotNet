@@ -131,35 +131,29 @@ Public Class HSPI
         Next
         Console.WriteLine()
 
-        Select Case EventType
-            Case Enums.HSEvent.VALUE_CHANGE
+        ' looks like parameters being passed are as follows
+        ' parameter 1 = value 1024
+        ' parameter 2 = new value
+        ' parameter 3 = old value
+        ' parameter 4 = reference id
+        ' 
+        ' on seems to be 100 while off is 0
 
-                ' looks like parameters being passed are as follows
-                ' parameter 1 = value 1024
-                ' parameter 2 = new value
-                ' parameter 3 = old value
-                ' parameter 4 = reference id
-                ' 
-                ' on seems to be 100 while off is 0
+        Console.WriteLine("Transmitting event...")
+        Try
+            Dim eventMsg = New EventMessage
+            eventMsg.HSEventType = EventType.ToInt
+            Dim list = New List(Of String)()
+            For Each item As Object In parms.ToList
+                list.Add(item.ToString)
+            Next
+            eventMsg.Parameters = list
 
-                Console.WriteLine("Transmitting event...")
-                Try
-                    Dim eventMsg = New EventMessage
-                    eventMsg.HSEventType = EventType.ToInt
-                    Dim list = New List(Of String)()
-                    For Each item As Object In parms.ToList
-                        list.Add(item.ToString)
-                    Next
-                    eventMsg.Parameters = list
-
-                    _hub.TransmitEvent(eventMsg)
-                    Console.WriteLine("...Done Transmitting event.")
-                Catch ex As Exception
-                    Console.WriteLine("Error Transmitting: " + ex.Message)
-                End Try
-
-
-        End Select
+            _hub.TransmitEvent(eventMsg)
+            Console.WriteLine("...Done Transmitting event.")
+        Catch ex As Exception
+            Console.WriteLine("Error Transmitting: " + ex.Message)
+        End Try
     End Sub
 
     Public Function PollDevice(ByVal dvref As Integer) As IPlugInAPI.PollResultInfo Implements HomeSeerAPI.IPlugInAPI.PollDevice

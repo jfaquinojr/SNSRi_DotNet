@@ -4,6 +4,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using HomeSeerAPI;
+using System.Configuration;
 
 namespace SNSRi.Plugin
 {
@@ -12,16 +13,26 @@ namespace SNSRi.Plugin
         private static IEventsHub _instance;
         private IHubProxy _hub;
         private static string _url;
-        private object _lock = new object();
 
         static EventsHub()
         {
+            var seqUrl = useDefault(ConfigurationManager.AppSettings["SeqUrl"], "http://localhost:5341");
+            var logTxt = useDefault(ConfigurationManager.AppSettings["LogFile"], "/logs/log.txt");
+
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.Console()
-                .WriteTo.File("log.txt")
-                .WriteTo.Seq("http://localhost:5341")
+                .WriteTo.File(logTxt)
+                .WriteTo.Seq(seqUrl)
                 .CreateLogger();
             Log.Information("Created EventsHub instance at {ExecutionTime} (ctor1)", Environment.TickCount);
+
+            string useDefault(string setting, string defaultValue){
+                if (string.IsNullOrEmpty(setting))
+                {
+                    return defaultValue;
+                }
+                return setting;
+            }
         }
 
         private EventsHub(string url)
