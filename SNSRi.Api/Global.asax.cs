@@ -29,7 +29,7 @@ namespace SNSRi.Api
 
             //GlobalConfiguration.Configuration.Formatters.JsonFormatter.MediaTypeMappings.Add(new QueryStringMapping("json", "true", "application/json"));
             Log.Logger = new LoggerConfiguration()
-                .WriteTo.RollingFile(Utility.GetConfig("SNSRi.Seq.Url", "C:\\temp\\logs\\log.txt"))
+                .WriteTo.RollingFile(Utility.GetConfig("SNSRi.Log.File", "C:\\temp\\logs\\log.txt"))
                 .WriteTo.Seq(Utility.GetConfig("SNSRi.Seq.Url", "http://localhost:5341"))
                 .CreateLogger();
 
@@ -40,14 +40,19 @@ namespace SNSRi.Api
 
             EntityFrameworkProfiler.Initialize(EntityFrameworkVersion.EntityFramework6);
 
-            Environment.SetEnvironmentVariable("BASEDIR", AppDomain.CurrentDomain.BaseDirectory);
+
         }
 
         protected void Application_Error(object sender, EventArgs e)
         {
             Exception exception = Server.GetLastError();
-            OneTrue.Report(exception);
-            Log.Error(exception, "An unhandled exception has occurred");
+            try
+            {
+                Log.Error(exception, "An unhandled exception has occurred {@exception}");
+                OneTrue.Report(exception);
+            }
+            catch { }
+
             Server.ClearError();
             //Response.Redirect("/Home/Error");
         }

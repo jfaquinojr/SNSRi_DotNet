@@ -1,5 +1,6 @@
 ﻿module App {
     import HomeSeerDevice = Data.HomeSeer.HomeSeerDevice;
+    import DeviceControl = Data.Contracts.DeviceControl;
 
     export interface IDataService {
         createActivity(activity: Data.Contracts.Activity): ng.IHttpPromise<number>;
@@ -16,6 +17,7 @@
         getOpenTicketsPastMinutes(minutes: number): ng.IHttpPromise<Data.Contracts.Ticket[]>;
         getOpenTicketsPastSeconds(seconds: number): ng.IHttpPromise<Data.Contracts.Ticket[]>;
         getHomeSeerUrl(): ng.IHttpPromise<string>;
+        getHomeSeerDeviceControls(refId: number): ng.IHttpPromise<DeviceControl[]>;
     }
 
     export class DataService implements IDataService {
@@ -43,7 +45,8 @@
         }
 
         setHomeSeerDevice(refId: number, value: string): any {
-            return this.$http.get(`${this.homeSeerUrl}/JSON?request=controldevicebyvalue&ref=${refId}&value=${value}`);
+            let url = `${this.homeSeerUrl}/JSON?request=controldevicebyvalue&ref=${refId}&value=${value}`;
+            return this.$http.get(url);
         }
 
         getRooms(): angular.IHttpPromise<Data.Contracts.Room[]> {
@@ -84,6 +87,10 @@
 
         getHomeSeerUrl(): ng.IHttpPromise<string> {
             return this.$http.get("/api/Config/HomeSeerUrl");
+        }
+
+        getHomeSeerDeviceControls(refId: number): ng.IHttpPromise<DeviceControl[]> {
+            return this.$http.get(`/api/Devices/${refId}/Controls`);
         }
     }
 

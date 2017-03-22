@@ -30,6 +30,14 @@ namespace SNSRi.Api.Controllers.api
             return Ok(_deviceRepository.GetAll(1, 1000));
         }
 
+        [HttpGet]
+        [Route("api/Devices/{id}/Controls")]
+        public IHttpActionResult GetDeviceByRefId(int id)
+        {
+            var device = _deviceRepository.GetByReferenceId(id);
+            return Ok(device.DeviceControls);
+        }
+
         [Route("api/Rooms/{roomId}/Devices")]
         public IHttpActionResult GetDevicesByRoom(int roomId)
         {

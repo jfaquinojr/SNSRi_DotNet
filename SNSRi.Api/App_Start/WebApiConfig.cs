@@ -10,6 +10,7 @@ using System.Web.Http.OData.Extensions;
 using SNSRi.Entities;
 using System.Web.Http.Cors;
 using SNSRi.Api.Models;
+using Newtonsoft.Json;
 
 namespace SNSRi.Api
 {
@@ -17,6 +18,9 @@ namespace SNSRi.Api
     {
         public static void Register(HttpConfiguration config)
         {
+
+            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
             config.SuppressDefaultHostAuthentication();

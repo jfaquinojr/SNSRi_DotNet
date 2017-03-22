@@ -70,6 +70,7 @@
         TileSize: number;
         TileImage: string;
         Room: Room;
+        DeviceControls: DeviceControl[];
     }
 
     export class Activity {
@@ -108,4 +109,24 @@
         SortOrder: number;
         DisplayText: string;
     }
+
+    export class DeviceControl {
+        Id: number;
+        DeviceId: number;
+        DoUpdate: boolean;
+        SingleRangeEntry: boolean;
+        ButtonType: number;
+        ButtonCustom: number;
+        CCIndex: number;
+        Range: string;
+        Label: string;
+        ControlType: number;
+        ControlValue: string;
+        ControlString: string;
+        ControlStringList: string;
+        ControlStringSelected: string;
+        ControlFlag: boolean;
+        Device: Device;
+    }
+
 }

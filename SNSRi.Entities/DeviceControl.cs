@@ -1,4 +1,6 @@
-﻿namespace SNSRi.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SNSRi.Entities
 {
     public class DeviceControl
 	{
@@ -17,5 +19,9 @@
         public string ControlStringList { get; set; }
         public string ControlStringSelected { get; set; }
         public bool ControlFlag { get; set; }
+
+
+        [ForeignKey("DeviceId")]
+        public virtual Device Device { get; set; }
     }
 }

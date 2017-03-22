@@ -1,6 +1,7 @@
 ﻿module App {
     import Device = Data.Contracts.Device;
     import HomeSeerDevice = Data.HomeSeer.HomeSeerDevice;
+    import DeviceControl = Data.Contracts.DeviceControl;
 
     export class DeviceTileController {
 
@@ -50,8 +51,21 @@
 
         public clicked(device: Device): void {
             const self = this;
-            console.debug("sending old value: " + self.oldValue);
-            this.dataService.setHomeSeerDevice(device.ReferenceId, self.oldValue);
+
+            // choose any control value other than current
+            var devCtrl = _.find(self.device.DeviceControls, (ctl: DeviceControl): boolean => {
+                return ctl.ControlValue != device.Value;
+            });
+
+            // switch
+            if (devCtrl) {
+                console.debug("sending old value: " + devCtrl.ControlValue);
+                this.dataService.setHomeSeerDevice(device.ReferenceId, devCtrl.ControlValue);
+            }
+            else {
+                console.warn("User clicked a control that has no actionable item");
+            }
+
         }
 
 
@@ -68,20 +82,11 @@
 
                     self.hs = values[1].data.Devices[0] as HomeSeerDevice;
                     if (!self.hs) {
-                        console.error("unable to get refid: " + self.$scope.device.ReferenceId);
+                        console.error("unable to get status for refid: " + self.$scope.device.ReferenceId);
                     }
-
-                    //update self
-                    if (self.hs) {
+                    else
+                    {
                         self.$scope.device.Value = parseInt(self.hs.value);
-                        if (self.$scope.device.Value === 100) {
-                            self.newValue = "100";
-                            self.oldValue = "0";
-                        }
-                        else {
-                            self.newValue = "0";
-                            self.oldValue = "100";
-                        }
                     }
                 });
         }

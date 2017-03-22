@@ -13,7 +13,9 @@ namespace SNSRi.Repository
 
         public Device GetByReferenceId(int referenceId)
         {
-            return SNSRiContext.Devices.FirstOrDefault(d => d.ReferenceId == referenceId);
+            return SNSRiContext.Devices
+                .Include(i => i.DeviceControls)
+                .FirstOrDefault(d => d.ReferenceId == referenceId);
         }
 
         public IEnumerable<Device> GetByRoomId(int roomId)
