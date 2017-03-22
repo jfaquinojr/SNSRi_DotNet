@@ -29,8 +29,8 @@ namespace SNSRi.Api
 
             //GlobalConfiguration.Configuration.Formatters.JsonFormatter.MediaTypeMappings.Add(new QueryStringMapping("json", "true", "application/json"));
             Log.Logger = new LoggerConfiguration()
-                .WriteTo.RollingFile("/logs/log.txt")
-                .WriteTo.Seq("http://localhost:5341")
+                .WriteTo.RollingFile(Utility.GetConfig("SNSRi.Seq.Url", "C:\\temp\\logs\\log.txt"))
+                .WriteTo.Seq(Utility.GetConfig("SNSRi.Seq.Url", "http://localhost:5341"))
                 .CreateLogger();
 
             var url = new Uri(Utility.GetConfig("SNSRi.OneTrueError.Url", "http://jfaerrors.azurewebsites.net"));
