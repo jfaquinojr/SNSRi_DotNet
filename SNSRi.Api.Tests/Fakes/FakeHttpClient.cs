@@ -17,6 +17,9 @@ namespace SNSRi.Api.Tests.Fakes
     {
         public string GetStringAsync(string requestUri)
         {
+            if (requestUri.Contains("brhumidity"))
+                return GetJsonStatusBRHumidity();
+
             return GetJson();
         }
 
@@ -228,6 +231,45 @@ namespace SNSRi.Api.Tests.Fakes
                       'status_image': '/images/HomeSeer/status/on.gif'
                   }
                 ]
+            }
+            ";
+        }
+
+        private string GetJsonStatusBRHumidity()
+        {
+            return @"
+            {
+              'Name': 'HomeSeer Devices',
+              'Version': '1.0',
+              'Devices': [
+                {
+                  'ref': 43,
+                  'name': 'BR Humidity',
+                  'location': 'Z-Net #1',
+                  'location2': '101',
+                  'value': 53,
+                  'status': '53 %',
+                  'device_type_string': 'Z-Wave Relative Humidity',
+                  'last_change': '/Date(1490115898906)/',
+                  'relationship': 4,
+                  'hide_from_view': false,
+                  'associated_devices': [
+                    37
+                  ],
+                  'device_type': {
+                    'Device_API': 4,
+                    'Device_API_Description': 'Plug-In API',
+                    'Device_Type': 0,
+                    'Device_Type_Description': 'Plug-In Type 0',
+                    'Device_SubType': 5,
+                    'Device_SubType_Description': 'Relative Humidity'
+                  },
+                  'device_image': '',
+                  'UserNote': '',
+                  'UserAccess': 'Any',
+                  'status_image': '/images/HomeSeer/status/water.gif'
+                }
+              ]
             }
             ";
         }

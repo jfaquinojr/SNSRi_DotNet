@@ -5,6 +5,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using HomeSeerAPI;
 using System.Configuration;
+using Microsoft.AspNet.SignalR.Client;
+using System.Net;
 
 namespace SNSRi.Plugin
 {
@@ -12,7 +14,9 @@ namespace SNSRi.Plugin
     {
         private static IEventsHub _instance;
         private IHubProxy _hub;
+        private HubConnection _hubConnection;
         private static string _url;
+        
 
         static EventsHub()
         {
@@ -26,7 +30,9 @@ namespace SNSRi.Plugin
                 .CreateLogger();
             Log.Information("Created EventsHub instance at {ExecutionTime} (ctor1)", Environment.TickCount);
 
-            string useDefault(string setting, string defaultValue){
+
+            string useDefault(string setting, string defaultValue)
+            {
                 if (string.IsNullOrEmpty(setting))
                 {
                     return defaultValue;
@@ -35,15 +41,39 @@ namespace SNSRi.Plugin
             }
         }
 
+        ~EventsHub()
+        {
+            Log.Information("Begin EventsHub Destructor");
+
+            if (_hubConnection != null && _hubConnection.State != ConnectionState.Disconnected)
+            {
+                Log.Debug("Stopping Hub Connection.");
+                _hubConnection.Stop();
+            }
+
+            Log.Information("End EventsHub Destructor");
+        }
+
         private EventsHub(string url)
         {
+            Log.Information("Begin EventsHub Constructor");
+
+            ServicePointManager.DefaultConnectionLimit = 100;
+            Log.Debug("Setting DefaultConnectionLimit to " + ServicePointManager.DefaultConnectionLimit);
+
+            Log.Debug($"Creating Hubconnection with URL: '{url}'");
             _url = url;
-            Console.WriteLine("Inside EventsHub ctor");
+            _hubConnection = new HubConnection(_url);
+
+            Log.Debug("Creating Hub Proxy");
+            _hub = _hubConnection.CreateHubProxy("snsri");
+
+            Log.Information("End EventsHub Constructor");
         }
 
         public static IEventsHub CreateInstance(string url)
         {
-            Log.Information("Start CreateInstance");
+            Log.Information("Begin CreateInstance");
 
             if (string.IsNullOrWhiteSpace(url))
             {
@@ -54,40 +84,44 @@ namespace SNSRi.Plugin
             {
                 _url = url;
                 _instance = new EventsHub(_url);
-                Log.Information("Instance Created.");
+                Log.Debug($"Instance Created '{_url}'.");
             }
+
+            Log.Information("End CreateInstance");
             return _instance;
         }
 
         public void TransmitMessage(string msg)
         {
+            Log.Information("Begin TransmitMessage");
+
             Log.Information("Transmitting message {Message}", msg);
             if (_hub == null)
             {
                 Log.Warning("Hub on '{HubUrl}' is not yet initialized", _url);
                 return;
             }
+
+            Log.Debug($"Transmitting message '{msg}'");
             _hub.Invoke<string>("transmitEvent", msg);
-            Log.Information("Message transmitted..");
+
+            Log.Information("End TransmitMessage");
         }
 
         public void TransmitEvent(EventMessage eventMessage)
         {
-            Log.Information("Enter TransmitEvent");
-            
+            Log.Information("Begin TransmitEvent");
 
-            var hubConnection = new HubConnection(_url);
-            _hub = hubConnection.CreateHubProxy("snsri");
-            hubConnection.Start().ContinueWith(task=>
+            _hubConnection.Start().ContinueWith(task=>
             {
-                Log.Information("Transmitting event with object {@EventMessage}", eventMessage);
+                Log.Debug("Transmitting event with object {@EventMessage}", eventMessage);
 
                 _hub.Invoke<string>("transmitEvent", eventMessage);
 
-                Log.Information("Event {@EventMessage} transmitted..", eventMessage);
+                Log.Debug("Event {@EventMessage} transmitted..", eventMessage);
             });
 
-            Log.Information("Exit TransmitEvent");
+            Log.Information("End TransmitEvent");
         }
 
     }

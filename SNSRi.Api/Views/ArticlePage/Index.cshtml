@@ -2,21 +2,28 @@
 @model SNSRi.Web.PageTypes.ArticlePageType
  
 @{
-    Layout = "~/Views/Shared/_startScreen.cshtml";
+    Layout = "~/Views/Shared/_landingPage.cshtml";
 }
 
+
 <div class="tile-group">
-<div style="width: 600px;">
-    <!-- Check if top image is defined -->
-    @if (!string.IsNullOrEmpty(Model.TopImage.ImageUrl))
-    {
-        @Model.TopImage.ToHtml()
-    }
-    <h1>@Model.Heading.Value</h1>
-    <p class="preamble">@Model.Preamble.Value</p>
+<div class="grid">
+    <div class="row cells4">
+        <div class="cell colspan3">
+            <h1 class="leader">@Model.Heading.Value</h1>
+            <p>
+                @Html.Raw(Model.MainBody.Value)
+            </p>
+        </div>
+        <div class="cell">
 
-    @Html.Raw(Model.MainBody.Value)
-    <p>Created: @Model.CreatedDate</p>
+            <h3>News</h3>
+
+            <p>No news available</p>
+
+        </div>
+    </div>
+</div>
 </div>
 
-</div>
+

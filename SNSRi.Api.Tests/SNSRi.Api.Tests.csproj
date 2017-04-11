@@ -101,6 +101,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GetJSONTests.cs" />
     <Compile Include="FactoryResetTests.cs" />
     <Compile Include="Fakes\FakeHttpClient.cs" />
     <Compile Include="Helpers\TestHelper.cs" />

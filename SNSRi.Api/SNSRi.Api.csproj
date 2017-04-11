@@ -428,6 +428,8 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Pages\NewsListPage.cs" />
+    <Compile Include="Models\Pages\NewsPage.cs" />
     <Compile Include="Models\SimpleLoginModel.cs" />
     <Compile Include="Models\TicketActivityViewModel.cs" />
     <Compile Include="PageTypes\StartPage.cs" />
@@ -537,6 +539,8 @@
     <Content Include="Views\Rooms\Index.cshtml" />
     <Content Include="Views\Home\Welcome.cshtml" />
     <Content Include="Views\ArticlePage\Index.cshtml" />
+    <Content Include="Views\Shared\MenuHeader.cshtml" />
+    <Content Include="Views\Shared\_landingPage.cshtml" />
     <TypeScriptCompile Include="app\admin\directives\residentForm.ts" />
     <TypeScriptCompile Include="app\admin\residentsController.ts" />
     <TypeScriptCompile Include="app\controllers\roomsController.ts" />

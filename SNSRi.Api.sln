@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+VisualStudioVersion = 15.0.26403.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SNSRi.Api", "SNSRi.Api\SNSRi.Api.csproj", "{85E46A08-2721-4707-932F-2E1D7235A924}"
 EndProject
@@ -24,6 +24,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{0CA4C975-6E77-4553-BD39-5B8D476F6054}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SNSRi.Database", "SNSRi.Database\SNSRi.Database.csproj", "{11192FF6-7B5A-4B79-8272-D982A6AD3755}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SNSRi.BusinessTests", "SNSRi.BusinessTests\SNSRi.BusinessTests.csproj", "{4361F706-C131-462C-B281-4661AF745C0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -485,6 +487,54 @@ Global
 		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Release|Any CPU.Build.0 = Release|Any CPU
 		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Release|x86.ActiveCfg = Release|Any CPU
 		{11192FF6-7B5A-4B79-8272-D982A6AD3755}.Release|x86.Build.0 = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Debug|x86.Build.0 = Debug|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.HTZEES2|Any CPU.ActiveCfg = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.HTZEES2|Any CPU.Build.0 = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.HTZEES2|x86.ActiveCfg = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.HTZEES2|x86.Build.0 = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.HTZEES2ASCII|Any CPU.ActiveCfg = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.HTZEES2ASCII|Any CPU.Build.0 = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.HTZEES2ASCII|x86.ActiveCfg = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.HTZEES2ASCII|x86.Build.0 = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Debug|x86.ActiveCfg = Debug|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Debug|x86.Build.0 = Debug|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Release SEL|Any CPU.ActiveCfg = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Release SEL|Any CPU.Build.0 = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Release SEL|x86.ActiveCfg = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Release SEL|x86.Build.0 = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Release|Any CPU.Build.0 = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Release|x86.ActiveCfg = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Release|x86.Build.0 = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Zee Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Zee Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Zee Debug|x86.ActiveCfg = Debug|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Zee Debug|x86.Build.0 = Debug|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Zee Plus Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Zee Plus Release|Any CPU.Build.0 = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Zee Plus Release|x86.ActiveCfg = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Zee Plus Release|x86.Build.0 = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Zee Release ASCII|Any CPU.ActiveCfg = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Zee Release ASCII|Any CPU.Build.0 = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Zee Release ASCII|x86.ActiveCfg = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Zee Release ASCII|x86.Build.0 = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Zee Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Zee Release|Any CPU.Build.0 = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Zee Release|x86.ActiveCfg = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux Zee Release|x86.Build.0 = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux ZeePlus Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux ZeePlus Release|Any CPU.Build.0 = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux ZeePlus Release|x86.ActiveCfg = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Linux ZeePlus Release|x86.Build.0 = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Release|x86.ActiveCfg = Release|Any CPU
+		{4361F706-C131-462C-B281-4661AF745C0E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
